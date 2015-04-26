@@ -242,6 +242,8 @@ div.colophon {
 /* RESPOND */
 
 /* iPads (portrait and landscape) ----------- */
+
+/*
 @media (max-width: 660px) { 
   body {
     transition: .15s;
@@ -272,5 +274,5 @@ div.colophon {
     width: 100%;
   }
 }
-
+*/
 .typekit-badge { display:none !important; }
