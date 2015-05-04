@@ -41,7 +41,7 @@ img {
   min-height: 100%;
   width: 740px;
   margin: 0 auto;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #e6e6e6
   border-bottom: none;
   border-top: none;
   padding: 20px;
@@ -107,12 +107,12 @@ img.full {
   width: 100%;
 }
 
-#body_content > img.split {
+img.split {
   width: 48.5%;
   display: inline-block;
 }
 
-#body_content > img.split.right {
+img.split.right {
   float: right;
 }
 

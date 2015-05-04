@@ -1,0 +1,25 @@
+html, body {
+  height: 100%;
+  position: relative;
+}
+
+.content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -100px;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	background-color: blue;
+	line-height: 200px;
+	color: #fff;
+	background: #FF5736;
+	opacity: .7;
+  border-radius: 100px;
+}
+
+h1 {
+  margin: 0;
+}
