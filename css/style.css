@@ -41,7 +41,7 @@ img {
   min-height: 100%;
   width: 740px;
   margin: 0 auto;
-  border: 1px solid #e6e6e6
+  border: 1px solid #e6e6e6;
   border-bottom: none;
   border-top: none;
   padding: 20px;
@@ -52,8 +52,6 @@ img {
 /* NAVIGATION */
 
 header {
-/*  position: fixed;
-  top: 0; */
   width: 780px;
   margin-left: -20px;
   font-family: 'PT Mono', monospace;
@@ -87,10 +85,16 @@ nav ul li {
 
 .page-link {
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 15px;
+  transition: .2s;
 }
 
 .page-link:hover {
   color: #D32F2F;
+  border-bottom: 1px solid #D32F2F;
+  padding-bottom: 19px;
+  transition: .2s;
 }
 
 /* GRID */
@@ -115,8 +119,6 @@ img.split {
 img.split.right {
   float: right;
 }
-
-                                                                           /* ALIGNMENT */
 
 .left {
   text-align: left;
@@ -160,6 +162,21 @@ p {
 }
 
 /* POSTS */
+
+.section_header {
+  background-color: #eee;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.section_header > p {
+  margin-bottom: 0;
+}
+
+.post {
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 20px;
+}
 
 /* FOOTER */
 
