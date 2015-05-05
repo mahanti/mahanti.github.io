@@ -44,7 +44,7 @@ var $start      = $('#start'),
       //add splits      
             t[7]++;
             $splits.show();
-            $('<li><span>' + zero(t[7]) + '</span> ' + format(t[3]) + '</li>').appendTo($splits).slideDown('fast');
+            $('<li>' + format(t[3]) + '</li>').appendTo($splits).slideDown('fast');
             $splits.find('li').removeClass('first last');
             $splits.find('li:first').addClass('first').end().find('li:last').addClass('last');
             t[4] = t[1] = t[0] = 0;
