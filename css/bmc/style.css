@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Helvetica";
+}
+
+/* ------ HEADER ------ */
+
+header {
+  height: 37.5%;
+}
+
+#bigmoneycolor {
+  width: 150px;
+  margin: 50px auto -50px auto;
+  display: block;
+  border: 1px solid rgba(0,0,0,.75);
+  color: rgba(0,0,0,.75);
+  border-radius: 2px;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+#bigmoneycolor:focus {
+  outline: none;
+}
+
+/* ------ PALETTES ------ */
+
+.complements {
+  width: 100%;
+  height: 37.5%;
+  text-align: center;
+}
+
+.palette {
+  width: 350px;
+  display: block;
+  margin: 5px auto;
+  color: rgba(0,0,0,.1);
+}
+
+.palette > span {
+  display: inline-block;
+  height: 50px;
+}
+
+.palette > span:first-of-type {
+  display: none;
+}
+
+#triad > span {
+  width: 50%; 
+}
+
+#tetrad > span {
+  width: 33.33336%;
+}
+
+#analogous > span {
+  width: 20%;
+}
+
+#split_complement > span {
+  width: 50%;
+}
+
+
+/* ------ COLORS ------ */
+
+.colors {
+  height: 25%;
+  background-color: #eee;
+}
+
+.colors ul {
+  list-style: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.colors ul > li {
+  display: inline-block;
+  float: left;
+  height: 100%;
+}
+
+.colors ul > li > span{
+  height: 100%;
+  display: block;
+}
+
+
+/* ----- NUX ------ */
+
+li.sign_in {
+  text-align: center;
+  text-decoration: none;
+  color: rgba(0,0,0,.8);
+}
+
