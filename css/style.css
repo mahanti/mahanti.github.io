@@ -33,10 +33,6 @@ a {
   text-decoration: underline;
 }
 
-img {
-  background-color: #eee;
-}
-
 #container {
   min-height: 100%;
   width: 740px;
@@ -125,6 +121,7 @@ img.split.right {
   font-size: 14px;
   font-weight: 100;
   color: #aaa;
+  float: left;
 }
 
 .left {
@@ -165,13 +162,12 @@ h4 {
 p {
   font-size: 16px;
   color: #444;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
 }
 
 /* POSTS */
 
 .section_header {
-  background-color: #eee;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -229,8 +225,20 @@ div.colophon {
 
 .built_with {
   font-size: 12px;
-  padding: 20px;
+  padding: 20px 0px 0px 0px; 
   color: rgba(0,0,0,.25);
+  display: inline-block;
+}
+
+#social_nav {
+  float: right;
+  padding-top: 20px;
+}
+
+#social_nav li {
+  display: inline-block;
+  margin-left: 20px;
+  opacity: .3;
 }
 
 /* BIGMONEYCOLOR INTEGRATION */
