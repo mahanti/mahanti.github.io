@@ -121,7 +121,6 @@ img.split.right {
   font-size: 14px;
   font-weight: 100;
   color: #aaa;
-  float: left;
 }
 
 .left {
@@ -168,8 +167,10 @@ p {
 /* POSTS */
 
 .section_header {
-  padding: 20px;
+  padding: 10px 10px 10px 20px;
   margin-bottom: 20px;
+  font-size: 18px;
+  border-left: 10px solid #ccc;
 }
 
 .section_header > p {
