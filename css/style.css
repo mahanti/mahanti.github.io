@@ -5,7 +5,7 @@ html, body {
   width: 100%;
 }
 
-body, dl, ol, ul, h3 
+body, dl, ol, ul, h1, h2, h3, h4, h5, p
 button, input, select, textarea {
   margin: 0;
 }
@@ -40,9 +40,7 @@ a {
   border: 1px solid #e6e6e6;
   border-bottom: none;
   border-top: none;
-  padding: 20px;
-  padding-top: none;
-  padding-bottom: 0px;
+  padding: 20px 20px 0px 20px;
 }
 
 /* NAVIGATION */
@@ -95,24 +93,20 @@ nav ul li {
 
 /* GRID */
 
-#body_content {
-  display: block;
-  width: 740px; 
-}
-
 img {
   margin-bottom: 15px;
 }
-img.full {
+
+#container img {
   width: 100%;
 }
 
-img.split {
+#container img.split {
   width: 48.5%;
   display: inline-block;
 }
 
-img.split.right {
+#container img.split.right {
   float: right;
 }
 
