@@ -5,7 +5,7 @@ html, body {
   width: 100%;
 }
 
-body, dl, ol, ul, 
+body, dl, ol, ul, h3 
 button, input, select, textarea {
   margin: 0;
 }
@@ -199,7 +199,6 @@ footer {
 
 footer > div {
   opacity: .5;
-  padding-top: 20px;
 }
 
 div.about {
