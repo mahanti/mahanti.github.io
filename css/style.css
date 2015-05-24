@@ -295,12 +295,27 @@ div.colophon {
 
   header {
     width: 100%;
-    margin-left: 0px; 
+    margin-left: 0px;
+    margin-bottom: 0px;
+    height: 70px;
+  }
+
+  #logo {
+    display: block;
+  }
+
+  nav ul {
+    display: block;
+    float: left;
+    margin-left: -30px;
+  }
+
+  .body_content {
   }
 
   footer {
     width: 100%;
-    margin: 0px; 
+    margin: -20px 0px 0px 0px; 
   }
 
   .footer_section {
@@ -332,12 +347,6 @@ div.colophon {
     margin: 0 auto;
     float: none;
     padding: 0px; 
-  }
-}
-
-@media (max-width: 514px) {
-  nav ul {
-    margin-top: -25px;
   }
 }
 
