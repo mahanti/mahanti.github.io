@@ -216,6 +216,7 @@ div.colophon {
 .footer_section {
   width: 365px;
   display: inline-block;
+  padding-top: 15px;
 }
 
 #colophon {
@@ -225,7 +226,7 @@ div.colophon {
 
 .built_with {
   font-size: 12px;
-  padding: 20px 0px 0px 0px; 
+  padding: 10px 0px 0px 0px; 
   color: rgba(0,0,0,.25);
   display: inline-block;
 }
@@ -275,36 +276,69 @@ div.colophon {
 
 /* iPads (portrait and landscape) ----------- */
 
-/*
-@media (max-width: 660px) { 
+@media (max-width: 780px) { 
   body {
     transition: .15s;
+    overflow-x: none; 
+  }
+
+  #container {
+    width: 100%;
+    margin: 0; 
+    padding-left: 0px;
+    padding-right: 0px; 
+  }
+
+  .body_content {
+    padding: 20px;
   }
 
   header {
-    width: 90%; 
-    padding: 10px 20px;
-  }
-
-  .container, .single-post-container {
     width: 100%;
+    margin-left: 0px; 
   }
 
-  .post, .single-post-container {
-    padding: 0px 20px;
-  } 
-
-  header {
-   padding: 0px 20px;
-  }
-
-  .intro {
-    padding: 0px 20px;
-  }
-
-  .post img {
+  footer {
     width: 100%;
+    margin: 0px; 
+  }
+
+  .footer_section {
+    width: 100%;
+    padding-left: 20px; 
+  }
+
+  .footer_section p {
+   width: 90%;
+  }
+
+  div.about {
+    margin-left: 0px;
+  }
+
+  div.colophon {
+   border-top: 1px solid #e6e6e6;
+   margin-left: 0px;
+ }
+  
+  .built_with {
+    width: 100%; 
+    text-align: center;
+  }
+
+  #social_nav {
+    width: 200px;
+    display block;
+    margin: 0 auto;
+    float: none;
+    padding: 0px; 
   }
 }
-*/
+
+@media (max-width: 514px) {
+  nav ul {
+    margin-top: -25px;
+  }
+}
+
 .typekit-badge { display:none !important; }
