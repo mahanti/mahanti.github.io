@@ -343,11 +343,25 @@ div.colophon {
 
   #social_nav {
     width: 200px;
-    display block;
+    display: block;
     margin: 0 auto;
     float: none;
     padding: 0px; 
   }
+}
+
+#bigmoneycolor {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  color: rgba(0,0,0,.75);
+  border-radius: 2px 2px 0px 0px;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  -webkit-transition:all .25s ease;
+     -moz-transition:all .25s ease;
 }
 
 .typekit-badge { display:none !important; }
