@@ -5,7 +5,7 @@ html, body {
   width: 100%;
 }
 
-body, dl, ol, ul, h1, h2, h3, h4, h5, p
+body, dl, ol, ul, h1, h2, h3, h4, h5, p,
 button, input, select, textarea {
   margin: 0;
 }
@@ -94,7 +94,7 @@ nav ul li {
 /* GRID */
 
 img {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 #container img {
@@ -156,6 +156,10 @@ h3 {
 }
 
 h4 {
+}
+
+p {
+  margin-bottom: 15px;
 }
 
 p, ul {
