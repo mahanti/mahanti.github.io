@@ -81,14 +81,12 @@ nav ul li {
   text-decoration: none;
   border-bottom: 1px solid transparent;
   padding-bottom: 15px;
-  transition: .2s;
 }
 
 .page-link:hover {
   color: #D32F2F;
   border-bottom: 1px solid #D32F2F;
   padding-bottom: 19px;
-  transition: .2s;
 }
 
 /* GRID */
