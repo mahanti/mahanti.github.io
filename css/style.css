@@ -120,7 +120,7 @@ form {
 /* ------------------------------- */
 
 header {
-  width: 740px;
+  width: 739px;
   margin-left: -20px;
   font-family: 'PT Mono', monospace;
   border-bottom: 1px solid #E0E0E0;
@@ -168,7 +168,7 @@ nav ul li {
 /* -------------------------------- */
 
 img {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 #container img {
