@@ -329,7 +329,7 @@ div.colophon {
 @media (max-width: 780px) { 
   body {
     transition: .15s;
-    overflow-x: none; 
+    overflow-x: hidden; 
   }
 
   #container {
@@ -357,11 +357,9 @@ div.colophon {
   nav ul {
     display: block;
     float: left;
-    margin-left: -30px;
+    margin-left: 10px;
   }
 
-  .body_content {
-  }
 
   footer {
     width: 100%;
@@ -370,11 +368,15 @@ div.colophon {
 
   .footer_section {
     width: 100%;
-    padding-left: 20px; 
   }
 
   .footer_section p {
    width: 90%;
+   margin-left: 20px; 
+  }
+  
+  .footer_section h3 {
+    margin-left: 20px;
   }
 
   div.about {
@@ -384,9 +386,10 @@ div.colophon {
   div.colophon {
    border-top: 1px solid #E0E0E0;
    margin-left: 0px;
- }
-  
-  .built_with {
+   padding-left: 0px; 
+  }
+
+  .copyright {
     width: 100%; 
     text-align: center;
   }
