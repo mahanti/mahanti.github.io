@@ -109,7 +109,7 @@ form {
   padding: 20px 20px 0px 20px;
   box-sizing: border-box; 
   position: relative;
-  border: 1px solid #EEEEEE;
+  border: 1px solid #E0E0E0;
   border-bottom: none;
   border-top: none;
 }
@@ -122,7 +122,7 @@ header {
   width: 740px;
   margin-left: -20px;
   font-family: 'PT Mono', monospace;
-  border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #E0E0E0;
   margin-bottom: 20px;
 }
 
@@ -218,8 +218,13 @@ img {
 }
 
 .post {
-  border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #E0E0E0;
   margin-bottom: 20px;
+}
+
+.post.last {
+  border-bottom: none;
+  margin-bottom: none;
 }
 
 /* ------------------------------ */
@@ -229,22 +234,21 @@ img {
 footer {
   width: 740px;
   margin: 0px 0px 0px -20px; 
-  border-top: 1px solid #EEEEEE;
-  border-bottom: 1px solid #EEEEEE;
+  border-top: 1px solid #E0E0E0;
 }
 
 footer > div {
   opacity: .5;
 }
 
-div.about {
-  margin-left: 20px;
+.extra_information {
+  border-bottom: 1px solid #E0E0E0;
 }
 
-div.colophon {
-  margin-left: -15px; 
-  padding-left: 12px;
-  border-left: 1px solid #EEEEEE;
+.footer_section {
+  width: 350px;
+  display: inline-block;
+  padding-top: 15px;
 }
 
 .footer_section h3 {
@@ -259,19 +263,19 @@ div.colophon {
   margin-bottom: 15px;
 }
 
-.footer_section {
-  width: 350px;
-  display: inline-block;
-  padding-top: 15px;
+div.about {
+  margin-left: 20px;
 }
 
-#colophon {
-  display: inline-block;
+div.colophon {
+  margin-left: -15px; 
+  padding-left: 12px;
+  border-left: 1px solid #E0E0E0;
 }
 
-.built_with {
-  font-size: 12px;
-  padding: 10px 0px 0px 0px; 
+#secondary_nav > p {
+  font-size: .9em;
+  padding: 20px 0px 0px 20px; 
   color: rgba(0,0,0,.25);
   display: inline-block;
 }
@@ -279,6 +283,7 @@ div.colophon {
 #social_nav {
   float: right;
   padding-top: 20px;
+  margin-right: 20px;
 }
 
 #social_nav li {
@@ -377,7 +382,7 @@ div.colophon {
   }
 
   div.colophon {
-   border-top: 1px solid #EEEEEE;
+   border-top: 1px solid #E0E0E0;
    margin-left: 0px;
  }
   
