@@ -233,13 +233,9 @@ img {
 /* ------------------------------ */
 
 footer {
-  width: 740px;
+  width: 739px;
   margin: 0px 0px 0px -20px; 
   border-top: 1px solid #E0E0E0;
-}
-
-footer > div {
-  opacity: .5;
 }
 
 .extra_information {
@@ -257,11 +253,13 @@ footer > div {
   margin-bottom: 10px;
   font-weight: 600;
   letter-spacing: 0;
+  color: #9E9E9E;
 }
 
 .footer_section p {
   font-size: .9em;
   margin-bottom: 15px;
+  color: #BDBDBD;
 }
 
 div.about {
