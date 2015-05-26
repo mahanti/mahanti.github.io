@@ -243,7 +243,7 @@ footer {
 }
 
 .footer_section {
-  width: 350px;
+  width: 345px;
   display: inline-block;
   padding-top: 15px;
 }
@@ -267,7 +267,6 @@ div.about {
 }
 
 div.colophon {
-  margin-left: -15px; 
   padding-left: 12px;
   border-left: 1px solid #E0E0E0;
 }
