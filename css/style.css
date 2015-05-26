@@ -353,6 +353,8 @@ div.colophon {
 
   #logo {
     display: block;
+    margin-right: 0;
+    padding-right: 0;
   }
 
   nav ul {
