@@ -1,6 +1,7 @@
 /* RESET */
 
 html {
+  height: 100%; 
   font-size: 62.5%
 }
 
@@ -279,13 +280,14 @@ div.colophon {
 }
 
 #social_nav {
+  height: 0;
   float: right;
-  padding-top: 20px;
   margin-right: 20px;
 }
 
 #social_nav li {
   display: inline-block;
+  margin-top: 20px;
   margin-left: 20px;
   opacity: .3;
 }
@@ -389,8 +391,8 @@ div.colophon {
    padding-left: 0px; 
   }
 
-  #secondary_nav > p{
-    padding: 20px 0px 0px 0px;.
+  #secondary_nav > p {
+    padding: 20px 0px 0px 0px;
   }
 
   .copyright {
@@ -407,6 +409,7 @@ div.colophon {
   }
 
   #social_nav li {
+    margin-top: 0;
     margin-left: 30px;
   }
 }
