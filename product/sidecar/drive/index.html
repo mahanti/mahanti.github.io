@@ -101,8 +101,17 @@ contact the recipient. With that in mind I moved towards a solution where action
 <img data-action="zoom" src="scd_contact.png">
 <p class="img_caption">Sidecar's version of of an action sheet</p>
 <p>This new action sheet model gave us the control we needed while allowing main actions to be visible and easy to access.</p>
-<p>Now that there was a clear path to how a Driver interacts with a Rider, we started to take a look at how we can notify a Driver about changes to their itinerary. This is especially
-important for shared rides and deliveries where your route could be changed while you're on a trip.</p>
+<h4>Notifications</h4>
+<p>When Drivers are on the road it's important to let them focus on the road and not the software. That's why when looking at how we notify them of various events we had to really consider what was important and what wasn't. This distinction
+could not only exist in what we did and did not tell Drivers but also how we told them.</p>
+<p>The solution that we landed on was to have a system of notifications that differed in how heavily they blocked the interface.</p>
+
+<img data-action="zoom" src="scd_notification.jpg">
+<p class="img_caption">Notification types: Full, Blocking, Passive</p>
+<p>On the left we have a full modal page which we use as introductions to new features or changes to old ones. The middle is our blocking alerts which are used anytime it's crucial
+to the Sidecar experience that the Driver takes some action. A great example of where a blocking notification is useful is when a Driver must reroute to pickup a new Rider or Delivery. The passive notification, seen on the right, is mainly
+used to present information that is 'nice to know' such as another rider joining your ride (after your current stop).</p>
+<p>By breaking down notifications into three distinct styles it has helped us, and Drivers, pay attention to what's important and what can wait for later.</p>
 <!--
 <p>Since Driver's spend so much of their time driving and using navigation apps – it felt important to me to study those apps and understand the
 underlying principles and interaction paradigms they used. Some of the most common apps our driver used were Waze, Google Maps, and Apple maps. It was
