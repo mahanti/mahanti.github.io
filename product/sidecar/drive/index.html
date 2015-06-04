@@ -5,20 +5,20 @@ title: Design
 <img  src="scd_hero.png" data-action="zoom">
 
 <div class="section_header">
-  <p>The Sidecar Driver app, used by drivers to give rides and deliveries, is one of the most fascinating, and powerful, pieces of software Sidecar has produced. The sheer amount of optimization the team has done to efficiently match people and packages paired with the
+  <p>Sidecar Drive, the app used by drivers to give rides and deliveries, is one of the most fascinating, and powerful, pieces of software Sidecar has produced. The sheer amount of optimization the team has done to efficiently match people and packages paired with the
   robust mobile apps astounds me. It's consistenly been my favorite product to work on at Sidecar.</p>
-  <p>That being said, it hasn't always been the best product out there. Below, I'll try to give you a glimpse how this ugly duckling became a foundational element to the Sidecar story.</p>
+  <p>That being said, it hasn't always been the best product out there. Below, I'll try to give you a glimpse into how this ugly duckling became a foundational element to Sidecar's future.</p>
 </div>
 
 
 <img data-action="zoom" data-action="zoom"  src="scd_old.png">
-<p class="img_caption">The original Sidecar Drive app. Circa 2013. Not my best showing.</p>
+<p class="img_caption">The original Sidecar Drive app. Circa 2013.</p> 
 
 <h4>I. The Problem</h4>
-<p>Not pretty, right? Sidecar Drive 1.0, designed by yours truly on a single piece of looseleaf paper, worked surprisingly well for about two years but was a disaster waiting to happen.
-Any new feature would immediately break the design paradigm or lack thereof. Thankfully, my process had grown from nothing to something so I was ready to revisit my old friend: Sidecar Drive.</p>
+<p>Not pretty, right? Sidecar Drive 1.0, designed by yours truly on a single piece of looseleaf paper, worked surprisingly well for about 2 years but was a problem waiting to happen.
+Any new feature we tried to support would immediately break the design (or lack thereof). Thankfully, the time came when it was time for me to revisit my old friend: Sidecar Drive.</p>
 
-<p>As our business grew and evolved, we were limited by this app and it's rigid structure of crap. It needed to be rebuilt from the ground up and provide the achieve the following goals:</p>
+<p>As our business grew and evolved, we were limited by this app and it's rigid structure of crap. It needed to be rebuilt from the ground up and achieve the following goals:</p>
 
 <ul>
   <li>Unify the experience for solo and shared rides</li>
@@ -27,15 +27,14 @@ Any new feature would immediately break the design paradigm or lack thereof. Tha
 </ul>
 
 
-
 <p>With the groundwork laid out, it was time to set a timeline, figure out concrete deliverables, and start unpacking this design problem.</p>
 
 <h4>II. The Process</h4>
-<p>The silver lining of having an outdated product out in the open for so long is that we had a good feedback from our Drivers on what was working and what wasn't.</p>
+<p>The silver lining of having an outdated product out in the open for so long is that we had a lot of feedback from our Drivers on what was working and even more on what wasn't.</p>
 <h5>Things that worked well:</h5>
 <ul>
   <li>The main flow was simple to progress through (just tap the big, fat orange button to move forward)</li>
-  <li>We gave drivers a lot of information on the ride (price, ETA, pickup & dropoff, etc.)</li>
+  <li>We give Drivers a lot of information on the ride (price, ETA, pickup & dropoff, etc.)</li>
   <li>The overall flow didn't change from ride to ride so muscle memory was easy to build</li>
 </ul>
 
@@ -55,9 +54,9 @@ listening to Ratatat's LP4. It was game time.</p>
 <img data-action="zoom"  src="scd_ride_request.png">
 
 <h4>The Request</h4>
-<p>The request screen is what a Driver uses to accept or decline a ride or delivery trip. With a lot of information (price, ETA, multiple waypoints) and only 12 seconds
-to make a decision, Drivers were feeling rushed and said they would love to have more time to accept. While we could've added more time that would impact Riders
-and the system as a whole so I tried to see if we could solve the issue in another way.</p>
+<p>The request screen is what a Driver uses to accept or decline trips. With a lot of information (price, ETA, multiple waypoints) and only 12 seconds
+to make a decision, Drivers were feeling rushed and said they would love to have more time to accept. While we could've lengthened the timer, the effects it would have on Riders and the system as a whole led me to 
+see if we could solve the problem in another way.</p>
 
 <p>Hierarchy of information is fundamental to a good experience and to apply that to the request screen, I had to figure out what information was most important to Drivers. After
 a few interviews the information fell into this order:
@@ -68,7 +67,6 @@ a few interviews the information fell into this order:
 </ol>
 
 
-
 <p>This insight was key in laying out the screen and has helped Drivers parse information without feeling rushed. In addition to laying out information in a more
 presentable way, I wanted to see if there were other ways we could bend time and help Drivers not feel rushed. I knew designers have used visual tricks to make progress bars
 look faster than they are so I figured we could do the opposite and make it appear slower.</p>
@@ -76,11 +74,11 @@ look faster than they are so I figured we could do the opposite and make it appe
 <img data-action="zoom"  src="scd_request_timer.png">
 <p class="img_caption">Top: Normal. Middle: "Sped up". Bottom: "Slowed down"</p>
 
-<p>While the effect doesn't massively "slow down" the movement, some people were tricked into thinking that the bottom-most timer was a second or two longer than the others. Magic!</p>
+<p>While the effect doesn't massively "slow down" the movement, some drivers felt that the bottom-most timer was a second or two longer than the others. Magic!</p>
 
 <h4>Riders</h4>
-<p>With the introduction of Shared Rides, and knowing that Deliveries were only a few months away from productization, we realized we needed a scalable and flexible
-way for drivers to view waypoints, contact riders/recipients, and take other actions on the waypoints. A key consideration when designing the whole app was ensuring it was usable
+<p>With the introduction of Shared Rides, and knowing that Deliveries were only a few months away from productization, we realized a scalable and flexible
+way for drivers to manage multiple parties was crucial to a good experience. A key consideration when designing the whole app was ensuring it was usable
 when in a car and potentially from a distance. A term we used to describe these design considerations was 'half-height UI' since an arm-length is half of a persons height (unless you're Michael Phelps and your arms are oddly long).</p> 
 
 <p>Below are some explorations around how Drivers can contact Riders and manage their rides:</p>
@@ -89,9 +87,9 @@ when in a car and potentially from a distance. A term we used to describe these 
 <p>In an effort to make tap areas large, this utilized the whole screen as the container for important functions.</p>
 <img data-action="zoom"  src="co_pilot_v4.jpg">
 <img data-action="zoom"  src="co_pilot_v5.jpg">
-<p>This is similar to the exploration above but this was an effort to create something that could be a bit more extensible to more functions and more riders. This was
-inspired by Apple's Assistive Touch accessiblity feature on iOS. I really loved this direction but after prototyping it, it was too much of a guessing game as to
-what functions will appear where. When a Driver is on the road, muscle memory is key and always having to guess where a button will be is not a good practice.</p>
+<p>This is similar to the exploration above but this was an effort to create something that could be a bit more extensible to handle more functions and more riders. This was
+inspired by Apple's Assistive Touch accessiblity feature on iOS. I really loved this direction but after prototyping it, there was too much guessing around
+what functions would appear and where they would be placed. When a Driver is on the road, muscle memory is key and always having to guess where a button will be is not a good practice.</p>
 
 <p>Moving away from an interface that was very fluid and flexible, I started to explore more concrete implementations.</p>
 <img data-action="zoom"  src="co_pilot_v2.jpg">
@@ -100,7 +98,8 @@ what functions will appear where. When a Driver is on the road, muscle memory is
 contact the recipient. With that in mind I moved towards a solution where actions aren't hidden behind a tap but rather up front and easy to access.</p>
 <img data-action="zoom" src="scd_contact.png">
 <p class="img_caption">Sidecar's version of of an action sheet</p>
-<p>This new action sheet model gave us the control we needed while allowing main actions to be visible and easy to access.</p>
+<p>This new action sheet model gave us the control we needed while allowing main actions to be visible and easy to access. This model also becamse a key part of the 
+toolkit for any Sidecar Drive features.</p>
 <h4>Notifications</h4>
 <p>When Drivers are driving it's important they focus on the road - not the software. That's why when looking at how we notify them of various events we had to really consider what was important and what wasn't. This distinction
 could not only exist in what we did and did not tell Drivers but also how we told them.</p>
