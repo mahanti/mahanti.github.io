@@ -49,6 +49,10 @@ title: Design
 <p>After interviewing drivers, gathering historical data on usage, and landing on goals and priorities I grabbed a bunch of paper, a few markers, and
 Ratatat's LP4. It was game time.</p>
 
+<img data-action="zoom" src="d3_flow-sketch.jpg">
+<img data-action="zoom" src="d3_ride-request-sketch.jpg">
+<img data-action="zoom" src="d3_sketch.jpg">
+<p class="img_caption">A few early sketches for the new Driver experience.</p>
 <img data-action="zoom"  src="scd_ride_request.png">
 
 <h4>The Request</h4>
@@ -63,12 +67,13 @@ a few interviews the information fell into this order:
 </ol>
 
 
-<p>TThis insight was key in laying out the screen and has helped Drivers parse information without feeling rushed. In addition to laying out information in a more presentable way, I wanted to see if there were other ways we could bend time and help Drivers. I knew designers have used visual tricks to make progress bars look faster than they are so I thought we could do the opposite and make it appear slower.</p>
+<p>This insight was key in laying out the screen and has helped Drivers parse information without feeling rushed. In addition to laying out information in a more presentable way, I wanted to see if there were other ways we could bend time and help Drivers. I knew designers have used visual tricks to make progress bars look faster than they are (e.g. Safari's download bar) so I thought we could do the opposite and make it appear slower. While this animation didn't have a huge effect, some drivers did feel mention, during testing, that the timer with the animation felt the longest.</p>
 
-<img data-action="zoom"  src="scd_request_timer.png">
+<!--<img data-action="zoom"  src="scd_request_timer.png">
 <p class="img_caption">Top: Normal. Middle: "Sped up". Bottom: "Slowed down"</p>
 
 <p>While the effect doesn't massively "slow down" the movement, some drivers felt that the bottom-most timer was a second or two longer than the others. Magic!</p>
+-->
 
 <h4>Managing Multiple Parties:</h4>
 <p>A key consideration when designing the whole app was ensuring it was usable when in a car and potentially from a distance. A term we used to describe these design considerations was half-height  since an arm-length is half of a person’s height (unless you're Michael Phelps, and your arms are oddly long).</p>
@@ -77,6 +82,7 @@ a few interviews the information fell into this order:
 
 <img data-action="zoom"  src="co_pilot_v1.jpg">
 <p>In an effort to make tap areas large, this utilized the whole screen as the container for important functions.</p>
+<img data-action="zoom" src="d3_assistive-touch-sketch.jpg">
 <img data-action="zoom"  src="co_pilot_v4.jpg">
 <img data-action="zoom"  src="co_pilot_v5.jpg">
 <p>This is similar to the exploration above, but this was an effort to create something that could be a bit more extensible to more functions and more riders. This was inspired by Apple's Assistive Touch accessibility feature on iOS. I really loved this direction, but after prototyping it, it was too much of a guessing game as to what functions would appear where. When a Driver is on the road, muscle memory is key. Moving away from an interface that was very fluid and flexible, I started to explore more concrete implementations.</p>
@@ -92,6 +98,9 @@ a few interviews the information fell into this order:
 </p>
 <p>Our solution was to have a system of notifications that differed in how heavily they blocked the interface.</p>
 
+<img data-action="zoom" src="d3_notifications-sketch.jpg">
+<img data-action="zoom" src="d3_notifications-sketch-1.jpg">
+<p class="img_caption">Some early explorations for our notifications system. The top highlights a lightweight toast, and the bottom begins to investigate what happens when a Rider joins.</p>
 <img data-action="zoom" src="scd_notifications.jpg">
 <p class="img_caption">Notification types: Full, Blocking, Passive</p>
 <p>On the left, we have a full modal page, which we use as a platform to introduce new features or changes. The middle portrays a blocking alert, which is used anytime it's crucial to the Sidecar experience that the Driver take some action. A great example of the utility of a blocking notification is a Driver who must reroute to pickup a new Rider or Delivery. The passive notification, seen on the right, is mainly used to present information that is 'nice to know' such as another rider joining your ride (after your current stop).</p>
