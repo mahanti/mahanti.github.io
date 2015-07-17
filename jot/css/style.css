@@ -3,6 +3,7 @@ body {
   width: 100%;
   background-color: #FE5A3F;
   font-family: courier;
+  overflow: hidden;
 }
 
 header {
@@ -37,10 +38,10 @@ header {
 footer {
   width: 400px;
   margin: 0 auto;
+  bottom: 0;
 }
 
 .phone {
-  bottom:0px;
   width: 400px;
   height: auto;
 }
