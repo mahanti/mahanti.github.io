@@ -1,0 +1,11 @@
+.logo {
+  display: block;
+  width: 66px;
+  margin: 10px auto;
+}
+
+.pill {
+  font-weight: 500;
+  padding: 5px 10px;
+  font-size: 0.95rem
+}
