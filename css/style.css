@@ -111,7 +111,7 @@ form {
   padding: 20px 20px 0px 20px;
   box-sizing: border-box; 
   position: relative;
-  border: 1px solid #E0E0E0;
+  border: 1px solid rgba(0,0,0,.05);
   border-bottom: none;
   border-top: none;
 }
@@ -124,7 +124,7 @@ header {
   width: 739px;
   margin-left: -20px;
   font-family: 'PT Mono', monospace;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid rgba(0,0,0,.05);
   margin-bottom: 20px;
 }
 
@@ -220,7 +220,7 @@ img {
 }
 
 .post {
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid rgba(0,0,0,.05);
   margin-bottom: 20px;
 }
 
@@ -236,11 +236,11 @@ img {
 footer {
   width: 739px;
   margin: 0px 0px 0px -20px; 
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid rgba(0,0,0,.05);
 }
 
 .extra_information {
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid rgba(0,0,0,.05);
 }
 
 .footer_section {
@@ -269,7 +269,7 @@ div.about {
 
 div.colophon {
   padding-left: 12px;
-  border-left: 1px solid #E0E0E0;
+  border-left: 1px solid rgba(0,0,0,.05);
 }
 
 #secondary_nav > p {
@@ -386,7 +386,7 @@ div.colophon {
   }
 
   div.colophon {
-   border-top: 1px solid #E0E0E0;
+   border-top: 1px solid rgba(0,0,0,.05);
    margin-left: 0px;
    padding-left: 0px; 
   }
