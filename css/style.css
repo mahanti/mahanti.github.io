@@ -213,11 +213,6 @@ img {
 /* POSTS */
 /* ---------------------------- */
 
-#body_content > p {
-  width: 80%;
-  margin: 0px auto;
-}
-
 .section_header {
   padding: 0px 10px 0px 20px;
   margin-bottom: 20px;
