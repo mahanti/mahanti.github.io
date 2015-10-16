@@ -213,7 +213,7 @@ img {
 /* POSTS */
 /* ---------------------------- */
 
-.body_content > p {
+#body_content > p {
   width: 80%;
   margin: 0px auto;
 }
