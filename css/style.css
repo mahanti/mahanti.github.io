@@ -447,7 +447,6 @@ div.colophon {
 }
 
 .location {
-  margin-bottom: 10px;
   min-height: 160px;
 }
 
@@ -459,5 +458,6 @@ div.colophon {
 .location > iframe {
   float: right;
   width: 48.5%;
-  height: 150px;
+  height: 300px;
+  margin-bottom: 20px;
 }
