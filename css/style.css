@@ -140,6 +140,10 @@ nav {
   text-decoration: none;
 }
 
+#logo.center {
+  text-align: center;
+}
+
 nav ul {
   display: inline-block;
   float: right;
