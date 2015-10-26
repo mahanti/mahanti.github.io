@@ -132,6 +132,10 @@ nav {
   padding: 0px 0px 15px 0px;
 }
 
+nav.mnml {
+  text-align: center;
+}
+
 #logo {
   display: inline-block;
   font-size: 12pt;
