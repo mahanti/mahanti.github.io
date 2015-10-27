@@ -443,14 +443,13 @@ div.colophon {
 .typekit-badge { display:none !important; }
 
 .japan_hero {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .location {
+  position: relative;
   min-height: 160px;
 }
-
-
 
 .content > h4 {
   line-height: 2px;
@@ -464,7 +463,9 @@ div.colophon {
 }
 
 .location > .content {
+  position: absolute;
+  right: 0;
+  bottom: 0;
   width: 48.5%;
   display: inline-block;
-  float: right;
 }
