@@ -450,10 +450,7 @@ div.colophon {
   min-height: 160px;
 }
 
-.location > .content {
-  width: 48.5%;
-  display: inline-block;
-}
+
 
 .content > h4 {
   line-height: 2px;
@@ -461,8 +458,13 @@ div.colophon {
 }
 
 .location > iframe {
-  float: right;
   width: 48.5%;
   height: 300px;
   margin-bottom: 20px;
+}
+
+.location > .content {
+  width: 48.5%;
+  display: inline-block;
+  float: right;
 }
