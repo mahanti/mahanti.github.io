@@ -464,6 +464,7 @@ div.colophon {
   .location > .content {
     width: 100%;
     display: block;
+    position: relative;
   }
 }
 
