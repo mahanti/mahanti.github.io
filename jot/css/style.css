@@ -9,6 +9,7 @@ body {
   width: 100%;
   font-family: InputMono, courier;
   color: #444444;
+  overflow: hidden; 
 }
 
 .wrapper {
@@ -60,7 +61,27 @@ font-weight: 100;
   opacity: .5;
 }
 
+.desc {
+  line-height: 20px;
+}
+
 .dl-btn {
   color: #FE5A3F;
   text-decoration: none;
 }
+
+#colophon {
+  color: #666666;
+  font-size: 12px;
+  text-align: center;
+  width: 200px;
+  position: absolute; 
+  bottom: 0px;
+  left: 50%;
+  margin-left: -100px;
+}
+
+.link {
+  color: #888888;
+}
+
