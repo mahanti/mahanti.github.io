@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jot – Write Away</title>
     <link rel="stylesheet" type="text/css" href="/jot/css/style.css">
-    </script>
   </head>
   <body>
     <div class="wrapper"> 
       <div class="container"> 
-        <img id="hero_image" src="img/lifestyle.jpg"></img> 
+        <img class="image" src="img/lifestyle.jpg"></img> 
         <div class="content">
           <div id="logo_container">
             <img id="logo" src="img/logo.svg"></img> 
@@ -19,7 +18,7 @@
           <p class="desc" >Designed with speed in mind, Jot is the simplest way to quickly write down your thoughts.</p>
           <br>
           <br>
-          <a class="dl-btn" href="https://appsto.re/us/hOUr9.i" target="_blank">Available on the App Store &#x2192;</a>
+          <a class="dl-btn" href="https://appsto.re/us/hOUr9.i" target="_blank">Available on the App Store <span id="arrow">&#x2192;</span></a>
         </div> 
       </div>
     </div>
@@ -27,7 +26,7 @@
    <script> 
       document.getElementById("hero_image").onmouseover = function() {mouseOver()};
       document.getElementById("hero_image").onmouseout = function() {mouseOut()};
-
+      
       function mouseOver() {
         document.body.style.backgroundImage = "url('/jot/img/jotlinebling.jpg')";
       }

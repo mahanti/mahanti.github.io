@@ -20,7 +20,7 @@ body {
   background-color: white; 
 }
 
-#hero_image {
+.image {
   width: 100%;
 }
 
@@ -52,11 +52,12 @@ body {
 }
 
 .dl-btn {
-  color: #e24d10;
+  color: #e14f13; 
+  text-decoration: none;
 }
 
 .dl-btn:hover {
-  color: #CB4302;
+  color: #e22a0b;
 }
 
 @media and (min-device-width : 375px) 
