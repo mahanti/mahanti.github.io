@@ -9,22 +9,19 @@ body {
   width: 100%;
   font-family: InputMono, courier;
   color: #444444;
-  overflow: hidden; 
 }
 
-.wrapper {
-  position: relative;  
+a {
+  text-decoration: none;
 }
 
 .container {
-  width: 960px;
+  width: 550px;
   height: 412px;
- 
   position: absolute;
   top: 50%;
   left: 50%;
-
-  margin: 200px 0 0 -480px;
+  margin: -406px 0 0 -275px; 
 }
 
 #hero_image {  
@@ -43,7 +40,7 @@ body {
 .content {
   width: 379px;
   height: 120px;
-  padding: 10px;
+  padding: 50px;
   text-align: left;
   display: inline-block;
 }
@@ -53,7 +50,7 @@ font-weight: 100;
 }
 
 #logo {
-  margin-bottom: -10px;
+  margin-bottom: -5px;
 }
 
 #tagline {
@@ -66,19 +63,14 @@ font-weight: 100;
 }
 
 .dl-btn {
-  color: #FE5A3F;
+  color: #e24d10;
   text-decoration: none;
 }
 
 #colophon {
   color: #666666;
   font-size: 12px;
-  text-align: center;
-  width: 200px;
-  position: absolute; 
-  bottom: 0px;
-  left: 50%;
-  margin-left: -100px;
+  margin-top: 40px;
 }
 
 .link {

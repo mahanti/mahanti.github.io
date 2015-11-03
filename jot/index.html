@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jot – Write Away</title>
     <link rel="stylesheet" type="text/css" href="/jot/css/style.css">
+    </script>
   </head>
   <body>
     <div class="wrapper"> 
@@ -22,7 +23,18 @@
         </div> 
       </div>
     </div>
-       <p id="colophon">Built by <a class="link" href="http://twitter.com/mrmahanti" target="_blank">Arjun Mahanti</a></p>
   </body>
+   <script> 
+      document.getElementById("hero_image").onmouseover = function() {mouseOver()};
+      document.getElementById("hero_image").onmouseout = function() {mouseOut()};
+
+      function mouseOver() {
+        document.body.style.backgroundImage = "url('/jot/img/jotlinebling.jpg')";
+      }
+
+      function mouseOut() {
+        document.body.style.backgroundImage = "none";
+      } 
+    </script>
 </html>
      
