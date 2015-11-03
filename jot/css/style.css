@@ -5,27 +5,30 @@
 }
 
 body {
-  height: 100%;
-  width: 100%;
   font-family: InputMono, courier;
   color: #444444;
+  text-decoration: none;
+  font-weight: 100;
 }
 
-a {
-  text-decoration: none;
-}
 
 .container {
   width: 550px;
   height: 412px;
   margin: 100px auto 0 auto;
-
 }
 
-#hero_image {  
-  width: 550px; 
+#hero_image {
+  width: 550px;
+}
+
+.content {
+  width: 490px;
+  padding: 30px;
+  text-align: left;
   display: inline-block;
 }
+
 
 #logo_container {
   width: 48px;
@@ -33,22 +36,7 @@ a {
 
 #logo {
   width: 100%;
-}
-
-.content {
-  width: 490px;
-  height: 120px;
-  padding: 30px;
-  text-align: left;
-  display: inline-block;
-}
-
-#logo, #tagline, #download_button {
-font-weight: 100;
-}
-
-#logo {
-  margin-bottom: -5px;
+  margin-bottom: -8px;
 }
 
 #tagline {
@@ -58,28 +46,13 @@ font-weight: 100;
 
 .desc {
   line-height: 20px;
+  margin-bottom: 0px;
 }
 
 .dl-btn {
   color: #e24d10;
-  text-decoration: none;
 }
 
 .dl-btn:hover {
   color: #CB4302;
 }
-
-#colophon {
-  color: #666666;
-  font-size: 12px;
-  margin-top: 40px;
-}
-
-.link {
-  color: #888888;
-}
-
-.link:hover {
-  color: #777777;
-}
-

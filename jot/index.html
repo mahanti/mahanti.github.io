@@ -15,7 +15,7 @@
           <div id="logo_container">
             <img id="logo" src="img/logo.svg"></img> 
           </div> 
-          <h2 id="tagline">write away</h1>
+          <p id="tagline">write away</p>
           <p class="desc" >Designed with speed in mind, Jot is the simplest way to quickly write down your thoughts.</p>
           <br>
           <br>
@@ -30,10 +30,14 @@
 
       function mouseOver() {
         document.body.style.backgroundImage = "url('/jot/img/jotlinebling.jpg')";
+        document.getElementsByClassName("content").backgroundColor = "white";
+        document.getElementsByClassName("content").paddingBottom = "60px"; 
       }
 
       function mouseOut() {
         document.body.style.backgroundImage = "none";
+        document.getElementsByClassName("content").backgroundColor = "none";
+        document.getElementsByClassName("content").paddingBottom = "0px"; 
       } 
     </script>
 </html>
