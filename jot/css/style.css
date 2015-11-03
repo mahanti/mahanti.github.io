@@ -65,6 +65,10 @@ font-weight: 100;
   text-decoration: none;
 }
 
+.dl-btn:hover {
+  color: #CB4302;
+}
+
 #colophon {
   color: #666666;
   font-size: 12px;
@@ -73,5 +77,9 @@ font-weight: 100;
 
 .link {
   color: #888888;
+}
+
+.link:hover {
+  color: #777777;
 }
 
