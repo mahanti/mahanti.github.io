@@ -9,21 +9,23 @@ body {
   color: #444444;
   text-decoration: none;
   font-weight: 100;
+  margin: 0;
+  padding: 0;
 }
 
 
 .container {
   width: 550px;
-  height: 412px;
   margin: 100px auto 0 auto;
+  background-color: white; 
 }
 
 #hero_image {
-  width: 550px;
+  width: 100%;
 }
 
 .content {
-  width: 490px;
+  width: 90%;
   padding: 30px;
   text-align: left;
   display: inline-block;
@@ -56,3 +58,12 @@ body {
 .dl-btn:hover {
   color: #CB4302;
 }
+
+@media and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+  .container {
+    width: 100%;
+    margin: 0; 
+  }
+}
+
