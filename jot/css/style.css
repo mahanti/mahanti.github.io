@@ -5,6 +5,8 @@
 }
 
 body {
+  width: 100%;
+  height: 100%;
   font-family: InputMono, courier;
   color: #444444;
   text-decoration: none;
@@ -13,6 +15,9 @@ body {
   padding: 0;
 }
 
+.wrapper {
+  width: 100%;
+}
 
 .container {
   width: 550px;
@@ -60,11 +65,30 @@ body {
   color: #e22a0b;
 }
 
-@media and (min-device-width : 375px) 
-and (max-device-width : 667px) {
+.section_header {
+  font-size: 24px;
+  font-weight: 100;
+  margin-bottom: 40px;
+}
+
+.t_quote {
+  margin-bottom: -5px;
+}
+
+.t_name {
+  font-size: 14px;
+  opacity: .75;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 550px) {
   .container {
     width: 100%;
     margin: 0; 
+  }
+
+  .content {
+    width: 80%;
   }
 }
 
