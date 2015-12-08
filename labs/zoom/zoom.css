@@ -1,0 +1,29 @@
+* {
+  margin: 0; 
+  padding: 0;
+}
+
+.magnify {
+  width: 400px; 
+  margin: 50px auto; 
+  position: relative; 
+  cursor: none
+}
+
+.large {
+  width: 150px; height: 150px;
+  position: absolute;
+  border-radius: 100%;
+
+  box-shadow: 
+  0 0 7px 3px rgba(0, 0, 0, 0.1); 
+
+  background: url('waldo.jpg') no-repeat;
+
+  display: none;
+}
+
+.small {
+  display: block; 
+}
+

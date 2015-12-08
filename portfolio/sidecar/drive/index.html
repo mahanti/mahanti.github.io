@@ -1,0 +1,124 @@
+---
+layout: portfolio 
+title: Design
+---
+<img  src="scd_hero.png" data-action="zoom">
+
+  <p>Sidecar drivers use the Sidecar Driver App to give rides and deliveries; it is one of the most fascinating and powerful, pieces of software Sidecar has produced. The sheer amount of optimization the team has done to efficiently match people and packages paired with the robust mobile apps astounds me. It has consistently been my favorite product to work on at Sidecar.</p>
+  <p>That said, this hasn't always been the best product out there. Below I'll try to give you a glimpse how this ugly duckling became a foundational element of the Sidecar story.</p>
+
+
+<img data-action="zoom" data-action="zoom"  src="scd_old.png">
+<p class="img_caption">The original Sidecar Drive app. Circa 2013.</p> 
+
+<h4>I. The Problem</h4>
+<p>Not pretty, right? Sidecar Drive 1.0—designed by yours truly on a single piece of loose-leaf paper—worked surprisingly well for about two years but was a disaster waiting to happen. Any new feature would immediately break the design paradigm or lack thereof. Thankfully, my process had grown from nothing to something, so I was ready to revisit my old friend: Sidecar Drive.</p>
+
+<p>As our business grew and evolved, we were limited by this app and its rigid structure of crap. It needed to be rebuilt from the ground up and achieve the following goals:</p>
+
+<ul>
+  <li>Unify the experience for solo and shared rides</li>
+  <li>Improve the usability of the Driver app</li>
+  <li>Build a flexible, yet solid, foundation for future features</li>
+</ul>
+
+
+<p>With the groundwork laid out, it was time to set a timeline, figure out concrete deliverables, and start unpacking this design problem.</p>
+
+<h4>II. The Process</h4>
+<p>The silver lining of having an outdated product out in the open for so long is that we had a good feedback from our drivers on what worked and what didn’t.</p> 
+<h5>Things that worked well:</h5>
+<ul>
+  <li>The main flow was simple to progress through (just tap the big, fat, orange button to move forward)</li>
+  <li>We give drivers a lot of information on the ride (price, ETA, pickup & drop-off, etc.)</li>
+  <li>The overall flow didn't change from ride to ride so muscle memory was easy to build</li>
+</ul>
+
+
+
+<h5>Things to be improved:</h5>
+<ul>
+  <li>drivers felt rushed for time when accepting a request</li>
+  <li>We knew the experience was going to start getting more complex, so we needed to minimize that impact</li>
+  <li>There were ways that drivers could game the system which had larger impacts downstream</li>
+</ul>
+
+
+<p>After interviewing drivers, gathering historical data on usage, and landing on goals and priorities I grabbed a bunch of paper, a few markers, and
+Ratatat's LP4. It was game time.</p>
+
+<img data-action="zoom" src="d3_locations.jpg">
+<p class="img_caption">Exploring the relationship between Riders and their waypoints. This was helpful later on when figuring out how Drivers can access other Rider functions.</p>
+<img data-action="zoom" src="d3_flow-sketch.jpg">
+<img data-action="zoom" src="d3_ride-request-sketch.jpg">
+<img data-action="zoom" src="d3_sketch.jpg">
+<p class="img_caption">A few early sketches for the new Driver experience.</p>
+<img data-action="zoom"  src="scd_ride_request.png">
+
+<h4>The Request</h4>
+<p>The request screen is what a Driver uses to accept or decline a ride or delivery trip. With a lot of information (price, ETA, multiple waypoints) and only 12 seconds to make a decision, Drivers were feeling rushed and said they would love to have more time to accept. While we could've added more time, impacting Riders and the system as a whole, so I tried to see if we could solve the issue in another way.</p>
+
+<p>Information hiearchy is foundational to a great experience. To apply that to the request screen I had to figure out what was important to drivers. After
+a few interviews the information fell into this order:
+<ol>
+  <li>ETA to Pickup</li>
+  <li>Price</li>
+  <li>Rating</li>
+</ol>
+
+
+<p>This insight was key in laying out the screen and has helped Drivers parse information without feeling rushed. In addition to laying out information in a more presentable way, I wanted to see if there were other ways we could bend time and help Drivers. I knew designers have used visual tricks to make progress bars look faster than they are (e.g. Safari's download bar) so I thought we could do the opposite and make it appear slower. While this animation didn't have a huge effect, some drivers did feel mention, during testing, that the timer with the animation felt the longest.</p>
+
+<!--<img data-action="zoom"  src="scd_request_timer.png">
+<p class="img_caption">Top: Normal. Middle: "Sped up". Bottom: "Slowed down"</p>
+
+<p>While the effect doesn't massively "slow down" the movement, some drivers felt that the bottom-most timer was a second or two longer than the others. Magic!</p>
+-->
+
+<h4>Managing Multiple Parties:</h4>
+<p>A key consideration when designing the whole app was ensuring it was usable when in a car and potentially from a distance. A term we used to describe these design considerations was half-height  since an arm-length is half of a person’s height (unless you're Michael Phelps, and your arms are oddly long).</p>
+
+<p>Below are some explorations around how drivers can contact Riders and manage their rides:</p>
+
+<img data-action="zoom"  src="co_pilot_v1.jpg">
+<p>In an effort to make tap areas large, this utilized the whole screen as the container for important functions.</p>
+<img data-action="zoom" src="d3_assistive-touch-sketch.jpg">
+<img data-action="zoom"  src="co_pilot_v4.jpg">
+<img data-action="zoom"  src="co_pilot_v5.jpg">
+<p>This is similar to the exploration above, but this was an effort to create something that could be a bit more extensible to more functions and more riders. This was inspired by Apple's Assistive Touch accessibility feature on iOS. I really loved this direction, but after prototyping it, it was too much of a guessing game as to what functions would appear where. When a Driver is on the road, muscle memory is key. Moving away from an interface that was very fluid and flexible, I started to explore more concrete implementations.</p>
+<p>While this direction wasn't as scalable as previous iterations, that constraint forced us to think about the weight of actions. A Driver most often needs to:contact the recipient. With that in mind, I moved towards a solution where actions aren't hidden behind a tap but rather up front and easy to access.</p>
+<img data-action="zoom"  src="co_pilot_v2.jpg">
+<img data-action="zoom"  src="co_pilot_v3.jpg">
+<img data-action="zoom" src="scd_contact.png">
+<p class="img_caption">Sidecar's version of of an action sheet</p>
+<p>This new action sheet model gave us the control we needed while allowing main actions to be visible and easy to access.</p>
+<h4>Notifications</h4>
+<p>While driving, it is important that the main focus is on the road—not the software. That's why when looking at how we notify drivers of various events, we had to really consider what was important and what wasn't. This distinction could not only exist in lwhat we decided to tell the drivers, but also how we told them.
+</p>
+<p>Our solution was to have a system of notifications that differed in how heavily they blocked the interface.</p>
+
+<img data-action="zoom" src="d3_notifications-sketch.jpg">
+<img data-action="zoom" src="d3_notifications-sketch-1.jpg">
+<p class="img_caption">Some early explorations for our notifications system. The top highlights a lightweight toast, and the bottom begins to investigate what happens when a Rider joins.</p>
+<img data-action="zoom" src="scd_notifications.jpg">
+<p class="img_caption">Notification types: Full, Blocking, Passive</p>
+<p>On the left, we have a full modal page, which we use as a platform to introduce new features or changes. The middle portrays a blocking alert, which is used anytime it's crucial to the Sidecar experience that the Driver take some action. A great example of the utility of a blocking notification is a Driver who must reroute to pickup a new Rider or Delivery. The passive notification, seen on the right, is mainly used to present information that is 'nice to know' such as another rider joining your ride (after your current stop).</p>
+<p>Breaking notifications down into three distinct styles has helped us, and Drivers, pay attention to what's important and what can wait for later.</p>
+<!--
+<p>Since Driver's spend so much of their time driving and using navigation apps – it felt important to me to study those apps and understand the
+underlying principles and interaction paradigms they used. Some of the most common apps our driver used were Waze, Google Maps, and Apple maps. It was
+interesting to see how each app had it's own approach to destination entry, turn-by-turn, and trip itineraries. Waze did a good job handling automatic actions (allowing
+the driver to keep their hands on the wheel). Apple Maps has a very nice turn-by-turn implementation but is a bit fidgety and doesn't elegantly handle map panning. </p>
+
+<img data-action="zoom"  src="map_apps.png">
+-->
+
+
+<h4>Step Three: The Profit</h4>
+<p>While there are always improvements that can be made—especially after the product is in the hand of drivers—this project turned out to be a very key piece to our company’s growth and direction. By creating an app that was heavily focused on the systematic relationship between Drivers and Riders, it has made it simpler to improve the product without throwing old work away.</p>
+<img data-action="zoom" src="scd_app.jpg">
+<img data-action="zoom" src="scd_onboarding.jpg">
+<img data-action="zoom" src="scd_request_flow.jpg">
+<img data-action="zoom" src="scd_delivery_android.jpg">
+
+<p>If you've made it this far, thanks for reading, and I hope this helped you understand how I approach product design, how Sidecar approaches product design, and how together we are truly rethinking transportation.</p>
