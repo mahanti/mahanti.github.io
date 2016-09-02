@@ -486,4 +486,12 @@ div.colophon {
 	color: #f7323f;
 }
 
+.mono {
+	font-family: 'PT Mono', monospace;
+}
+
+.caps {
+	text-transform: uppercase;
+}
+
 .typekit-badge { display:none !important; }
