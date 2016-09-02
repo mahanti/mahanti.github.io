@@ -494,4 +494,9 @@ div.colophon {
 	text-transform: uppercase;
 }
 
+.home {
+	margin-top: 200px;
+	margin-left: 40px;
+}
+
 .typekit-badge { display:none !important; }
