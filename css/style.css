@@ -138,10 +138,12 @@ nav.mnml {
 
 #logo {
   display: inline-block;
-  font-size: 12pt;
+  font-size: 10pt;
   color: #212121;
   margin-left: 15px;
   text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 2px;
 }
 
 #logo.center {
@@ -152,6 +154,9 @@ nav ul {
   display: inline-block;
   float: right;
   margin-right: 20px;
+	text-transform: uppercase;
+	font-size: 10pt;
+	letter-spacing: 2px;
 }
 
 nav ul li {
