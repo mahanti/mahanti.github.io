@@ -280,8 +280,9 @@ img {
 
   header {
     width: 100%;
-    margin-left: 0px;
-    margin-bottom: 0px;
+	  margin-top: 40px; 
+		margin-left: 0px;
+    margin-bottom: 40px;
     height: 70px;
   }
 
