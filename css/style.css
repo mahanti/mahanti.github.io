@@ -284,7 +284,11 @@ img {
 		margin-left: 0px;
     margin-bottom: 40px;
 		text-align: left;
-  }
+	}
+
+	header > p{
+		padding-left: 20px;
+	 }
 
   #logo {
     display: block;
