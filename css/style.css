@@ -53,10 +53,11 @@ p {
 a {
   margin: -.8em;
   padding: .8em;
-  color: #f7323f;
+	color: #111;
 }
 
 a:hover {
+	color: #f2f2f2; 
 	background-color: #111;	
 }
 
@@ -122,9 +123,13 @@ header {
 	font-size: 12px;
 	text-align: center;
   font-family: 'PT Mono', monospace;
-	margin: 180px 0px 60px 0px;
+	margin: 120px 0px 120px 0px;
 }
 
+#nav > a {
+	margin: 0px 10px;
+}
+	
 /* -------------------------------- */
 /* Images */
 /* -------------------------------- */
@@ -193,71 +198,6 @@ img {
   border-bottom: none;
   margin-bottom: none;
 }
-
-/* ------------------------------ */
-/* FOOTER */
-/* ------------------------------ */
-
-footer {
-  width: 739px;
-  margin: 0px 0px 0px -20px;
-  border-top: 1px solid rgba(0,0,0,.05);
-}
-
-.extra_information {
-  border-bottom: 1px solid rgba(0,0,0,.05);
-}
-
-.footer_section {
-  width: 345px;
-  display: inline-block;
-  padding-top: 15px;
-}
-
-.footer_section h3 {
-  font-size: 1em;
-  margin-bottom: 10px;
-  font-weight: 600;
-  letter-spacing: 0;
-  color: #9E9E9E;
-}
-
-.footer_section p {
-  font-size: .9em;
-  margin-bottom: 15px;
-  color: #BDBDBD;
-}
-
-div.about {
-  margin-left: 20px;
-}
-
-div.colophon {
-  padding-left: 12px;
-  border-left: 1px solid rgba(0,0,0,.05);
-}
-
-#secondary_nav > p {
-  font-size: .9em;
-  padding: 20px 0px 0px 20px;
-  color: rgba(0,0,0,.25);
-  display: inline-block;
-}
-
-#social_nav {
-  height: 0;
-  float: right;
-  margin-right: 20px;
-}
-
-#social_nav li {
-  display: inline-block;
-  margin-top: 20px;
-  margin-left: 20px;
-  opacity: .3;
-}
-
-/* BIGMONEYCOLOR INTEGRATION */
 
 /* JAPAN */
 
