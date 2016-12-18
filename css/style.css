@@ -51,13 +51,13 @@ p {
 /* --------------------------------- */
 
 a {
-  margin: -.4em;
-  padding: .4em;
-  color: #757575;
+  margin: -.8em;
+  padding: .8em;
+  color: #f7323f;
 }
 
 a:hover {
-  color: #D32F2F;
+	background-color: #111;	
 }
 
 /* --------------------------------- */
@@ -122,7 +122,7 @@ header {
 	font-size: 12px;
 	text-align: center;
   font-family: 'PT Mono', monospace;
-	margin: 80px 0px;
+	margin: 180px 0px 60px 0px;
 }
 
 /* -------------------------------- */
