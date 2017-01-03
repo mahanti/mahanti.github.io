@@ -8,11 +8,12 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.3em;
   line-height: 1.4;
   font-family: 'PT Mono', monospace; 
   color: #111;
   background-color: #FAFAFA;
+	transition: .15s;
 }
 
 /* ------------------------------- */
@@ -120,7 +121,6 @@ form {
 /* ------------------------------- */
 
 header {
-	font-size: 12px;
 	text-align: center;
   font-family: 'PT Mono', monospace;
 	margin: 120px 0px 120px 0px;
@@ -269,7 +269,7 @@ img {
 
   #container {
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -280,10 +280,9 @@ img {
 
   header {
     width: 100%;
-		margin-top: 0px;
+		margin-top: 30px;
 		margin-left: 0px;
-    margin-bottom: 40px;
-		text-align: left;
+    margin-bottom: 30px;
 	}
 
 	header > p{
