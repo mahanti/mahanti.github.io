@@ -10,7 +10,7 @@ body {
   margin: 0;
   font-size: 1.3em;
   line-height: 1.4;
-  font-family: 'PT Mono', monospace; 
+  font-family: 'Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
   color: #111;
   background-color: #FAFAFA;
 	transition: .15s;
