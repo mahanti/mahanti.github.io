@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
-  <body>
-    {% include photos.html %}
-    <div id="photo_content">
-      {{ content }}
-    </div>
-
-  </body>
+	<link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
+	<link rel="stylesheet" href="{{ "/css/photos.css" | prepend: site.baseurl }}">	
+	<body>
+		<div class="site-content">
+		<div class="pane pane-about">
+			<p><a href="/">Arjun Mahanti</a></p>
+			<p>A midwestern designer living in Brooklyn and designing products at Square.</p>
+			<p>A collection of my favorite photos. Mostly shot on a Leica M6 or an iPhone.</p>
+			<p><a href="/https://www.instagram.com/mahanti/">Instagram</a>, <a href="https://twitter.com/mrmahanti">Twitter</a></p>
+		</div>
+		<img src="{{ "/img/photos/serra.jpeg" | prepend: site.baseurl }}"></img>
+		<img src="{{ "/img/photos/spring_st.jpg" | prepend: site.baseurl }}"></img>	
+		<img src="{{ "/img/photos/ando_001.jpg" | prepend: site.baseurl }}"></img>	
+		<img src="{{ "/img/photos/japan_006.jpg" | prepend: site.baseurl }}"></img>
+		<img src="{{ "/img/photos/japan_003.jpg" | prepend: site.baseurl }}"></img>
+		<img src="{{ "/img/photos/japan_001.jpg" | prepend: site.baseurl }}"></img>	
+		</div>
+	</body>
 
 </html>

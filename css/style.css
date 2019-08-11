@@ -1,14 +1,17 @@
 /* RESET */
 
+@import url('https://rsms.me/inter/inter.css');
+
 html {
   height: 100%;
-  font-size: 62.5%
+  font-size: 62.5%;
+	font-family: 'Inter','Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;	
 }
 
 body {
   height: 100%;
   margin: 0;
-  font-size: 1.3em;
+  font-size: 1.4em;
   line-height: 1.4;
   font-family: 'Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
   color: #111;
@@ -128,7 +131,6 @@ form {
 
 header {
 	text-align: center;
-  font-family: 'PT Mono', monospace;
 	margin: 120px 0px 120px 0px;
 }
 
@@ -387,10 +389,6 @@ img {
 
 .ando {
 	color: #f7323f;
-}
-
-.mono {
-	font-family: 'PT Mono', monospace;
 }
 
 .caps {
