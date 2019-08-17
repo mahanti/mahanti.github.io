@@ -30,15 +30,12 @@ Kernel configured for up to 8 processors.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 16.00 gigabytes
-Default processor set: 502 tasks, 2789 threads, 8 processors
-Load average: 2.90, Mach factor: 5.12
+Default processor set: 505 tasks, 2839 threads, 8 processors
+Load average: 2.31, Mach factor: 5.68
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /Users/arjun/.gem/ruby/2.6.3/bin
-PATH: /Users/arjun/.gem/ruby/2.6.0/bin
-PATH: /usr/local/opt/ruby/bin
 PATH: /usr/local/bin
 PATH: /usr/bin
 PATH: /bin
@@ -82,69 +79,69 @@ configure:3328: result: yes
 configure:3357: checking whether make supports nested variables
 configure:3374: result: yes
 configure:3559: checking for gcc
-configure:3586: result: clang
+configure:3586: result: xcrun clang
 configure:3815: checking for C compiler version
-configure:3824: clang --version >&5
+configure:3824: xcrun clang --version >&5
 Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 Target: x86_64-apple-darwin18.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 configure:3835: $? = 0
-configure:3824: clang -v >&5
+configure:3824: xcrun clang -v >&5
 Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 Target: x86_64-apple-darwin18.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 configure:3835: $? = 0
-configure:3824: clang -V >&5
+configure:3824: xcrun clang -V >&5
 clang: error: unsupported option '-V -Wno-atomic-implicit-seq-cst'
 clang: error: no input files
 configure:3835: $? = 1
-configure:3824: clang -qversion >&5
+configure:3824: xcrun clang -qversion >&5
 clang: error: unknown argument '-qversion', did you mean '--version'?
 clang: error: no input files
 configure:3835: $? = 1
 configure:3855: checking whether the C compiler works
-configure:3877: clang    conftest.c  >&5
+configure:3877: xcrun clang    conftest.c  >&5
 configure:3881: $? = 0
 configure:3929: result: yes
 configure:3932: checking for C compiler default output file name
 configure:3934: result: a.out
 configure:3940: checking for suffix of executables
-configure:3947: clang -o conftest    conftest.c  >&5
+configure:3947: xcrun clang -o conftest    conftest.c  >&5
 configure:3951: $? = 0
 configure:3973: result: 
 configure:3995: checking whether we are cross compiling
-configure:4003: clang -o conftest    conftest.c  >&5
+configure:4003: xcrun clang -o conftest    conftest.c  >&5
 configure:4007: $? = 0
 configure:4014: ./conftest
 configure:4018: $? = 0
 configure:4033: result: no
 configure:4038: checking for suffix of object files
-configure:4060: clang -c   conftest.c >&5
+configure:4060: xcrun clang -c   conftest.c >&5
 configure:4064: $? = 0
 configure:4085: result: o
 configure:4089: checking whether we are using the GNU C compiler
-configure:4108: clang -c   conftest.c >&5
+configure:4108: xcrun clang -c   conftest.c >&5
 configure:4108: $? = 0
 configure:4117: result: yes
-configure:4126: checking whether clang accepts -g
-configure:4146: clang -c -g  conftest.c >&5
+configure:4126: checking whether xcrun clang accepts -g
+configure:4146: xcrun clang -c -g  conftest.c >&5
 configure:4146: $? = 0
 configure:4187: result: yes
-configure:4204: checking for clang option to accept ISO C89
-configure:4267: clang  -c   conftest.c >&5
+configure:4204: checking for xcrun clang option to accept ISO C89
+configure:4267: xcrun clang  -c   conftest.c >&5
 configure:4267: $? = 0
 configure:4280: result: none needed
-configure:4305: checking whether clang understands -c and -o together
-configure:4327: clang -c conftest.c -o conftest2.o
+configure:4305: checking whether xcrun clang understands -c and -o together
+configure:4327: xcrun clang -c conftest.c -o conftest2.o
 configure:4330: $? = 0
-configure:4327: clang -c conftest.c -o conftest2.o
+configure:4327: xcrun clang -c conftest.c -o conftest2.o
 configure:4330: $? = 0
 configure:4342: result: yes
 configure:4370: checking for style of include used by make
 configure:4398: result: GNU
-configure:4424: checking dependency style of clang
+configure:4424: checking dependency style of xcrun clang
 configure:4535: result: none
 configure:4608: checking for g++
 configure:4624: found /usr/bin/g++
@@ -182,7 +179,7 @@ configure:4743: $? = 0
 configure:4784: result: yes
 configure:4809: checking dependency style of g++
 configure:4920: result: none
-configure:4950: checking dependency style of clang
+configure:4950: checking dependency style of xcrun clang
 configure:5059: result: none
 configure:5121: checking how to print strings
 configure:5148: result: printf
@@ -194,14 +191,14 @@ configure:5314: checking for egrep
 configure:5376: result: /usr/bin/grep -E
 configure:5381: checking for fgrep
 configure:5443: result: /usr/bin/grep -F
-configure:5478: checking for ld used by clang
+configure:5478: checking for ld used by xcrun clang
 configure:5545: result: ld
 configure:5552: checking if the linker (ld) is GNU ld
 configure:5567: result: no
 configure:5579: checking for BSD- or MS-compatible name lister (nm)
 configure:5633: result: /usr/bin/nm -B
 configure:5763: checking the name lister (/usr/bin/nm -B) interface
-configure:5770: clang -c   conftest.c >&5
+configure:5770: xcrun clang -c   conftest.c >&5
 configure:5773: /usr/bin/nm -B "conftest.o"
 configure:5776: output
 0000000000000000 S _some_variable
@@ -229,7 +226,7 @@ configure:6624: checking for ar
 configure:6640: found /usr/bin/ar
 configure:6651: result: ar
 configure:6688: checking for archiver @FILE support
-configure:6705: clang -c   conftest.c >&5
+configure:6705: xcrun clang -c   conftest.c >&5
 configure:6705: $? = 0
 configure:6708: ar cru libconftest.a @conftest.lst >&5
 ar: @conftest.lst: No such file or directory
@@ -241,17 +238,17 @@ configure:6816: result: strip
 configure:6888: checking for ranlib
 configure:6904: found /usr/bin/ranlib
 configure:6915: result: ranlib
-configure:7017: checking command to parse /usr/bin/nm -B output from clang object
-configure:7170: clang -c   conftest.c >&5
+configure:7017: checking command to parse /usr/bin/nm -B output from xcrun clang object
+configure:7170: xcrun clang -c   conftest.c >&5
 configure:7173: $? = 0
 configure:7177: /usr/bin/nm -B conftest.o \| sed -n -e 's/^.*[ ]\([BCDEGRST][BCDEGRST]*\)[ ][ ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p' | sed '/ __gnu_lto/d' \> conftest.nm
 configure:7180: $? = 0
 cannot find nm_test_var in conftest.nm
-configure:7170: clang -c   conftest.c >&5
+configure:7170: xcrun clang -c   conftest.c >&5
 configure:7173: $? = 0
 configure:7177: /usr/bin/nm -B conftest.o \| sed -n -e 's/^.*[ ]\([BCDEGRST][BCDEGRST]*\)[ ][ ]*_\([_A-Za-z][_A-Za-z0-9]*\)$/\1 _\2 \2/p' | sed '/ __gnu_lto/d' \> conftest.nm
 configure:7180: $? = 0
-configure:7246: clang -o conftest    conftest.c conftstm.o >&5
+configure:7246: xcrun clang -o conftest    conftest.c conftstm.o >&5
 configure:7249: $? = 0
 configure:7287: result: ok
 configure:7334: checking for sysroot
@@ -280,22 +277,22 @@ configure:8180: result: otool
 configure:8245: checking for otool64
 configure:8275: result: no
 configure:8320: checking for -single_module linker flag
-clang   -o libconftest.dylib -dynamiclib -Wl,-single_module conftest.c
+xcrun clang   -o libconftest.dylib -dynamiclib -Wl,-single_module conftest.c
 configure:8353: result: yes
 configure:8356: checking for -exported_symbols_list linker flag
-configure:8376: clang -o conftest    -Wl,-exported_symbols_list,conftest.sym conftest.c  >&5
+configure:8376: xcrun clang -o conftest    -Wl,-exported_symbols_list,conftest.sym conftest.c  >&5
 configure:8376: $? = 0
 configure:8386: result: yes
 configure:8389: checking for -force_load linker flag
-clang  -c -o conftest.o conftest.c
+xcrun clang  -c -o conftest.o conftest.c
 ar cru libconftest.a conftest.o
 ranlib libconftest.a
-clang   -o conftest conftest.c -Wl,-force_load,./libconftest.a
+xcrun clang   -o conftest conftest.c -Wl,-force_load,./libconftest.a
 configure:8421: result: yes
 configure:8498: checking how to run the C preprocessor
-configure:8529: clang -E  conftest.c
+configure:8529: xcrun clang -E  conftest.c
 configure:8529: $? = 0
-configure:8543: clang -E  conftest.c
+configure:8543: xcrun clang -E  conftest.c
 conftest.c:11:10: fatal error: 'ac_nonexistent.h' file not found
 #include <ac_nonexistent.h>
          ^~~~~~~~~~~~~~~~~~
@@ -313,10 +310,10 @@ configure: failed program was:
 | #define VERSION "3.99999"
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
-configure:8568: result: clang -E
-configure:8588: clang -E  conftest.c
+configure:8568: result: xcrun clang -E
+configure:8588: xcrun clang -E  conftest.c
 configure:8588: $? = 0
-configure:8602: clang -E  conftest.c
+configure:8602: xcrun clang -E  conftest.c
 conftest.c:11:10: fatal error: 'ac_nonexistent.h' file not found
 #include <ac_nonexistent.h>
          ^~~~~~~~~~~~~~~~~~
@@ -335,74 +332,74 @@ configure: failed program was:
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
 configure:8631: checking for ANSI C header files
-configure:8651: clang -c   conftest.c >&5
+configure:8651: xcrun clang -c   conftest.c >&5
 configure:8651: $? = 0
-configure:8724: clang -o conftest    conftest.c  >&5
+configure:8724: xcrun clang -o conftest    conftest.c  >&5
 configure:8724: $? = 0
 configure:8724: ./conftest
 configure:8724: $? = 0
 configure:8735: result: yes
 configure:8748: checking for sys/types.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for sys/stat.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for stdlib.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for string.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for memory.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for strings.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for inttypes.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for stdint.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8748: checking for unistd.h
-configure:8748: clang -c   conftest.c >&5
+configure:8748: xcrun clang -c   conftest.c >&5
 configure:8748: $? = 0
 configure:8748: result: yes
 configure:8762: checking for dlfcn.h
-configure:8762: clang -c   conftest.c >&5
+configure:8762: xcrun clang -c   conftest.c >&5
 configure:8762: $? = 0
 configure:8762: result: yes
 configure:9029: checking for objdir
 configure:9044: result: .libs
-configure:9308: checking if clang supports -fno-rtti -fno-exceptions
-configure:9326: clang -c   -fno-rtti -fno-exceptions conftest.c >&5
+configure:9308: checking if xcrun clang supports -fno-rtti -fno-exceptions
+configure:9326: xcrun clang -c   -fno-rtti -fno-exceptions conftest.c >&5
 configure:9330: $? = 0
 configure:9343: result: yes
-configure:9701: checking for clang option to produce PIC
+configure:9701: checking for xcrun clang option to produce PIC
 configure:9708: result: -fno-common -DPIC
-configure:9716: checking if clang PIC flag -fno-common -DPIC works
-configure:9734: clang -c   -fno-common -DPIC -DPIC conftest.c >&5
+configure:9716: checking if xcrun clang PIC flag -fno-common -DPIC works
+configure:9734: xcrun clang -c   -fno-common -DPIC -DPIC conftest.c >&5
 configure:9738: $? = 0
 configure:9751: result: yes
-configure:9780: checking if clang static flag -static works
+configure:9780: checking if xcrun clang static flag -static works
 configure:9808: result: no
-configure:9823: checking if clang supports -c -o file.o
-configure:9844: clang -c   -o out/conftest2.o conftest.c >&5
+configure:9823: checking if xcrun clang supports -c -o file.o
+configure:9844: xcrun clang -c   -o out/conftest2.o conftest.c >&5
 configure:9848: $? = 0
 configure:9870: result: yes
-configure:9878: checking if clang supports -c -o file.o
+configure:9878: checking if xcrun clang supports -c -o file.o
 configure:9925: result: yes
-configure:9958: checking whether the clang linker (ld) supports shared libraries
+configure:9958: checking whether the xcrun clang linker (ld) supports shared libraries
 configure:11221: result: yes
 configure:11461: checking dynamic linker characteristics
 configure:12291: result: darwin18.6.0 dyld
@@ -511,13 +508,13 @@ configure:16268: result: darwin18.6.0 dyld
 configure:16333: checking how to hardcode library paths into programs
 configure:16358: result: immediate
 configure:16426: checking size of size_t
-configure:16431: clang -o conftest    conftest.c  >&5
+configure:16431: xcrun clang -o conftest    conftest.c  >&5
 configure:16431: $? = 0
 configure:16431: ./conftest
 configure:16431: $? = 0
 configure:16445: result: 8
 configure:16456: checking for C compiler vendor
-configure:16501: clang -c   conftest.c >&5
+configure:16501: xcrun clang -c   conftest.c >&5
 conftest.c:30:9: error: use of undeclared identifier 'thisisanerror'
         thisisanerror;
         ^
@@ -559,7 +556,7 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:16501: clang -c   conftest.c >&5
+configure:16501: xcrun clang -c   conftest.c >&5
 conftest.c:30:9: error: use of undeclared identifier 'thisisanerror'
         thisisanerror;
         ^
@@ -601,7 +598,7 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:16501: clang -c   conftest.c >&5
+configure:16501: xcrun clang -c   conftest.c >&5
 conftest.c:30:9: error: use of undeclared identifier 'thisisanerror'
         thisisanerror;
         ^
@@ -643,13 +640,13 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:16501: clang -c   conftest.c >&5
+configure:16501: xcrun clang -c   conftest.c >&5
 configure:16501: $? = 0
 configure:16509: result: clang
 configure:17335: : CFLAGS already contains 
 configure:17338: $? = 0
 configure:17360: checking CFLAGS for maximum warnings
-configure:17380: clang -c  -warn all  -warn all  conftest.c >&5
+configure:17380: xcrun clang -c  -warn all  -warn all  conftest.c >&5
 clang: error: unknown argument: '-warn'
 clang: error: unknown argument: '-warn'
 clang: error: no such file or directory: 'all'
@@ -687,7 +684,7 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:17380: clang -c  -pedantic  -Wall  conftest.c >&5
+configure:17380: xcrun clang -c  -pedantic  -Wall  conftest.c >&5
 configure:17380: $? = 0
 configure:17388: result: -Wall
 configure:17404: : CFLAGS="$CFLAGS $ac_cv_cflags_warn_all"
@@ -695,21 +692,21 @@ configure:17407: $? = 0
 configure:17437: checking whether to enable maintainer-specific portions of Makefiles
 configure:17446: result: no
 configure:17462: checking sys/mman.h usability
-configure:17462: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:17462: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 configure:17462: $? = 0
 configure:17462: result: yes
 configure:17462: checking sys/mman.h presence
-configure:17462: clang -E  conftest.c
+configure:17462: xcrun clang -E  conftest.c
 configure:17462: $? = 0
 configure:17462: result: yes
 configure:17462: checking for sys/mman.h
 configure:17462: result: yes
 configure:17475: checking for mmap
-configure:17475: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:17475: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 configure:17475: $? = 0
 configure:17475: result: yes
 configure:17475: checking for mkostemp
-configure:17475: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:17475: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 configure:17475: $? = 0
 configure:17475: result: yes
 configure:17485: checking for sys/mman.h
@@ -721,7 +718,7 @@ configure:17523: result: yes
 configure:17525: checking whether mmap from /dev/zero works
 configure:17547: result: no
 configure:17551: checking for MAP_ANON(YMOUS)
-configure:17574: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:17574: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 conftest.c:38:5: warning: unused variable 'n' [-Wunused-variable]
 int n = MAP_ANONYMOUS;
     ^
@@ -733,7 +730,7 @@ configure:17604: result: yes
 configure:17647: checking for ANSI C header files
 configure:17751: result: yes
 configure:17761: checking for memcpy
-configure:17761: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:17761: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 conftest.c:53:6: warning: incompatible redeclaration of library function 'memcpy' [-Wincompatible-library-redeclaration]
 char memcpy ();
      ^
@@ -742,9 +739,9 @@ conftest.c:53:6: note: 'memcpy' is a builtin with type 'void *(void *, const voi
 configure:17761: $? = 0
 configure:17761: result: yes
 configure:17770: checking for size_t
-configure:17770: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:17770: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 configure:17770: $? = 0
-configure:17770: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:17770: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 conftest.c:67:21: error: expected expression
 if (sizeof ((size_t)))
                     ^
@@ -824,31 +821,31 @@ configure: failed program was:
 | }
 configure:17770: result: yes
 configure:17783: checking for working alloca.h
-configure:17800: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:17800: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 configure:17800: $? = 0
 configure:17808: result: yes
 configure:17816: checking for alloca
-configure:17853: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:17853: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 configure:17853: $? = 0
 configure:17861: result: yes
 configure:17972: checking size of double
-configure:17977: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:17977: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 configure:17977: $? = 0
 configure:17977: ./conftest
 configure:17977: $? = 0
 configure:17991: result: 8
 configure:18005: checking size of long double
-configure:18010: clang -o conftest  -Wall -fexceptions   conftest.c  >&5
+configure:18010: xcrun clang -o conftest  -Wall -fexceptions   conftest.c  >&5
 configure:18010: $? = 0
 configure:18010: ./conftest
 configure:18010: $? = 0
 configure:18024: result: 16
 configure:18057: checking whether byte ordering is bigendian
-configure:18072: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:18072: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 configure:18072: $? = 0
-configure:18117: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:18117: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 configure:18117: $? = 0
-configure:18135: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:18135: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 conftest.c:43:4: error: use of undeclared identifier 'not'
                  not big endian
                  ^
@@ -905,13 +902,13 @@ configure: failed program was:
 | }
 configure:18263: result: no
 configure:18282: checking assembler .cfi pseudo-op support
-configure:18300: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:18300: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 configure:18300: $? = 0
 configure:18308: result: yes
 configure:18395: checking assembler supports pc related relocs
 configure:18408: result: yes
 configure:18454: checking for _ prefix in compiled symbols
-configure:18464: clang -c  -Wall -fexceptions  conftest.c >&5
+configure:18464: xcrun clang -c  -Wall -fexceptions  conftest.c >&5
 conftest.c:2:12: warning: expression result unused [-Wunused-value]
 int main(){nm_test_func;return 0;}
            ^~~~~~~~~~~~
@@ -925,10 +922,10 @@ configure:18561: result: no
 configure:18571: checking whether .eh_frame section should be read-only
 configure:18593: result: no
 configure:18608: checking for __attribute__((visibility("hidden")))
-configure:18617: clang -Werror -S conftest.c -o conftest.s 1>&5
+configure:18617: xcrun clang -Werror -S conftest.c -o conftest.s 1>&5
 configure:18620: $? = 0
 configure:18629: result: no
-configure:18768: checking for ld used by clang
+configure:18768: checking for ld used by xcrun clang
 configure:18835: result: ld
 configure:18842: checking if the linker (ld) is GNU ld
 configure:18857: result: no
@@ -1025,10 +1022,10 @@ ac_cv_path_ax_enable_builddir_sed=sed
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_lt_DD=/bin/dd
 ac_cv_prog_AWK=awk
-ac_cv_prog_CPP='clang -E'
+ac_cv_prog_CPP='xcrun clang -E'
 ac_cv_prog_CXXCPP='g++ -E'
 ac_cv_prog_ac_ct_AR=ar
-ac_cv_prog_ac_ct_CC=clang
+ac_cv_prog_ac_ct_CC='xcrun clang'
 ac_cv_prog_ac_ct_CXX=g++
 ac_cv_prog_ac_ct_DSYMUTIL=dsymutil
 ac_cv_prog_ac_ct_LIPO=lipo
@@ -1118,13 +1115,13 @@ AUTOMAKE='${SHELL} /Users/arjun/Desktop/personal/site/vendor/cache/gems/ffi-1.11
 AWK='awk'
 BUILD_DOCS_FALSE=''
 BUILD_DOCS_TRUE='#'
-CC='clang'
-CCAS='clang'
+CC='xcrun clang'
+CCAS='xcrun clang'
 CCASDEPMODE='depmode=none'
 CCASFLAGS=''
 CCDEPMODE='depmode=none'
 CFLAGS=' -Wall -fexceptions'
-CPP='clang -E'
+CPP='xcrun clang -E'
 CPPFLAGS=''
 CXX='g++'
 CXXCPP='g++ -E'
@@ -1204,7 +1201,7 @@ TESTSUBDIR_FALSE='#'
 TESTSUBDIR_TRUE=''
 VERSION='3.99999'
 ac_ct_AR='ar'
-ac_ct_CC='clang'
+ac_ct_CC='xcrun clang'
 ac_ct_CXX='g++'
 ac_ct_DUMPBIN=''
 am__EXEEXT_FALSE=''

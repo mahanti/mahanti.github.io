@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib".freeze]
   s.authors = ["Aaron Patterson".freeze, "Mike Dalessio".freeze, "Yoko Harada".freeze, "Tim Elliott".freeze, "Akinori MUSHA".freeze, "John Shahid".freeze, "Lars Kanis".freeze]
   s.date = "2019-08-11"
-  s.description = "Nokogiri (\u92F8) is an HTML, XML, SAX, and Reader parser.  Among\nNokogiri's many features is the ability to search documents via XPath\nor CSS3 selectors.".freeze
+  s.description = "Nokogiri (\u{92f8}) is an HTML, XML, SAX, and Reader parser.  Among\nNokogiri's many features is the ability to search documents via XPath\nor CSS3 selectors.".freeze
   s.email = ["aaronp@rubyforge.org".freeze, "mike.dalessio@gmail.com".freeze, "yokolet@gmail.com".freeze, "tle@holymonkey.com".freeze, "knu@idaemons.org".freeze, "jvshahid@gmail.com".freeze, "lars@greiz-reinsdorf.de".freeze]
   s.executables = ["nokogiri".freeze]
   s.extensions = ["ext/nokogiri/extconf.rb".freeze]
@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
-  s.rubygems_version = "3.0.3".freeze
-  s.summary = "Nokogiri (\u92F8) is an HTML, XML, SAX, and Reader parser".freeze
+  s.rubygems_version = "2.5.2.3".freeze
+  s.summary = "Nokogiri (\u{92f8}) is an HTML, XML, SAX, and Reader parser".freeze
 
-  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "2.5.2.3" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rexical>.freeze, ["~> 1.0.5"])
       s.add_development_dependency(%q<rubocop>.freeze, ["~> 0.73"])
       s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.16"])
-      s.add_development_dependency(%q<rdoc>.freeze, [">= 4.0", "< 7"])
+      s.add_development_dependency(%q<rdoc>.freeze, ["< 7", ">= 4.0"])
       s.add_development_dependency(%q<hoe>.freeze, ["~> 3.18"])
     else
       s.add_dependency(%q<mini_portile2>.freeze, ["~> 2.4.0"])
@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rexical>.freeze, ["~> 1.0.5"])
       s.add_dependency(%q<rubocop>.freeze, ["~> 0.73"])
       s.add_dependency(%q<simplecov>.freeze, ["~> 0.16"])
-      s.add_dependency(%q<rdoc>.freeze, [">= 4.0", "< 7"])
+      s.add_dependency(%q<rdoc>.freeze, ["< 7", ">= 4.0"])
       s.add_dependency(%q<hoe>.freeze, ["~> 3.18"])
     end
   else
@@ -77,7 +77,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rexical>.freeze, ["~> 1.0.5"])
     s.add_dependency(%q<rubocop>.freeze, ["~> 0.73"])
     s.add_dependency(%q<simplecov>.freeze, ["~> 0.16"])
-    s.add_dependency(%q<rdoc>.freeze, [">= 4.0", "< 7"])
+    s.add_dependency(%q<rdoc>.freeze, ["< 7", ">= 4.0"])
     s.add_dependency(%q<hoe>.freeze, ["~> 3.18"])
   end
 end
