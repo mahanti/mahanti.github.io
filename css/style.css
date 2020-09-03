@@ -117,7 +117,7 @@ form {
 
 #container {
   max-height: 100%;
-  max-width: 480px;
+  max-width: 560px;
   margin: 0 auto;
   box-sizing: border-box;
   position: relative;
@@ -148,6 +148,11 @@ header {
 /* -------------------------------- */
 /* Images */
 /* -------------------------------- */
+
+#photos > img {
+	width: 100%;
+	height: auto;
+}
 
 img {
   margin-bottom: 20px;
