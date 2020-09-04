@@ -123,7 +123,7 @@ form {
   position: relative;
   border-bottom: none;
   border-top: none;
-	padding: 120px 0px; 
+	padding: 80px 0px; 
 }
 
 /* ------------------------------- */
@@ -143,13 +143,14 @@ header {
 	font-weight: 600;
 	font-size: 24px;
 	margin-bottom: 12px;
+	letter-spacing: 0.4px;
 }
 	
 /* -------------------------------- */
 /* Images */
 /* -------------------------------- */
 
-#photos > img {
+.content > img {
 	width: 100%;
 	height: auto;
 }
@@ -199,51 +200,17 @@ img {
 /* POSTS */
 /* ---------------------------- */
 
-.section_header {
-  padding: 0px 10px 0px 20px;
-  margin-bottom: 20px;
-  border-left: 10px solid #ccc;
+.company {
+	font-weight: 500;
+	font-size: 18px;
+	letter-spacing: 0.1px;
 }
 
-.post {
-  border-bottom: 1px solid rgba(0,0,0,.05);
-  margin-bottom: 20px;
+.role {
+	opacity: .5;
+	margin-bottom: 24px;
 }
 
-.post.last {
-  border-bottom: none;
-  margin-bottom: none;
-}
-
-/* JAPAN */
-
-.japan_hero {
-  margin-top: 60px;
-}
-
-.location {
-  position: relative;
-  min-height: 160px;
-}
-
-.content > h4 {
-  line-height: 2px;
-  margin-top: 12px;
-}
-
-.location > iframe {
-  width: 48.5%;
-  height: 300px;
-  margin-bottom: 20px;
-}
-
-.location > .content {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 48.5%;
-  display: inline-block;
-}
 
 /* ANIMATION */
 
@@ -286,7 +253,7 @@ img {
   #container {
     width: 100%;
     margin: 0 auto;
- 		padding: 60px 0px; 
+ 		padding: 40px 0px; 
 	}
 
   header {
@@ -370,33 +337,6 @@ img {
     display: block;
     position: relative;
   }
-}
-
-#bigmoneycolor {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  border: 1px solid rgba(0,0,0,.2);
-  color: rgba(0,0,0,.75);
-  border-radius: 2px 2px 0px 0px;
-  padding: 10px;
-  font-size: 12px;
-  text-align: center;
-  -webkit-transition:all .25s ease;
-     -moz-transition:all .25s ease;
-}
-
-.ando {
-	color: #f7323f;
-}
-
-.caps {
-	text-transform: uppercase;
-}
-
-.home {
-	margin-top: 200px;
-	margin-left: 40px;
 }
 
 .typekit-badge { display:none !important; }
