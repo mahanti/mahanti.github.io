@@ -58,6 +58,7 @@ a {
   margin: -.8em;
   padding: .8em;
 	color: #111;
+	text-decoration: none;
 }
 
 p > a:hover {
@@ -142,10 +143,16 @@ header {
 #logomark {
 	font-weight: 600;
 	font-size: 24px;
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 	letter-spacing: 0.4px;
 }
-	
+
+#nav > a {
+	display: inline-block;
+	margin-right: 1px;
+	font-weight: 600;
+}	
+
 /* -------------------------------- */
 /* Images */
 /* -------------------------------- */
