@@ -142,16 +142,21 @@ header {
 
 #logomark {
 	font-weight: 600;
-	font-size: 24px;
+	font-size: 32px;
 	margin-bottom: 8px;
 	letter-spacing: -0.16px;
+}
+
+#bio {
+	font-size: 16px;
+	margin-bottom: 32px;
 }
 
 #nav > a {
 	display: inline-block;
 	margin-right: 1px;
 	font-weight: 600;
-	font-size: 14px;
+	font-size: 16px;
 }	
 
 /* -------------------------------- */
