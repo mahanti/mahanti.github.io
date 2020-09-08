@@ -142,7 +142,7 @@ header {
 
 #logomark {
 	font-weight: 600;
-	font-size: 32px;
+	font-size: 24px;
 	margin-bottom: 8px;
 	letter-spacing: -0.16px;
 }
@@ -151,6 +151,7 @@ header {
 	display: inline-block;
 	margin-right: 1px;
 	font-weight: 600;
+	font-size: 16px;
 }	
 
 /* -------------------------------- */
