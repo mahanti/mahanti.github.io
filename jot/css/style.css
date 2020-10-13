@@ -47,22 +47,28 @@ body {
 }
 
 #tagline {
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 200;
   opacity: .5;
 }
 
 .desc {
-  line-height: 20px;
+  line-height: 20.8px;
   margin-bottom: 0px;
+	width: 400;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
 }
 
 .dl-btn {
   color: #0061BB; 
   text-decoration: none;
+	font-weight: 400;
 }
 
 .dl-btn:hover {
-  color: #0061BB;
+  color: #0061BB;font-weight: 400;
 }
 
 .section_header {
