@@ -7,7 +7,7 @@ body {
   height: 100%;
   font-family: 'Inter', courier;
   color: #444444;
-	background: #FAFAFA;
+	background: black; 
   text-decoration: none;
 	transition: .15s;
   font-weight: 100;
@@ -22,11 +22,10 @@ body {
 .container {
   width: 640px;
   margin: 0 auto 0 auto;
-	background: #FAFAFA;
 }
 
 .image {
-  width: 100%;
+  width: 480px; 
 }
 
 .content {
@@ -38,12 +37,13 @@ body {
 
 
 #logo_container {
-  width: 48px;
+  width: 80px;
 }
 
 #logo {
   width: 100%;
-  margin-bottom: -8px;
+  margin-bottom: -12px;
+	margin-top: 80px;
 }
 
 #tagline {
@@ -53,16 +53,17 @@ body {
 }
 
 .desc {
-  line-height: 20.8px;
+	font-size: 36px;
+	font-weight: 600;
+  line-height: 40px;
+	letter-spacing: -1px;
   margin-bottom: 0px;
-	width: 400;
-    font-size: 16px;
-    font-weight: 400;
-    color: black;
+    color: #808080;
 }
 
 .dl-btn {
-  color: #0061BB; 
+ 	font-size: 24px; 
+	color: #FF9F40;
   text-decoration: none;
 	font-weight: 400;
 }
@@ -71,6 +72,9 @@ body {
   color: #0061BB;font-weight: 400;
 }
 
+#hero_image {
+	margin-top: 60px;
+}
 .section_header {
   font-size: 24px;
   font-weight: 100;
