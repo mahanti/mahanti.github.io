@@ -7,9 +7,9 @@ body {
   height: 100%;
   font-family: 'Inter', courier;
   color: #444444;
-	background: black; 
+  background: black; 
   text-decoration: none;
-	transition: .15s;
+  transition: .15s;
   font-weight: 100;
   margin: 0;
   padding: 0;
@@ -65,11 +65,11 @@ body {
  	font-size: 24px; 
 	color: #FF9F40;
   text-decoration: none;
-	font-weight: 400;
+	font-weight: 600;
 }
 
 .dl-btn:hover {
-  color: #0061BB;font-weight: 400;
+  color: #0061BB;font-weight: 600;
 }
 
 #hero_image {
