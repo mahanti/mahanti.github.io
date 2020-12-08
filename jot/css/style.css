@@ -24,10 +24,6 @@ body {
   margin: 0 auto 0 auto;
 }
 
-.image {
-  width: 480px; 
-}
-
 .content {
   width: 90%;
   padding: 30px;
@@ -115,7 +111,17 @@ body {
     width: 100%;
     margin: 0; 
   }
-
+	
+	.dl-btn {
+ 	font-size: 18px; 
+	color: #FF9F40;
+  text-decoration: none;
+	font-weight: 600;
+}
+	#hero_image {
+	width: 60%;
+}
+	
   .content {
     width: 80%;
   }
