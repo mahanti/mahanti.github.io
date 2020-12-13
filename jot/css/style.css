@@ -7,12 +7,14 @@ body {
   height: 100%;
   font-family: 'Inter', courier;
   color: #444444;
-	background: black; 
+  background: black; 
   text-decoration: none;
-	transition: .15s;
+  transition: .15s;
   font-weight: 100;
   margin: 0;
   padding: 0;
+	
+overflow: hidden;
 }
 
 .wrapper {
@@ -65,15 +67,16 @@ body {
  	font-size: 24px; 
 	color: #FF9F40;
   text-decoration: none;
-	font-weight: 400;
+	font-weight: 600;
 }
 
 .dl-btn:hover {
-  color: #0061BB;font-weight: 400;
+  color: #DB8134;font-weight: 600;
 }
 
 #hero_image {
 	margin-top: 60px;
+	width: 640px;
 }
 .section_header {
   font-size: 24px;
@@ -115,7 +118,17 @@ body {
     width: 100%;
     margin: 0; 
   }
-
+	
+	.dl-btn {
+ 	font-size: 18px; 
+	color: #FF9F40;
+  text-decoration: none;
+	font-weight: 600;
+}
+	#hero_image {
+	width: 120%;
+}
+	
   .content {
     width: 80%;
   }
