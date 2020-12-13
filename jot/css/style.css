@@ -72,6 +72,7 @@ overflow: hidden;
 
 #render {
 	width: 640px;
+	margin-top: 16px;
 }
 
 iframe {
@@ -127,7 +128,9 @@ iframe {
 	font-weight: 600;
 }
 	#render {
-	width: 100%;
+		width: 200%;
+    margin-left: -50%;
+    margin-top: 20px;
 }
 
 	iframe {
