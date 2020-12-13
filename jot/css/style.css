@@ -70,9 +70,10 @@ overflow: hidden;
   color: #DB8134;font-weight: 600;
 }
 
-#hero_image {
+#render {
 	width: 640px;
 }
+
 .section_header {
   font-size: 24px;
   font-weight: 100;
@@ -120,7 +121,7 @@ overflow: hidden;
   text-decoration: none;
 	font-weight: 600;
 }
-	#hero_image {
+	#render {
 	width: 120%;
 }
 	
