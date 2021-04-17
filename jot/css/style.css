@@ -74,10 +74,16 @@ overflow: hidden;
   color: #DB8134;font-weight: 600;
 }
 
-#hero_image {
-	margin-top: 60px;
+#render {
 	width: 640px;
+	margin-top: 16px;
 }
+
+iframe {
+	width: 100%;
+	height: 100%;
+}
+
 .section_header {
   font-size: 24px;
   font-weight: 100;
@@ -125,10 +131,16 @@ overflow: hidden;
   text-decoration: none;
 	font-weight: 600;
 }
-	#hero_image {
-	width: 120%;
+	#render {
+		width: 200%;
+    margin-left: -50%;
+    margin-top: 20px;
 }
-	
+
+	iframe {
+	width: 100%;
+	height: 100%;
+}
   .content {
     width: 80%;
   }
