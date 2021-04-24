@@ -17,6 +17,7 @@ body {
   color: #111;
   background-color: #FAFAFA;
 	transition: .15s;
+	cursor: url(/img/cursor.svg), auto;
 }
 
 /* ------------------------------- */
@@ -59,6 +60,7 @@ a {
   padding: .8em;
 	color: #111;
 	text-decoration: none;
+	cursor: url(/img/cursor.svg), auto;
 }
 
 nav > a {
@@ -67,10 +69,7 @@ nav > a {
 
 a:hover {
 	color: #FF9F40; 
-}
-
-a:hover {
-	color: #FF9F40;
+	cursor: url(/img/cursor.svg), auto;
 }
 
 .selected {
@@ -171,7 +170,6 @@ header {
 #logomark {
 	font-weight: 600;
 	font-size: 20px;
-	margin-bottom: 8px;
 	letter-spacing: -0.16px;
 }
 
