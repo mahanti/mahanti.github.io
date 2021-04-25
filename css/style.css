@@ -199,34 +199,44 @@ font-size: 20px;
 /* Images */
 /* -------------------------------- */
 
-.content > img {
-	width: 100%;
-	height: auto;
+.imgcontainer {
+  position: relative;
+  width: 100%;
 }
 
 img {
-  margin-bottom: 20px;
+display: block;
+  width: 100%;
+  height: auto;	
+	margin-bottom: 20px;
 }
 
-#container img.split {
-  width: 48.5%;
-  display: inline-block;
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-#container img.split.right {
-  float: right;
+.imgcontainer:hover .overlay {
+  opacity: 1;
 }
 
-.caption, .date {
-  margin-top:-15px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 100;
-  color: #999;
-}
-
-.date {
-  margin-top: -20px;
+.caption {
+  color: white;
+  font-size: 24px;
+	font-weight: 600;
+	letter-spacing: -0.16px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  text-align: left;
 }
 
 /* ---------------------------- */
