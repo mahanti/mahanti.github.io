@@ -124,7 +124,15 @@ iframe {
     width: 100%;
     margin: 0; 
   }
-	
+
+	#logo_container {
+		margin-left: 40px;
+	}
+
+	#jotbio {
+		margin-left: 40px;
+}
+		
 	.dl-btn {
  	font-size: 18px; 
 	color: #FF9F40;
