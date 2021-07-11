@@ -119,7 +119,7 @@ iframe {
           animation-name: fadeInUp;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 780px) {
   .container {
     width: 100%;
     margin: 0; 
