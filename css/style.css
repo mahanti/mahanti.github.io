@@ -239,6 +239,10 @@ display: block;
   text-align: left;
 }
 
+.description {
+opacity: 0.5;
+margin-bottom: 32px;
+}
 /* ---------------------------- */
 /* Utilities */
 /* ---------------------------- */
