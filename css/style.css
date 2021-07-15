@@ -241,6 +241,7 @@ display: block;
 
 .description {
 opacity: 0.5;
+margin-top: -8px;
 margin-bottom: 32px;
 }
 /* ---------------------------- */
