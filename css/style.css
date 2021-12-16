@@ -202,13 +202,15 @@ font-size: 20px;
 .imgcontainer {
   position: relative;
   width: 100%;
+	border-radius: 16px;
 }
 
 img {
-display: block;
+	display: block;
   width: 100%;
   height: auto;	
-	margin-bottom: 20px;
+	margin-bottom: 24px;
+	border-radius: 16px;
 }
 
 .overlay {
@@ -222,6 +224,7 @@ display: block;
   opacity: 0;
   transition: .5s ease;
   background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 16px;
 }
 
 .imgcontainer:hover .overlay {
@@ -240,10 +243,13 @@ display: block;
 }
 
 .description {
-opacity: 0.5;
-margin-top: -8px;
-margin-bottom: 32px;
+	opacity: 0.5;
+	margin-top: -8px;
+	margin-bottom: 32px;
+	width: 150%;
+	margin-left: -25%;
 }
+
 /* ---------------------------- */
 /* Utilities */
 /* ---------------------------- */
@@ -275,6 +281,56 @@ margin-bottom: 32px;
 	margin-bottom: 24px;
 }
 
+#work_logo {
+	height: 24px;
+	width: auto;
+	border-radius: 0px;
+	margin-bottom: 16px;
+}
+
+#about {
+	margin-top: 48px;
+}
+
+#about > H3 {
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: -0.1px;
+}
+
+#about > p {
+	font-size: 16px;
+	color: #8A8A8A;
+}
+
+.section_divider {
+	width: 64px;
+	height: 4px;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	background-color: #EAEAEA;
+	border-radius: 24px;
+}
+
+.project > h4 {
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -0.1px;
+}
+
+.project > p {
+	 font-size: 16px;
+  color: #8A8A8A;
+}
+
+.project_link {
+	padding: 0px;
+}
+
+.post_image {
+	width: 150%;
+	margin-left: -25%;
+}
 
 /* ANIMATION */
 
@@ -308,7 +364,7 @@ margin-bottom: 32px;
 
 /* iPads (portrait and landscape) ----------- */
 
-@media (max-width: 780px) {
+@media (max-width: 960px) {
   body {
     transition: .15s;
     overflow-x: hidden;
@@ -320,7 +376,16 @@ margin-bottom: 32px;
  		padding: 40px 0px; 
 	}
 
-  header {
+	.content {
+ 		margin: 0px 40px;
+	}
+
+	.description {
+		width: 100%;	
+		margin-left: 0px;	
+	} 
+	
+	header {
 		margin-top: 30px;
 		margin-left: 0px;
     margin-bottom: 30px;
@@ -401,6 +466,11 @@ margin-bottom: 32px;
     display: block;
     position: relative;
   }
+
+	.post_image {
+		width: 100%;
+		margin-left: 0px;
+	}
 }
 
 .typekit-badge { display:none !important; }
