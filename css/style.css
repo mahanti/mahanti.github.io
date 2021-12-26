@@ -72,6 +72,21 @@ a:hover {
 	cursor: url(/img/cursor.svg), auto;
 }
 
+#block_link:hover {
+	color: #006AFF;
+	cursor: url(/img/cursor.svg), auto;
+}
+
+#ando_link:hover {
+	color: #F7323F;
+	cursor: url(/img/cursor.svg), auto; 
+}
+
+#sidecar_link:hover {
+	color: #F56400;
+	 cursor: url(/img/cursor.svg), auto;
+}
+
 .selected {
 	color: #F27F0D;
 }
