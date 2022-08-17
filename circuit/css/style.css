@@ -6,7 +6,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'SF Pro', 'Inter', courier;
- 	background-color: #FFF;
+ 	background-color: #F18B02;
   text-decoration: none;
   transition: .15s;
   font-weight: 100;
@@ -21,11 +21,13 @@ body {
 
 #logo_container {
   width: 48px;
-	margin-top: 64px;
+	margin-top: 96px;
+	border-radius: 25px;
 }
 
 #logo {
   width: 100%;
+	border-radius: 12px;
 }
 
 #headline_container {
@@ -33,18 +35,19 @@ body {
 }
 
 h1 {
-	color: #485D83;
-	font-size: 32px;
+	color: #FFF;
+	font-size: 64px;
 	font-weight: 600;
-letter-spacing: -0.01em;
+	letter-spacing: -0.01em;
+	margin-top: 16px;
 }
 
 h2 {
-color: #485D83;
-  font-size: 32px;
+color: #000;
+  font-size: 64px;
   font-weight: 600;
   opacity: .5;
-	margin-top: -20px;
+	margin-top: -60px;
 	letter-spacing: -0.01em;
 }
 
@@ -55,17 +58,21 @@ margin-top: 32px;
 margin-bottom: 64px;
 }
 
+nav {
+margin-top: -32px;
+}
+
 .dl-btn {
  	font-size: 16px; 
-	color: #FF9F40;
+	color: #FFF;
   text-decoration: none;
 	font-weight: 600;
 	letter-spacing: -0.01em;
-
+	margin-top: -60px;
 }
 
 .dl-btn:hover {
-  color: #DB8134;font-weight: 600;
+  color: #FFF;font-weight: 600; opacity: 0.8;
 }
 
 @-webkit-keyframes fadeInUp {
