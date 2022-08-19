@@ -6,7 +6,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'SF Pro', 'Inter', courier;
- 	background-color: #F18B02;
+ 	background-color: #FFF;
   text-decoration: none;
   transition: .15s;
   font-weight: 100;
@@ -15,7 +15,7 @@ body {
 }
 
 #container {
-	width: 640px;
+	width: 848px;
 	margin: 0 auto;
 }
 
@@ -34,45 +34,115 @@ body {
 	margin-top: -8px;
 }
 
-h1 {
-	color: #FFF;
+.header_section  h1 {
 	font-size: 64px;
-	font-weight: 600;
+	font-weight: 700;
 	letter-spacing: -0.01em;
 	margin-top: 16px;
 }
 
-h2 {
+.header_section  h2 {
 color: #000;
   font-size: 64px;
-  font-weight: 600;
-  opacity: .5;
-	margin-top: -60px;
+  font-weight: 700;
+  opacity: .25;
+	margin-top: -48px;
 	letter-spacing: -0.01em;
-}
-
-#hero {
-width: 640px;
-height: auto;
-margin-top: 32px;
-margin-bottom: 64px;
 }
 
 nav {
-margin-top: -32px;
+	margin-top: -32px;
+}
+
+.circuit_section {
+	margin-bottom: 128px;
+}
+
+.circuit_section img {
+	width: 854px;
+}
+
+.circuit_section h1 {
+	font-size: 48px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+.circuit_section h2 {
+	font-size: 32px;
+	font-weight: 600;
+	opacity: 0.5;
+	letter-spacing: -0.01em;
+	margin-top: -16px;
+	width: 512px;
+}
+
+.headline_icon {
+	font-size: 40px;
+}
+
+.colophon {
+	width: 49%;
+	display: inline-block;
+	margin-bottom: 256px;
+}
+
+.colophon h1 {
+	font-size: 32px;
+	font-weight: 600;
+	opacity: 0.25;
+	letter-spacing: -0.01em;
+}
+
+.colophon img {
+	height: 96px;
+	width: auto;
 }
 
 .dl-btn {
- 	font-size: 16px; 
-	color: #FFF;
+  background-color: #F67F15;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
   text-decoration: none;
-	font-weight: 600;
-	letter-spacing: -0.01em;
-	margin-top: -60px;
+  display: inline-block; 
+	border-radius: 200px;
+	font-weight: 500;
+	font-size: 16px;
+	margin-bottom: 96px;
 }
 
 .dl-btn:hover {
   color: #FFF;font-weight: 600; opacity: 0.8;
+}
+
+.m20 {
+	margin-top: -24px;
+	margin-bottom: 128px;
+}
+
+.orange {
+	color: #F67F15;
+}
+
+.blue {
+	color: #1C8DF5;
+}
+
+.green {
+	color: #7CCB56;
+}
+
+.red {
+	color: #FF4546;
+}
+
+.divider {
+	background-color: black;
+	height:4;
+	border-radius: 4px;
+	opacity: 0.1;	 
+	margin-bottom: 128px;
 }
 
 @-webkit-keyframes fadeInUp {
