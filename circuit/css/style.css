@@ -59,7 +59,7 @@ nav {
 }
 
 .circuit_section img {
-	width: 854px;
+	width: 800px;
 }
 
 .circuit_section h1 {
@@ -74,11 +74,11 @@ nav {
 	opacity: 0.5;
 	letter-spacing: -0.01em;
 	margin-top: -16px;
-	width: 512px;
+	width: 400px;
 }
 
 .headline_icon {
-	font-size: 40px;
+	font-size: 28px;
 }
 
 .colophon {
