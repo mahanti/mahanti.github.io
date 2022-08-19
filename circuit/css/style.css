@@ -99,6 +99,20 @@ nav {
 	width: auto;
 }
 
+.circuit_section h1 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.circuit_section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  opacity: 0.5;
+  letter-spacing: -0.01em;
+  margin-top: -16px;
+  width: 512px;
+}
 .dl-btn {
   background-color: #F67F15;
   color: white;
@@ -164,28 +178,79 @@ nav {
           animation-name: fadeInUp;
 }
 
-@media (max-width: 780px) {
-  .container {
-    width: 100%;
-    margin: 0; 
+@media (max-width: 800px) {
+  #container {
+    width: auto;
+    margin: 24px; 
   }
 
 	#logo_container {
-		margin-left: 40px;
 	}
 
 	#circuitbio {
 		margin-left: 40px;
+	}
+	
+.circuit_section img {
+  width: 100%;
+}	
+
+.header_section  h1 {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 16px;
 }
-		
+
+.header_section  h2 {
+color: #000;
+  font-size: 48px;
+  font-weight: 700;
+  opacity: .25;
+  margin-top: -48px;
+  letter-spacing: -0.01em;
+}
+
+
+.headline_icon {
+  font-size: 24px;
+}
+
+.circuit_section h1 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.circuit_section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  opacity: 0.5;
+  letter-spacing: -0.01em;
+  margin-top: -16px;
+  width: 320px;
+}
+	
 	.dl-btn {
- 	font-size: 18px; 
-	color: #FF9F40;
+ 	font-size: 16px; 
   text-decoration: none;
 	font-weight: 600;
 }
   .content {
     width: 80%;
   }
+
+	.colophon h1 {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.25;
+  letter-spacing: -0.01em;
+}
+
+.colophon img {
+  height: 48px;
+  width: auto;
+}
+
 }
 
