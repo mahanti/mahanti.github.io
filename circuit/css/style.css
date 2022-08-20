@@ -58,7 +58,7 @@ nav {
 	margin-bottom: 128px;
 }
 
-.circuit_section img {
+.section_hero {	
 	width: 800px;
 }
 
@@ -77,8 +77,12 @@ nav {
 	width: 400px;
 }
 
-.headline_icon {
-	font-size: 28px;
+.icon {
+	width: 32px;
+	height: 32px;
+	display: block;
+	margin-top: 24px;
+	margin-bottom: -8px;
 }
 
 .colophon {
@@ -190,8 +194,8 @@ nav {
 	#circuitbio {
 		margin-left: 40px;
 	}
-	
-.circuit_section img {
+
+.section_hero {	
   width: 100%;
 }	
 
@@ -252,5 +256,4 @@ color: #000;
   width: auto;
 }
 
-}
 
