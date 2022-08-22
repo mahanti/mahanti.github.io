@@ -1,7 +1,8 @@
 {
 	"applinks": {
+		"apps": [],
 		"details": [{
-			"appIDs": ["PULY5BLQAW.com.mahanti.repeat"],
+			"appID": "PULY5BLQAW.com.mahanti.repeat",
 			"paths": ["*"]
 		}]
 	},
