@@ -1,22 +1,15 @@
 {
-  "applinks": {
-     	"apps": [], 
-			"details": [
-           {
-             "appIDs": "PULY5BLQAW.com.mahanti.repeat",
-							"paths" : [ "*" ]
-             ]
-           }
-       ]
-   },
-   "webcredentials": {
-      "apps": [ "PULY5BLQAW.com.mahanti.repeat" ]
-   },
+	"applinks": {
+		"details": [{
+			"appIDs": ["PULY5BLQAW.com.mahanti.repeat"],
+			"paths": ["*"]
+		}]
+	},
+	"webcredentials": {
+		"apps": ["PULY5BLQAW.com.mahanti.repeat"]
+	},
 
-  "appclips": {
-  	"apps": ["PULY5BLQAW.com.mahanti.repeat.Clip"]
+	"appclips": {
+		"apps": ["PULY5BLQAW.com.mahanti.repeat.Clip"]
 	}
 }
-
-
-
