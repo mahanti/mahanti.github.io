@@ -8,14 +8,14 @@ body {
   font-family: 'SF Pro', 'Inter', courier;
  	background-color: #FFF;
   text-decoration: none;
-  transition: .15s;
+  transition: all .3s ease;
   font-weight: 100;
   margin: 0;
   padding: 0;
 }
 
 #container {
-	width: 848px;
+	width: 800px;
 	margin: 0 auto;
 }
 
@@ -152,6 +152,11 @@ nav {
 	margin-bottom: 128px;
 }
 
+.m21 {
+	margin-top: -24px;
+	margin-bottom: 96px;
+}
+
 .orange {
 	color: #F67F15;
 }
@@ -247,7 +252,16 @@ color: #000;
   margin-top: -16px;
   width: 320px;
 }
-	
+
+.bottom_header {
+  background-color: #F67F15;
+  border-radius: 32px;
+  padding: 40px;
+  padding-bottom: 0px;
+  padding-top: 24px;
+  margin-bottom: 96px;
+}	
+
 	.dl-btn {
  	font-size: 16px; 
   text-decoration: none;
@@ -269,4 +283,7 @@ color: #000;
   width: auto;
 }
 
-
+.m21 {
+  margin-top: -24px;
+  margin-bottom: 48px;
+}

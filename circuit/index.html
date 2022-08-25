@@ -55,7 +55,7 @@
 				<div class="header_section bottom_header">
 					<h1 class="orange">Circuit</h1>
 					<h2>Time to go.</h2>
-					 <a class="dl-btn m20" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a></nav>
+					 <a class="dl-btn m21" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a></nav>
 				</div>
 				<div class="circuit_section">
 					<div class="colophon">
@@ -73,9 +73,11 @@
 			<script>
         var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = '#F67F15';
-
+				var windowWidth = window.width;
+				var maxDeviceWidth = 768;
         // trigger this function every time the user scrolls
-        window.onscroll = function (event) {
+      	if (windowWidth > maxDeviceWidth) {  
+				 window.onscroll = function (event) {
             var scroll = window.pageYOffset;
             if (scroll < 400) {
                 // green
@@ -85,6 +87,18 @@
                 body.style.backgroundColor = 'white';
             }
         }
+				} else {
+					window.onscroll = function (event) {
+            var scroll = window.pageYOffset;
+            if (scroll < 100) {
+                // green
+                body.style.backgroundColor = '#F67F15';
+            } else {
+                // purple
+                body.style.backgroundColor = 'white';
+            }
+        }	
+				}
     </script> 
 	</body>
 </html>
