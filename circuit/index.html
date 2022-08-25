@@ -16,14 +16,14 @@
      	       <img id="logo" src="/circuit/img/app_icon.svg"></img> 
      	     </div>
 						<div id="headline_container">
-							<h1 class="orange">Circuit</h1>
+							<h1>Circuit</h1>
 							<h2>Time to go.</h2>	
 						</div>
 						<nav>
 						<a class="dl-btn" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a></nav>
         </div>
 				<div class="circuit_section">
-					<img class="section_hero" src="/circuit/img/hero.jpg">
+					<img class="section_hero" src="/circuit/img/hero.png">
 					<img class="icon" src="/circuit/img/icon_stopwatch.svg">	
 					<h1 class="orange">Hard work, easy time</h1>
 					<h2>Circuit is a simple, beautiful way to run your interval workout timers. </h2>
@@ -52,13 +52,11 @@
           <h1 class="orange">Sound on</h1>
           <h2>Circuit comes with custom sounds designed to keep you on track.</h2>
         </div>
-				<div class="divider"></div>
-				<div class="header_section">
+				<div class="header_section bottom_header">
 					<h1 class="orange">Circuit</h1>
 					<h2>Time to go.</h2>
 					 <a class="dl-btn m20" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a></nav>
 				</div>
-				<div class="divider"></div>
 				<div class="circuit_section">
 					<div class="colophon">
 						<h1>Designed and built by</h1>
@@ -72,6 +70,22 @@
 						
       </div>
 			</div>
-  </body>
+			<script>
+        var body = document.getElementsByTagName('body')[0];
+        body.style.backgroundColor = '#F67F15';
+
+        // trigger this function every time the user scrolls
+        window.onscroll = function (event) {
+            var scroll = window.pageYOffset;
+            if (scroll < 400) {
+                // green
+                body.style.backgroundColor = '#F67F15';
+            } else {
+                // purple
+                body.style.backgroundColor = 'white';
+            }
+        }
+    </script> 
+	</body>
 </html>
      

@@ -35,6 +35,7 @@ body {
 }
 
 .header_section  h1 {
+	color: #FFF;
 	font-size: 64px;
 	font-weight: 700;
 	letter-spacing: -0.01em;
@@ -42,12 +43,21 @@ body {
 }
 
 .header_section  h2 {
-color: #000;
+	color: #000;
   font-size: 64px;
   font-weight: 700;
-  opacity: .25;
+  opacity: .5;
 	margin-top: -48px;
 	letter-spacing: -0.01em;
+}
+
+.bottom_header {
+	background-color: #F67F15;
+	border-radius: 32px;
+	padding: 80px;
+	padding-bottom: 0px;
+	padding-top: 72px;
+	margin-bottom: 96px;
 }
 
 nav {
@@ -117,9 +127,10 @@ nav {
   margin-top: -16px;
   width: 512px;
 }
+
 .dl-btn {
-  background-color: #F67F15;
-  color: white;
+  color: #F67F15;
+  background-color: white;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -131,7 +142,9 @@ nav {
 }
 
 .dl-btn:hover {
-  color: #FFF;font-weight: 600; opacity: 0.8;
+  color: #F67F15;
+	font-weight: 500; 
+	opacity: 0.8;
 }
 
 .m20 {
