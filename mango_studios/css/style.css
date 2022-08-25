@@ -12,20 +12,21 @@ body {
   font-weight: 100;
   margin: 0;
   padding: 0;
-	 background-image: url(/mango_studios/img/blob.svg);
-  background-position: 50% 15%;
+/*	 background-image: url(/mango_studios/img/blob.svg);
+  background-position: 50% 15%; */
 }
 
-#blb {
+#blob {
 	 width: 100%;
   height: 100%;
-	background-image: url(/mango_studios/img/blob.svg);
-	background-position: center top;
+	z-index: -10000;
+	position: absolute;
 }
 
 #container {
 	width: 848px;
 	margin: 0 auto;
+	z-index: 100;
 }
 
 #logo_container {
@@ -46,132 +47,10 @@ body {
 .header_section  h1 {
 	font-size: 16px;
 	color: white;
-	opacity: 0.5;
+	opacity: 0.8;
 	font-weight: 700;
 	letter-spacing: -0.01em;
 	margin-top: 24px;
-}
-
-.header_section  h2 {
-color: #000;
-  font-size: 64px;
-  font-weight: 700;
-  opacity: .25;
-	margin-top: -48px;
-	letter-spacing: -0.01em;
-}
-
-nav {
-	margin-top: -32px;
-}
-
-.circuit_section {
-	margin-bottom: 128px;
-}
-
-.section_hero {	
-	width: 800px;
-}
-
-.circuit_section h1 {
-	font-size: 48px;
-	font-weight: 600;
-	letter-spacing: -0.01em;
-}
-
-.circuit_section h2 {
-	font-size: 32px;
-	font-weight: 600;
-	opacity: 0.5;
-	letter-spacing: -0.01em;
-	margin-top: -16px;
-	width: 400px;
-}
-
-.icon {
-	width: 32px;
-	height: 32px;
-	display: block;
-	margin-top: 24px;
-	margin-bottom: -8px;
-}
-
-.colophon {
-	width: 49%;
-	display: inline-block;
-	margin-bottom: 256px;
-}
-
-.colophon h1 {
-	font-size: 32px;
-	font-weight: 600;
-	opacity: 0.25;
-	letter-spacing: -0.01em;
-}
-
-.colophon img {
-	height: 96px;
-	width: auto;
-}
-
-.circuit_section h1 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.circuit_section h2 {
-  font-size: 24px;
-  font-weight: 600;
-  opacity: 0.5;
-  letter-spacing: -0.01em;
-  margin-top: -16px;
-  width: 512px;
-}
-
-.dl-btn {
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block; 
-	border-radius: 200px;
-	font-weight: 500;
-	font-size: 16px;
-	margin-top: 64px;	
-	margin-bottom: 48px;
-}
-
-.dl-btn:hover {
-  color: #FFF;font-weight: 600; opacity: 0.8;
-}
-
-.m20 {
-	margin-top: -24px;
-	margin-bottom: 128px;
-}
-
-.orange {
-	color: #F67F15;
-}
-
-.blue {
-	color: #1C8DF5;
-}
-
-.green {
-	color: #7CCB56;
-}
-
-.red {
-	color: #FF4546;
-}
-
-.divider {
-	background-color: black;
-	height:4;
-	border-radius: 4px;
-	opacity: 0.1;	 
-	margin-bottom: 128px;
 }
 
 @-webkit-keyframes fadeInUp {
@@ -200,71 +79,16 @@ nav {
   }
 
 	#logo_container {
-	}
+  width: 256px;
+  margin-top: 96px;
+  border-radius: 25px;
+}
 
-	#circuitbio {
-		margin-left: 40px;
-	}
-
-.section_hero {	
-  width: 100%;
+	#blob {
+   width: 100%;
+  height: 50%;
+  z-index: -10000;
+  position: absolute;
 }	
 
-.header_section  h1 {
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-top: 16px;
 }
-
-.header_section  h2 {
-color: #000;
-  font-size: 48px;
-  font-weight: 700;
-  opacity: .25;
-  margin-top: -48px;
-  letter-spacing: -0.01em;
-}
-
-
-.headline_icon {
-  font-size: 24px;
-}
-
-.circuit_section h1 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.circuit_section h2 {
-  font-size: 24px;
-  font-weight: 600;
-  opacity: 0.5;
-  letter-spacing: -0.01em;
-  margin-top: -16px;
-  width: 320px;
-}
-	
-	.dl-btn {
- 	font-size: 16px; 
-  text-decoration: none;
-	font-weight: 600;
-}
-  .content {
-    width: 80%;
-  }
-
-	.colophon h1 {
-  font-size: 16px;
-  font-weight: 600;
-  opacity: 0.25;
-  letter-spacing: -0.01em;
-}
-
-.colophon img {
-  height: 48px;
-  width: auto;
-}
-
-
