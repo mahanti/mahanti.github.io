@@ -14,6 +14,7 @@ body {
   padding: 0;
 /*	 background-image: url(/mango_studios/img/blob.svg);
   background-position: 50% 15%; */
+	overflow: hidden;
 }
 
 #blob {
