@@ -11,6 +11,7 @@
   </head>
   <body>
       <div id="container" class="left animated animatedFadeInUp fadeInUp">
+					<div id="hero_header">
 					<div class="header_section">
      	     <div id="logo_container">
      	       <img id="logo" src="/circuit/img/app_icon.svg"></img> 
@@ -19,9 +20,14 @@
 							<h1>Circuit</h1>
 							<h2>Time to go.</h2>	
 						</div>
-						<nav>
-						<a class="dl-btn" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a></nav>
-        </div>
+				</div>
+				   <div class="app_card">
+           <div class="app_clip">
+              <img src="/circuit/img/app_clip.svg"></img>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a>
+          </div>
+				</div>
 				<div class="circuit_section">
 					<img class="section_hero" src="/circuit/img/hero.png">
 					<img class="icon" src="/circuit/img/icon_stopwatch.svg">	
@@ -53,10 +59,24 @@
           <h2>Circuit comes with custom sounds designed to keep you on track.</h2>
         </div>
 				<div class="header_section bottom_header">
-					<h1 class="orange">Circuit</h1>
-					<h2>Time to go.</h2>
-					 <a class="dl-btn m21" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a></nav>
-				</div>
+					<div id="secondary_hero_header">
+          <div class="header_section">
+           <div id="logo_container">
+             <img id="logo" src="/circuit/img/app_icon.svg"></img>
+           </div>
+            <div id="headline_container">
+              <h1>Circuit</h1>
+              <h2>Time to go.</h2>
+            </div>
+        </div>
+           <div class="app_card">
+           <div class="app_clip">
+              <img src="/circuit/img/app_clip.svg"></img>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128" target="_blank">Get the app <span id="arrow">→</span></a>
+          </div>
+        </div>	
+				</div>	
 				<div class="circuit_section">
 					<div class="colophon">
 						<h1>Designed and built by</h1>
@@ -73,32 +93,15 @@
 			<script>
         var body = document.getElementsByTagName('body')[0];
         body.style.backgroundColor = '#F67F15';
-				var windowWidth = window.width;
-				var maxDeviceWidth = 768;
         // trigger this function every time the user scrolls
-      	if (windowWidth > maxDeviceWidth) {  
 				 window.onscroll = function (event) {
             var scroll = window.pageYOffset;
-            if (scroll < 400) {
-                // green
+       			if (scroll < 300) {
                 body.style.backgroundColor = '#F67F15';
             } else {
-                // purple
-                body.style.backgroundColor = 'white';
-            }
-        }
-				} else {
-					window.onscroll = function (event) {
-            var scroll = window.pageYOffset;
-            if (scroll < 100) {
-                // green
-                body.style.backgroundColor = '#F67F15';
-            } else {
-                // purple
-                body.style.backgroundColor = 'white';
-            }
-        }	
-				}
+                body.style.backgroundColor = '#FFF';
+            } 
+					}
     </script> 
 	</body>
 </html>
