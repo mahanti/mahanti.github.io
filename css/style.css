@@ -69,6 +69,15 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 	width: 80%;
 }
 
+.callout {
+    background-color: rgba(0,0,0,0.05);
+    padding: 16px;
+    font-weight: 600;
+    corner-radius: 16px;
+    border-radius: 8px;
+    margin-top: 24px;
+}
+
 /* --------------------------------- */
 /* Links */
 /* --------------------------------- */
