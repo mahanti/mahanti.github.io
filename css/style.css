@@ -260,6 +260,14 @@ section {
   width: calc(50% - 24px);
 }
 
+.one-third {
+  width: calc(40% - 24px);
+}
+
+.two-third {
+  width: calc(60% - 24px);
+}
+
 .preview {
   height: 460px;
 }
@@ -435,6 +443,14 @@ img {
 
   .column {
     width: calc(50% - 12px);
+  }
+
+  .one-third {
+    width: calc(40% - 12px);
+   }
+
+  .two-third {
+    width: calc(60% - 12px);
   }
 }
 
