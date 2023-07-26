@@ -86,7 +86,8 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 
 .caption {
 	margin-top: 12px;
-	font-size: 14px;
+  margin-bottom: 0px;
+  font-size: 14px;
 	opacity: 0.5;
 	width: 80%;
 }
