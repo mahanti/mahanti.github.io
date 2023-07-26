@@ -284,6 +284,11 @@ img {
   width: -webkit-fill-available;
 }
 
+.hover-image {
+  display: none;
+  transition: opacity 0.3s;
+}
+
 /* ---------------------------- */
 /* Utilities */
 /* ---------------------------- */
