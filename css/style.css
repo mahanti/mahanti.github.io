@@ -136,6 +136,19 @@ ul > a:hover {
   background-color: rgba(0,0,0,0.125); 
 }
 
+.secondary {
+  background-color: rgba(0,0,0,0.1);
+  color: #FFF;
+}
+
+.primary {
+  background-color: #FFF;
+  color: var(--custom-color);
+}
+
+.primary:hover {
+  background-color: rgba(255,255,255,0.8);
+}
 
 /* --------------------------------- */
 /* Lists */
@@ -259,7 +272,7 @@ img {
 }
 
 .color-sudo {
-	--custom-color: #1EABC6;
+	--custom-color: #F07300;
 }
 
 .color-circuit {
