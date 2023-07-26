@@ -10,21 +10,26 @@
 </head>
 	<body>
 		<div id="container">
-			<section>
+    <section id="nav">
       <div class="row nav-row">
         <div class="text-section">
-         <a href="/"><span id="name" class="title">Arjun Mahanti</span></a> 
-          <span class="subtitle">A midwesterner in Brooklyn building, designing, and crafting products. Taking photos, cooking food, and avoiding three-putts.</span>
+          <a href="/"><span id="name" class="title">Arjun Mahanti</span></a>
+          <span class="subtitle hideable">A midwesterner in Brooklyn building, designing, and crafting products. Taking photos, cooking food, and avoiding three-putts.</span>
         </div>
         <div class="button-section">
-          <a class="button-link" href="/work">Work</a>
-          <a class="button-link" href="/products">Products</a>
-          <a class="button-link" href="/photos">Photos</a>
-          <a class="button-link" href="/about">About</a>
+          <nav>
+            <ul class="navlist">
+              <li><a class="button-link" href="/work">Work</a></li>
+              <li><a class="button-link" href="/products">Products</a></li>
+              <li><a class="button-link" href="/photos">Photos</a></li>
+              <li><a class="button-link" href="/about">About</a></li>
+            </ul>
+          </nav>
+           <a href="#" class="navlist-button"></a>
         </div>
       </div>
-    </section>
-    <section id="header-block" class="color-sq">
+    </section> 
+      <section id="header-block" class="color-sq">
 				<div class="row">
 					<span class="title white">Block</span>
           <span class="subtitle white">Building tools for restaurants to support economic empowerment.</span>
@@ -48,5 +53,5 @@
 				<img src="06@2x.png">
 			</section>
 		</div>
-	</body>
-</div>
+    <script src="/js/script.js"></script>
+  </body>
