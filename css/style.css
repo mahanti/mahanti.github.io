@@ -47,6 +47,15 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
   h6 { font-size: 1.5rem; }
 }
 
+.text-section {
+  flex: 1;
+}
+
+.button-section {
+  display: flex;
+  gap: 10px;
+}
+
 .row .title, .text-object .subtitle {
   display: block;  /* Ensures the title and subtitle stack on top of each other */
   font-size: 14px;
@@ -58,8 +67,21 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
   color: rgba(0, 0, 0, 1);  /* 50% black */
 }
 
+ .nav-row {
+   display: flex;
+   justify-content: space-between;
+ }
+
+#name {
+  font-size: 16px;
+}
+
 .subtitle {
 	opacity: 0.5;
+  width: 80%;
+  max-width: 560px;
+  display: inline-block;
+  margin-top: 2px;
 }
 
 .caption {
@@ -93,6 +115,24 @@ p > a:hover {
 
 ul > a:hover {
 	color: #222;
+}
+
+.button-link {
+  text-decoration: none; 
+  font-family: 'Inter','Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  background-color: rgba(0,0,0,0.05);
+  padding: 8px 12px; 
+  border-radius: 25px; 
+  display: inline-block; 
+  transition: background-color 0.3s ease;
+  height: 16px;
+}
+
+.button-link:hover {
+  background-color: rgba(0,0,0,0.125); 
 }
 
 
@@ -148,6 +188,9 @@ section {
   width: calc(50% - 24px);
 }
 
+.preview {
+  height: 460px;
+}
 
 /* ------------------------------- */
 /* NAVIGATION */
@@ -159,6 +202,7 @@ section {
 
 img {
 	width: -webkit-fill-available;
+  margin-bottom: 16px;
 }
 
 /* ---------------------------- */
@@ -229,6 +273,10 @@ img {
 	--custom-color: #FF9A72;
 }
 
+.color-generic {
+  --custom-color: rgba(0,0,0,0.03);
+}
+
 .white {
 	color: white !important;
 }
@@ -249,7 +297,7 @@ img {
 	opacity: 0.5;
 }
 
-#header-angellist, #header-sidecar, #header-block, #header-ando, #header-approach, #header-circuit, #header-jot, #header-terraforms, #header-sudo {
+#header-angellist, #header-sidecar, #header-block, #header-ando, #header-approach, #header-circuit, #header-jot, #header-terraforms, #header-sudo, #header-generic {
 	background-color: var(--custom-color);
 }
 
@@ -303,7 +351,7 @@ img {
 	}
 
 	section {
-  padding: 20px;
+  padding: 40px;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
