@@ -15,10 +15,18 @@ body {
   font-size: 1.4em;
   line-height: 1.4;
   font-family: 'Inter', 'Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
-  color: #111;
-  background-color: #FFF;
   transition: .15s;
   cursor: url(/img/cursor.png), auto;
+}
+
+body.day {
+				background-color: #fff;
+			color: #222;
+}
+
+body.night {
+				background-color: #222;
+	color: #fff;
 }
 
 /* ------------------------------- */
@@ -65,7 +73,7 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 .row .subtitle {
-  color: rgba(0, 0, 0, 1);  /* 50% black */
+	opacity:0.5;
 }
 
 .nav-row {
@@ -84,8 +92,6 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
   justify-content: space-between;
   top: 0;
   z-index: 1000;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(4px);
   transition: opacity 0.5s ease-in-out;
 }
 
@@ -151,7 +157,6 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 .callout {
-  background-color: rgba(0,0,0,0.05);
   padding: 16px;
   font-weight: 600;
   corner-radius: 16px;
@@ -168,6 +173,14 @@ a {
   text-decoration: none;
 }
 
+a.day {
+	color: #111;
+	}
+
+a.night {
+	color: #fff;
+	}
+
 p > a:hover {
   color: #222; 
 }
@@ -176,13 +189,27 @@ ul > a:hover {
   color: #222;
 }
 
-.button-link {
+body.day .button-link {
   text-decoration: none; 
   font-family: 'Inter','Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
   font-size: 12px;
   font-weight: 600;
   color: #222;
   background-color: rgba(0,0,0,0.05);
+  padding: 8px 12px; 
+  border-radius: 25px; 
+  display: inline-block; 
+  transition: background-color 0.3s ease;
+  height: 16px;
+}
+
+body.night .button-link {
+  text-decoration: none; 
+  font-family: 'Inter','Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgba(255,255,255,0.05);
   padding: 8px 12px; 
   border-radius: 25px; 
   display: inline-block; 
@@ -243,13 +270,22 @@ hr {
   border-top: none;
 }
 
-section {
+body.day section {
   padding: 40px;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
   border-right: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
+
+body.night section {
+  padding: 40px;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+}
+
 
 .two-column {
   display: flex;  
