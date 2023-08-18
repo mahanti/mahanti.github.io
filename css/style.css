@@ -162,8 +162,12 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
   corner-radius: 16px;
   border-radius: 8px;
   margin-top: 24px;
+  background: rgba(0,0,0,0.05);
 }
 
+.callout.night {
+  background: rgba(255,255,255,0.1);
+}
 /* --------------------------------- */
 /* Links */
 /* --------------------------------- */
@@ -223,12 +227,12 @@ body.night .button-link {
 
 .secondary {
   background-color: rgba(0,0,0,0.1);
-  color: #FFF;
+  color: #FFF !important;
 }
 
 .primary {
-  background-color: #FFF;
-  color: var(--custom-color);
+  background-color: #FFF !important;
+  color: var(--custom-color) !important;
 }
 
 .primary:hover {
@@ -353,6 +357,18 @@ img {
   margin-bottom: 16px;
 }
 
+.mb24 {
+  margin-bottom: 24px;
+}
+
+.mb32 {
+  margin-bottom: 32px;
+}
+
+.mb40 {
+  margin-bottom: 40px;
+}
+
 /* ---------------------------- */
 /* Custom Colors & Themes */
 /* ---------------------------- */
@@ -386,7 +402,7 @@ img {
 }
 
 .color-circuit {
-  --custom-color: #F67F15;
+  --custom-color: rgba(246, 127, 21);
 }
 
 .color-jot {
