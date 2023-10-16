@@ -157,10 +157,9 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 .callout {
-  padding: 16px;
+  padding: 8px 16px;
   font-weight: 600;
-  corner-radius: 16px;
-  border-radius: 8px;
+  border-radius: 24px;
   margin-top: 24px;
   background: rgba(0,0,0,0.05);
 }
@@ -170,8 +169,8 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 .callout.clients {
-	margin-top: 0px;
-	background: #DBEBFC;
+	width: 100%;
+				background: #DBEBFC;
 	color: #046BD1;
 }
 
