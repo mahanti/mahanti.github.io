@@ -1,0 +1,96 @@
+@import url('https://rsms.me/inter/inter.css');
+
+html { font-family: 'Inter', sans-serif; }
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'SF-Pro', 'Inter', courier;
+  color: #DADFE3;
+  text-decoration: none;
+  transition: .15s;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+	overflow: hidden;
+}
+
+.container {
+	width: 640px;
+	margin: 04 auto;
+}
+
+#logo_container {
+  width: 64px;
+}
+
+#logo {
+  width: 100%;
+}
+
+h1 {
+	font-size: 40px;
+	font-weight: 600;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 600;
+  opacity: .5;
+}
+
+.dl-btn {
+ 	font-size: 24px; 
+	color: #FF9F40;
+  text-decoration: none;
+	font-weight: 600;
+}
+
+.dl-btn:hover {
+  color: #DB8134;font-weight: 600;
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50px, 0);
+            transform: translate3d(0, 50px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+          animation-name: fadeInUp;
+}
+
+@media (max-width: 780px) {
+  .container {
+    width: 100%;
+    margin: 0; 
+  }
+
+	#logo_container {
+		margin-left: 40px;
+	}
+
+	#circuitbio {
+		margin-left: 40px;
+}
+		
+	.dl-btn {
+ 	font-size: 18px; 
+	color: #FF9F40;
+  text-decoration: none;
+	font-weight: 600;
+}
+  .content {
+    width: 80%;
+  }
+}
+

@@ -287,13 +287,15 @@ body.night .button-link {
 	height: 2px;
   width: 8px;
   margin: 0 2px;
-  background-color: rgba(0,0,0,0.1);
+	backdrop-filter: blur(10px);
+	background-color: rgba(0,0,0,0.1);
   border-radius: 6px;
   cursor: pointer;
 }
 
 .dot.active {
 				width: 12px;	
+				backdrop-filter: blur(10px);
 				background-color: rgba(0,0,0,0.6);
 }
 /* -------------------------------- */
