@@ -40,33 +40,34 @@ if (currentHour >= 7 && currentHour < 18) {
     }
 }
 
+let currentIndex = 0;
+let slides = document.querySelectorAll(".carousel-slide img");
+let dots = document.querySelectorAll(".dot");
+dots[0].classList.add("active");
 
-/*
-const imageLinks = document.querySelectorAll(".image-link");
-  const imageContainer = document.querySelector(".image-container");
-  const defaultContent = document.querySelector(".default-content");
+function updateCarousel() {
+  // Move the carousel
+  const offset = -currentIndex * 100;
+  document.querySelector(".carousel-slide").style.transform = `translateX(${offset}%)`;
 
-  imageLinks.forEach((link) => {
-    const image = link.querySelector(".hover-image");
+  // Update the active dot
+  dots.forEach(dot => dot.classList.remove("active"));
+  dots[currentIndex].classList.add("active");
+}
 
-    link.addEventListener("mouseover", () => {
-      defaultContent.style.opacity = "0";
-      imageContainer.appendChild(image);
-      image.style.display = "block";
+function moveToSlide(index) {
+  currentIndex = index;
+  updateCarousel();
+}
 
-      // Delay the opacity change to ensure the image is in the document flow
-      setTimeout(() => {
-        image.style.opacity = "1";
-      }, 0);
-    });
+// Automatically move to the next slide every 5 seconds
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateCarousel();
+}, 5000);
 
-    link.addEventListener("mouseout", () => {
-      image.style.opacity = "0";
-      // Delay the display change to allow the transition to complete
-      setTimeout(() => {
-        image.style.display = "none";
-        defaultContent.style.opacity = "1";
-      }, 500); // Match this to the length of your transition
-    });
-  });
-*/
+// Add click listeners to dots
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => moveToSlide(index));
+});
+
