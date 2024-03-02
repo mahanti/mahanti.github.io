@@ -443,6 +443,9 @@ img {
   --custom-color: #3A25F5;
 }
 
+.color-block {
+	--custom-color: #222222;
+}
 .color-sq {
   --custom-color: #2A68F6; 
 }
