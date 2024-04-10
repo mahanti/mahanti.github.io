@@ -39,35 +39,3 @@ if (currentHour >= 7 && currentHour < 18) {
         links[i].classList.add("night");
     }
 }
-
-let currentIndex = 0;
-let slides = document.querySelectorAll(".carousel-slide img");
-let dots = document.querySelectorAll(".dot");
-dots[0].classList.add("active");
-
-function updateCarousel() {
-  // Move the carousel
-  const offset = -currentIndex * 100;
-  document.querySelector(".carousel-slide").style.transform = `translateX(${offset}%)`;
-
-  // Update the active dot
-  dots.forEach(dot => dot.classList.remove("active"));
-  dots[currentIndex].classList.add("active");
-}
-
-function moveToSlide(index) {
-  currentIndex = index;
-  updateCarousel();
-}
-
-// Automatically move to the next slide every 5 seconds
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateCarousel();
-}, 5000);
-
-// Add click listeners to dots
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", () => moveToSlide(index));
-});
-

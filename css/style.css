@@ -256,12 +256,13 @@ body.day .button-link:hover {
 
 #portfolio-carousel {
 				padding: 0px;
+	cursor: ew-resize;
 }
 
 .carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
+	overflow: auto;
+  display: flex;
+  scroll-snap-type: x mandatory;
 }
 
 .carousel-slide {
@@ -271,10 +272,10 @@ body.day .button-link:hover {
 
 .carousel-slide img {
   width: 100%;
+	scroll-snap-align: start;
 }
 
-.pagination {
-  position: absolute;
+.dots {
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
