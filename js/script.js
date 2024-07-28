@@ -1,3 +1,7 @@
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
+
 const navBtn = document.querySelector('.navlist-button');
 const navList = document.querySelector('.navlist');
 const navLink = document.querySelectorAll('.navlist-link');
