@@ -7,15 +7,16 @@ permalink: /
  <div class="carousel-wrapper">
       <div id="image-carousel" class="carousel-container">
         <div class="carousel-slide">
-            <img src="/img/carousel/01.jpg" alt="Image 1">
-            <img src="/img/carousel/02.jpg" alt="Image 2">
-            <img src="/img/carousel/03.jpg" alt="Image 3">
-            <img src="/img/carousel/04.jpg" alt="Image 4">
-            <img src="/img/carousel/05.jpg" alt="Image 4">
-            <img src="/img/carousel/06.jpg" alt="Image 4">
+            <img src="/img/carousel/01.jpg" loading="lazy">
+            <img src="/img/carousel/02.jpg" loading="lazy">
+            <img src="/img/carousel/03.jpg" loading="lazy">
+            <img src="/img/carousel/04.jpg" loading="lazy">
+            <img src="/img/carousel/05.jpg" loading="lazy">
+            <img src="/img/carousel/06.jpg" loading="lazy">
         </div>
     </div>
 </div>
+
 <div class="container">
     <section id="work" class="two-column">
         <div class="column one-third image-container">

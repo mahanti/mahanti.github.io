@@ -14,8 +14,8 @@ permalink: /work/angellist
     </div>
 </section>
 <section>
-    <img class="mb32" src="/img/work/angellist/05@2x.png">
-    <img class="mb32" src="/img/work/angellist/06@2x.png">
-    <img class="mb32" src="/img/work/angellist/01@2x.png"> 
-    <img class="mb32" src="/img/work/angellist/03@2x.png">
+    <img class="mb32" src="/img/work/angellist/05@2x.png" loading="lazy">
+    <img class="mb32" src="/img/work/angellist/06@2x.png" loading="lazy">
+    <img class="mb32" src="/img/work/angellist/01@2x.png" loading="lazy"> 
+    <img class="mb32" src="/img/work/angellist/03@2x.png" loading="lazy">
 </section> 

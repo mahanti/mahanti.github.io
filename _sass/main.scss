@@ -16,29 +16,12 @@ body {
   line-height: 1.4;
   font-family: 'Inter', 'Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
   cursor: url(/img/cursor.png), auto;
-  opacity: 0;
-  filter: blur(8px);
   transition: opacity 0.4s ease-out, filter 0.4s ease-out;
   overflow-x: hidden;
 }
 
-body.loaded {
-  opacity: 1;
-  filter: blur(0);
-}
-
 body * {
   transition: inherit;
-}
-
-body.day {
-	background-color: #fff;
-	color: #222;
-}
-
-body.night {
-	background-color: #222;
-	color: #fff;
 }
 
 /* ------------------------------- */
@@ -94,8 +77,8 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 #name {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 #nav {
@@ -184,7 +167,7 @@ ul > a:hover {
     font-size: 12px;
     font-weight: 600;
     color: #222;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.03);
     padding: 8px 12px;
     border-radius: 25px;
     display: inline-block;

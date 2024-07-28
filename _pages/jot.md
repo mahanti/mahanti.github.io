@@ -24,17 +24,17 @@ permalink: /products/jot
     </div>
 </section>
 <section>
-    <img src="/img/products/jot/01.jpg"> 
+    <img src="/img/products/jot/01.jpg" loading="lazy">
 </section>
 <section>
-    <img src="/img/products/jot/02.jpg">
+    <img src="/img/products/jot/02.jpg" loading="lazy">
     <p class="caption">Napkin was a fun addition to Jot which enabled me to quickly sketch out concepts or UI in the middle of the night.</p>
 </section>
 <section>
-    <img src="/img/products/jot/03.jpg">
+    <img src="/img/products/jot/03.jpg" loading="lazy">
     <p class="caption">The new user experience meant to quickly educate users on the interaction paradigm.</p>
 </section>	
 <section>
-    <img src="/img/products/jot/04.jpg">	
+    <img src="/img/products/jot/04.jpg" loading="lazy">
     <p class="caption">Icons and themed variations for different tools.</p>
 </section>

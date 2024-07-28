@@ -17,9 +17,9 @@ permalink: /products/terraforms
     </div>
 </section>
 <section>
-    <img src="/img/products/terraforms/01.jpg">
+    <img src="/img/products/terraforms/01.jpg" loading="lazy">
 </section>
 <section>
-    <img src="/img/products/terraforms/02.jpg">
+    <img src="/img/products/terraforms/02.jpg" loading="lazy">
     <p class="caption">I built an interactive mesh pattern that lets you customize the Biome and Zone of the mesh to essentially create your own terraform.</p>
 </section>

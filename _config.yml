@@ -1,5 +1,5 @@
 title: Arjun Mahanti
-description: A multidisciplinary designer solving complex problems in delightful ways.
+description: A multidisciplinary designer building delightful solutions to complex problems.
 baseurl: ""
 url: "https://mahanti.github.io"
 
@@ -29,3 +29,12 @@ collections:
   pages:
     output: true
     permalink: /:name/
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: [local]
+  blanklines: false
+  profile: false

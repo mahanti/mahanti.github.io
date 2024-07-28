@@ -25,18 +25,18 @@ I worked with my friends at Shag City to develop custom sounds which add utility
     </div>
 </section>
 <section>
-    <img src="/img/products/circuit/01.jpg"> 
+    <img src="/img/products/circuit/01.jpg" loading="lazy"> 
 </section>
 <section>
-   <img src="/img/products/circuit/02.jpg"> 
+   <img src="/img/products/circuit/02.jpg" loading="lazy"> 
     <p class="caption">This was my first time building an app clip which helps me easily onboard new users at the gym who are curious and want to try out the app. Give it a shot yourself!</p>
 </section>
 <section>
-   <img src="/img/products/circuit/03.jpg"> 
+   <img src="/img/products/circuit/03.jpg" loading="lazy"> 
     <p class="caption">Simple settings let users easily jump into their favorite workouts.</p>
 </section>	
 <section>
-   <img src="/img/products/circuit/04.jpg"> 
+   <img src="/img/products/circuit/04.jpg" loading="lazy"> 
     <p class="caption">The Circuit logo is a dynamic element that doubles as a visual representation of your work and rest timers.</p>
 </section>
 <section>

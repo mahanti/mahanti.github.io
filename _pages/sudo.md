@@ -23,17 +23,17 @@ permalink: /products/sudo
     </div>
 </section>
 <section>
-    <img src="/img/products/sudo/01.jpg"> 
+    <img src="/img/products/sudo/01.jpg" loading="lazy"> 
 </section>
 <section>
-    <img src="/img/products/sudo/02.jpg">
+    <img src="/img/products/sudo/02.jpg" loading="lazy">
     <p class="caption">The two modes work seamlessly between each other.</p>
 </section>
 <section>
-    <img src="/img/products/sudo/03.jpg">
+    <img src="/img/products/sudo/03.jpg" loading="lazy">
     <p class="caption">Sudo keeps track of basic statistics for all of your puzzles.</p>
 </section>	
 <section>
-    <img src="/img/products/sudo/04.jpg">	
+    <img src="/img/products/sudo/04.jpg" loading="lazy">	
     <p class="caption">It wouldn’t be an indie app without a few custom icons.</p>
 </section>

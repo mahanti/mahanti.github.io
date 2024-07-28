@@ -14,14 +14,14 @@ permalink: /work/sidecar
     </div>
 </section>
 <section>
-    <img src="/img/work/sidecar/01@2x.png"> 
+    <img src="/img/work/sidecar/01@2x.png" loading="lazy"> 
 </section>
 <section>
-    <img src="/img/work/sidecar/02@2x.png">
+    <img src="/img/work/sidecar/02@2x.png" loading="lazy">
 </section>
 <section>
-    <img src="/img/work/sidecar/03@2x.png">
+    <img src="/img/work/sidecar/03@2x.png" loading="lazy">
 </section>	
 <section>
-    <img src="/img/work/sidecar/04@2x.png">	
+    <img src="/img/work/sidecar/04@2x.png" loading="lazy">	
 </section>

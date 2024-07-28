@@ -15,11 +15,11 @@ During my time there, I was responsible for designing multiple zero-to-one produ
 </div>
 </section>
 <section>
-    <img src="/img/work/ando/01@2x.png">
+    <img src="/img/work/ando/01@2x.png" loading="lazy">
 </section>
 <section>
-    <img src="/img/work/ando/02@2x.png">
+    <img src="/img/work/ando/02@2x.png" loading="lazy">
 </section>
 <section>
-    <img src="/img/work/ando/03@2x.png">
+    <img src="/img/work/ando/03@2x.png" loading="lazy">
 </section>

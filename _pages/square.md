@@ -11,14 +11,14 @@ permalink: /work/square
     </div>
 </section>
 <section>
-    <img class="mb24" src="/img/work/square/01@2x.png"> 
-    <img class="mb24" src="/img/work/square/02@2x.png">
-    <img class="mb24" src="/img/work/square/03@2x.png">
-    <img class="mb24" src="/img/work/square/04@2x.png">	
+    <img class="mb24" src="/img/work/square/01@2x.png" loading="lazy"> 
+    <img class="mb24" src="/img/work/square/02@2x.png" loading="lazy">
+    <img class="mb24" src="/img/work/square/03@2x.png" loading="lazy">
+    <img class="mb24" src="/img/work/square/04@2x.png" loading="lazy">	
 </section>
 <section>
-    <img class="mb24" src="/img/work/square/05@2x.png">
+    <img class="mb24" src="/img/work/square/05@2x.png" loading="lazy">
 </section>
 <section>
-    <img class="mb24" src="/img/work/square/06@2x.png">
+    <img class="mb24" src="/img/work/square/06@2x.png" loading="lazy">
 </section>
