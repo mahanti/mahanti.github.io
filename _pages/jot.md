@@ -4,7 +4,7 @@ title: Arjun Mahanti • Jot
 permalink: /products/jot
 ---
 
-<section id="header-jot" class="color-jot">
+<section id="header-jot" class="color-jot page-header">
     <div class="row nav-row">
         <div class="text-section">
             <span class="title white">jot</span>

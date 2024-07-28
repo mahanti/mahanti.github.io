@@ -4,7 +4,7 @@ title: Arjun Mahanti • Circuit
 permalink: /products/circuit
 ---
 
-<section id="header-circuit" class="color-circuit">
+<section id="header-circuit" class="color-circuit page-header">
     <div class="row nav-row">
         <div class="text-section">
             <span class="title white">Circuit</span>

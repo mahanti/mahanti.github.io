@@ -4,7 +4,7 @@ title: Arjun Mahanti • Sidecar
 permalink: /work/sidecar
 ---
 
-<section>
+<section class="page-header">
     <div class="row">
         <span class="title">About</span>
         <span class="subtitle">Sidecar was the first true peer-to-peer ridesharing service. I dropped out of college to join the team as it's first designer. During my time there, I designed both Rider and Driver apps from the ground up</span>

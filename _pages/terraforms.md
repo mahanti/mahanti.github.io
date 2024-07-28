@@ -4,7 +4,7 @@ title: Arjun Mahanti • Terraforms
 permalink: /products/terraforms
 ---
 
-<section id="header-terraforms" class="color-terraforms">
+<section id="header-terraforms" class="color-terraforms page-header">
     <div class="row">
         <span class="title white">Terraforms</span>
         <span class="subtitle white">On-chain land</span>

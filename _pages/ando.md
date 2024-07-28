@@ -4,7 +4,7 @@ title: Arjun Mahanti • Ando
 permalink: /work/ando
 ---
 
-<section>
+<section class="page-header">
     <div class="row">
         <span class="title">About</span>
         <span class="subtitle">Ando was a delivery only restaurant by Momofuku, in partnership with Expa.

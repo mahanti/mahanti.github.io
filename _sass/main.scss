@@ -474,8 +474,13 @@ img {
   opacity: 0.5;
 }
 
+.page-header {
+  margin-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 #header-angellist, #header-sidecar, #header-block, #header-ando, #header-approach, #header-circuit, #header-jot, #header-terraforms, #header-sudo, #header-generic {
-/*  background-color: var(--custom-color); */
+
 }
 
 

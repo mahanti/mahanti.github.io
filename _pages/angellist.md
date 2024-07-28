@@ -4,7 +4,7 @@ title: Arjun Mahanti • Angellist
 permalink: /work/angellist
 ---
 
-<section>
+<section class="page-header">
     <div class="row">
         <span class="title">About</span>
         <span class="subtitle">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders.</span> 

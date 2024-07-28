@@ -4,7 +4,7 @@ title: Arjun Mahanti • Photos
 permalink: /photos
 ---
 
-<section id="header-generic" class="color-generic">			
+<section id="header-generic" class="color-generic page-header">			
     <div class="row">
     <span class="title">Photography</span>
     <span class="subtitle">Selects from my years photographing the space around me.</span>

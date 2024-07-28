@@ -4,7 +4,7 @@ title: Arjun Mahanti • Work
 permalink: /products
 ---
 
-<section id="header-generic" class="color-generic">
+<section id="header-generic" class="color-generic page-header">
     <div class="row">
     <span class="title">Products</span>
     <span class="subtitle">A collection of iOS apps that I've designed and built over the years.</span>

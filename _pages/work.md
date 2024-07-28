@@ -4,6 +4,12 @@ title: Arjun Mahanti • Work
 permalink: /work
 ---
 
+<section id="header-generic" class="color-generic page-header">			
+    <div class="row">
+    <span class="title">Work</span>
+    <span class="subtitle">Select professional work.</span>
+    </div>
+</section>
 <section>
     <a href="/work/angellist">
     <img class="mb16" src="/img/work/angellist.jpg">
@@ -14,7 +20,7 @@ permalink: /work
     </a>
 </section>
 <section>
-    <a href="/work/block">
+    <a href="/work/square">
     <img class="mb16" src="/img/work/block.jpg">
     <div class="row interactive">
         <span class="title color-sq">Square</span>

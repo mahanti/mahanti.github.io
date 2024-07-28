@@ -4,7 +4,7 @@ title: Arjun Mahanti • About
 permalink: /about
 ---
 
- <section>
+<section class="page-header">
     <img class="mb16" src="/img/about/about@2x.png"> 
     <div class="row">
     <span class="title">About</span>

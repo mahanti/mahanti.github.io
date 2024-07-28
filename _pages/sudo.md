@@ -4,7 +4,7 @@ title: Arjun Mahanti • Sudo
 permalink: /products/sudo
 ---
 
-<section id="header-sudo" class="color-sudo">
+<section id="header-sudo" class="color-sudo page-header">
     <div class="row nav-row">
     <div class="text-section">
         <span class="title white">Sudo</span>

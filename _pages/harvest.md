@@ -4,7 +4,7 @@ title: Arjun Mahanti • Harvest
 permalink: /photos/harvest
 ---
 
-<section id="header-generic" class="color-generic">			
+<section id="header-generic" class="color-generic page-header">			
     <div class="row">
     <span class="title">Harvest</span>
     <span class="subtitle">In 2021, I joined Pascal Carole to document his first harvest in the Loire Valley.</span>
