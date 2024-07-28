@@ -1,1 +1,31 @@
-include: [".well-known"]
+title: Arjun Mahanti
+description: A multidisciplinary designer solving complex problems in delightful ways.
+baseurl: ""
+url: "https://mahanti.github.io"
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+# Sass processing
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Include
+include:
+  - _pages
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:name/

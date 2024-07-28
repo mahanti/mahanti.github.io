@@ -1,0 +1,82 @@
+---
+layout: default
+---
+
+<div class="carousel-container">
+  <div class="carousel">
+    {% for image in page.carousel_images %}
+      <div class="carousel-item">
+        <img src="{{ image.url }}" alt="{{ image.alt }}">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-button prev">&lt;</button>
+  <button class="carousel-button next">&gt;</button>
+</div>
+
+<style>
+  .carousel-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+  }
+
+  .carousel-item {
+    flex: 0 0 100%;
+    height: 100%;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .carousel-button.prev {
+    left: 10px;
+  }
+
+  .carousel-button.next {
+    right: 10px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.carousel');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      if (index < 0) index = items.length - 1;
+      if (index >= items.length) index = 0;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      currentIndex = index;
+    }
+
+    prevButton.addEventListener('click', () => showSlide(currentIndex - 1));
+    nextButton.addEventListener('click', () => showSlide(currentIndex + 1));
+  });
+</script>

@@ -1,0 +1,15 @@
+<header id="nav">
+    <div class="row nav-row">
+        <div class="text-section">
+            <a href="{{ '/' | relative_url }}" id="name" class="title">{{ site.title }}</a>
+            <span class="subtitle hideable">{{ site.description }}</span>
+        </div>
+        <nav class="button-section">
+            <a href="{{ '/work' | relative_url }}" class="button-link {% if page.url contains '/work' %}active{% endif %}">Work</a>
+            <a href="{{ '/products' | relative_url }}" class="button-link {% if page.url contains '/products' %}active{% endif %}">Products</a>
+            <a href="{{ '/photos' | relative_url }}" class="button-link {% if page.url contains '/photos' %}active{% endif %}">Photos</a>
+            <a href="{{ '/about' | relative_url }}" class="button-link {% if page.url contains '/about' %}active{% endif %}">About</a>
+            <a href="#" class="navlist-button"></a>
+        </nav>
+    </div>
+</header>
