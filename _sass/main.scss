@@ -95,6 +95,7 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 
 #name {
   font-size: 16px;
+  font-weight: 600;
 }
 
 #nav {
@@ -523,8 +524,8 @@ img {
   }
 
   .carousel-slide img {
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: auto;
     margin-right: 8px;
   }
 
