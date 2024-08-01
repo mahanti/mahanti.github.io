@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Sudo
+title: • Sudo
 permalink: /products/sudo
 ---
 

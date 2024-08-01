@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • About
+title: • About
 permalink: /about
 ---
 

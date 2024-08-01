@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Circuit
+title: • Circuit
 permalink: /products/circuit
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Work
+title: • Work
 permalink: /products
 ---
 

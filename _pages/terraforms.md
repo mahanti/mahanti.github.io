@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Terraforms
+title: • Terraforms
 permalink: /products/terraforms
 ---
 

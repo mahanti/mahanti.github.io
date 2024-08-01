@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Photos
+title: • Photos
 permalink: /photos
 ---
 

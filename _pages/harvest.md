@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Harvest
+title: • Harvest
 permalink: /photos/harvest
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Jot
+title: • Jot
 permalink: /products/jot
 ---
 

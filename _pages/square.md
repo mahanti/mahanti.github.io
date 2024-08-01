@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Square
+title: • Square
 permalink: /work/square
 ---
 

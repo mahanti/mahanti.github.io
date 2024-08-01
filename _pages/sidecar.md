@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Sidecar
+title: • Sidecar
 permalink: /work/sidecar
 ---
 

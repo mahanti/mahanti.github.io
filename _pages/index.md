@@ -1,6 +1,6 @@
 ---
 layout: home 
-title: Arjun Mahanti • Home
+title: • Home
 permalink: /
 ---
 
@@ -86,7 +86,7 @@ permalink: /
         </a>
     </div>
     <div class="column two-third">
-    <a href="#" class="image-link">
+    <a href="/products/approach" class="image-link">
             <div class="row interactive">
                 <span class="title color-approach">Approach</span>
                 <span class="subtitle color-approach">Golf products designed for fun, built for performance. Coming soon.</span>

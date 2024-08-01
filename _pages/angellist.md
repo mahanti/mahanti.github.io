@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Arjun Mahanti • Angellist
+title: • Angellist
 permalink: /work/angellist
 ---
 

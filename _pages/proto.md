@@ -1,5 +1,5 @@
 ---
 layout: default 
-title: Arjun Mahanti • Proto
+title: • Proto
 permalink: /work/proto
 ---
