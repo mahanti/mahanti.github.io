@@ -4,7 +4,7 @@ title: • Approach
 permalink: /products/approach
 ---
 
-<section id="header-approach" class="color-approach">
+<section id="header-approach" class="page-header color-approach">
     <div class="row nav-row">
     <div class="text-section">
         <span class="title white">Approach</span>
@@ -25,18 +25,18 @@ permalink: /products/approach
     </div>
 </section>
 <section>
-    <img src="/img/products/approach/01@2x.png"> 
+    <img src="/img/products/approach/01.png"> 
 </section>
 <section>
-    <img src="/img/products/approach/02@2x.png">
+    <img src="/img/products/approach/02@2x.jpg">
     <p class="caption">The Approach logo takes inspiration from the varying flightpaths of a golf ball.</p>
 </section>
 <section>
-    <img src="/img/products/approach/03@2x.png">
+    <img src="/img/products/approach/03@2x.jpg">
     <p class="caption">A custom in-round camera let’s you capture beautiful photos for your scorecards.</p>
 </section>	
 <section>
-    <img src="/img/products/approach/04@2x.png">
+    <img src="/img/products/approach/04@2x.jpg">
     <p class="caption">I built a first-of-it’s-kind, native rangefinder that pairs real-time location and elevation data to help golfers attack the pin.</p>	
 </section>
 <section>
@@ -44,6 +44,6 @@ permalink: /products/approach
     <p class="caption">Designed and developed a number of data visualizations that present golfers with simple, easy-to-understand breakdowns of their game.</p>
 </section>
 <section>
-    <img src="/img/products/approach/06@2x.png">
+    <img src="/img/products/approach/06@2x.jpg">
     <p class="caption">A few of my favorite icons from the product.</p>
 </section>
