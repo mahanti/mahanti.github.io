@@ -11,6 +11,7 @@ permalink: /
             <img src="/img/carousel/02.jpg" loading="lazy">
             <img src="/img/carousel/03.jpg" loading="lazy">
             <img src="/img/carousel/04.jpg" loading="lazy">
+            <img src="/img/carousel/07.jpg" loading="lazy">
             <img src="/img/carousel/05.jpg" loading="lazy">
             <img src="/img/carousel/06.jpg" loading="lazy">
         </div>

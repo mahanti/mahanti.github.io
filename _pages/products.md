@@ -11,11 +11,20 @@ permalink: /products
     </div>
 </section>
 <section>
+    <a href="/products/approach">
+    <img class="mb16" src="/img/products/approach.jpg" loading="lazy">
+    <div class="row interactive">
+        <span class="title color-sudo">Approach</span>
+        <span class="subtitle color-sudo">Golf products designed for fun, built for performance.</span>
+    </div>
+    </a>
+</section>
+<section>
     <a href="/products/sudo">
     <img class="mb16" src="/img/products/sudoku.jpg" loading="lazy">
     <div class="row interactive">
         <span class="title color-sudo">Sudo</span>
-        <span class="subtitle color-sudo">Beautiful Sudoku – with a colorful twist</span>
+        <span class="subtitle color-sudo">Beautiful Sudoku – with a colorful twist.</span>
     </div>
     </a>
 </section>

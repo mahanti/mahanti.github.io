@@ -33,6 +33,10 @@ permalink: /products/approach
 </section>
 <section>
     <img src="/img/products/approach/03@2x.jpg">
+    <p class="caption">Round summaries provide a quick overview of your round, including a summary of your score, distance, and accuracy.</p>
+</section>	
+<section>
+    <img src="/img/products/approach/07@2x.jpg">
     <p class="caption">A custom in-round camera let’s you capture beautiful photos for your scorecards.</p>
 </section>	
 <section>
