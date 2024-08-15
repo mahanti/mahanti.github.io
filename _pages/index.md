@@ -29,7 +29,7 @@ permalink: /
             </a>
         </div>
     <div class="column two-third">
-        <a href="#" class="image-link">
+        <a href="/work/block" class="image-link">
             <div class="row interactive">
                 <span class="title color-block">Block</span>
                 <span class="subtitle color-block">Senior Product Designer, Proto<br>2023 — Present</span>
