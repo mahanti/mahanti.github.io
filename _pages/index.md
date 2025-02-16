@@ -32,7 +32,7 @@ permalink: /
         <a href="/work/block" class="image-link">
             <div class="row interactive">
                 <span class="title color-block">Block</span>
-                <span class="subtitle color-block">Senior Product Designer, Proto<br>2023 — Present</span>
+                <span class="subtitle color-block">Principal Product Designer, Proto<br>2023 — Present</span>
             </div>
         </a>
         <hr>

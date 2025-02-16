@@ -5,10 +5,17 @@
         <span class="subtitle hideable">{{ site.description }}</span>
       </div>
       <nav class="button-section">
-        <a href="{{ '/work' | relative_url }}" class="button-link {% if page.url contains '/work' %}active{% endif %}">Work</a>
-        <a href="{{ '/products' | relative_url }}" class="button-link {% if page.url contains '/products' %}active{% endif %}">Products</a>
-        <a href="{{ '/photos' | relative_url }}" class="button-link {% if page.url contains '/photos' %}active{% endif %}">Photos</a>
-        <a href="{{ '/about' | relative_url }}" class="button-link {% if page.url contains '/about' %}active{% endif %}">About</a>
+        <div class="nav-expand">
+          <button class="nav-trigger">
+            <span class="dots">•••</span>
+            <div class="nav-links">
+              <a href="{{ '/work' | relative_url }}" class="button-link {% if page.url contains '/work' %}active{% endif %}">Work</a>
+              <a href="{{ '/products' | relative_url }}" class="button-link {% if page.url contains '/products' %}active{% endif %}">Products</a>
+              <a href="{{ '/photos' | relative_url }}" class="button-link {% if page.url contains '/photos' %}active{% endif %}">Photos</a>
+              <a href="{{ '/about' | relative_url }}" class="button-link {% if page.url contains '/about' %}active{% endif %}">About</a>
+            </div>
+          </button>
+        </div>
       </nav>
     </div>
   </header>

@@ -52,7 +52,9 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 }
 
 .text-section {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
 }
 
 .button-section {
@@ -74,27 +76,32 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 .nav-row {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  width: 100%;
+  gap: 20px;
 }
 
 #name {
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 4px;
 }
 
 #nav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   top: 0;
   z-index: 1000;
-  transition: opacity 0.5s ease-in-out;
+  width: 100%;
 }
 
 .subtitle {
+  font-size: 14px;
+  color: rgba(0,0,0,0.6);
   opacity: 0.5;
   width: 80%;
-  max-width: 560px;
+  max-width: 480px;
   display: inline-block;
   margin-top: 2px;
 }
@@ -184,6 +191,94 @@ ul > a:hover {
     color: #fff;
 }
 
+.nav-expand {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nav-trigger {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.05);
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  transition: all 0.3s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dots {
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: #222;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  padding-right: 16px;
+}
+
+.nav-trigger:hover {
+  width: 300px;
+  border-radius: 25px;
+}
+
+.nav-trigger:hover .dots {
+  opacity: 0;
+}
+
+.nav-trigger:hover .nav-links {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.button-link {
+  text-decoration: none;
+  font-family: 'Inter','Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  background-color: rgba(0,0,0,0.05);
+  padding: 8px 12px;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+  background-color: rgba(0,0,0,0.125);
+}
+
+/* Dark mode support */
+body.night .nav-trigger {
+  background: rgba(255,255,255,0.05);
+}
+
+body.night .dots {
+  color: #fff;
+}
+
+body.night .button-link {
+  color: #fff;
+  background-color: rgba(255,255,255,0.05);
+}
+
+body.night .button-link:hover {
+  background-color: rgba(255,255,255,0.125);
+}
 /* --------------------------------- */
 /* Carousel */
 /* --------------------------------- */
