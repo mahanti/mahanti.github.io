@@ -510,6 +510,11 @@ img {
     padding: 0px 20px; 
   }
 
+  #nav {
+    padding: 0px 20px;
+    margin: 0 auto;
+  }
+
   .section {
     padding: 0px 40px;
     box-sizing: border-box;
@@ -543,22 +548,33 @@ img {
     padding: 16px 0;
   }
   
+  #nav {
+    padding: 0px 16px;
+  }
+  
   .nav-row {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .text-section {
     margin-bottom: 20px;
+    max-width: 100%;
   }
 
   .button-section {
     width: 100%;
     justify-content: flex-start;
   }
+  
+  nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
 
   .button-link {
     width: calc(100% - 24px); 
-      text-align: center;
+      text-align: left;
       padding: 12px 10px !important;
 		 font-size: 14px !important;	
      }
@@ -567,10 +583,15 @@ img {
 @media (max-width: 600px) {
   .nav-row {
     gap: 20px;
+    align-items: flex-start;
   }
   
   .text-section {
-    max-width: 60%;
+    max-width: 100%;
+  }
+  
+  nav {
+    align-self: flex-start;
   }
 }
 
