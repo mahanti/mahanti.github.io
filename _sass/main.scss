@@ -234,13 +234,22 @@ body.night .button-link:hover {
   white-space: nowrap;
 }
 
-.carousel-slide img {
+.carousel-slide img,
+.carousel-slide .optimized-image {
   display: inline-block;
   width: 600px;
   height: 400px;
   margin-right: 8px;
   scroll-snap-align: start;
   pointer-events: none; /* Prevent image dragging */
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel-slide .optimized-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .carousel-slide img:last-child {
@@ -328,8 +337,40 @@ body.night section {
 /* -------------------------------- */
 
 img {
-  width: -webkit-fill-available;
+  width: 100%;
+  height: auto;
   border-radius: 40px;
+  display: block;
+}
+
+.optimized-image {
+  width: 100%;
+  display: block;
+}
+
+.optimized-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 40px;
+  transition: opacity 0.3s ease;
+}
+
+/* Image loading state */
+.optimized-image img[loading="lazy"] {
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Improve image loading performance */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
 }
 
 .hover-image {
@@ -532,7 +573,8 @@ img {
     width: calc(60% - 12px);
   }
 
-  .carousel-slide img {
+  .carousel-slide img,
+  .carousel-slide .optimized-image {
     width: 400px;
     height: auto;
     margin-right: 8px;

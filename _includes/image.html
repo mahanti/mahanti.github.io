@@ -1,0 +1,59 @@
+<!-- Optimized Image Component -->
+<!-- Usage: {% include image.html src="photos/example.jpg" alt="Description" class="custom-class" %} -->
+
+{% assign image_path = include.src %}
+{% assign image_name = image_path | split: '.' | first | split: '/' | last %}
+{% assign image_dir = image_path | split: '/' | pop | join: '/' %}
+{% assign alt_text = include.alt | default: "" %}
+{% assign css_class = include.class | default: "" %}
+{% assign loading = include.loading | default: "lazy" %}
+
+<!-- Generate responsive image URLs -->
+{% assign webp_400 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-400w.webp" %}
+{% assign webp_800 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-800w.webp" %}
+{% assign webp_1200 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-1200w.webp" %}
+{% assign webp_1600 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-1600w.webp" %}
+{% assign webp_full = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: ".webp" %}
+
+{% assign jpg_400 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-400w.jpg" %}
+{% assign jpg_800 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-800w.jpg" %}
+{% assign jpg_1200 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-1200w.jpg" %}
+{% assign jpg_1600 = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: "-1600w.jpg" %}
+{% assign jpg_full = "/img/optimized/" | append: image_dir | append: "/" | append: image_name | append: ".jpg" %}
+
+<!-- Fallback to original image -->
+{% assign original_image = "/img/" | append: image_path %}
+
+<picture class="optimized-image {{ css_class }}">
+  <!-- WebP sources (modern browsers) -->
+  <source 
+    srcset="{{ webp_400 | prepend: site.baseurl }} 400w,
+            {{ webp_800 | prepend: site.baseurl }} 800w,
+            {{ webp_1200 | prepend: site.baseurl }} 1200w,
+            {{ webp_1600 | prepend: site.baseurl }} 1600w,
+            {{ webp_full | prepend: site.baseurl }} 2000w"
+    sizes="(max-width: 600px) 100vw, 
+           (max-width: 1200px) 80vw, 
+           1200px"
+    type="image/webp">
+  
+  <!-- JPEG fallback -->
+  <source 
+    srcset="{{ jpg_400 | prepend: site.baseurl }} 400w,
+            {{ jpg_800 | prepend: site.baseurl }} 800w,
+            {{ jpg_1200 | prepend: site.baseurl }} 1200w,
+            {{ jpg_1600 | prepend: site.baseurl }} 1600w,
+            {{ jpg_full | prepend: site.baseurl }} 2000w"
+    sizes="(max-width: 600px) 100vw, 
+           (max-width: 1200px) 80vw, 
+           1200px"
+    type="image/jpeg">
+  
+  <!-- Final fallback to original image -->
+  <img 
+    src="{{ original_image | prepend: site.baseurl }}" 
+    alt="{{ alt_text }}"
+    loading="{{ loading }}"
+    decoding="async"
+    class="{{ css_class }}">
+</picture>
