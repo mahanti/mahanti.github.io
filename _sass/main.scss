@@ -623,6 +623,14 @@ img {
 }
 
 @media (max-width: 600px) {
+  body {
+    margin: 40px 0px; /* Reduce top margin for mobile */
+  }
+  
+  .carousel-container {
+    margin-top: 20px; /* Reduce carousel top margin for mobile */
+  }
+  
   .nav-row {
     gap: 20px;
     align-items: flex-start;
