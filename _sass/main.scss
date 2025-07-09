@@ -174,6 +174,18 @@ ul > a:hover {
   color: #222;
 }
 
+/* Navigation container - handles hover effects for all nav items */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+nav:hover .button-link:not(:hover):not(.active) {
+  opacity: 0.5;
+}
+
 .button-link {
   text-decoration: none;
   font-family: 'Inter', 'Roboto', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -181,27 +193,23 @@ ul > a:hover {
   font-weight: 600;
   color: #222;
   padding: 8px 12px;
-  border-radius: 25px;
-  transition: all 0.2s ease;
+  transition: opacity 0.3s ease;
   background-color: transparent;
+  opacity: 0.5;
 }
 
 .button-link:hover {
-  background-color: rgba(0,0,0,0.03);
+  opacity: 1;
 }
 
 .button-link.active {
-  background-color: #222;
-  color: #fff;
+  opacity: 1;
+  font-weight: 700;
 }
 
 /* Dark mode support */
 body.night .button-link {
   color: #fff;
-}
-
-body.night .button-link:hover {
-  background-color: rgba(255,255,255,0.05);
 }
 
 /* --------------------------------- */
@@ -656,13 +664,6 @@ img {
     transform: translateY(0);
     filter: blur(0);
   }
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
 }
 
 nav div {
