@@ -193,8 +193,8 @@ nav {
 }
 
 .bottom-nav {
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 nav:hover .button-link:not(:hover):not(.active) {
@@ -207,7 +207,7 @@ nav:hover .button-link:not(:hover):not(.active) {
   font-size: 12px;
   font-weight: 600;
   color: #222;
-  padding: 8px 12px;
+  padding: 0;
   transition: opacity 0.3s ease;
   background-color: transparent;
   opacity: 0.5;

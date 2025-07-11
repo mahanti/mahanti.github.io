@@ -4,12 +4,12 @@
         <a href="{{ '/' | relative_url }}" id="name" class="title">{{ site.title }}</a>
         <span class="subtitle hideable">{{ site.description }}</span>
       </div>
-      <hr class="nav-divider">
       <nav class="bottom-nav">
         <a href="{{ '/work' | relative_url }}" class="button-link {% if page.url contains '/work' %}active{% endif %}">Work</a>
         <a href="{{ '/products' | relative_url }}" class="button-link {% if page.url contains '/products' %}active{% endif %}">Products</a>
         <a href="{{ '/photos' | relative_url }}" class="button-link {% if page.url contains '/photos' %}active{% endif %}">Photos</a>
         <a href="{{ '/about' | relative_url }}" class="button-link {% if page.url contains '/about' %}active{% endif %}">About</a>
       </nav>
+      <hr class="nav-divider">
     </div>
   </header>
