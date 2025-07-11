@@ -74,14 +74,24 @@ h6 { font-size: 1.2rem; line-height: 1.6;  letter-spacing: 0; }
 .row .subtitle {
 }
 
-.nav-row {
+.nav-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   position: relative;
   width: 100%;
-  gap: 32px;
-  align-items: center;
   max-width: 640px;
+}
+
+.nav-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 20px 0 16px 0;
+  opacity: 1;
+}
+
+body.night .nav-divider {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #name {
@@ -180,6 +190,11 @@ nav {
   align-items: center;
   gap: 16px;
   flex-shrink: 0;
+}
+
+.bottom-nav {
+  justify-content: flex-start;
+  align-items: center;
 }
 
 nav:hover .button-link:not(:hover):not(.active) {
@@ -602,13 +617,17 @@ img {
     padding: 0px 16px;
   }
   
-  .nav-row {
+  .nav-container {
     flex-direction: column;
     align-items: flex-start;
   }
 
+  .nav-divider {
+    margin: 16px 0 12px 0;
+  }
+
   .text-section {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     max-width: 100%;
   }
 
@@ -639,7 +658,7 @@ img {
     margin-top: 20px; /* Reduce carousel top margin for mobile */
   }
   
-  .nav-row {
+  .nav-container {
     gap: 20px;
     align-items: flex-start;
   }
