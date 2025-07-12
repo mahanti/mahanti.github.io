@@ -205,7 +205,7 @@ ul > a:hover {
 
 /* Navigation container - handles hover effects for all nav items */
 nav {
-  display: flex;
+  display: flex !important;
   gap: 16px;
 }
 
@@ -274,6 +274,7 @@ body.night .button-link.active {
   z-index: 1000;
   pointer-events: none;
   will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
 }
 
 .cursor_cursor, .cursor_transform {
@@ -291,9 +292,9 @@ body.night .button-link.active {
   height: 28px;
   border-radius: 50%;
   transform-origin: center center;
-  backdrop-filter: invert(30%) blur(10px);
-  -webkit-backdrop-filter: invert(30%) blur(10px);
-  transition: width 0.1s ease-out, height 0.1s ease-out, opacity 0.1s ease-out;
+  background: rgba(0, 0, 0, 0.3); /* Replace expensive backdrop-filter */
+  transition: width 0.1s ease-out, height 0.1s ease-out;
+  will-change: width, height;
 }
 
 .cursor_target {
@@ -341,8 +342,8 @@ body.night .button-link.active {
 .carousel-slide {
   display: inline-block;
   white-space: nowrap;
-  transition: transform 0.1s ease-out;
   will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
 }
 
 .carousel-slide img,

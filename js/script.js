@@ -1,104 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Custom cursor functionality
+  // SIMPLIFIED CURSOR - Remove expensive hover detection entirely
   const cursor = document.querySelector('.cursor_root');
   const cursorInner = document.querySelector('.cursor_cursor');
-  const cursorTransform = document.querySelector('.cursor_transform');
+  
+  if (!cursor || !cursorInner) return;
   
   let mouseX = 0;
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
-  let isMoving = false;
   let isClicking = false;
-  let isHovering = false;
+  let animationFrameId = null;
   
-  // Update mouse position with better responsiveness
+  // Simple mouse tracking - no throttling needed
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    isMoving = true;
-  });
+  }, { passive: true });
   
-  // Click events for bounce animation
+  // Click events only
   document.addEventListener('mousedown', () => {
     isClicking = true;
     cursorInner.style.width = '16px';
     cursorInner.style.height = '16px';
-  });
+  }, { passive: true });
   
   document.addEventListener('mouseup', () => {
     isClicking = false;
-    if (isHovering) {
-      cursorInner.style.width = '20px';
-      cursorInner.style.height = '20px';
-    } else {
-      cursorInner.style.width = '28px';
-      cursorInner.style.height = '28px';
-    }
-  });
+    cursorInner.style.width = '28px';
+    cursorInner.style.height = '28px';
+  }, { passive: true });
   
-  // Hide cursor when leaving window
+  // Simple show/hide
   document.addEventListener('mouseleave', () => {
     cursor.style.opacity = '0';
-  });
+  }, { passive: true });
   
-  // Show cursor when entering window
   document.addEventListener('mouseenter', () => {
     cursor.style.opacity = '1';
-  });
+  }, { passive: true });
   
-  // Cursor animation loop with better responsiveness
+  // Ultra-simple cursor animation - no hover detection
   function animateCursor() {
-    // Much more responsive cursor following
     cursorX += (mouseX - cursorX) * 0.3;
     cursorY += (mouseY - cursorY) * 0.3;
     
-    // Adjust cursor position based on current size
-    let offsetX, offsetY;
-    if (isClicking) {
-      offsetX = 8;
-      offsetY = 8;
-    } else if (isHovering) {
-      offsetX = 10;
-      offsetY = 10;
-    } else {
-      offsetX = 14;
-      offsetY = 14;
-    }
+    const offsetX = isClicking ? 8 : 14;
+    const offsetY = isClicking ? 8 : 14;
     
     cursor.style.transform = `translate3d(${cursorX - offsetX}px, ${cursorY - offsetY}px, 0)`;
-    
-    // Add hover effect for interactive elements
-    const hoveredElement = document.elementFromPoint(mouseX, mouseY);
-    if (hoveredElement && (hoveredElement.tagName === 'A' || hoveredElement.tagName === 'BUTTON' || hoveredElement.classList.contains('interactive'))) {
-      if (!isClicking) {
-        isHovering = true;
-        cursorInner.style.width = '20px';
-        cursorInner.style.height = '20px';
-        cursorInner.style.opacity = '0.8';
-      }
-    } else {
-      if (!isClicking) {
-        isHovering = false;
-        cursorInner.style.width = '28px';
-        cursorInner.style.height = '28px';
-        cursorInner.style.opacity = '1';
-      }
-    }
-    
-    requestAnimationFrame(animateCursor);
+    animationFrameId = requestAnimationFrame(animateCursor);
   }
   
   animateCursor();
 
-  // Modern Carousel Implementation with Improved Rubberbanding
+  // SIMPLIFIED CAROUSEL - Remove complex bounds calculation and rubberbanding
   const carouselContainer = document.querySelector('.carousel-container') || document.querySelector('#image-carousel');
   const carouselSlide = document.querySelector('.carousel-slide');
   
-  if (!carouselContainer || !carouselSlide) {
-    console.log('Carousel elements not found');
-    return;
-  }
+  if (!carouselContainer || !carouselSlide) return;
 
   let isDragging = false;
   let startX = 0;
@@ -109,65 +69,41 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastX = 0;
   let lastTime = 0;
   
-  // Calculate bounds with proper content measurement
-  function calculateBounds() {
+  // Simple bounds - calculate once
+  let maxTranslate = 0;
+  let minTranslate = 0;
+  
+  function calculateSimpleBounds() {
     const containerWidth = carouselContainer.offsetWidth;
     const slideWidth = carouselSlide.scrollWidth;
     const containerPadding = parseInt(getComputedStyle(carouselContainer).paddingLeft) + parseInt(getComputedStyle(carouselContainer).paddingRight);
     const effectiveContainerWidth = containerWidth - containerPadding;
-    const overshoot = 864; // Extra space to ensure full visibility
     
-    const maxTranslate = 0; // Rightmost position (start)
-    const minTranslate = -(slideWidth - effectiveContainerWidth + overshoot); // Leftmost position (end) with overshoot
-    
-    console.log('Bounds calculation:', {
-      containerWidth,
-      slideWidth,
-      containerPadding,
-      effectiveContainerWidth,
-      overshoot,
-      maxTranslate,
-      minTranslate,
-      contentOverflow: slideWidth - effectiveContainerWidth + overshoot
-    });
-    
-    return { maxTranslate, minTranslate, containerWidth, slideWidth, effectiveContainerWidth, overshoot };
+    maxTranslate = 0;
+    minTranslate = -(slideWidth - effectiveContainerWidth);
   }
   
-  let bounds = calculateBounds();
+  // Calculate bounds after a short delay
+  setTimeout(calculateSimpleBounds, 100);
   
-  // Recalculate bounds after a short delay to ensure images are loaded
-  setTimeout(() => {
-    bounds = calculateBounds();
-  }, 100);
-  
-  // Rubberbanding constants
-  const RUBBERBAND_FACTOR = 0.2;
-  const RUBBERBAND_THRESHOLD = 50;
-
-  // Only handle events when mouse is over the carousel
+  // Simple event handlers
   carouselContainer.addEventListener('mouseenter', () => {
     carouselContainer.style.cursor = 'grab';
-  });
+  }, { passive: true });
 
   carouselContainer.addEventListener('mouseleave', () => {
     carouselContainer.style.cursor = 'default';
     if (isDragging) {
       endDrag();
     }
-  });
+  }, { passive: true });
 
-  // Mouse events
   carouselContainer.addEventListener('mousedown', startDrag);
   carouselContainer.addEventListener('mousemove', drag);
   carouselContainer.addEventListener('mouseup', endDrag);
-
-  // Touch events
   carouselContainer.addEventListener('touchstart', startDrag, { passive: false });
   carouselContainer.addEventListener('touchmove', drag, { passive: false });
   carouselContainer.addEventListener('touchend', endDrag, { passive: false });
-
-  // Wheel events - only handle horizontal scrolling
   carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
 
   function startDrag(e) {
@@ -181,7 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
     lastTime = Date.now();
     velocity = 0;
     
-    stopAnimation();
+    if (animationID) {
+      cancelAnimationFrame(animationID);
+      animationID = null;
+    }
   }
 
   function drag(e) {
@@ -190,14 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     const diff = clientX - startX;
-    let newTranslate = prevTranslate + diff;
+    currentTranslate = prevTranslate + diff;
     
-    // Apply rubberbanding
-    newTranslate = applyRubberbanding(newTranslate);
+    // Simple bounds clamping
+    if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
+    if (currentTranslate < minTranslate) currentTranslate = minTranslate;
     
-    currentTranslate = newTranslate;
-    
-    // Update velocity for momentum
+    // Update velocity
     const currentTime = Date.now();
     const deltaTime = currentTime - lastTime;
     if (deltaTime > 0) {
@@ -206,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lastX = clientX;
     lastTime = currentTime;
     
-    applyTransform();
+    carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
   }
 
   function endDrag() {
@@ -215,122 +153,68 @@ document.addEventListener('DOMContentLoaded', () => {
     isDragging = false;
     carouselContainer.style.cursor = 'grab';
     
-    // Snap back to bounds if out of bounds
-    if (currentTranslate > bounds.maxTranslate || currentTranslate < bounds.minTranslate) {
-      snapToBounds();
-    } else if (Math.abs(velocity) > 1) {
-      // Apply momentum only if within bounds
-      applyMomentum();
+    // Simple momentum
+    if (Math.abs(velocity) > 1) {
+      applySimpleMomentum();
     }
   }
 
   function handleWheel(e) {
-    // Only handle horizontal wheel events
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       e.preventDefault();
       const scrollAmount = e.deltaX * 0.5;
-      let newTranslate = currentTranslate - scrollAmount;
+      currentTranslate -= scrollAmount;
       
-      // Apply rubberbanding
-      newTranslate = applyRubberbanding(newTranslate);
-      currentTranslate = newTranslate;
+      // Simple bounds clamping
+      if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
+      if (currentTranslate < minTranslate) currentTranslate = minTranslate;
       
-      applyTransform();
-      
-      // Snap back if out of bounds
-      if (currentTranslate > bounds.maxTranslate || currentTranslate < bounds.minTranslate) {
-        snapToBounds();
-      }
+      carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
     }
-    // Don't prevent default for vertical scrolling
   }
 
-  function applyRubberbanding(translate) {
-    if (translate > bounds.maxTranslate) {
-      // Rubberbanding at the right edge
-      const overdraw = translate - bounds.maxTranslate;
-      if (overdraw > RUBBERBAND_THRESHOLD) {
-        return bounds.maxTranslate + RUBBERBAND_THRESHOLD + (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
-      }
-    } else if (translate < bounds.minTranslate) {
-      // Rubberbanding at the left edge
-      const overdraw = bounds.minTranslate - translate;
-      if (overdraw > RUBBERBAND_THRESHOLD) {
-        return bounds.minTranslate - RUBBERBAND_THRESHOLD - (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
-      }
-    }
-    return translate;
-  }
-
-  function snapToBounds() {
-    const targetTranslate = Math.max(bounds.minTranslate, Math.min(bounds.maxTranslate, currentTranslate));
-    
-    function animateSnap() {
-      const remaining = targetTranslate - currentTranslate;
-      if (Math.abs(remaining) < 0.5) {
-        currentTranslate = targetTranslate;
-        applyTransform();
-        return;
-      }
-      
-      currentTranslate += remaining * 0.15;
-      applyTransform();
-      animationID = requestAnimationFrame(animateSnap);
-    }
-    
-    animateSnap();
-  }
-
-  function applyMomentum() {
+  function applySimpleMomentum() {
     const friction = 0.92;
     const minVelocity = 0.3;
     
     function animate() {
       if (Math.abs(velocity) < minVelocity) {
         velocity = 0;
-        // Snap to bounds if out of bounds after momentum
-        if (currentTranslate > bounds.maxTranslate || currentTranslate < bounds.minTranslate) {
-          snapToBounds();
-        }
         return;
       }
       
-      let newTranslate = currentTranslate + velocity;
+      currentTranslate += velocity;
       
-      // Check bounds during momentum
-      if (newTranslate > bounds.maxTranslate) {
-        newTranslate = bounds.maxTranslate;
+      // Simple bounds clamping
+      if (currentTranslate > maxTranslate) {
+        currentTranslate = maxTranslate;
         velocity = 0;
-      } else if (newTranslate < bounds.minTranslate) {
-        newTranslate = bounds.minTranslate;
+      } else if (currentTranslate < minTranslate) {
+        currentTranslate = minTranslate;
         velocity = 0;
       }
       
-      currentTranslate = newTranslate;
       velocity *= friction;
-      
-      applyTransform();
+      carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
       animationID = requestAnimationFrame(animate);
     }
     
     animate();
   }
 
-  function applyTransform() {
-    carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
-  }
-
-  function stopAnimation() {
-    if (animationID) {
-      cancelAnimationFrame(animationID);
-      animationID = null;
-    }
-  }
-
-  // Recalculate bounds on window resize
+  // Simple resize handler
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    bounds = calculateBounds();
-  });
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(calculateSimpleBounds, 150);
+  }, { passive: true });
 
-  console.log('Modern carousel loaded with improved rubberbanding and bounds', bounds);
+  // Cleanup
+  function cleanup() {
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    if (animationID) cancelAnimationFrame(animationID);
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+  }
+
+  window.addEventListener('beforeunload', cleanup);
 });
