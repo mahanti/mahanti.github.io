@@ -269,8 +269,8 @@ body.night .button-link.active {
   position: fixed;
   top: 0;
   left: 0;
-  width: 56px;
-  height: 56px;
+  width: 28px;
+  height: 28px;
   z-index: 1000;
   pointer-events: none;
   will-change: transform;
@@ -287,8 +287,8 @@ body.night .button-link.active {
 }
 
 .cursor_cursor {
-  width: 56px;
-  height: 56px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   transform-origin: center center;
   backdrop-filter: invert(30%) blur(10px);

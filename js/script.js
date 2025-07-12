@@ -22,18 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Click events for bounce animation
   document.addEventListener('mousedown', () => {
     isClicking = true;
-    cursorInner.style.width = '32px';
-    cursorInner.style.height = '32px';
+    cursorInner.style.width = '16px';
+    cursorInner.style.height = '16px';
   });
   
   document.addEventListener('mouseup', () => {
     isClicking = false;
     if (isHovering) {
-      cursorInner.style.width = '40px';
-      cursorInner.style.height = '40px';
+      cursorInner.style.width = '20px';
+      cursorInner.style.height = '20px';
     } else {
-      cursorInner.style.width = '56px';
-      cursorInner.style.height = '56px';
+      cursorInner.style.width = '28px';
+      cursorInner.style.height = '28px';
     }
   });
   
@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adjust cursor position based on current size
     let offsetX, offsetY;
     if (isClicking) {
-      offsetX = 16;
-      offsetY = 16;
+      offsetX = 8;
+      offsetY = 8;
     } else if (isHovering) {
-      offsetX = 20;
-      offsetY = 20;
+      offsetX = 10;
+      offsetY = 10;
     } else {
-      offsetX = 28;
-      offsetY = 28;
+      offsetX = 14;
+      offsetY = 14;
     }
     
     cursor.style.transform = `translate3d(${cursorX - offsetX}px, ${cursorY - offsetY}px, 0)`;
@@ -73,15 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hoveredElement && (hoveredElement.tagName === 'A' || hoveredElement.tagName === 'BUTTON' || hoveredElement.classList.contains('interactive'))) {
       if (!isClicking) {
         isHovering = true;
-        cursorInner.style.width = '40px';
-        cursorInner.style.height = '40px';
+        cursorInner.style.width = '20px';
+        cursorInner.style.height = '20px';
         cursorInner.style.opacity = '0.8';
       }
     } else {
       if (!isClicking) {
         isHovering = false;
-        cursorInner.style.width = '56px';
-        cursorInner.style.height = '56px';
+        cursorInner.style.width = '28px';
+        cursorInner.style.height = '28px';
         cursorInner.style.opacity = '1';
       }
     }
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   animateCursor();
 
-  // Modern Carousel Implementation
+  // Modern Carousel Implementation with Improved Rubberbanding
   const carouselContainer = document.querySelector('.carousel-container') || document.querySelector('#image-carousel');
   const carouselSlide = document.querySelector('.carousel-slide');
   
@@ -108,6 +108,42 @@ document.addEventListener('DOMContentLoaded', () => {
   let velocity = 0;
   let lastX = 0;
   let lastTime = 0;
+  
+  // Calculate bounds with proper content measurement
+  function calculateBounds() {
+    const containerWidth = carouselContainer.offsetWidth;
+    const slideWidth = carouselSlide.scrollWidth;
+    const containerPadding = parseInt(getComputedStyle(carouselContainer).paddingLeft) + parseInt(getComputedStyle(carouselContainer).paddingRight);
+    const effectiveContainerWidth = containerWidth - containerPadding;
+    const overshoot = 864; // Extra space to ensure full visibility
+    
+    const maxTranslate = 0; // Rightmost position (start)
+    const minTranslate = -(slideWidth - effectiveContainerWidth + overshoot); // Leftmost position (end) with overshoot
+    
+    console.log('Bounds calculation:', {
+      containerWidth,
+      slideWidth,
+      containerPadding,
+      effectiveContainerWidth,
+      overshoot,
+      maxTranslate,
+      minTranslate,
+      contentOverflow: slideWidth - effectiveContainerWidth + overshoot
+    });
+    
+    return { maxTranslate, minTranslate, containerWidth, slideWidth, effectiveContainerWidth, overshoot };
+  }
+  
+  let bounds = calculateBounds();
+  
+  // Recalculate bounds after a short delay to ensure images are loaded
+  setTimeout(() => {
+    bounds = calculateBounds();
+  }, 100);
+  
+  // Rubberbanding constants
+  const RUBBERBAND_FACTOR = 0.2;
+  const RUBBERBAND_THRESHOLD = 50;
 
   // Only handle events when mouse is over the carousel
   carouselContainer.addEventListener('mouseenter', () => {
@@ -154,7 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     const diff = clientX - startX;
-    currentTranslate = prevTranslate + diff;
+    let newTranslate = prevTranslate + diff;
+    
+    // Apply rubberbanding
+    newTranslate = applyRubberbanding(newTranslate);
+    
+    currentTranslate = newTranslate;
     
     // Update velocity for momentum
     const currentTime = Date.now();
@@ -174,8 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
     isDragging = false;
     carouselContainer.style.cursor = 'grab';
     
-    // Apply momentum if velocity is significant
-    if (Math.abs(velocity) > 1) {
+    // Snap back to bounds if out of bounds
+    if (currentTranslate > bounds.maxTranslate || currentTranslate < bounds.minTranslate) {
+      snapToBounds();
+    } else if (Math.abs(velocity) > 1) {
+      // Apply momentum only if within bounds
       applyMomentum();
     }
   }
@@ -185,23 +229,84 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       e.preventDefault();
       const scrollAmount = e.deltaX * 0.5;
-      currentTranslate -= scrollAmount;
+      let newTranslate = currentTranslate - scrollAmount;
+      
+      // Apply rubberbanding
+      newTranslate = applyRubberbanding(newTranslate);
+      currentTranslate = newTranslate;
+      
       applyTransform();
+      
+      // Snap back if out of bounds
+      if (currentTranslate > bounds.maxTranslate || currentTranslate < bounds.minTranslate) {
+        snapToBounds();
+      }
     }
     // Don't prevent default for vertical scrolling
   }
 
+  function applyRubberbanding(translate) {
+    if (translate > bounds.maxTranslate) {
+      // Rubberbanding at the right edge
+      const overdraw = translate - bounds.maxTranslate;
+      if (overdraw > RUBBERBAND_THRESHOLD) {
+        return bounds.maxTranslate + RUBBERBAND_THRESHOLD + (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
+      }
+    } else if (translate < bounds.minTranslate) {
+      // Rubberbanding at the left edge
+      const overdraw = bounds.minTranslate - translate;
+      if (overdraw > RUBBERBAND_THRESHOLD) {
+        return bounds.minTranslate - RUBBERBAND_THRESHOLD - (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
+      }
+    }
+    return translate;
+  }
+
+  function snapToBounds() {
+    const targetTranslate = Math.max(bounds.minTranslate, Math.min(bounds.maxTranslate, currentTranslate));
+    
+    function animateSnap() {
+      const remaining = targetTranslate - currentTranslate;
+      if (Math.abs(remaining) < 0.5) {
+        currentTranslate = targetTranslate;
+        applyTransform();
+        return;
+      }
+      
+      currentTranslate += remaining * 0.15;
+      applyTransform();
+      animationID = requestAnimationFrame(animateSnap);
+    }
+    
+    animateSnap();
+  }
+
   function applyMomentum() {
-    const friction = 0.95;
-    const minVelocity = 0.5;
+    const friction = 0.92;
+    const minVelocity = 0.3;
     
     function animate() {
       if (Math.abs(velocity) < minVelocity) {
         velocity = 0;
+        // Snap to bounds if out of bounds after momentum
+        if (currentTranslate > bounds.maxTranslate || currentTranslate < bounds.minTranslate) {
+          snapToBounds();
+        }
         return;
       }
       
-      currentTranslate += velocity;
+      let newTranslate = currentTranslate + velocity;
+      
+      // Check bounds during momentum
+      if (newTranslate > bounds.maxTranslate) {
+        newTranslate = bounds.maxTranslate;
+        velocity = 0;
+      } else if (newTranslate < bounds.minTranslate) {
+        newTranslate = bounds.minTranslate;
+        velocity = 0;
+      }
+      
+      currentTranslate = newTranslate;
       velocity *= friction;
       
       applyTransform();
@@ -222,5 +327,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  console.log('Modern carousel loaded with non-intrusive scrolling');
+  // Recalculate bounds on window resize
+  window.addEventListener('resize', () => {
+    bounds = calculateBounds();
+  });
+
+  console.log('Modern carousel loaded with improved rubberbanding and bounds', bounds);
 });
