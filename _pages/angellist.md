@@ -4,18 +4,23 @@ title: • Angellist
 permalink: /work/angellist
 ---
 
-<section class="page-header">
-    <div class="row">
+<section class="mb-24">
+    <div class="col-8">
         <span class="title">About</span>
         <span class="subtitle">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders.</span> 
     </div>
-    <div class="callout">
-        <span>💼 This case study is a work in progress. </span>
+    <div class="col-8">
+        <div class="callout">
+            <span>💼 This case study is a work in progress. </span>
+        </div>
     </div>
 </section>
+
 <section>
-    <img class="mb32" src="/img/work/angellist/05@2x.png" loading="lazy">
-    <img class="mb32" src="/img/work/angellist/06@2x.png" loading="lazy">
-    <img class="mb32" src="/img/work/angellist/01@2x.png" loading="lazy"> 
-    <img class="mb32" src="/img/work/angellist/03@2x.png" loading="lazy">
+    <div class="col-8 gap-12">
+        <img src="/img/work/angellist/05@2x.png" loading="lazy">
+        <img src="/img/work/angellist/06@2x.png" loading="lazy">
+        <img src="/img/work/angellist/01@2x.png" loading="lazy"> 
+        <img src="/img/work/angellist/03@2x.png" loading="lazy">
+    </div>
 </section> 

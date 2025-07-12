@@ -285,10 +285,6 @@ body.day .button-link:hover {
 	backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.7); 	
 	border-radius: 10px;
-	box-shadow: 
-    0px 1px 3px rgba(0, 0, 0, 0.1), 
-    0px 2px 6px rgba(0, 0, 0, 0.01), 
-    0px 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .dot {
@@ -611,8 +607,6 @@ img {
     position: absolute;
     top: 88px;
     right: 24px;
-    box-shadow: 0px 7px 15px 0px rgba(0,0,0,0.1);
-    transform: translateY(-16px);
     z-index: 1000;
 
   }

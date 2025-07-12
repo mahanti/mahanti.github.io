@@ -1,12 +1,14 @@
 ---
 layout: default
 ---
-<section class="{{ page.section_class }}">
+<section class="{{ page.section_class }} grid p-24">
     {% if page.title %}
-        <h1 class="title">{{ page.title }}</h1>
+        <h1 class="title col-8">{{ page.title }}</h1>
     {% endif %}
     {% if page.subtitle %}
-        <p class="subtitle">{{ page.subtitle }}</p>
+        <p class="subtitle col-8">{{ page.subtitle }}</p>
     {% endif %}
-    {{ content }}
+    <div class="col-8">
+        {{ content }}
+    </div>
 </section>

@@ -1,57 +1,42 @@
 ---
 layout: default 
-title: • Work
+title: • Products
 permalink: /products
 ---
 
-<section id="header-generic" class="color-generic page-header">
-    <div class="row">
+<section class="mb-24">
+  <div class="col-8">
     <span class="title">Products</span>
     <span class="subtitle">A collection of iOS apps that I've designed and built over the years.</span>
-    </div>
+  </div>
 </section>
+
 <section>
+  <div class="col-8 gap-12">
     <a href="/products/approach">
-    <img class="mb16" src="/img/products/approach.jpg" loading="lazy">
-    <div class="row interactive">
-        <span class="title color-sudo">Approach</span>
-        <span class="subtitle color-sudo">Golf products designed for fun, built for performance.</span>
-    </div>
+      <img src="/img/products/approach.jpg" loading="lazy">
+      <span class="title color-approach">Approach</span>
+      <span class="subtitle color-approach">Golf products designed for fun, built for performance.</span>
     </a>
-</section>
-<section>
     <a href="/products/sudo">
-    <img class="mb16" src="/img/products/sudoku.jpg" loading="lazy">
-    <div class="row interactive">
-        <span class="title color-sudo">Sudo</span>
-        <span class="subtitle color-sudo">Beautiful Sudoku – with a colorful twist.</span>
-    </div>
+      <img src="/img/products/sudoku.jpg" loading="lazy">
+      <span class="title color-sudo">Sudo</span>
+      <span class="subtitle color-sudo">Beautiful Sudoku – with a colorful twist.</span>
     </a>
-</section>
-<section>
     <a href="/products/circuit">
-    <img class="mb16" src="/img/products/circuit.jpg" loading="lazy">
-    <div class="row interactive">
-        <span class="title color-circuit">Circuit</span>
-        <span class="subtitle color-circuit">A stupidly-simple, extremely efficient, HIIT timer.</span>
-    </div>
+      <img src="/img/products/circuit.jpg" loading="lazy">
+      <span class="title color-circuit">Circuit</span>
+      <span class="subtitle color-circuit">A stupidly-simple, extremely efficient, HIIT timer.</span>
     </a>
-</section>
-<section>
-     <a href="/products/jot">
-    <img class="mb16" src="/img/products/jot.jpg" loading="lazy">
-    <div class="row interactive">
-        <span class="title color-jot">jot</span>
-        <span class="subtitle color-jot">The fastest app for notes and sketches.</span>
-    </div>
+    <a href="/products/jot">
+      <img src="/img/products/jot.jpg" loading="lazy">
+      <span class="title color-jot">jot</span>
+      <span class="subtitle color-jot">The fastest app for notes and sketches.</span>
     </a>
-</section>
-<section>
     <a href="/products/terraforms">
-    <img class="mb16" src="/img/products/terraforms.jpg" loading="lazy">
-    <div class="row interactive">
-        <span class="title color-terraforms">Terraform Explorer</span>
-            <span class="subtitle color-terraforms">An experimental app to explore Terraforms by Mathcastles.</span>
-    </div>
+      <img src="/img/products/terraforms.jpg" loading="lazy">
+      <span class="title color-terraforms">Terraform Explorer</span>
+      <span class="subtitle color-terraforms">An experimental app to explore Terraforms by Mathcastles.</span>
     </a>
+  </div>
 </section>

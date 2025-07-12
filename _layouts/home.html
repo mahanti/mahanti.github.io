@@ -4,13 +4,10 @@
 	{% include head.html %}
 </head>
 <body class="{% if site.dark_mode %}night{% else %}day{% endif %}">
-    <div>
-       <div class="container">
-            {% include header.html %}
-        </div>
-        
-        {{ content }}
-    </div>
-    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+  <div class="grid">
+    {% include header.html %}
+    {{ content }}
+  </div>
+  <script src="/js/script.js"></script>
 </body>
 </html>

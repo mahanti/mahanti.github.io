@@ -1,39 +1,226 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.carousel-container');
-  let startX;
-  let scrollLeft;
-  let isDown;
+  // Custom cursor functionality
+  const cursor = document.querySelector('.cursor_root');
+  const cursorInner = document.querySelector('.cursor_cursor');
+  const cursorTransform = document.querySelector('.cursor_transform');
+  
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let isMoving = false;
+  let isClicking = false;
+  let isHovering = false;
+  
+  // Update mouse position with better responsiveness
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    isMoving = true;
+  });
+  
+  // Click events for bounce animation
+  document.addEventListener('mousedown', () => {
+    isClicking = true;
+    cursorInner.style.width = '32px';
+    cursorInner.style.height = '32px';
+  });
+  
+  document.addEventListener('mouseup', () => {
+    isClicking = false;
+    if (isHovering) {
+      cursorInner.style.width = '40px';
+      cursorInner.style.height = '40px';
+    } else {
+      cursorInner.style.width = '56px';
+      cursorInner.style.height = '56px';
+    }
+  });
+  
+  // Hide cursor when leaving window
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+  });
+  
+  // Show cursor when entering window
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+  });
+  
+  // Cursor animation loop with better responsiveness
+  function animateCursor() {
+    // Much more responsive cursor following
+    cursorX += (mouseX - cursorX) * 0.3;
+    cursorY += (mouseY - cursorY) * 0.3;
+    
+    // Adjust cursor position based on current size
+    let offsetX, offsetY;
+    if (isClicking) {
+      offsetX = 16;
+      offsetY = 16;
+    } else if (isHovering) {
+      offsetX = 20;
+      offsetY = 20;
+    } else {
+      offsetX = 28;
+      offsetY = 28;
+    }
+    
+    cursor.style.transform = `translate3d(${cursorX - offsetX}px, ${cursorY - offsetY}px, 0)`;
+    
+    // Add hover effect for interactive elements
+    const hoveredElement = document.elementFromPoint(mouseX, mouseY);
+    if (hoveredElement && (hoveredElement.tagName === 'A' || hoveredElement.tagName === 'BUTTON' || hoveredElement.classList.contains('interactive'))) {
+      if (!isClicking) {
+        isHovering = true;
+        cursorInner.style.width = '40px';
+        cursorInner.style.height = '40px';
+        cursorInner.style.opacity = '0.8';
+      }
+    } else {
+      if (!isClicking) {
+        isHovering = false;
+        cursorInner.style.width = '56px';
+        cursorInner.style.height = '56px';
+        cursorInner.style.opacity = '1';
+      }
+    }
+    
+    requestAnimationFrame(animateCursor);
+  }
+  
+  animateCursor();
 
-  container.addEventListener('mousedown', e => mouseIsDown(e));  
-  container.addEventListener('mouseup', e => mouseUp(e));
-  container.addEventListener('mouseleave', e => mouseLeave(e));
-  container.addEventListener('mousemove', e => mouseMove(e));
-
-  function mouseIsDown(e) {
-    isDown = true;
-    container.style.cursor = 'grabbing';
-    startX = e.pageX - container.offsetLeft;
-    scrollLeft = container.scrollLeft;
+  // Modern Carousel Implementation
+  const carouselContainer = document.querySelector('.carousel-container') || document.querySelector('#image-carousel');
+  const carouselSlide = document.querySelector('.carousel-slide');
+  
+  if (!carouselContainer || !carouselSlide) {
+    console.log('Carousel elements not found');
+    return;
   }
 
-  function mouseUp(e) {
-    isDown = false;
-    container.style.cursor = 'grab';
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationID = null;
+  let velocity = 0;
+  let lastX = 0;
+  let lastTime = 0;
+
+  // Only handle events when mouse is over the carousel
+  carouselContainer.addEventListener('mouseenter', () => {
+    carouselContainer.style.cursor = 'grab';
+  });
+
+  carouselContainer.addEventListener('mouseleave', () => {
+    carouselContainer.style.cursor = 'default';
+    if (isDragging) {
+      endDrag();
+    }
+  });
+
+  // Mouse events
+  carouselContainer.addEventListener('mousedown', startDrag);
+  carouselContainer.addEventListener('mousemove', drag);
+  carouselContainer.addEventListener('mouseup', endDrag);
+
+  // Touch events
+  carouselContainer.addEventListener('touchstart', startDrag, { passive: false });
+  carouselContainer.addEventListener('touchmove', drag, { passive: false });
+  carouselContainer.addEventListener('touchend', endDrag, { passive: false });
+
+  // Wheel events - only handle horizontal scrolling
+  carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
+
+  function startDrag(e) {
+    isDragging = true;
+    carouselContainer.style.cursor = 'grabbing';
+    
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    startX = clientX;
+    prevTranslate = currentTranslate;
+    lastX = clientX;
+    lastTime = Date.now();
+    velocity = 0;
+    
+    stopAnimation();
   }
 
-  function mouseLeave(e) {
-    isDown = false;
-    container.style.cursor = 'grab';
-  }
-
-  function mouseMove(e) {
-    if (!isDown) return;
+  function drag(e) {
+    if (!isDragging) return;
+    
     e.preventDefault();
-    const x = e.pageX - container.offsetLeft;
-    const walk = (x - startX) * 2; // You can adjust the scrolling speed by changing this multiplier
-    container.scrollLeft = scrollLeft - walk;
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const diff = clientX - startX;
+    currentTranslate = prevTranslate + diff;
+    
+    // Update velocity for momentum
+    const currentTime = Date.now();
+    const deltaTime = currentTime - lastTime;
+    if (deltaTime > 0) {
+      velocity = (clientX - lastX) / deltaTime * 16;
+    }
+    lastX = clientX;
+    lastTime = currentTime;
+    
+    applyTransform();
   }
 
-  console.log('Carousel script loaded', container);
+  function endDrag() {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    carouselContainer.style.cursor = 'grab';
+    
+    // Apply momentum if velocity is significant
+    if (Math.abs(velocity) > 1) {
+      applyMomentum();
+    }
+  }
+
+  function handleWheel(e) {
+    // Only handle horizontal wheel events
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      const scrollAmount = e.deltaX * 0.5;
+      currentTranslate -= scrollAmount;
+      applyTransform();
+    }
+    // Don't prevent default for vertical scrolling
+  }
+
+  function applyMomentum() {
+    const friction = 0.95;
+    const minVelocity = 0.5;
+    
+    function animate() {
+      if (Math.abs(velocity) < minVelocity) {
+        velocity = 0;
+        return;
+      }
+      
+      currentTranslate += velocity;
+      velocity *= friction;
+      
+      applyTransform();
+      animationID = requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+
+  function applyTransform() {
+    carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+  }
+
+  function stopAnimation() {
+    if (animationID) {
+      cancelAnimationFrame(animationID);
+      animationID = null;
+    }
+  }
+
+  console.log('Modern carousel loaded with non-intrusive scrolling');
 });
