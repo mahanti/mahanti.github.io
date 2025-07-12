@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastX = 0;
   let lastTime = 0;
   
+  // Rubberbanding configuration
+  const RUBBERBAND_FACTOR = 0.3;
+  const RUBBERBAND_THRESHOLD = 100;
+  
   // Simple bounds - calculate once
   let maxTranslate = 0;
   let minTranslate = 0;
@@ -84,7 +88,75 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Calculate bounds after a short delay
-  setTimeout(calculateSimpleBounds, 100);
+  setTimeout(() => {
+    calculateSimpleBounds();
+    updateEdgeIndicators(); // Initialize edge indicators
+  }, 100);
+  
+  // Rubberbanding function
+  function applyRubberbanding(translate) {
+    if (translate > maxTranslate) {
+      const overdraw = translate - maxTranslate;
+      if (overdraw > RUBBERBAND_THRESHOLD) {
+        return maxTranslate + RUBBERBAND_THRESHOLD + (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
+      }
+      return maxTranslate + overdraw * RUBBERBAND_FACTOR;
+    } else if (translate < minTranslate) {
+      const overdraw = minTranslate - translate;
+      if (overdraw > RUBBERBAND_THRESHOLD) {
+        return minTranslate - RUBBERBAND_THRESHOLD - (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
+      }
+      return minTranslate - overdraw * RUBBERBAND_FACTOR;
+    }
+    return translate;
+  }
+  
+  // Update edge indicators
+  function updateEdgeIndicators() {
+    carouselContainer.classList.remove('at-left-edge', 'at-right-edge');
+    
+    if (currentTranslate >= maxTranslate) {
+      carouselContainer.classList.add('at-right-edge');
+    } else if (currentTranslate <= minTranslate) {
+      carouselContainer.classList.add('at-left-edge');
+    }
+  }
+  
+  // Smooth snap back to bounds
+  function snapToBounds() {
+    let targetTranslate = currentTranslate;
+    
+    if (currentTranslate > maxTranslate) {
+      targetTranslate = maxTranslate;
+    } else if (currentTranslate < minTranslate) {
+      targetTranslate = minTranslate;
+    }
+    
+    if (targetTranslate !== currentTranslate) {
+      const startTranslate = currentTranslate;
+      const distance = targetTranslate - startTranslate;
+      const duration = 300;
+      const startTime = Date.now();
+      
+      function animateSnap() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+        
+        currentTranslate = startTranslate + (distance * easeOut);
+        carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+        
+        // Update edge indicators during snap animation
+        updateEdgeIndicators();
+        
+        if (progress < 1) {
+          animationID = requestAnimationFrame(animateSnap);
+        }
+      }
+      
+      animateSnap();
+    }
+  }
   
   // Simple event handlers
   carouselContainer.addEventListener('mouseenter', () => {
@@ -129,11 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     const diff = clientX - startX;
-    currentTranslate = prevTranslate + diff;
+    const rawTranslate = prevTranslate + diff;
     
-    // Simple bounds clamping
-    if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
-    if (currentTranslate < minTranslate) currentTranslate = minTranslate;
+    // Apply rubberbanding
+    currentTranslate = applyRubberbanding(rawTranslate);
     
     // Update velocity
     const currentTime = Date.now();
@@ -145,6 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
     lastTime = currentTime;
     
     carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+    
+    // Update edge indicators
+    updateEdgeIndicators();
   }
 
   function endDrag() {
@@ -153,8 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
     isDragging = false;
     carouselContainer.style.cursor = 'grab';
     
-    // Simple momentum
-    if (Math.abs(velocity) > 1) {
+    // Check if we need to snap back to bounds
+    if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
+      snapToBounds();
+    } else if (Math.abs(velocity) > 1) {
+      // Apply momentum only if within bounds
       applySimpleMomentum();
     }
   }
@@ -163,13 +240,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
       e.preventDefault();
       const scrollAmount = e.deltaX * 0.5;
-      currentTranslate -= scrollAmount;
+      const rawTranslate = currentTranslate - scrollAmount;
       
-      // Simple bounds clamping
-      if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
-      if (currentTranslate < minTranslate) currentTranslate = minTranslate;
+      // Apply rubberbanding for wheel scrolling
+      currentTranslate = applyRubberbanding(rawTranslate);
       
       carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+      
+      // Update edge indicators
+      updateEdgeIndicators();
+      
+      // Snap back if over bounds
+      if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
+        setTimeout(snapToBounds, 100);
+      }
     }
   }
 
@@ -180,22 +264,29 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate() {
       if (Math.abs(velocity) < minVelocity) {
         velocity = 0;
+        // Snap to bounds if needed
+        if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
+          snapToBounds();
+        }
         return;
       }
       
-      currentTranslate += velocity;
+      const rawTranslate = currentTranslate + velocity;
       
-      // Simple bounds clamping
-      if (currentTranslate > maxTranslate) {
-        currentTranslate = maxTranslate;
-        velocity = 0;
-      } else if (currentTranslate < minTranslate) {
-        currentTranslate = minTranslate;
+      // Apply rubberbanding during momentum
+      currentTranslate = applyRubberbanding(rawTranslate);
+      
+      // Stop momentum if we hit the bounds
+      if (currentTranslate === maxTranslate || currentTranslate === minTranslate) {
         velocity = 0;
       }
       
       velocity *= friction;
       carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+      
+      // Update edge indicators during momentum
+      updateEdgeIndicators();
+      
       animationID = requestAnimationFrame(animate);
     }
     
