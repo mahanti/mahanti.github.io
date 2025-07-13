@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SPA-specific styles -->
+  <style>
+    #spa-content {
+      min-height: 100vh;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .page-content {
+      width: 100%;
+    }
+    
+    .loading-placeholder {
+      text-align: center;
+      padding: 100px 20px;
+      opacity: 0.7;
+    }
+    
+    /* Smooth page transitions */
+    .page-transition {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .page-transition.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="day">
+  
+  <!-- Navigation -->
+  {% include header.html %}
+  
+  <!-- Main content container -->
+  <main id="spa-content">
+    <!-- Initial content will be loaded here -->
+    <div class="page-content" data-page="home">
+      <div class="page-inner">
+        {{ content }}
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  {% include footer.html %}
+  
+  <!-- Scripts -->
+  <script src="/js/spa.js"></script>
+  <script src="/js/script.js"></script>
+  
+  <!-- Initialize SPA with current page data -->
+  <script>
+    // Pass initial page data to SPA
+    window.initialPageData = {
+      title: "{{ page.title | default: 'Home' }}",
+      content: `{{ content | escape }}`,
+      layout: "{{ page.layout }}"
+    };
+  </script>
+</body>
+</html> 

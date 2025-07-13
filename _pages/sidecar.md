@@ -5,7 +5,7 @@ permalink: /work/sidecar
 ---
 
 <section class="page-header">
-    <div class="row">
+    <div class="col-8">
         <span class="title">About</span>
         <span class="subtitle">Sidecar was the first true peer-to-peer ridesharing service. I dropped out of college to join the team as it's first designer. During my time there, I designed both Rider and Driver apps from the ground up</span>
     </div>
@@ -14,14 +14,22 @@ permalink: /work/sidecar
     </div>
 </section>
 <section>
-    <img src="/img/work/sidecar/01@2x.png" loading="lazy"> 
+    <div class="col-8">
+        <img src="/img/work/sidecar/01@2x.png" loading="lazy"> 
+    </div>
 </section>
 <section>
-    <img src="/img/work/sidecar/02@2x.png" loading="lazy">
+    <div class="col-8">
+        <img src="/img/work/sidecar/02@2x.png" loading="lazy">
+    </div>
 </section>
 <section>
-    <img src="/img/work/sidecar/03@2x.png" loading="lazy">
+    <div class="col-8">
+        <img src="/img/work/sidecar/03@2x.png" loading="lazy">
+    </div>
 </section>	
 <section>
-    <img src="/img/work/sidecar/04@2x.png" loading="lazy">	
+    <div class="col-8">
+        <img src="/img/work/sidecar/04@2x.png" loading="lazy">	
+    </div>
 </section>

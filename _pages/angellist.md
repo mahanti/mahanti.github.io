@@ -9,11 +9,6 @@ permalink: /work/angellist
         <span class="title">About</span>
         <span class="subtitle">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders.</span> 
     </div>
-    <div class="col-8">
-        <div class="callout">
-            <span>💼 This case study is a work in progress. </span>
-        </div>
-    </div>
 </section>
 
 <section>

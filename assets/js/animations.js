@@ -11,7 +11,6 @@ class AnimationSystem {
 
   init() {
     this.setupIntersectionObserver();
-    this.setupPageTransitions();
     this.setupHoverEffects();
     this.setupSmoothScrolling();
     this.setupParallaxEffects();
@@ -29,28 +28,6 @@ class AnimationSystem {
       header.style.transform = 'none';
       header.classList.remove('header-hidden');
     }
-  }
-
-  // Enhanced page transitions for the entire page (body)
-  setupPageTransitions() {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('page-enter');
-      setTimeout(() => {
-        document.body.classList.remove('page-enter');
-      }, 700); // match animation duration
-    });
-    // Smooth transitions for internal links (entire page)
-    document.querySelectorAll('a[href^="/"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        if (link.href.includes('#')) return; // Skip anchor links
-        e.preventDefault();
-        const target = link.href;
-        document.body.classList.add('page-exit');
-        setTimeout(() => {
-          window.location.href = target;
-        }, 400);
-      });
-    });
   }
 
   // Update active navigation state

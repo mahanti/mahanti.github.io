@@ -13,17 +13,17 @@ permalink: /work
 
 <section>
   <div class="col-8 gap-12">
-    <a href="/work/angellist">
+    <a href="/work/angellist" class="mb-24">
       <img src="/img/work/angellist.jpg" loading="lazy">
       <span class="title color-al">AngelList</span>
       <span class="subtitle color-al">Principal Designer<br>2022 — 2023</span>
     </a>
-    <a href="/work/square">
+    <a href="/work/square" class="mb-24">
       <img src="/img/work/block.jpg" loading="lazy">
       <span class="title color-sq">Square</span>
       <span class="subtitle color-sq">Senior Product Designer<br>2017 — 2022</span>
     </a>
-    <a href="/work/ando">
+    <a href="/work/ando" class="mb-24">
       <img src="/img/work/ando.jpg" loading="lazy">
       <span class="title color-ando">Ando</span>
       <span class="subtitle color-ando">Lead Designer<br>2016 — 2017</span>

@@ -25,7 +25,6 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 body {
   margin: 0;
   line-height: 1.65;
-  cursor: none!important;
   transition: opacity 0.4s ease-out, filter 0.4s ease-out;
   overflow-x: hidden;
   background-color: #fff;
@@ -33,7 +32,6 @@ body {
 }
 
 *, a, body, html {
-  cursor: none!important;
   touch-action: manipulation;
 }
 
@@ -41,9 +39,7 @@ body {
   display: none;
 }
 
-.cursor-visible, .window-inactive * {
-  cursor: default!important;
-}
+
 
 body * {
   transition: inherit;
@@ -98,6 +94,23 @@ h6 { font-size: inherit; letter-spacing: 0; }
 
 body.night .nav-divider {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo-link {
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.logo-link:hover {
+  opacity: 0.7;
+}
+
+.site-logo {
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 #name {
@@ -262,55 +275,36 @@ body.night .button-link.active {
 }
 
 /* --------------------------------- */
-/* Custom Cursor */
+/* Classic Cursor Styles */
 /* --------------------------------- */
 
-.cursor_root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 28px;
-  height: 28px;
-  z-index: 1000;
-  pointer-events: none;
-  will-change: transform;
-  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
+/* Default cursor for links */
+a {
+  cursor: pointer;
 }
 
-.cursor_cursor, .cursor_transform {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+/* Carousel cursor states */
+.carousel-container {
+  cursor: grab;
 }
 
-.cursor_cursor {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  transform-origin: center center;
-  background: rgba(0, 0, 0, 0.3); /* Replace expensive backdrop-filter */
-  transition: width 0.1s ease-out, height 0.1s ease-out;
-  will-change: width, height;
+.carousel-container:active {
+  cursor: grabbing;
 }
 
-.cursor_target {
-  display: block;
-  white-space: nowrap;
+/* Button cursor */
+.button-link {
+  cursor: pointer;
 }
 
-.cursor_target--inline, .cursor_target--inline .cursor_targetInner {
-  display: inline-block;
+/* Interactive elements */
+.interactive {
+  cursor: pointer;
 }
 
-.cursor_targetInner {
-  display: block;
-  white-space: nowrap;
-  width: 100%;
-  height: 100%;
+/* Image link spacing */
+.image-link .subtitle {
+  margin-top: -2px;
 }
 
 /* --------------------------------- */
@@ -809,33 +803,6 @@ body.loading {
 
 body.loaded {
   opacity: 1;
-}
-
-body.page-enter {
-  opacity: 0;
-  filter: blur(16px);
-  transform: translateY(40px);
-  animation: pageFadeInUp 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
-}
-
-body.page-exit {
-  opacity: 0;
-  filter: blur(8px);
-  transform: translateY(40px);
-  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-
-@keyframes pageFadeInUp {
-  0% {
-    opacity: 0;
-    filter: blur(16px);
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateY(0);
-  }
 }
 
 /* Animation Classes */

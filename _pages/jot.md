@@ -5,7 +5,7 @@ permalink: /products/jot
 ---
 
 <section id="header-jot" class="color-jot page-header">
-    <div class="row nav-row">
+    <div class="col-8 nav-row">
         <div class="text-section">
             <span class="title white">jot</span>
             <span class="subtitle white">The fastest app for notes and sketches.</span>
@@ -16,7 +16,7 @@ permalink: /products/jot
     </div>	
 </section>
 <section>
-    <div class="row">
+    <div class="col-8">
         <span class="title">About</span>
         <span class="subtitle">Jot was the first iOS app I ever built — all the way back in 2013. It was designed to solve the problem of having a quick idea or note and not being able to easily toss it into a notepad and move on. In an effort to reduce taps to start new notes, Jot always starts on a fresh page and simple swipe gestures let you archive and view notes.
             <br><br>
@@ -24,17 +24,25 @@ permalink: /products/jot
     </div>
 </section>
 <section>
-    <img src="/img/products/jot/01.jpg" loading="lazy">
+    <div class="col-8">
+        <img src="/img/products/jot/01.jpg" loading="lazy">
+    </div>
 </section>
 <section>
-    <img src="/img/products/jot/02.jpg" loading="lazy">
-    <p class="caption">Napkin was a fun addition to Jot which enabled me to quickly sketch out concepts or UI in the middle of the night.</p>
+    <div class="col-8">
+        <img src="/img/products/jot/02.jpg" loading="lazy">
+        <p class="caption">Napkin was a fun addition to Jot which enabled me to quickly sketch out concepts or UI in the middle of the night.</p>
+    </div>
 </section>
 <section>
-    <img src="/img/products/jot/03.jpg" loading="lazy">
-    <p class="caption">The new user experience meant to quickly educate users on the interaction paradigm.</p>
+    <div class="col-8">
+        <img src="/img/products/jot/03.jpg" loading="lazy">
+        <p class="caption">The new user experience meant to quickly educate users on the interaction paradigm.</p>
+    </div>
 </section>	
 <section>
-    <img src="/img/products/jot/04.jpg" loading="lazy">
-    <p class="caption">Icons and themed variations for different tools.</p>
+    <div class="col-8">
+        <img src="/img/products/jot/04.jpg" loading="lazy">
+        <p class="caption">Icons and themed variations for different tools.</p>
+    </div>
 </section>

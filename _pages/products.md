@@ -13,22 +13,22 @@ permalink: /products
 
 <section>
   <div class="col-8 gap-12">
-    <a href="/products/approach">
+    <a href="/products/approach" class="mb-24">
       <img src="/img/products/approach.jpg" loading="lazy">
       <span class="title color-approach">Approach</span>
       <span class="subtitle color-approach">Golf products designed for fun, built for performance.</span>
     </a>
-    <a href="/products/sudo">
+    <a href="/products/sudo" class="mb-24">
       <img src="/img/products/sudoku.jpg" loading="lazy">
       <span class="title color-sudo">Sudo</span>
       <span class="subtitle color-sudo">Beautiful Sudoku – with a colorful twist.</span>
     </a>
-    <a href="/products/circuit">
+    <a href="/products/circuit" class="mb-24">
       <img src="/img/products/circuit.jpg" loading="lazy">
       <span class="title color-circuit">Circuit</span>
       <span class="subtitle color-circuit">A stupidly-simple, extremely efficient, HIIT timer.</span>
     </a>
-    <a href="/products/jot">
+    <a href="/products/jot" class="mb-24">
       <img src="/img/products/jot.jpg" loading="lazy">
       <span class="title color-jot">jot</span>
       <span class="subtitle color-jot">The fastest app for notes and sketches.</span>

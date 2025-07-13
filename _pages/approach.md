@@ -4,26 +4,22 @@ title: • Approach
 permalink: /products/approach
 ---
 
-<section id="header-approach" class="page-header color-approach">
-    <div class="row nav-row">
-    <div class="text-section">
-        <span class="title white">Approach</span>
-        <span class="subtitle white">Designed for fun, built for performance, Approach is the best app for golfers from the 1st hole to the 19th.</span>
-    </div>
-    <div class="button-section">
-        <a class="button-link secondary" href="https://approachgolf.co">View website</a>
-        <a class="button-link primary color-approach" href="#">Coming soon</a>
-    </div>
+<section class="mb-24">
+ <div class="col-8">
+        <span class="title">Approach</span>
+        <span class="subtitle">Designed for fun, built for performance, Approach is the best app for golfers from the 1st hole to the 19th.</span> 
     </div>
 </section>
+
 <section>
-    <div class="row">
+    <div class="col-8">
     <span class="title">About</span>
     <span class="subtitle">I started golfing in highschool and was immediately hooked to the game. After a few years off the course, I brushed off my old clubs and got back into it. While clubs, tools, and styles had all evolved since high school, the apps “designed” for golf were ugly and clunky, to say the least.
         <br><br>
         Built fully in SwiftUI, this app was mostly designed and built in code — opening the door to intuitive and fluid interactions that take advantage of iOS.</span>
     </div>
 </section>
+
 <section>
     <img src="/img/products/approach/01.png"> 
 </section>

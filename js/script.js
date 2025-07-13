@@ -1,58 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // SIMPLIFIED CURSOR - Remove expensive hover detection entirely
-  const cursor = document.querySelector('.cursor_root');
-  const cursorInner = document.querySelector('.cursor_cursor');
-  
-  if (!cursor || !cursorInner) return;
-  
-  let mouseX = 0;
-  let mouseY = 0;
-  let cursorX = 0;
-  let cursorY = 0;
-  let isClicking = false;
-  let animationFrameId = null;
-  
-  // Simple mouse tracking - no throttling needed
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  }, { passive: true });
-  
-  // Click events only
-  document.addEventListener('mousedown', () => {
-    isClicking = true;
-    cursorInner.style.width = '16px';
-    cursorInner.style.height = '16px';
-  }, { passive: true });
-  
-  document.addEventListener('mouseup', () => {
-    isClicking = false;
-    cursorInner.style.width = '28px';
-    cursorInner.style.height = '28px';
-  }, { passive: true });
-  
-  // Simple show/hide
-  document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = '0';
-  }, { passive: true });
-  
-  document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-  }, { passive: true });
-  
-  // Ultra-simple cursor animation - no hover detection
-  function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.3;
-    cursorY += (mouseY - cursorY) * 0.3;
-    
-    const offsetX = isClicking ? 8 : 14;
-    const offsetY = isClicking ? 8 : 14;
-    
-    cursor.style.transform = `translate3d(${cursorX - offsetX}px, ${cursorY - offsetY}px, 0)`;
-    animationFrameId = requestAnimationFrame(animateCursor);
-  }
-  
-  animateCursor();
 
   // SIMPLIFIED CAROUSEL - Remove complex bounds calculation and rubberbanding
   const carouselContainer = document.querySelector('.carousel-container') || document.querySelector('#image-carousel');
@@ -159,12 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Simple event handlers
-  carouselContainer.addEventListener('mouseenter', () => {
-    carouselContainer.style.cursor = 'grab';
-  }, { passive: true });
-
   carouselContainer.addEventListener('mouseleave', () => {
-    carouselContainer.style.cursor = 'default';
     if (isDragging) {
       endDrag();
     }
@@ -180,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startDrag(e) {
     isDragging = true;
-    carouselContainer.style.cursor = 'grabbing';
     
     const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
     startX = clientX;
@@ -225,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDragging) return;
     
     isDragging = false;
-    carouselContainer.style.cursor = 'grab';
     
     // Check if we need to snap back to bounds
     if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
