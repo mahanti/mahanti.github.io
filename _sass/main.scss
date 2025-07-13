@@ -402,10 +402,6 @@ a {
   margin-right: 864px;
 }
 
-.carousel-slide img:first-child {
-  padding-left: 20px;
-}
-
 /* Add visual feedback for edge states */
 .carousel-container.at-left-edge::before,
 .carousel-container.at-right-edge::after {
