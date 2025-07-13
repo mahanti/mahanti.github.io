@@ -256,6 +256,14 @@ nav {
   gap: 16px;
 }
 
+/* Mobile and tablet navigation spacing */
+@media (max-width: 780px) {
+  nav {
+    gap: 24px !important;
+    justify-content: flex-start !important;
+  }
+}
+
 .bottom-nav {
   justify-content: flex-end;
   align-items: flex-end;
@@ -357,7 +365,7 @@ a {
   overflow: hidden;
   white-space: nowrap;
   user-select: none; /* Prevent text selection */
-  margin-top: 40px;
+  padding-top: 40px;
   padding-left: calc(50vw - 320px);
   padding-right: calc(50vw - 320px);
   position: relative;
@@ -495,7 +503,7 @@ body.night section {
 img {
   width: 100%;
   height: auto;
-  border-radius: 40px;
+  border-radius: 32px;
   display: block;
 }
 
@@ -507,7 +515,7 @@ img {
 .optimized-image img {
   width: 100%;
   height: auto;
-  border-radius: 40px;
+  border-radius: 32px;
   transition: opacity 0.3s ease;
 }
 
@@ -721,9 +729,14 @@ img {
     margin-right: 8px;
   }
 
+  .carousel-container {
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 780px) {
   .container {
     padding: 32px;
   }
@@ -744,8 +757,6 @@ img {
     align-items: flex-start;
   }
 
-
-
   .text-section {
     margin-bottom: 0px;
     max-width: 100%;
@@ -757,25 +768,25 @@ img {
   }
   
   nav {
-    width: 100%;
-    justify-content: flex-start;
+    width: auto !important;
+    justify-content: flex-start !important;
+    gap: 24px !important;
   }
 
   .button-link {
-    width: calc(100% - 24px); 
     text-align: left;
-    padding: 12px 10px !important;
-    font-size: 14px !important;	
+    padding: 12px 0 !important;
+    font-size: 14px !important;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 780px) {
   body {
-    margin: 0px; /* Remove top margin for mobile */
+    margin: 0px; /* Remove top margin for mobile/tablet */
   }
   
   .carousel-container {
-    margin-top: 0px; /* Remove carousel top margin for mobile */
+    padding-top: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -792,10 +803,19 @@ img {
   nav {
     padding-left: 0;
     padding-right: 0;
+    width: auto !important;
+    justify-content: flex-start !important;
+    gap: 24px !important;
   }
 
   .button-link {
     font-size: 14px;
+  }
+  
+  /* Mobile/tablet image border radius */
+  img,
+  .optimized-image img {
+    border-radius: 20px !important;
   }
 }
 
