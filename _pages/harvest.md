@@ -4,12 +4,11 @@ title: • Harvest
 permalink: /photos/harvest
 ---
 
-<section id="header-generic" class="color-generic page-header">			
-    <div class="col-8">
+ <div class="col-8">
     <span class="title">Harvest</span>
     <span class="subtitle">In 2021, I joined Pascal Carole to document his first harvest in the Loire Valley.</span>
     </div>
-</section>
+    
 <section>
     <div class="col-8">
         <img src="/img/photos/harvest/01.png" loading="lazy">

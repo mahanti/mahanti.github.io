@@ -4,13 +4,11 @@ title: • Photos
 permalink: /photos
 ---
 
-<section class="mb-24">
-  <div class="col-8">
+ <div class="col-8">
     <span class="title">Photography</span>
     <span class="subtitle">Selects from my years photographing the space around me.</span>
   </div>
-</section>
-
+  
 <section>
   <div class="col-8 gap-12">
     <img src="/img/photos/harvest.png" loading="lazy">

@@ -4,8 +4,7 @@ title: • Jot
 permalink: /products/jot
 ---
 
-<section id="header-jot" class="color-jot page-header">
-    <div class="col-8 nav-row">
+ <div class="col-8 nav-row">
         <div class="text-section">
             <span class="title white">jot</span>
             <span class="subtitle white">The fastest app for notes and sketches.</span>
@@ -14,7 +13,7 @@ permalink: /products/jot
             <a class="button-link primary color-jot" href="https://apps.apple.com/us/app/jot-write-away/id1536814240">Download</a>
         </div>
     </div>	
-</section>
+    
 <section>
     <div class="col-8">
         <span class="title">About</span>

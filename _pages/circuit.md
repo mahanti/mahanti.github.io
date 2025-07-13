@@ -4,8 +4,7 @@ title: • Circuit
 permalink: /products/circuit
 ---
 
-<section class="mb-24">
-  <div class="col-8">
+ <div class="col-8">
     <span class="title white">Circuit</span>
     <span class="subtitle white">A stupidly-simple, extremely efficient, HIIT timer.</span>
   </div>
@@ -13,7 +12,6 @@ permalink: /products/circuit
     <a class="button-link secondary" href="/circuit">View website</a>
     <a class="button-link primary color-circuit" href="https://apps.apple.com/us/app/circuit-time-to-go/id1636796128">Download</a>
   </div>
-</section>
 
 <section class="mb-24">
   <div class="col-8">

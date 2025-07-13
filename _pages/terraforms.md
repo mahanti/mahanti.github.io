@@ -4,12 +4,11 @@ title: • Terraforms
 permalink: /products/terraforms
 ---
 
-<section id="header-terraforms" class="color-terraforms page-header">
-    <div class="col-8">
+ <div class="col-8">
         <span class="title white">Terraforms</span>
         <span class="subtitle white">On-chain land</span>
     </div>
-</section>
+    
 <section>
     <div class="col-8">
         <span class="title">About</span>

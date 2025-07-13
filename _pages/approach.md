@@ -4,13 +4,11 @@ title: • Approach
 permalink: /products/approach
 ---
 
-<section class="mb-24">
  <div class="col-8">
         <span class="title">Approach</span>
         <span class="subtitle">Designed for fun, built for performance, Approach is the best app for golfers from the 1st hole to the 19th.</span> 
     </div>
-</section>
-
+    
 <section>
     <div class="col-8">
     <span class="title">About</span>

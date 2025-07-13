@@ -1,4 +1,4 @@
-<header id="nav">
+<header id="nav"{% if page.url == '/' or page.url == '/index.html' %} class="index-header"{% endif %}>
     <div class="col-8">
       <a href="{{ '/' | relative_url }}" class="logo-link">
         <img src="/img/logo.svg" alt="Logo" class="site-logo">

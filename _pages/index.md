@@ -10,6 +10,7 @@ permalink: /
       <img src="/img/carousel/01.jpg" loading="lazy">
       <img src="/img/carousel/02.jpg" loading="lazy">
       <img src="/img/carousel/03.jpg" loading="lazy">
+      <img src="/img/carousel/08.jpg" loading="lazy">
       <img src="/img/carousel/04.jpg" loading="lazy">
       <img src="/img/carousel/07.jpg" loading="lazy">
       <img src="/img/carousel/05.jpg" loading="lazy">
@@ -25,6 +26,7 @@ permalink: /
       <span class="subtitle">Select professional work.</span>
     </a>
   </div>
+
   <div class="col-8 gap-12">
     <a href="/work/block" class="image-link mb-8">
       <span class="title color-block">Block</span>
@@ -52,6 +54,8 @@ permalink: /
     </a>
   </div>
 </section>
+
+<hr class="divider">
 
 <section class="mb-24">
   <div class="col-8 mb-24">
@@ -83,6 +87,8 @@ permalink: /
     </a>
   </div>
 </section>
+
+<hr class="divider">
 
 <section>
   <div class="col-8 mb-24">

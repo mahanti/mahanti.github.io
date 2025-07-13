@@ -4,7 +4,7 @@
 
 html, body {
   min-height: 100%;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   scroll-behavior: smooth;
   line-height: 1.5;
@@ -46,30 +46,43 @@ body * {
 }
 
 /* ------------------------------- */
-/* Typography */
+/* Typography System */
 /* ------------------------------- */
 
+/* Typography Scale */
+.text-large {
+  font-size: 16px;
+  font-weight: 500;
+  color: #27272a;
+  line-height: 1.4;
+}
+
+.text-small {
+  font-size: 14px;
+  font-weight: 400;
+  color: #71717a;
+  line-height: 1.4;
+}
+
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0;
   color: #27272a;
   line-height: 1.25;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-h1 { font-size: inherit; letter-spacing: -.1rem;}
-h2 { font-size: inherit; letter-spacing: -.1rem; }
-h3 { font-size: inherit; letter-spacing: -.1rem; }
-h4 { font-size: inherit; letter-spacing: -.08rem; }
-h5 { font-size: inherit; letter-spacing: -.05rem; }
-h6 { font-size: inherit; letter-spacing: 0; }
+h1 { letter-spacing: -.1rem;}
+h2 { letter-spacing: -.1rem; }
+h3 { letter-spacing: -.1rem; }
+h4 { letter-spacing: -.08rem; }
+h5 { letter-spacing: -.05rem; }
+h6 { letter-spacing: 0; }
 
 @media (min-width: 550px) {
-  h1 { font-size: inherit; }
-  h2 { font-size: inherit; }
-  h3 { font-size: inherit; }
-  h4 { font-size: inherit; }
-  h5 { font-size: inherit; }
-  h6 { font-size: inherit; }
+  h1, h2, h3, h4, h5, h6 { font-size: 16px; }
 }
 
 /* Old layout classes - removed in favor of grid system */
@@ -79,8 +92,6 @@ h6 { font-size: inherit; letter-spacing: 0; }
 
 .row .title, .text-object .subtitle {
   display: block;
-  font-size: 14px;
-  font-weight: 500; 
   width: 100%;
 }
 
@@ -114,7 +125,7 @@ body.night .nav-divider {
 }
 
 #name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 4px;
   white-space: nowrap;
@@ -126,12 +137,15 @@ body.night .nav-divider {
   width: 100%;
   padding-bottom: 24px;
   background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   margin-top: 40px;
 }
 
-body.night #nav {
-  background: transparent;
+/* Only show border-bottom on index page */
+body.day #nav.index-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.night #nav.index-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -141,9 +155,8 @@ body.night #nav {
 }
 
 .subtitle {
-  font-size: inherit;
+  font-size: 14px;
   color: #71717a; /* zinc-500 */
-  opacity: 0.8;
   width: 100%;
   line-height: 1.4;
   display: block;
@@ -155,16 +168,19 @@ body.night #nav {
   margin-top: 12px;
   margin-bottom: 0px;
   font-size: 14px;
-  opacity: 0.5;
+  color: #71717a;
   width: 80%;
+  font-weight: 400;
 }
 
 .callout {
   padding: 8px 16px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   border-radius: 24px;
   margin-top: 24px;
   background: rgba(0,0,0,0.05);
+  color: #27272a;
 }
 
 .callout.night {
@@ -182,6 +198,24 @@ body.night #nav {
 	text-decoration: underline;
 }
 
+footer {
+  margin-top: 40px;
+  margin-bottom: 40px !important;
+  opacity: 0.5;
+}
+
+/* Custom divider class */
+.divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: none;
+  margin: 24px 0;
+  width: 100%;
+}
+
+body.night .divider {
+  background-color: rgba(255, 255, 255, 0.25);
+}
 /* --------------------------------- */
 /* Links */
 /* --------------------------------- */
@@ -234,7 +268,7 @@ nav:hover .button-link:not(:hover):not(.active) {
 .button-link {
   text-decoration: none;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: inherit;
+  font-size: 14px;
   font-weight: 500;
   color: #71717a; /* zinc-500 */
   padding: 0;
@@ -419,11 +453,7 @@ form {
   margin-bottom: 2.5rem;
 }
 
-hr {
-  opacity: 0.1;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
+
 
 .container {
   max-width: 640px;
@@ -440,13 +470,11 @@ hr {
 
 body.day section {
   padding: 24px 0px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
 
 body.night section {
   padding: 24px 0px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
 }
 
@@ -716,9 +744,7 @@ img {
     align-items: flex-start;
   }
 
-  .nav-divider {
-    margin: 16px 0 12px 0;
-  }
+
 
   .text-section {
     margin-bottom: 0px;
@@ -1189,12 +1215,18 @@ section:last-child {
   margin-bottom: 0;
 }
 
-body, p, .subtitle {
+/* Base text styles */
+body, p {
+  font-size: 16px;
   font-weight: 400;
-  font-size: inherit;
+  color: #27272a;
+  line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6, .title, .button-link {
-  font-size: inherit;
+/* Title styles */
+.title {
+  font-size: 16px;
   font-weight: 500;
+  color: #27272a;
+  line-height: 1.25;
 }

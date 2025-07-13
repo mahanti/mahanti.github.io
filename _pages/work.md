@@ -4,12 +4,10 @@ title: • Work
 permalink: /work
 ---
 
-<section class="mb-24">
-  <div class="col-8">
+ <div class="col-8">
     <span class="title">Work</span>
     <span class="subtitle">Select professional work.</span>
   </div>
-</section>
 
 <section>
   <div class="col-8 gap-12">

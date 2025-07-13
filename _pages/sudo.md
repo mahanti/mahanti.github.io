@@ -4,8 +4,7 @@ title: • Sudo
 permalink: /products/sudo
 ---
 
-<section id="header-sudo" class="color-sudo page-header">
-    <div class="col-8 nav-row">
+ <div class="col-8 nav-row">
     <div class="text-section">
         <span class="title white">Sudo</span>
         <span class="subtitle white">Beautiful Sudoku — with a colorful twist.</span>
@@ -15,7 +14,7 @@ permalink: /products/sudo
         <a class="button-link primary color-sudo" href="#">Coming soon</a>
     </div>
     </div>
-</section>
+    
 <section>
     <div class="col-8">
     <span class="title">About</span>
