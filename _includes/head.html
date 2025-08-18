@@ -5,4 +5,62 @@
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
   <script src="/js/min.script.js"></script>
+  <script>
+    (function() {
+      var hasStarted = false;
+      function applyThemeForNow(now) {
+        // Dark from 7:00pm to 6:59:59am, Light from 7:00am to 6:59:59pm
+        var hours = now.getHours();
+        var isNight = (hours >= 19 || hours < 7);
+        var body = document.body;
+        if (!body) return;
+        body.classList.remove('day', 'night');
+        body.classList.add(isNight ? 'night' : 'day');
+      }
+
+      function msUntilNextSwitch(now) {
+        // Next switch at 7:00am or 7:00pm local time
+        var next = new Date(now);
+        var hours = now.getHours();
+        if (hours < 7) {
+          next.setHours(7,0,0,0);
+        } else if (hours < 19) {
+          next.setHours(19,0,0,0);
+        } else {
+          // after 19:00 → next is tomorrow 07:00
+          next.setDate(next.getDate() + 1);
+          next.setHours(7,0,0,0);
+        }
+        return Math.max(0, next.getTime() - now.getTime());
+      }
+
+      function schedule() {
+        var now = new Date();
+        applyThemeForNow(now);
+        var delay = msUntilNextSwitch(now);
+        if (delay === 0) {
+          // Edge case: exactly at boundary, re-evaluate shortly
+          delay = 1000;
+        }
+        setTimeout(schedule, delay);
+      }
+
+      function start() {
+        if (hasStarted) return;
+        hasStarted = true;
+        // If body is already available, apply immediately
+        if (document.body) {
+          applyThemeForNow(new Date());
+        }
+        schedule();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+      } else {
+        start();
+      }
+      window.addEventListener('load', start);
+    })();
+  </script>
 </head>
