@@ -4,7 +4,7 @@ title: • Ando
 permalink: /work/ando
 ---
 
-  <div class="col-8">
+  <div class="col-8 mb-24">
         <span class="title">Ando</span>
         <span class="subtitle">Ando was a delivery only restaurant by Momofuku, in partnership with Expa.
 During my time there, I was responsible for designing multiple zero-to-one products spanning from the app customers used to place orders to the menu management system chefs would track inventory in. Additionally, I led our food photography and packaging efforts. <br><br>Ando was acquired by Uber in 2017.</span>

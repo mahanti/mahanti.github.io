@@ -2,10 +2,68 @@
 
 @import url('https://rsms.me/inter/inter.css');
 
+/* --------------------------------- */
+/* SwiftUI Color System Integration */
+/* --------------------------------- */
+
+:root {
+  /* SwiftUI Surface Colors - Light Mode */
+  --mango-orange: rgba(235, 115, 0, 1);
+  --player-background: rgba(247, 247, 249, 1);
+  --surface-5: rgba(247, 247, 249, 1);
+  --surface-10: rgba(245, 245, 245, 1);
+  --surface-20: rgba(231, 231, 231, 1);
+  --surface-30: rgba(208, 208, 208, 1);
+  --surface-5-inverse: rgba(38, 38, 38, 1);
+  --surface-base: rgba(255, 255, 255, 1);
+  --surface-base-inverse: rgba(24, 24, 24, 1);
+  
+  /* SwiftUI Text Colors - Light Mode */
+  --text-30: rgba(0, 0, 0, 0.3);
+  --text-50: rgba(0, 0, 0, 0.5);
+  --text-70: rgba(0, 0, 0, 0.65);
+  --text-base: rgba(0, 0, 0, 0.8);
+  --text-base-static: rgba(0, 0, 0, 0.9);
+  --text-contrast: rgba(255, 255, 255, 1);
+}
+
+/* Dark Mode Color Overrides */
+body.night {
+  /* SwiftUI Surface Colors - Dark Mode */
+  --mango-orange: rgba(235, 115, 0, 1);
+  --player-background: rgba(8, 8, 8, 1);
+  --surface-5: rgba(38, 38, 38, 1);
+  --surface-10: rgba(34, 34, 34, 1);
+  --surface-20: rgba(51, 51, 51, 1);
+  --surface-30: rgba(51, 51, 51, 1);
+  --surface-5-inverse: rgba(247, 247, 249, 1);
+  --surface-base: rgba(17, 17, 17, 1);
+  --surface-base-inverse: rgba(13, 13, 13, 1);
+  
+  /* SwiftUI Text Colors - Dark Mode */
+  --text-30: rgba(255, 255, 255, 0.3);
+  --text-50: rgba(255, 255, 255, 0.5);
+  --text-70: rgba(255, 255, 255, 0.7);
+  --text-base: rgba(255, 255, 255, 0.9);
+  --text-base-static: rgba(0, 0, 0, 0.9);
+  --text-contrast: rgba(0, 0, 0, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+*::before, *::after {
+  --tw-content: "";
+}
+
 html, body {
   min-height: 100%;
   font-size: 16px;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-feature-settings: normal;
+  font-variation-settings: normal;
   scroll-behavior: smooth;
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
@@ -25,9 +83,10 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 body {
   margin: 0;
   line-height: 1.65;
-  transition: opacity 0.4s ease-out, filter 0.4s ease-out;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: var(--surface-base);
+  color: var(--text-base);
   touch-action: manipulation;
 }
 
@@ -35,8 +94,8 @@ body {
 /* Dark Mode Base Overrides */
 /* --------------------------------- */
 body.night {
-  background-color: #000;
-  color: #e5e5e5;
+  background-color: var(--surface-base);
+  color: var(--text-base);
 }
 
 body.night h1,
@@ -45,23 +104,28 @@ body.night h3,
 body.night h4,
 body.night h5,
 body.night h6 {
-  color: #fff;
+  color: var(--text-contrast);
 }
 
 body.night a {
-  color: #fff;
+  color: var(--text-contrast);
+  text-decoration-color: var(--surface-30);
+}
+
+body.night a:hover {
+  text-decoration-color: var(--text-50);
 }
 
 body.night p > a:hover,
 body.night ul > a:hover {
-  color: #a1a1aa;
+  color: var(--text-70);
 }
 
-body.night .text-large { color: #e5e5e5; }
-body.night .text-small { color: #a1a1aa; }
-body.night #name { color: #fff; }
+body.night .text-large { color: var(--text-base); }
+body.night .text-small { color: var(--text-50); }
+body.night #name { color: var(--text-contrast); }
 body.night .subtitle,
-body.night .caption { color: #a1a1aa; }
+body.night .caption { color: var(--text-50); }
 
 *, a, body, html {
   touch-action: manipulation;
@@ -85,22 +149,22 @@ body * {
 .text-large {
   font-size: 16px;
   font-weight: 500;
-  color: #27272a;
-  line-height: 1.4;
+  color: var(--text-base);
+  line-height: 1.65;
 }
 
 .text-small {
   font-size: 14px;
   font-weight: 400;
-  color: #71717a;
-  line-height: 1.4;
+  color: var(--text-50);
+  line-height: 1.65;
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0;
-  color: #27272a;
+  color: var(--text-base-static);
   line-height: 1.25;
   font-size: 16px;
   font-weight: 500;
@@ -130,13 +194,13 @@ h6 { letter-spacing: 0; }
 .nav-divider {
   border: none;
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--surface-20);
   margin: 20px 0 0px 0;
   opacity: 1;
 }
 
 body.night .nav-divider {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--surface-20);
 }
 
 .logo-link {
@@ -161,24 +225,24 @@ body.night .nav-divider {
   font-weight: 500;
   margin-bottom: 4px;
   white-space: nowrap;
-  color: #27272a; /* zinc-800 */
+  color: var(--text-base-static);
 }
 
 #nav {
   position: relative;
   width: 100%;
-  padding-bottom: 24px;
   background: transparent;
-  margin-top: 40px;
+  margin-top: 96px;
+  padding-bottom: 24px;
 }
 
 /* Only show border-bottom on index page */
 body.day #nav.index-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--surface-10);
 }
 
 body.night #nav.index-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--surface-10);
 }
 
 /* Remove header scroll/hide logic */
@@ -188,7 +252,7 @@ body.night #nav.index-header {
 
 .subtitle {
   font-size: 14px;
-  color: #71717a; /* zinc-500 */
+  color: var(--text-50);
   width: 100%;
   line-height: 1.4;
   display: block;
@@ -200,7 +264,7 @@ body.night #nav.index-header {
   margin-top: 12px;
   margin-bottom: 0px;
   font-size: 14px;
-  color: #71717a;
+  color: var(--text-50);
   width: 80%;
   font-weight: 400;
 }
@@ -211,18 +275,18 @@ body.night #nav.index-header {
   font-weight: 500;
   border-radius: 24px;
   margin-top: 24px;
-  background: rgba(0,0,0,0.05);
-  color: #27272a;
+  background: var(--surface-10);
+  color: var(--text-base);
 }
 
 .callout.night {
-  background: rgba(255,255,255,0.1);
+  background: var(--surface-10);
 }
 
 /* Ensure callout looks correct in dark mode without adding extra class */
 body.night .callout {
-  background: rgba(255,255,255,0.08);
-  color: #e5e5e5;
+  background: var(--surface-10);
+  color: var(--text-base);
 }
 
 .callout.clients {
@@ -245,47 +309,48 @@ footer {
 /* Custom divider class */
 .divider {
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--surface-10);
   border: none;
   margin: 24px 0;
   width: 100%;
 }
 
 body.night .divider {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: var(--surface-10);
 }
 /* --------------------------------- */
 /* Links */
 /* --------------------------------- */
 
 a {
-  color: #27272a; /* zinc-800 */
-  text-decoration: none;
+  color: var(--text-base-static);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2.5px;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter;
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
-  transition-duration: .15s;
-}
-
-a:hover {
-  transition-property: all;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
   transition-duration: .2s;
 }
 
+a:hover {
+  text-decoration-color: var(--surface-10);
+}
+
 a.day {
-	color: #27272a; /* zinc-800 */
+	color: var(--text-base-static);
 }
 
 a.night {
-	color: #fff;
+	color: var(--text-contrast);
 }
 
 p > a:hover {
-  color: #000000; /* black */
+  color: var(--text-base-static);
 }
 
 ul > a:hover {
-  color: #000000; /* black */
+  color: var(--text-base-static);
 }
 
 /* Navigation container - handles hover effects for all nav items */
@@ -316,17 +381,18 @@ nav:hover .button-link:not(:hover):not(.active) {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 14px;
   font-weight: 500;
-  color: #71717a; /* zinc-500 */
+  color: var(--text-50);
   padding: 0;
   transition: all 0.2s cubic-bezier(.4,0,.2,1);
   background-color: transparent;
   opacity: 0.7;
   position: relative;
+  cursor: pointer;
 }
 
 .button-link:hover, .button-link.active {
   opacity: 1;
-  color: #27272a; /* zinc-800 */
+  color: var(--text-base-static);
   transform: none;
 }
 
@@ -517,7 +583,6 @@ form {
 }
 
 body.day section {
-  padding: 24px 0px;
   box-sizing: border-box;
 }
 
@@ -615,6 +680,35 @@ img {
 }
 
 /* ---------------------------- */
+/* SwiftUI Color Utility Classes */
+/* ---------------------------- */
+
+/* Surface Background Colors */
+.bg-surface-base { background-color: var(--surface-base); }
+.bg-surface-5 { background-color: var(--surface-5); }
+.bg-surface-10 { background-color: var(--surface-10); }
+.bg-surface-20 { background-color: var(--surface-20); }
+.bg-surface-30 { background-color: var(--surface-30); }
+.bg-player { background-color: var(--player-background); }
+
+/* Text Colors */
+.text-primary { color: var(--text-base); }
+.text-secondary { color: var(--text-70); }
+.text-tertiary { color: var(--text-50); }
+.text-quaternary { color: var(--text-30); }
+.text-contrast { color: var(--text-contrast); }
+.text-static { color: var(--text-base-static); }
+
+/* Accent Colors */
+.text-mango { color: var(--mango-orange); }
+.bg-mango { background-color: var(--mango-orange); }
+
+/* Border Colors */
+.border-surface-10 { border-color: var(--surface-10); }
+.border-surface-20 { border-color: var(--surface-20); }
+.border-surface-30 { border-color: var(--surface-30); }
+
+/* ---------------------------- */
 /* Custom Colors & Themes */
 /* ---------------------------- */
 
@@ -666,19 +760,16 @@ img {
 }
 
 .color-mango {
-   --custom-color: rgba(246, 127, 21);
+   --custom-color: var(--mango-orange);
 }
 
-.white {
-/*  color: white !important; */
-}
+/* .white class removed - unused */
 
 .interactive:hover .title::after {
   content: " →"; /* Appends an arrow character to the title */
 }
 
-.interactive:hover .title, .row.interactive:hover .subtitle {
-}
+/* Interactive hover styles moved to specific rules below */
 
 .interactive:hover .title {
   color: var(--custom-color); /* Changes the color of the title to the custom color */
@@ -690,9 +781,7 @@ img {
 }
 
 
-#header-angellist, #header-sidecar, #header-block, #header-ando, #header-approach, #header-circuit, #header-jot, #header-terraforms, #header-sudo, #header-generic {
-
-}
+/* Header styles removed - unused selectors */
 
 
 /* ---------------------------- */
@@ -978,6 +1067,29 @@ body.loaded {
   cursor: pointer;
 }
 
+.interactive:hover {
+  transform: translateY(-1px);
+}
+
+/* Shadow Utilities */
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Backdrop Blur */
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 /* Parallax Elements */
 .parallax {
   will-change: transform;
@@ -1093,12 +1205,78 @@ html {
   left: 100%;
 }
 
-/* Dark Mode Animation Support */
-body.night .interactive:hover {
-}
+/* Dark Mode Animation Support - styles applied through existing rules */
 
 body.night .button-link::after {
   background-color: #FF8414;
+}
+
+/* Transform Utilities */
+.transform {
+  transform: translate(var(--tw-translate-x, 0), var(--tw-translate-y, 0)) 
+             rotate(var(--tw-rotate, 0)) 
+             skewX(var(--tw-skew-x, 0)) 
+             skewY(var(--tw-skew-y, 0)) 
+             scaleX(var(--tw-scale-x, 1)) 
+             scaleY(var(--tw-scale-y, 1));
+}
+
+.transform-gpu {
+  transform: translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), 0) 
+             rotate(var(--tw-rotate, 0)) 
+             skewX(var(--tw-skew-x, 0)) 
+             skewY(var(--tw-skew-y, 0)) 
+             scaleX(var(--tw-scale-x, 1)) 
+             scaleY(var(--tw-scale-y, 1));
+}
+
+/* Breathing Animation - Inspired by Tailwind */
+@keyframes breathe {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Enhanced Transitions */
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.duration-150 { transition-duration: 0.15s; }
+.duration-200 { transition-duration: 0.2s; }
+.duration-250 { transition-duration: 0.25s; }
+.duration-300 { transition-duration: 0.3s; }
+.duration-500 { transition-duration: 0.5s; }
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Performance Optimizations */
@@ -1256,12 +1434,12 @@ section, .section {
 
 // 12px vertical spacing between links in work and product sections
 .col-8.gap-12 > * + * {
-  margin-top: 12px;
+  margin-top: 20px;
 }
 
 .col-8.gap-12 > a {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 .col-8.gap-12 > a:last-child {
   margin-bottom: 0;
@@ -1292,4 +1470,257 @@ body, p {
   font-weight: 600;
   color: #27272a;
   line-height: 1.25;
+  letter-spacing: 0; /* Reset tight letter spacing from headings */
+}
+
+/* ------------------------------- */
+/* Static Header SPA Transitions */
+/* ------------------------------- */
+
+/* Static Header Styles - Logo Only */
+#nav.static-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  transition: none !important;
+  transform: none !important;
+  padding-bottom: 24px; /* Reduced padding since no nav */
+}
+
+/* Home Page Header Styles */
+.home-header {
+  margin-bottom: 0px;
+}
+
+.home-header #name {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  color: #27272a; /* zinc-800 */
+}
+
+body.night .home-header #name {
+  color: #fff;
+}
+
+.home-header .subtitle {
+  font-size: 14px;
+  color: #71717a; /* zinc-500 */
+  width: 100%;
+  line-height: 1.4;
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+body.night .home-header .subtitle {
+  color: #a1a1aa; /* zinc-400 */
+}
+
+/* SPA Content Container */
+.spa-content-container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 50vh;
+}
+
+#spa-content {
+  width: 100%;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* SPA Ready State */
+body.spa-ready {
+  overflow-x: hidden;
+}
+
+body.spa-ready #nav.static-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Content Transition States */
+.content-transitioning {
+  pointer-events: none;
+}
+
+.content-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+}
+
+.content-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-exit {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+.content-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stagger animations for content elements */
+.spa-content-container .col-8 > * {
+  opacity: 0;
+  transform: translateY(15px);
+  filter: blur(2px);
+  animation: contentFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: opacity, transform, filter;
+  backface-visibility: hidden;
+}
+
+/* Exclude carousel from SPA animations */
+.spa-content-container .col-8 > .carousel-wrapper {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+  will-change: auto !important;
+}
+
+/* Ensure carousel children are also excluded from SPA animations but preserve carousel functionality */
+.carousel-wrapper,
+.carousel-container,
+.carousel-slide {
+  opacity: 1 !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+/* Preserve carousel's transform functionality */
+.carousel-slide {
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+}
+
+/* Enhanced carousel container for smooth interactions */
+.carousel-container {
+  transform: translateZ(0) !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: none !important;
+}
+
+/* Smooth cursor transitions */
+.carousel-container {
+  transition: cursor 0.15s ease !important;
+}
+
+.carousel-container:active,
+.carousel-container.dragging {
+  cursor: grabbing !important;
+}
+
+.spa-content-container .col-8 > *:nth-child(1) { animation-delay: 0.05s; }
+.spa-content-container .col-8 > *:nth-child(2) { animation-delay: 0.1s; }
+.spa-content-container .col-8 > *:nth-child(3) { animation-delay: 0.15s; }
+.spa-content-container .col-8 > *:nth-child(4) { animation-delay: 0.2s; }
+.spa-content-container .col-8 > *:nth-child(5) { animation-delay: 0.25s; }
+.spa-content-container .col-8 > *:nth-child(6) { animation-delay: 0.3s; }
+.spa-content-container .col-8 > *:nth-child(7) { animation-delay: 0.35s; }
+.spa-content-container .col-8 > *:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes contentFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .content-enter,
+  .content-enter-active,
+  .content-exit,
+  .content-exit-active {
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  
+  .spa-content-container .col-8 > * {
+    animation: reducedContentFadeIn 0.2s ease forwards !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  
+  .spa-content-container .col-8 > *:nth-child(n) {
+    animation-delay: 0s !important;
+  }
+}
+
+@keyframes reducedContentFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Navigation Active States for SPA */
+.button-link.active {
+  opacity: 1;
+  color: #27272a;
+  font-weight: 600;
+}
+
+body.night .button-link.active {
+  color: #fff;
+}
+
+/* Smooth scrolling for SPA navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading state for SPA */
+body.loading .spa-content-container {
+  opacity: 0;
+}
+
+body.spa-ready .spa-content-container {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+/* Enhanced mobile experience */
+@media (max-width: 780px) {
+  #nav {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  
+  .spa-content-container {
+    padding: 0 32px;
+  }
+  
+  .spa-content-container .col-8 {
+    padding: 0;
+  }
 }

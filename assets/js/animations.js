@@ -30,6 +30,8 @@ class AnimationSystem {
     }
   }
 
+
+
   // Update active navigation state
   updateActiveNavigation(newPath) {
     document.querySelectorAll('.button-link').forEach(link => {

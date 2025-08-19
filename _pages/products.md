@@ -4,11 +4,6 @@ title: • Products
 permalink: /products
 ---
 
-  <div class="col-8">
-    <span class="title">Products</span>
-    <span class="subtitle">A collection of iOS apps that I've designed and built over the years.</span>
-  </div>
-
 <section>
   <div class="col-8 gap-12">
     <a href="/products/approach" class="mb-24">

@@ -4,7 +4,7 @@ title: • Angellist
 permalink: /work/angellist
 ---
 
- <div class="col-8">
+ <div class="col-8 mb-24">
         <span class="title">AngelList</span>
         <span class="subtitle">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders.</span> 
     </div>

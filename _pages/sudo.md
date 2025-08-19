@@ -16,7 +16,7 @@ permalink: /products/sudo
     </div>
     
 <section>
-    <div class="col-8">
+    <div class="col-8 mb-24">
     <span class="title">About</span>
     <span class="subtitle">I built Sudo over the course of a week with the intention to deliver a simple, straightforward, and delightful way to play Sudoku.</span>
     </div>

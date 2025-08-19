@@ -3,11 +3,22 @@
 <head>
 	{% include head.html %}
 </head>
-<body class="{% if site.dark_mode %}night{% else %}day{% endif %}">
-  <div class="grid">
-    {% include header.html %}
-    {{ content }}
-  </div>
-  <script src="/js/script.js"></script>
+<body class="{% if site.dark_mode %}night{% else %}day{% endif %} loading">
+    {% include loading.html %}
+    
+    <div class="grid page-content">
+        {% include header.html %}
+        
+        <!-- SPA Content Container -->
+        <div id="spa-content" class="spa-content-container">
+            {{ content }}
+        </div>
+        
+        {% include footer.html %}
+    </div>
+    
+    <!-- Include Static Header SPA System -->
+    <script src="/js/static-header-spa.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

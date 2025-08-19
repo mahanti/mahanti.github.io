@@ -4,11 +4,6 @@ title: • Work
 permalink: /work
 ---
 
- <div class="col-8">
-    <span class="title">Work</span>
-    <span class="subtitle">Select professional work.</span>
-  </div>
-
 <section>
   <div class="col-8 gap-12">
     <a href="/work/angellist" class="mb-24">

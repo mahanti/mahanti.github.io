@@ -1,0 +1,930 @@
+// Single Page Application with Static Header and Smooth Content Transitions
+console.log('🚀 Static Header SPA script loaded!');
+
+class StaticHeaderSPA {
+  constructor() {
+    console.log('StaticHeaderSPA constructor called');
+    this.currentPage = null;
+    this.isTransitioning = false;
+    this.contentContainer = null;
+    this.header = null;
+    this.routes = {};
+    this.pageCache = new Map();
+    
+    // Define all routes
+    this.setupRoutes();
+    this.init();
+  }
+  
+  setupRoutes() {
+    this.routes = {
+      // Main pages
+      '/': 'home',
+      '/work': 'work',
+      '/work/': 'work',
+      '/products': 'products',
+      '/products/': 'products',
+      '/photos': 'photos',
+      '/photos/': 'photos',
+      '/about': 'about',
+      '/about/': 'about',
+      
+      // Work pages
+      '/work/block': 'work-block',
+      '/work/angellist': 'work-angellist',
+      '/work/square': 'work-square',
+      '/work/ando': 'work-ando',
+      '/work/sidecar': 'work-sidecar',
+      
+      // Product pages
+      '/products/approach': 'products-approach',
+      '/products/sudo': 'products-sudo',
+      '/products/circuit': 'products-circuit',
+      '/products/jot': 'products-jot',
+      '/products/terraforms': 'products-terraforms',
+      '/products/proto': 'products-proto',
+      
+      // Photo pages
+      '/photos/harvest': 'photos-harvest',
+      '/photos/pch': 'photos-pch'
+    };
+  }
+  
+  async init() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setupSPA());
+    } else {
+      this.setupSPA();
+    }
+    
+    // Also initialize carousel on first load
+    setTimeout(() => {
+      this.initializeCarousel();
+    }, 500);
+  }
+  
+  setupSPA() {
+    console.log('🚀 setupSPA called');
+    
+    // Find or create content container
+    this.contentContainer = document.querySelector('#spa-content');
+    if (!this.contentContainer) {
+      // Create content container after header
+      const header = document.querySelector('#nav');
+      const container = document.createElement('div');
+      container.id = 'spa-content';
+      container.className = 'spa-content-container';
+      
+      // Move existing content into SPA container
+      const existingContent = document.querySelector('.grid .col-8');
+      if (existingContent && existingContent.parentNode !== header) {
+        container.appendChild(existingContent.cloneNode(true));
+        existingContent.remove();
+      }
+      
+      // Insert after header
+      if (header && header.parentNode) {
+        header.parentNode.insertBefore(container, header.nextSibling);
+      }
+      
+      this.contentContainer = container;
+    }
+    
+    // Setup header as static
+    this.setupStaticHeader();
+    
+    // Setup navigation intercception
+    this.interceptNavigation();
+    
+    // Setup browser history
+    this.setupHistory();
+    
+    // Get current page from URL
+    const currentPath = window.location.pathname;
+    const detectedPage = this.routes[currentPath] || 'home';
+    
+    console.log('🔍 SPA Setup - Current Path:', currentPath);
+    console.log('🔍 SPA Setup - Detected Page:', detectedPage);
+    console.log('🔍 SPA Setup - Routes:', this.routes);
+    console.log('🔍 SPA Setup - Initial Content:', this.contentContainer?.innerHTML?.substring(0, 200) + '...');
+    
+    // If we're not on the home page, load the correct content immediately
+    if (detectedPage !== 'home' && currentPath !== '/') {
+      console.log('🔄 Loading correct page content for:', detectedPage);
+      this.currentPage = detectedPage;
+      // Load the correct page content without animation
+      this.transitionToPage(detectedPage, currentPath, false);
+    } else {
+      this.currentPage = detectedPage;
+      // Cache initial content only for home page
+      this.cacheCurrentContent();
+    }
+    
+    // Setup loading state
+    document.body.classList.remove('loading');
+    document.body.classList.add('spa-ready');
+    
+    // Hide loading screen if present
+    this.hideLoadingScreen();
+    
+    console.log('Static Header SPA initialized');
+  }
+  
+  setupStaticHeader() {
+    const header = document.querySelector('#nav.static-header');
+    if (header) {
+      // Header is already styled with CSS, just ensure it's setup
+      this.header = header;
+    }
+  }
+  
+  interceptNavigation() {
+    // Intercept all navigation links globally
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      
+      const href = link.getAttribute('href');
+      
+      // Handle all internal links (exclude external, anchors, and special protocols)
+      if (href && 
+          href.startsWith('/') && 
+          !href.includes('#') && 
+          !href.includes('mailto:') && 
+          !href.includes('tel:') &&
+          !link.hasAttribute('target') &&
+          !link.hasAttribute('download')) {
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Add special handling for logo clicks to home
+        if (link.classList.contains('logo-link') || href === '/') {
+          console.log('Logo/home navigation detected');
+        }
+        
+        this.navigateTo(href);
+      }
+    });
+  }
+  
+  setupHistory() {
+    window.addEventListener('popstate', (e) => {
+      const path = window.location.pathname;
+      this.navigateTo(path, false);
+    });
+  }
+  
+  async navigateTo(path, updateHistory = true) {
+    if (this.isTransitioning) return;
+    
+    // Check if we have a route for this path, or if it's a valid page
+    let pageId = this.routes[path];
+    
+    // If no exact route match, try to infer page ID from path
+    if (!pageId) {
+      pageId = this.inferPageId(path);
+    }
+    
+    // If still no page ID, allow default Jekyll navigation
+    if (!pageId) {
+      console.log(`No SPA route found for ${path}, using default navigation`);
+      window.location.href = path;
+      return;
+    }
+    
+    // Special handling for home page - always reload to ensure fresh content
+    if (path === '/' && pageId === 'home') {
+      // Clear home page cache to ensure fresh load
+      this.pageCache.delete('home');
+    }
+    
+    // Don't skip navigation if we're already on the page (except for home page which should always refresh)
+    if (pageId === this.currentPage && path === window.location.pathname && path !== '/') {
+      return;
+    }
+    
+    this.isTransitioning = true;
+    
+    try {
+      // Update browser history
+      if (updateHistory) {
+        history.pushState({ pageId, path }, '', path);
+      }
+      
+      // Update navigation state
+      this.updateNavigation(path);
+      
+      // Load and transition to new content
+      await this.transitionToPage(pageId, path);
+      
+      this.currentPage = pageId;
+      
+    } catch (error) {
+      console.error('Navigation error:', error);
+      // Fallback to default navigation
+      window.location.href = path;
+    } finally {
+      this.isTransitioning = false;
+    }
+  }
+  
+  inferPageId(path) {
+    // Try to infer page ID from path structure
+    if (path === '/') return 'home';
+    
+    // Remove leading slash and replace slashes with dashes
+    const pathParts = path.replace(/^\//, '').replace(/\/$/, '');
+    return pathParts.replace(/\//g, '-') || null;
+  }
+  
+  updateNavigation(currentPath) {
+    // Update active navigation states for both header and content nav
+    const navLinks = document.querySelectorAll('.button-link, nav a, .home-header nav a');
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath.startsWith(href) && href !== '/')) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    
+    // Update document title if possible
+    const pageTitle = this.getPageTitle(currentPath);
+    if (pageTitle) {
+      document.title = pageTitle;
+    }
+  }
+  
+  getPageTitle(path) {
+    const titleMap = {
+      '/': '• Home',
+      '/work': '• Work',
+      '/products': '', 
+      '/photos': '• Photos',
+      '/about': '• About',
+      '/work/block': '• Block',
+      '/work/angellist': '• AngelList',
+      '/work/square': '• Square',
+      '/work/ando': '• Ando',
+      '/work/sidecar': '• Sidecar',
+      '/products/approach': '• Approach',
+      '/products/sudo': '• Sudo',
+      '/products/circuit': '• Circuit',
+      '/products/jot': '• jot',
+      '/products/terraforms': '• Terraforms',
+      '/photos/harvest': '• Harvest',
+      '/photos/pch': '• Pacific Coast Highway'
+    };
+    
+    return titleMap[path];
+  }
+  
+  async transitionToPage(pageId, path, animate = true) {
+    if (animate) {
+      // Start exit animation
+      await this.animateContentOut();
+    }
+    
+    // Load new content
+    const content = await this.loadPageContent(pageId, path);
+    
+    // Update content
+    this.contentContainer.innerHTML = content;
+    
+    if (animate) {
+      // Start enter animation
+      await this.animateContentIn();
+      
+      // Reinitialize carousel after animation completes
+      setTimeout(() => {
+        this.initializeCarousel();
+      }, 100);
+      
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // No animation, just initialize carousel if needed
+      setTimeout(() => {
+        this.initializeCarousel();
+      }, 50);
+    }
+  }
+  
+  async animateContentOut() {
+    return new Promise(resolve => {
+      this.contentContainer.style.transition = 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+      this.contentContainer.style.opacity = '0';
+      this.contentContainer.style.transform = 'translateY(20px)';
+      this.contentContainer.style.filter = 'blur(4px)';
+      
+      setTimeout(resolve, 300);
+    });
+  }
+  
+  async animateContentIn() {
+    return new Promise(resolve => {
+      // Reset position for entrance
+      this.contentContainer.style.transform = 'translateY(20px)';
+      this.contentContainer.style.opacity = '0';
+      this.contentContainer.style.filter = 'blur(4px)';
+      
+      // Force reflow
+      this.contentContainer.offsetHeight;
+      
+      // Animate in
+      requestAnimationFrame(() => {
+        this.contentContainer.style.transition = 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        this.contentContainer.style.opacity = '1';
+        this.contentContainer.style.transform = 'translateY(0)';
+        this.contentContainer.style.filter = 'blur(0px)';
+        
+        setTimeout(() => {
+          // Clean up inline styles
+          this.contentContainer.style.transition = '';
+          this.contentContainer.style.transform = '';
+          this.contentContainer.style.filter = '';
+          resolve();
+        }, 400);
+      });
+    });
+  }
+  
+  async loadPageContent(pageId, path) {
+    // For home page, always try to load fresh content first
+    if (pageId === 'home' && path === '/') {
+      try {
+        const response = await fetch(path);
+        if (response.ok) {
+          const html = await response.text();
+          const content = this.extractContentFromHTML(html);
+          this.pageCache.set(pageId, content);
+          return content;
+        }
+      } catch (error) {
+        console.log('Failed to load fresh home content, using cache/fallback');
+      }
+    }
+    
+    // Check cache for non-home pages or if home page fetch failed
+    if (this.pageCache.has(pageId) && pageId !== 'home') {
+      return this.pageCache.get(pageId);
+    }
+    
+    try {
+      // Try to load from JSON API first
+      const response = await fetch(`/api/content/${pageId}.json`);
+      if (response.ok) {
+        const data = await response.json();
+        const content = this.renderPageFromData(data);
+        this.pageCache.set(pageId, content);
+        return content;
+      }
+    } catch (error) {
+      console.log('JSON API not available, using fallback');
+    }
+    
+    // Fallback: try to load the actual page and extract content
+    try {
+      let fetchPath = path;
+      
+      // Handle Jekyll's trailing slash redirects
+      if (!path.endsWith('/') && path !== '/') {
+        fetchPath = path + '/';
+      }
+      
+      const response = await fetch(fetchPath);
+      if (response.ok) {
+        const html = await response.text();
+        const content = this.extractContentFromHTML(html);
+        this.pageCache.set(pageId, content);
+        return content;
+      }
+      
+      // If that fails, try without trailing slash
+      if (fetchPath !== path) {
+        const response2 = await fetch(path);
+        if (response2.ok) {
+          const html = await response2.text();
+          const content = this.extractContentFromHTML(html);
+          this.pageCache.set(pageId, content);
+          return content;
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load page content:', error);
+    }
+    
+    // Final fallback: return placeholder
+    return this.getPlaceholderContent(pageId);
+  }
+  
+  extractContentFromHTML(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    
+    // First try to extract from SPA content container
+    const spaContent = doc.querySelector('#spa-content');
+    if (spaContent) {
+      return spaContent.innerHTML;
+    }
+    
+    // Fallback: Extract the main content (everything after header)
+    const content = doc.querySelector('.grid');
+    if (content) {
+      // Remove header from content
+      const header = content.querySelector('#nav');
+      if (header) {
+        header.remove();
+      }
+      
+      // Remove footer 
+      const footer = content.querySelector('footer');
+      if (footer) {
+        footer.remove();
+      }
+      
+      return content.innerHTML;
+    }
+    
+    return '<div class="col-8"><p>Content not found</p></div>';
+  }
+  
+  renderPageFromData(data) {
+    // Render page from JSON data structure
+    let html = `<div class="col-8">`;
+    
+    if (data.title) {
+      html += `<h1 class="title">${data.title}</h1>`;
+    }
+    
+    if (data.subtitle) {
+      html += `<p class="subtitle">${data.subtitle}</p>`;
+    }
+    
+    if (data.content) {
+      html += data.content;
+    }
+    
+    if (data.sections) {
+      data.sections.forEach(section => {
+        html += `<section class="mb-24">`;
+        if (section.title) {
+          html += `<h2 class="title">${section.title}</h2>`;
+        }
+        if (section.content) {
+          html += section.content;
+        }
+        html += `</section>`;
+      });
+    }
+    
+    html += `</div>`;
+    return html;
+  }
+  
+  getPlaceholderContent(pageId) {
+    const placeholders = {
+      'home': `
+        <div class="col-8">
+          <section class="mb-24">
+            <span class="title">Welcome</span>
+            <p class="subtitle">Designer and developer</p>
+          </section>
+        </div>
+      `,
+      'work': `
+        <div class="col-8">
+          <section class="mb-24">
+            <span class="title">Work</span>
+            <p class="subtitle">Selected projects and collaborations</p>
+          </section>
+        </div>
+      `,
+      'products': `
+        <div class="col-8">
+          <section class="mb-24">
+            <span class="title">Products</span>
+            <p class="subtitle">Apps and tools I've built</p>
+          </section>
+        </div>
+      `,
+      'photos': `
+        <div class="col-8">
+          <section class="mb-24">
+            <span class="title">Photography</span>
+            <p class="subtitle">Visual stories and moments</p>
+          </section>
+        </div>
+      `,
+      'about': `
+        <div class="col-8">
+          <section class="mb-24">
+            <span class="title">About</span>
+            <p class="subtitle">Designer and developer with a passion for creating beautiful, functional experiences.</p>
+          </section>
+        </div>
+      `
+    };
+    
+    return placeholders[pageId] || placeholders['home'];
+  }
+  
+  cacheCurrentContent() {
+    // Cache the initial page content
+    const currentContent = this.contentContainer?.innerHTML;
+    if (currentContent && this.currentPage) {
+      this.pageCache.set(this.currentPage, currentContent);
+    }
+  }
+  
+  hideLoadingScreen() {
+    // Hide the loading screen
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.classList.add('hidden');
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 300);
+    }
+  }
+  
+  initializeCarousel() {
+    // Check if carousel exists
+    const carouselContainer = document.querySelector('.carousel-container') || document.querySelector('#image-carousel');
+    const carouselSlide = document.querySelector('.carousel-slide');
+    
+    if (!carouselContainer || !carouselSlide) {
+      console.log('No carousel found to initialize');
+      return;
+    }
+    
+    console.log('Initializing enhanced carousel...', carouselContainer, carouselSlide);
+    
+    // Try enhanced version first, with fallback to simple version
+    try {
+      // Clean up any existing event listeners
+      const newContainer = carouselContainer.cloneNode(true);
+      const newSlide = newContainer.querySelector('.carousel-slide');
+      
+      if (carouselContainer.parentNode) {
+        carouselContainer.parentNode.replaceChild(newContainer, carouselContainer);
+        
+        // Set up carousel functionality with a small delay
+        setTimeout(() => {
+          this.setupCarousel(newContainer, newSlide);
+        }, 100);
+      }
+    } catch (error) {
+      console.error('Enhanced carousel failed, falling back to simple version:', error);
+      this.setupSimpleCarousel(carouselContainer, carouselSlide);
+    }
+  }
+  
+  setupCarousel(carouselContainer, carouselSlide) {
+    console.log('Setting up carousel with elements:', carouselContainer, carouselSlide);
+    
+    if (!carouselContainer || !carouselSlide) {
+      console.error('Carousel elements not found');
+      return;
+    }
+    
+    // Enhanced carousel with physics and rubberbanding
+    let currentTranslate = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let lastX = 0;
+    let velocity = 0;
+    let lastTime = 0;
+    let animationId = null;
+    let isHorizontalDrag = false;
+    
+    // Physics constants
+    const MOMENTUM_MULTIPLIER = 0.95;
+    const FRICTION = 0.95;
+    const RUBBER_BAND_STRENGTH = 0.3;
+    const MIN_VELOCITY = 0.5;
+    
+    // Calculate boundaries
+    function getBounds() {
+      const containerWidth = carouselContainer.offsetWidth;
+      const slideWidth = carouselSlide.scrollWidth;
+      const containerPaddingLeft = parseInt(getComputedStyle(carouselContainer).paddingLeft) || 0;
+      const containerPaddingRight = parseInt(getComputedStyle(carouselContainer).paddingRight) || 0;
+      const containerPadding = containerPaddingLeft + containerPaddingRight;
+      
+      const maxTranslate = 0;
+      const minTranslate = Math.min(0, -(slideWidth - containerWidth + containerPadding));
+      
+      console.log('Bounds:', { 
+        containerWidth, 
+        slideWidth, 
+        containerPadding, 
+        minTranslate, 
+        maxTranslate 
+      });
+      
+      return { min: minTranslate, max: maxTranslate, slideWidth, containerWidth };
+    }
+    
+    // Apply rubberbanding when past boundaries
+    function applyRubberBanding(translate) {
+      const bounds = getBounds();
+      
+      if (translate > bounds.max) {
+        const overflow = translate - bounds.max;
+        return bounds.max + (overflow * RUBBER_BAND_STRENGTH);
+      } else if (translate < bounds.min) {
+        const overflow = bounds.min - translate;
+        return bounds.min - (overflow * RUBBER_BAND_STRENGTH);
+      }
+      
+      return translate;
+    }
+    
+    // Smooth position update with transform3d
+    function updatePosition(translate = currentTranslate) {
+      const finalTranslate = applyRubberBanding(translate);
+      console.log('Setting transform to:', `translate3d(${finalTranslate}px, 0, 0)`);
+      
+      // Force the transform with important priority
+      carouselSlide.style.setProperty('transform', `translate3d(${finalTranslate}px, 0, 0)`, 'important');
+      carouselSlide.style.setProperty('opacity', '1', 'important');
+      carouselSlide.style.setProperty('filter', 'none', 'important');
+      carouselSlide.style.setProperty('animation', 'none', 'important');
+      
+      console.log('Final computed transform:', window.getComputedStyle(carouselSlide).transform);
+    }
+    
+    // Momentum animation with physics
+    function animateMomentum() {
+      if (!isDragging && Math.abs(velocity) > MIN_VELOCITY) {
+        currentTranslate += velocity;
+        velocity *= FRICTION;
+        
+        // Check boundaries and apply spring back
+        const bounds = getBounds();
+        if (currentTranslate > bounds.max || currentTranslate < bounds.min) {
+          velocity *= 0.8; // Reduce velocity when hitting boundaries
+          
+          // Spring back to bounds
+          if (currentTranslate > bounds.max) {
+            currentTranslate = lerp(currentTranslate, bounds.max, 0.1);
+          } else if (currentTranslate < bounds.min) {
+            currentTranslate = lerp(currentTranslate, bounds.min, 0.1);
+          }
+        }
+        
+        updatePosition();
+        animationId = requestAnimationFrame(animateMomentum);
+      } else if (!isDragging) {
+        // Final snap to boundaries if needed
+        const bounds = getBounds();
+        if (currentTranslate > bounds.max) {
+          snapToPosition(bounds.max);
+        } else if (currentTranslate < bounds.min) {
+          snapToPosition(bounds.min);
+        }
+      }
+    }
+    
+    // Linear interpolation helper
+    function lerp(start, end, factor) {
+      return start + (end - start) * factor;
+    }
+    
+    // Smooth snap to position
+    function snapToPosition(targetPosition) {
+      const startPosition = currentTranslate;
+      const distance = targetPosition - startPosition;
+      let startTime = null;
+      
+      function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / 300, 1); // 300ms animation
+        const easeOut = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+        
+        currentTranslate = startPosition + (distance * easeOut);
+        updatePosition();
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    function startDrag(e) {
+      console.log('Start drag event:', e.type);
+      isDragging = true;
+      const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+      const clientY = e.type === 'mousedown' ? e.clientY : e.touches[0].clientY;
+      startX = clientX;
+      startY = clientY;
+      lastX = clientX;
+      lastTime = Date.now();
+      velocity = 0;
+      isHorizontalDrag = false; // We'll determine this in the drag function
+      
+      // Cancel any ongoing momentum animation
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      
+      carouselContainer.classList.add('dragging');
+      carouselContainer.style.cursor = 'grabbing';
+      
+      // Don't prevent default yet - wait to see if it's horizontal
+    }
+    
+    function drag(e) {
+      if (!isDragging) return;
+      
+      const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+      const currentY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+      const currentTime = Date.now();
+      const deltaX = currentX - lastX;
+      const deltaY = currentY - startY;
+      const deltaTime = currentTime - lastTime;
+      
+      // Determine if this is a horizontal or vertical drag on first significant movement
+      if (!isHorizontalDrag && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+        const totalDeltaX = Math.abs(currentX - startX);
+        const totalDeltaY = Math.abs(currentY - startY);
+        
+        // If horizontal movement is dominant, it's a carousel drag
+        isHorizontalDrag = totalDeltaX > totalDeltaY && totalDeltaX > 10;
+        
+        // If it's not horizontal, stop dragging and allow normal scrolling
+        if (!isHorizontalDrag) {
+          endDrag();
+          return;
+        }
+      }
+      
+      // Only handle carousel dragging if it's confirmed horizontal
+      if (isHorizontalDrag) {
+        console.log('Dragging:', { currentX, deltaX, currentTranslate });
+        
+        // Calculate velocity for momentum
+        if (deltaTime > 0) {
+          velocity = deltaX / deltaTime * 16; // Normalize to 60fps
+        }
+        
+        currentTranslate += deltaX;
+        lastX = currentX;
+        lastTime = currentTime;
+        
+        updatePosition();
+        e.preventDefault();
+      }
+    }
+    
+    function endDrag() {
+      if (!isDragging) return;
+      
+      isDragging = false;
+      carouselContainer.classList.remove('dragging');
+      carouselContainer.style.cursor = 'grab';
+      
+      // Apply momentum with physics
+      velocity *= MOMENTUM_MULTIPLIER;
+      animateMomentum();
+    }
+    
+    // Wheel/trackpad support with momentum - only for horizontal scrolling
+    function handleWheel(e) {
+      // Only handle horizontal scrolling (Shift+wheel or trackpad horizontal)
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
+        e.preventDefault();
+        
+        const wheelDelta = -e.deltaX || (e.shiftKey ? -e.deltaY : 0);
+        currentTranslate += wheelDelta;
+        
+        // Cancel momentum animation
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+        
+        updatePosition();
+        
+        // Add some momentum for wheel scrolling
+        velocity = wheelDelta * 0.1;
+        setTimeout(() => {
+          if (!isDragging) {
+            animateMomentum();
+          }
+        }, 50);
+      }
+      // Allow vertical scrolling to pass through
+    }
+    
+    // Add event listeners
+    console.log('Adding event listeners to carousel container');
+    carouselContainer.addEventListener('mousedown', startDrag);
+    carouselContainer.addEventListener('mousemove', drag);
+    carouselContainer.addEventListener('mouseup', endDrag);
+    carouselContainer.addEventListener('mouseleave', endDrag);
+    carouselContainer.addEventListener('touchstart', startDrag, { passive: false });
+    carouselContainer.addEventListener('touchmove', drag, { passive: false });
+    carouselContainer.addEventListener('touchend', endDrag);
+    carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
+    
+    // Set initial cursor and position
+    carouselContainer.style.cursor = 'grab';
+    console.log('Carousel setup complete, calling initial updatePosition');
+    updatePosition();
+  }
+  
+  setupSimpleCarousel(carouselContainer, carouselSlide) {
+    console.log('Setting up simple carousel fallback');
+    
+    let currentTranslate = 0;
+    let isDragging = false;
+    let startX = 0;
+    
+    function updatePosition() {
+      carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+    }
+    
+    function startDrag(e) {
+      console.log('Simple carousel: start drag');
+      isDragging = true;
+      startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+      carouselContainer.style.cursor = 'grabbing';
+      e.preventDefault();
+    }
+    
+    function drag(e) {
+      if (!isDragging) return;
+      
+      const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+      const deltaX = currentX - startX;
+      currentTranslate += deltaX;
+      startX = currentX;
+      
+      updatePosition();
+      e.preventDefault();
+    }
+    
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      carouselContainer.style.cursor = 'grab';
+    }
+    
+    // Add event listeners
+    carouselContainer.addEventListener('mousedown', startDrag);
+    carouselContainer.addEventListener('mousemove', drag);
+    carouselContainer.addEventListener('mouseup', endDrag);
+    carouselContainer.addEventListener('mouseleave', endDrag);
+    carouselContainer.addEventListener('touchstart', startDrag, { passive: false });
+    carouselContainer.addEventListener('touchmove', drag, { passive: false });
+    carouselContainer.addEventListener('touchend', endDrag);
+    
+    // Set initial cursor
+    carouselContainer.style.cursor = 'grab';
+    updatePosition();
+  }
+}
+
+// Initialize the SPA
+function initializeSPA() {
+  console.log('initializeSPA called');
+  try {
+    if (!window.staticHeaderSPA) {
+      console.log('Creating new StaticHeaderSPA instance');
+      window.staticHeaderSPA = new StaticHeaderSPA();
+      console.log('SPA initialized successfully');
+    } else {
+      console.log('SPA already exists, trying to initialize carousel');
+      window.staticHeaderSPA.initializeCarousel();
+    }
+  } catch (error) {
+    console.error('Failed to initialize SPA:', error);
+  }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Small delay to ensure everything is loaded
+  setTimeout(initializeSPA, 100);
+});
+
+// Also initialize immediately if DOM is already ready
+if (document.readyState !== 'loading') {
+  setTimeout(initializeSPA, 100);
+}
+
+// Backup initialization after window load
+window.addEventListener('load', () => {
+  if (!window.staticHeaderSPA) {
+    setTimeout(initializeSPA, 50);
+  }
+});

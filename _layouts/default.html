@@ -8,9 +8,17 @@
     
     <div class="grid page-content">
         {% include header.html %}
-        {{ content }}
+        
+        <!-- SPA Content Container -->
+        <div id="spa-content" class="spa-content-container">
+            {{ content }}
+        </div>
+        
         {% include footer.html %}
     </div>
+    
+    <!-- Include Static Header SPA System -->
+    <script src="/js/static-header-spa.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

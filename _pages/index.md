@@ -4,6 +4,20 @@ title: • Home
 permalink: /
 ---
 
+<!-- Home Page Navigation Header -->
+<section class="home-header">
+  <div class="col-8">
+    <a href="{{ '/' | relative_url }}" id="name" class="title">{{ site.title }}</a>
+    <span class="subtitle hideable">{{ site.description }}</span>
+  </div>
+  <nav class="col-8" style="margin-top: 16px;">
+    <a href="/work" class="button-link">Work</a>
+    <a href="/products" class="button-link">Products</a>
+    <a href="/photos" class="button-link">Photos</a>
+    <a href="/about" class="button-link">About</a>
+  </nav>
+</section>
+
 <div class="carousel-wrapper mb-24">
   <div id="image-carousel" class="carousel-container">
     <div class="carousel-slide">

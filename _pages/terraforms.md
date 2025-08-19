@@ -4,13 +4,13 @@ title: • Terraforms
 permalink: /products/terraforms
 ---
 
- <div class="col-8">
+ <div class="col-8 mb-24">
         <span class="title white">Terraforms</span>
         <span class="subtitle white">On-chain land</span>
     </div>
     
 <section>
-    <div class="col-8">
+    <div class="col-8 mb-24">
         <span class="title">About</span>
         <span class="subtitle">Terraforms is an exteremely complex, beautiful, on-chain art project. This small utility was partially me trying to learn SwiftUI a bit more and partially a way to have a easy way to shuffle through all of the parcels. The majority of the product is a wrapper of the fantastic <a href="https://terraformexplorer.xyz/" target="_blank">Terraform Explorer</a> by <a href="https://twitter.com/el__ranye" target="_blank">@el_ranye.</a></span>
     </div>
