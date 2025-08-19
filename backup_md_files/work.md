@@ -5,7 +5,7 @@ permalink: /work
 ---
 
 <section>
-  <div class="col-8 gap-12">
+ <div class="col-8 gap-12">
     <a href="/work/angellist" class="mb-24">
       <img src="/img/work/angellist.jpg" loading="lazy">
       <span class="title color-al">AngelList</span>

@@ -1,10 +1,6 @@
 {
-  "title": "Work",
-  "subtitle": "Selected projects and collaborations",
-  "sections": [
-    {
-      "title": "",
-      "content": "<div class=\"mb-24\"><a href=\"/work/block\" class=\"interactive color-block\"><img src=\"/img/work/block.jpg\" alt=\"Block\"><span class=\"title\">Block</span><span class=\"subtitle\">Financial services platform</span></a></div><div class=\"mb-24\"><a href=\"/work/angellist\" class=\"interactive color-al\"><img src=\"/img/work/angellist.jpg\" alt=\"AngelList\"><span class=\"title\">AngelList</span><span class=\"subtitle\">Startup investing platform</span></a></div>"
-    }
-  ]
+  "title": "",
+  "layout": "default",
+  "content": "<section class=\"mb-24\">\n  <div class=\"col-8\">\n    <span class=\"title\">Work</span>\n    <span class=\"subtitle\">Selected projects and collaborations</span>\n  </div>\n</section>\n\n<section>\n  <div class=\"col-8 gap-12\">\n    <a href=\"/work/angellist\" class=\"mb-24\">\n      <img src=\"/img/work/angellist.jpg\" loading=\"lazy\">\n      <span class=\"title color-al\">AngelList</span>\n      <span class=\"subtitle color-al\">Principal Designer<br>2022 — 2023</span>\n    </a>\n    <a href=\"/work/square\" class=\"mb-24\">\n      <img src=\"/img/work/block.jpg\" loading=\"lazy\">\n      <span class=\"title color-sq\">Square</span>\n      <span class=\"subtitle color-sq\">Senior Product Designer<br>2017 — 2022</span>\n    </a>\n    <a href=\"/work/ando\" class=\"mb-24\">\n      <img src=\"/img/work/ando.jpg\" loading=\"lazy\">\n      <span class=\"title color-ando\">Ando</span>\n      <span class=\"subtitle color-ando\">Lead Designer<br>2016 — 2017</span>\n    </a>\n    <a href=\"/work/sidecar\">\n      <img src=\"/img/work/sidecar.jpg\" loading=\"lazy\">\n      <span class=\"title color-sidecar\">Sidecar</span>\n      <span class=\"subtitle color-sidecar\">Founding Designer<br>2012 — 2016</span>\n    </a>\n  </div>\n</section>",
+  "permalink": "/work"
 }

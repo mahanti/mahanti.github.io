@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: • Photos
+title: 
 permalink: /photos
 ---
 
