@@ -31,6 +31,38 @@ body {
   touch-action: manipulation;
 }
 
+/* --------------------------------- */
+/* Dark Mode Base Overrides */
+/* --------------------------------- */
+body.night {
+  background-color: #000;
+  color: #e5e5e5;
+}
+
+body.night h1,
+body.night h2,
+body.night h3,
+body.night h4,
+body.night h5,
+body.night h6 {
+  color: #fff;
+}
+
+body.night a {
+  color: #fff;
+}
+
+body.night p > a:hover,
+body.night ul > a:hover {
+  color: #a1a1aa;
+}
+
+body.night .text-large { color: #e5e5e5; }
+body.night .text-small { color: #a1a1aa; }
+body.night #name { color: #fff; }
+body.night .subtitle,
+body.night .caption { color: #a1a1aa; }
+
 *, a, body, html {
   touch-action: manipulation;
 }
@@ -187,6 +219,12 @@ body.night #nav.index-header {
   background: rgba(255,255,255,0.1);
 }
 
+/* Ensure callout looks correct in dark mode without adding extra class */
+body.night .callout {
+  background: rgba(255,255,255,0.08);
+  color: #e5e5e5;
+}
+
 .callout.clients {
 	width: 100%;
 	background: #DBEBFC;
@@ -315,6 +353,11 @@ body.night .button-link:hover,
 body.night .button-link.active {
   color: #fff;
 }
+
+/* Titles and common text utilities */
+body.night .title { color: #fff; }
+body.night .subtitle { color: #a1a1aa; }
+body.night .label { color: #a1a1aa; }
 
 /* --------------------------------- */
 /* Classic Cursor Styles */
