@@ -521,18 +521,15 @@ a {
 .carousel-slide .optimized-image {
   display: inline-block;
   width: 600px;
-  height: 400px;
+  height: auto;
   margin-right: 8px;
   scroll-snap-align: start;
   pointer-events: none; /* Prevent image dragging */
-  object-fit: cover;
-  object-position: center;
 }
 
 .carousel-slide .optimized-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .carousel-slide img:last-child {
@@ -838,136 +835,65 @@ img {
 
 /* RESPOND */
 
-/* iPads (portrait and landscape) ----------- */
+/* ================================ */
+/* Mobile & Tablet Responsive */
+/* ================================ */
 
 @media (max-width: 780px) {
-  body {
-    transition: .15s;
-    overflow-x: hidden;
+  /* Add 24px padding to main containers */
+  .container,
+  .spa-content-container {
+    padding: 0 24px;
   }
-
-  .container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 32px; 
-  }
-
+  
+  /* Navigation also gets 24px padding */
   #nav {
-    padding: 0px 20px;
-    margin: 0 auto;
+    padding: 0 24px;
   }
-
-  .section {
-    padding: 0px 40px;
-    box-sizing: border-box;
+  
+  /* Ensure nav content doesn't double-pad */
+  #nav > * {
+    padding: 0;
   }
-
-  .column {
-    width: calc(50% - 12px);
+  
+  /* Carousel edge-to-edge with proper padding */
+  .carousel-wrapper {
+    margin-left: -24px;
+    margin-right: -24px;
   }
-
-  .one-third {
-    width: calc(40% - 12px);
-   }
-
-  .two-third {
-    width: calc(60% - 12px);
+  
+  .carousel-container {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 40px;
   }
-
+  
   .carousel-slide img,
   .carousel-slide .optimized-image {
-    width: 400px;
+    width: 300px;
     height: auto;
     margin-right: 8px;
-  }
-
-  .carousel-container {
-    padding-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-@media only screen and (max-width: 780px) {
-  .container {
-    padding: 32px;
-  }
-  section {
-    padding: 16px;
-  }
-  header {
-    padding: 16px 0;
+    max-height: 200px;
+    object-fit: cover;
   }
   
-  .nav-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .text-section {
-    margin-bottom: 0px;
-    max-width: 100%;
-  }
-
-  .button-section {
-    width: 100%;
-    justify-content: flex-start;
-  }
-  
+  /* Mobile navigation - keep horizontal */
   nav {
-    width: auto !important;
-    justify-content: flex-start !important;
-    gap: 24px !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
   }
-
+  
   .button-link {
-    text-align: left;
-    padding: 12px 0 !important;
-    font-size: 14px !important;
-  }
-}
-
-@media (max-width: 780px) {
-  body {
-    margin: 0px; /* Remove top margin for mobile/tablet */
-  }
-  
-  .carousel-container {
-    padding-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  .nav-row {
-    gap: 20px;
-    align-items: flex-start;
-  }
-  
-  .text-section {
-    max-width: 100%;
-  }
-  
-  nav {
-    padding-left: 0;
-    padding-right: 0;
-    width: auto !important;
-    justify-content: flex-start !important;
-    gap: 24px !important;
-  }
-
-  .button-link {
+    padding: 12px 0;
     font-size: 14px;
   }
   
-  /* Mobile/tablet image border radius */
+  /* Mobile image styling */
   img,
   .optimized-image img {
-    border-radius: 20px !important;
+    border-radius: 20px;
   }
 }
 
@@ -1415,17 +1341,7 @@ body.night .button-link::after {
   display: block;
 }
 
-// Responsive - keep single column on all screen sizes
-@media (max-width: 900px) {
-  .grid {
-    padding: 32px;
-  }
-}
-@media (max-width: 600px) {
-  .grid {
-    padding: 32px;
-  }
-}
+/* Grid uses same container system as everything else */
 
 // Spacing utilities - simplified for single column
 .mb-8 { margin-bottom: 8px !important; }
@@ -1820,15 +1736,14 @@ body.spa-ready .spa-content-container {
   transition: opacity 0.4s ease-out;
 }
 
-/* Enhanced mobile experience */
+/* Mobile SPA consistency - uses 24px padding */
 @media (max-width: 780px) {
   #nav {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 0 24px;
   }
   
   .spa-content-container {
-    padding: 0 32px;
+    padding: 0 24px;
   }
   
   .spa-content-container .col-8 {

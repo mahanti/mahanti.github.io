@@ -181,9 +181,18 @@ h6 { letter-spacing: 0; }
   h1, h2, h3, h4, h5, h6 { font-size: 16px; }
 }
 
-/* Old layout classes - removed in favor of grid system */
+/* Layout classes simplified for single column */
 .text-section, .button-section, .nav-container, .nav-row {
-  display: none !important;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Standard content spacing */
+.container > * + *,
+.spa-content-container > * + * {
+  margin-top: 24px;
 }
 
 .row .title, .text-object .subtitle {
@@ -521,18 +530,15 @@ a {
 .carousel-slide .optimized-image {
   display: inline-block;
   width: 600px;
-  height: 400px;
+  height: auto;
   margin-right: 8px;
   scroll-snap-align: start;
   pointer-events: none; /* Prevent image dragging */
-  object-fit: cover;
-  object-position: center;
 }
 
 .carousel-slide .optimized-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .carousel-slide img:last-child {
@@ -588,12 +594,20 @@ form {
 
 
 
-.container {
+/* ================================================= */
+/* SIMPLIFIED LAYOUT SYSTEM - Single Column Website */
+/* ================================================= */
+
+/* Main layout container - simple and consistent */
+.container,
+.spa-content-container {
+  width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  width: 100%;
   padding: 0;
   box-sizing: border-box;
+  
+  /* Keep existing animations */
   transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1),
               filter 0.6s cubic-bezier(0.4,0,0.2,1),
               transform 0.6s cubic-bezier(0.4,0,0.2,1);
@@ -602,18 +616,38 @@ form {
   transform: translateY(0);
 }
 
-body.day section {
+/* Navigation container - simplified */
+#nav {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#nav > * {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Simplified section spacing */
+section, .section {
+  margin-bottom: 24px;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body.night section {
-  padding: 24px 0px;
-  box-sizing: border-box;
+section:last-child, .section:last-child {
+  margin-bottom: 0;
 }
 
-/* Old layout classes - removed in favor of grid system */
-.two-column, .column, .one-third, .two-third {
-  display: none !important;
+/* Simplified column system - everything is full width */
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8,
+.grid, .row, .column, .one-third, .two-third, .two-column {
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .preview {
@@ -836,138 +870,65 @@ img {
   animation-name: fadeInUp;
 }
 
-/* RESPOND */
-
-/* iPads (portrait and landscape) ----------- */
+/* ================================ */
+/* Mobile & Tablet Responsive */
+/* ================================ */
 
 @media (max-width: 780px) {
-  body {
-    transition: .15s;
-    overflow-x: hidden;
+  /* Add 24px padding to main containers */
+  .container,
+  .spa-content-container {
+    padding: 0 24px;
   }
-
-  .container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 32px; 
-  }
-
+  
+  /* Navigation also gets 24px padding */
   #nav {
-    padding: 0px 20px;
-    margin: 0 auto;
+    padding: 0 24px;
   }
-
-  .section {
-    padding: 0px 40px;
-    box-sizing: border-box;
+  
+  /* Ensure nav content doesn't double-pad */
+  #nav > * {
+    padding: 0;
   }
-
-  .column {
-    width: calc(50% - 12px);
+  
+  /* Carousel edge-to-edge with proper padding */
+  .carousel-wrapper {
+    margin-left: -24px;
+    margin-right: -24px;
   }
-
-  .one-third {
-    width: calc(40% - 12px);
-   }
-
-  .two-third {
-    width: calc(60% - 12px);
+  
+  .carousel-container {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 40px;
   }
-
+  
   .carousel-slide img,
   .carousel-slide .optimized-image {
-    width: 400px;
+    width: 300px;
     height: auto;
     margin-right: 8px;
-  }
-
-  .carousel-container {
-    padding-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-@media only screen and (max-width: 780px) {
-  .container {
-    padding: 32px;
-  }
-  section {
-    padding: 16px;
-  }
-  header {
-    padding: 16px 0;
+    max-height: 200px;
+    object-fit: cover;
   }
   
-  .nav-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .text-section {
-    margin-bottom: 0px;
-    max-width: 100%;
-  }
-
-  .button-section {
-    width: 100%;
-    justify-content: flex-start;
-  }
-  
+  /* Mobile navigation - keep horizontal */
   nav {
-    width: auto !important;
-    justify-content: flex-start !important;
-    gap: 24px !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
   }
-
+  
   .button-link {
-    text-align: left;
-    padding: 12px 0 !important;
-    font-size: 14px !important;
-  }
-}
-
-@media (max-width: 780px) {
-  body {
-    margin: 0px; /* Remove top margin for mobile/tablet */
-  }
-  
-  .carousel-container {
-    padding-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  .nav-row {
-    gap: 20px;
-    align-items: flex-start;
-  }
-  
-  .text-section {
-    max-width: 100%;
-  }
-  
-  nav {
-    padding-left: 0;
-    padding-right: 0;
-    width: auto !important;
-    justify-content: flex-start !important;
-    gap: 24px !important;
-  }
-
-  .button-link {
+    padding: 12px 0;
     font-size: 14px;
   }
   
-  /* Mobile/tablet image border radius */
+  /* Mobile image styling */
   img,
   .optimized-image img {
-    border-radius: 20px !important;
+    border-radius: 20px;
   }
 }
 
@@ -1367,13 +1328,7 @@ body.night .button-link::after {
   margin-top: 0 !important;
 }
 
-/* Responsive: adjust header for mobile */
-@media (max-width: 600px) {
-  #nav {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
+/* Responsive: adjust header for mobile - handled by main mobile styles above */
 
 /* Smooth header transitions */
 #nav {
@@ -1395,86 +1350,32 @@ body.night .button-link::after {
   }
 }
 
-/* ------------------------------- */
-/* Single Column Layout (640px) */
-/* ------------------------------- */
+/* ================================ */
+/* Navigation System */
+/* ================================ */
 
-// Grid container - simplified to single column
-.grid {
-  display: block;
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
+nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
   padding: 0;
-  box-sizing: border-box;
+  margin: 0;
 }
 
-// All columns now span full width
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 {
-  width: 100%;
-  display: block;
-}
+/* ================================ */
+/* Spacing Utilities */
+/* ================================ */
 
-// Responsive - keep single column on all screen sizes
-@media (max-width: 900px) {
-  .grid {
-    padding: 32px;
-  }
-}
-@media (max-width: 600px) {
-  .grid {
-    padding: 32px;
-  }
-}
+/* Simple margin utilities */
+.mb-8 { margin-bottom: 8px; }
+.mb-24 { margin-bottom: 24px; }
 
-// Spacing utilities - simplified for single column
-.mb-8 { margin-bottom: 8px !important; }
-.mb-24 { margin-bottom: 24px !important; }
-.gap-12 { margin-bottom: 12px !important; }
-.gap-24 { margin-bottom: 24px !important; }
+/* Gap utilities for content spacing */
+.gap-12 > * + * { margin-top: 12px; }
+.gap-24 > * + * { margin-top: 24px; }
 
-// Section spacing - simplified
-section, .section {
-  margin-bottom: 24px;
-}
-
-// Remove old layout classes
-.two-column, .column, .one-third, .two-third, .row {
-  display: none !important;
-}
-
-// Remove custom paddings/margins from old layout classes
-.text-section, .button-section, .nav-container, .nav-row {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-// Utility: force no extra margin on last child
-*:last-child { margin-bottom: 0 !important; }
-
-// 12px vertical spacing between links in work and product sections
-.col-8.gap-12 > * + * {
-  margin-top: 20px;
-}
-
-.col-8.gap-12 > a {
-  display: block;
-  margin-bottom: 20px;
-}
-.col-8.gap-12 > a:last-child {
-  margin-bottom: 0;
-}
-.col-8.gap-12 img {
-  display: block;
-  margin-bottom: 8px;
-}
-
-section {
-  margin-bottom: 24px;
-}
-section:last-child {
-  margin-bottom: 0;
-}
+/* Clean last child margins */
+*:last-child { margin-bottom: 0; }
 
 /* Base text styles */
 body, p {
@@ -1606,9 +1507,7 @@ body.night #nav.static-header .header-home-content .subtitle {
   color: #a1a1aa; /* zinc-400 */
 }
 
-#nav.static-header .header-home-content .header-nav {
-  /* Inherits animation from parent container */
-}
+/* .header-nav inherits animation from parent container - no additional styles needed */
 
 .home-header #name {
   font-size: 16px;
@@ -1636,7 +1535,7 @@ body.night .home-header .subtitle {
   color: #a1a1aa; /* zinc-400 */
 }
 
-/* SPA Content Container */
+/* SPA Content Container - matches main container system */
 .spa-content-container {
   width: 100%;
   max-width: 640px;
@@ -1820,18 +1719,4 @@ body.spa-ready .spa-content-container {
   transition: opacity 0.4s ease-out;
 }
 
-/* Enhanced mobile experience */
-@media (max-width: 780px) {
-  #nav {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-  
-  .spa-content-container {
-    padding: 0 32px;
-  }
-  
-  .spa-content-container .col-8 {
-    padding: 0;
-  }
-}
+/* Mobile SPA consistency - handled by main mobile styles above */
