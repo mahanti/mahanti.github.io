@@ -68,23 +68,59 @@
   </script>
 </head>
 <body class="day loading">
-    <!-- Loading indicator -->
-    <div id="loading-container" class="loading-indicator">
-      <div class="loading-spinner"></div>
-    </div>
+
+    
+    <script>
+    // Remove loading class immediately when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.remove('loading');
+      document.body.classList.add('spa-ready');
+    });
+    
+    // Fallback in case DOMContentLoaded already fired
+    if (document.readyState !== 'loading') {
+      document.body.classList.remove('loading');
+      document.body.classList.add('spa-ready');
+    }
+    </script>
+    
+    <style>
+    body.loading #nav .header-home-content {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    body.spa-ready #nav .header-home-content {
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.4s ease;
+    }
+    </style>
     
     <div class="grid page-content">
-        <!-- Static Header - Logo Only -->
+        <!-- Static Header with Navigation -->
         <header id="nav" class="static-header">
             <div class="col-8">
-              <a href="/" class="logo-link">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="site-logo">
-                  <rect width="24" height="24" rx="6" fill="var(--surface-10)" opacity="0.4"/>
-                  <g opacity="0.6">
-                    <path d="M18.1304 14.798L14.8701 9.34082M12.2914 14.798L9.03112 9.34082L5.86968 14.798" stroke="var(--text-base)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                </svg>
-              </a>
+              <div class="header-top">
+                <a href="/" class="logo-link">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="site-logo">
+                    <rect width="24" height="24" rx="6" fill="var(--surface-10)" opacity="0.4"/>
+                    <g opacity="0.6">
+                      <path d="M18.1304 14.798L14.8701 9.34082M12.2914 14.798L9.03112 9.34082L5.86968 14.798" stroke="var(--text-base)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+              <div class="header-home-content">
+                <a href="/" id="name" class="title">Arjun Mahanti</a>
+                <span class="subtitle hideable">Designer and developer</span>
+                <nav class="header-nav" style="margin-top: 16px;">
+                  <a href="/work" class="button-link">Work</a>
+                  <a href="/products" class="button-link">Products</a>
+                  <a href="/photos" class="button-link">Photos</a>
+                  <a href="/about" class="button-link">About</a>
+                </nav>
+              </div>
             </div>
         </header>
         
