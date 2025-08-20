@@ -254,7 +254,6 @@ body.day .logo-link:hover {
   width: 100%;
   background: transparent;
   margin-top: 96px;
-  padding-bottom: 24px;
 }
 
 /* Only show border-bottom on index page */
@@ -1500,20 +1499,115 @@ body, p {
 
 /* Static Header Styles - Logo Only */
 #nav.static-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: inherit;
+  position: relative;
   width: 100%;
   box-sizing: border-box;
-  transition: none !important;
-  transform: none !important;
-  padding-bottom: 24px; /* Reduced padding since no nav */
 }
 
 /* Home Page Header Styles */
 .home-header {
   margin-bottom: 0px;
+}
+
+/* Static header should match SPA content width */
+#nav.static-header .col-8 {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header structure */
+#nav.static-header .header-top {
+  margin-bottom: 8px;
+}
+
+/* On non-home pages, add more space after logo */
+body:not(.home-page) #nav.static-header .header-top {
+  margin-bottom: 96px;
+}
+
+/* Header home content - matches main content animation system */
+#nav.static-header .header-home-content {
+  display: none; /* Hidden by default on non-home pages */
+}
+
+/* Show on home page only */
+body.home-page #nav.static-header .header-home-content {
+  display: block;
+}
+
+/* Individual header elements - use same animation as content */
+#nav.static-header .header-home-content #name,
+#nav.static-header .header-home-content .subtitle,
+#nav.static-header .header-home-content .header-nav {
+  opacity: 0;
+  transform: translateY(15px);
+  filter: blur(2px);
+  animation: contentFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: opacity, transform, filter;
+  backface-visibility: hidden;
+}
+
+/* Staggered delays - header animates FIRST, before content */
+body.home-page #nav.static-header .header-home-content #name {
+  animation-delay: 0s; /* First to animate */
+}
+
+body.home-page #nav.static-header .header-home-content .subtitle {
+  animation-delay: 0.02s; /* Second */
+}
+
+body.home-page #nav.static-header .header-home-content .header-nav {
+  animation-delay: 0.04s; /* Third */
+}
+
+/* Exit animation - when leaving home page */
+body:not(.home-page) #nav.static-header .header-home-content #name,
+body:not(.home-page) #nav.static-header .header-home-content .subtitle,
+body:not(.home-page) #nav.static-header .header-home-content .header-nav {
+  opacity: 0;
+  transform: translateY(-15px);
+  filter: blur(2px);
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+/* Header home content styling - inherit animations from parent */
+#nav.static-header .header-home-content #name {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  color: #27272a; /* zinc-800 */
+  text-decoration: none;
+  display: block;
+}
+
+body.night #nav.static-header .header-home-content #name {
+  color: #fff;
+}
+
+#nav.static-header .header-home-content .subtitle {
+  font-size: 14px;
+  color: #71717a; /* zinc-500 */
+  width: 100%;
+  line-height: 1.4;
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+body.night #nav.static-header .header-home-content .subtitle {
+  color: #a1a1aa; /* zinc-400 */
+}
+
+#nav.static-header .header-home-content .header-nav {
+  /* Inherits animation from parent container */
 }
 
 .home-header #name {
@@ -1564,12 +1658,7 @@ body.spa-ready {
   overflow-x: hidden;
 }
 
-body.spa-ready #nav.static-header {
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
+/* SPA ready state - no special header styling needed */
 
 /* Content Transition States */
 .content-transitioning {
@@ -1659,14 +1748,15 @@ body.spa-ready #nav.static-header {
   cursor: grabbing !important;
 }
 
-.spa-content-container .col-8 > *:nth-child(1) { animation-delay: 0.05s; }
-.spa-content-container .col-8 > *:nth-child(2) { animation-delay: 0.1s; }
-.spa-content-container .col-8 > *:nth-child(3) { animation-delay: 0.15s; }
-.spa-content-container .col-8 > *:nth-child(4) { animation-delay: 0.2s; }
-.spa-content-container .col-8 > *:nth-child(5) { animation-delay: 0.25s; }
-.spa-content-container .col-8 > *:nth-child(6) { animation-delay: 0.3s; }
-.spa-content-container .col-8 > *:nth-child(7) { animation-delay: 0.35s; }
-.spa-content-container .col-8 > *:nth-child(8) { animation-delay: 0.4s; }
+/* Content animates AFTER header (which finishes at ~0.04s + 0.6s duration) */
+.spa-content-container .col-8 > *:nth-child(1) { animation-delay: 0.1s; }
+.spa-content-container .col-8 > *:nth-child(2) { animation-delay: 0.15s; }
+.spa-content-container .col-8 > *:nth-child(3) { animation-delay: 0.2s; }
+.spa-content-container .col-8 > *:nth-child(4) { animation-delay: 0.25s; }
+.spa-content-container .col-8 > *:nth-child(5) { animation-delay: 0.3s; }
+.spa-content-container .col-8 > *:nth-child(6) { animation-delay: 0.35s; }
+.spa-content-container .col-8 > *:nth-child(7) { animation-delay: 0.4s; }
+.spa-content-container .col-8 > *:nth-child(8) { animation-delay: 0.45s; }
 
 @keyframes contentFadeIn {
   to {

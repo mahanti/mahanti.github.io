@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arjun Mahanti</title>
+  <meta name="description" content="A multidisciplinary designer building delightful solutions to complex problems.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/js/min.script.js"></script>
+  <script src="/js/medium-zoom.min.js"></script>
+  <script>
+    (function() {
+      var hasStarted = false;
+      function applyThemeForNow(now) {
+        // Dark from 7:00pm to 6:59:59am, Light from 7:00am to 6:59:59pm
+        var hours = now.getHours();
+        var isNight = (hours >= 19 || hours < 7);
+        var body = document.body;
+        if (!body) return;
+        body.classList.remove('day', 'night');
+        body.classList.add(isNight ? 'night' : 'day');
+      }
+
+      function msUntilNextSwitch(now) {
+        // Next switch at 7:00am or 7:00pm local time
+        var next = new Date(now);
+        var hours = now.getHours();
+        if (hours < 7) {
+          next.setHours(7,0,0,0);
+        } else if (hours < 19) {
+          next.setHours(19,0,0,0);
+        } else {
+          // after 19:00 → next is tomorrow 07:00
+          next.setDate(next.getDate() + 1);
+          next.setHours(7,0,0,0);
+        }
+        return Math.max(0, next.getTime() - now.getTime());
+      }
+
+      function schedule() {
+        var now = new Date();
+        applyThemeForNow(now);
+        var delay = msUntilNextSwitch(now);
+        if (delay === 0) {
+          // Edge case: exactly at boundary, re-evaluate shortly
+          delay = 1000;
+        }
+        setTimeout(schedule, delay);
+      }
+
+      function start() {
+        if (hasStarted) return;
+        hasStarted = true;
+        // If body is already available, apply immediately
+        if (document.body) {
+          applyThemeForNow(new Date());
+        }
+        schedule();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+      } else {
+        start();
+      }
+      window.addEventListener('load', start);
+    })();
+  </script>
+</head>
+<body class="day loading">
+    <!-- Loading indicator -->
+    <div id="loading-container" class="loading-indicator">
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <div class="grid page-content">
+        <!-- Static Header - Logo Only -->
+        <header id="nav" class="static-header">
+            <div class="col-8">
+              <a href="/" class="logo-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="site-logo">
+                  <rect width="24" height="24" rx="6" fill="var(--surface-10)" opacity="0.4"/>
+                  <g opacity="0.6">
+                    <path d="M18.1304 14.798L14.8701 9.34082M12.2914 14.798L9.03112 9.34082L5.86968 14.798" stroke="var(--text-base)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </svg>
+              </a>
+            </div>
+        </header>
+        
+        <!-- SPA Content Container -->
+        <div id="spa-content" class="spa-content-container">
+            <!-- Content loads here from api/content/*.json -->
+            <div class="loading-placeholder">
+                <div class="col-8">
+                    <span class="title">Loading...</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="col-8">
+                <span class="subtitle">© 2024 Arjun Mahanti</span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- SPA System - Loads content from api/content/ -->
+    <script src="/js/static-header-spa.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

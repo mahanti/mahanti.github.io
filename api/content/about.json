@@ -1,6 +1,14 @@
 {
   "title": "",
   "layout": "default",
-  "content": "<section>\n    <img src=\"/img/about/about@2x.png\" loading=\"lazy\" data-zoomable> \n    <div class=\"col-8\">\n    <span class=\"title\">About</span>\n    <span class=\"subtitle\">I'll write this someday. Until then, I'm online: <br><br> <a href=\"https://twitter.com/0xmahanti\" target=\"_blank\">Twitter(?)</a><br><br><a href=\"https://instagram.com/mahanti\">Instagram</a><br><br><a href=\"mailto:arjun.mahanti@gmail.com\">Email</a></span>\n    </div>\n</section>",
+  "content": [
+    "<section class=\"mt-48\">",
+    "  <img src=\"/img/about/about@2x.png\" loading=\"lazy\" data-zoomable>",
+    "  <div class=\"col-8\">",
+    "    <span class=\"title\">About</span>",
+    "    <span class=\"subtitle\">I'll write this someday. Until then, I'm online: <br><br> <a href=\"https://twitter.com/0xmahanti\" target=\"_blank\">Twitter(?)</a><br><br><a href=\"https://instagram.com/mahanti\">Instagram</a><br><br><a href=\"mailto:arjun.mahanti@gmail.com\">Email</a></span>",
+    "  </div>",
+    "</section>"
+  ],
   "permalink": "/about"
 }

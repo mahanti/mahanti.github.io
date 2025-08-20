@@ -1,6 +1,21 @@
 {
   "title": "• Angellist",
   "layout": "default",
-  "content": "<section class=\"mb-24\">\n    <div class=\"col-8\">\n        <span class=\"title\">About</span>\n        <span class=\"subtitle\">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders.</span> \n    </div>\n    <div class=\"col-8\">\n        <div class=\"callout\">\n            <span>💼 This case study is a work in progress. </span>\n        </div>\n    </div>\n</section>\n\n<section>\n    <div class=\"col-8 gap-12\">\n        <img src=\"/img/work/angellist/05@2x.png\" loading=\"lazy\" data-zoomable>\n        <img src=\"/img/work/angellist/06@2x.png\" loading=\"lazy\" data-zoomable>\n        <img src=\"/img/work/angellist/01@2x.png\" loading=\"lazy\" data-zoomable> \n        <img src=\"/img/work/angellist/03@2x.png\" loading=\"lazy\" data-zoomable>\n    </div>\n</section>",
+  "content": [
+    "<section class=\"mb-24\">",
+    "  <div class=\"col-8\">",
+    "    <span class=\"title\">About</span>",
+    "      <span class=\"subtitle\">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders.</span>",
+    "      </div>",
+    "      </section>",
+    "      <section>",
+    "        <div class=\"col-8 gap-12\">",
+    "          <img src=\"/img/work/angellist/05@2x.png\" loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/06@2x.png\" loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/01@2x.png\" loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/03@2x.png\" loading=\"lazy\" data-zoomable>",
+    "        </div>",
+    "      </section>"
+  ],
   "permalink": "/work/angellist"
 }

@@ -19,8 +19,9 @@ class StaticHeaderSPA {
   setupRoutes() {
     this.routes = {
       // Main pages
-      '/': 'home',
+      '/': 'index',
       '/work': 'work',
+      '/work-gallery': 'work-gallery',
       '/work/': 'work',
       '/products': 'products',
       '/products/': 'products',
@@ -30,23 +31,23 @@ class StaticHeaderSPA {
       '/about/': 'about',
       
       // Work pages
-      '/work/block': 'work-block',
-      '/work/angellist': 'work-angellist',
-      '/work/square': 'work-square',
-      '/work/ando': 'work-ando',
-      '/work/sidecar': 'work-sidecar',
+      '/work/block': 'block',
+      '/work/angellist': 'angellist',
+      '/work/square': 'square',
+      '/work/ando': 'ando',
+      '/work/sidecar': 'sidecar',
       
       // Product pages
-      '/products/approach': 'products-approach',
-      '/products/sudo': 'products-sudo',
-      '/products/circuit': 'products-circuit',
-      '/products/jot': 'products-jot',
-      '/products/terraforms': 'products-terraforms',
-      '/products/proto': 'products-proto',
+      '/products/approach': 'approach',
+      '/products/sudo': 'sudo',
+      '/products/circuit': 'circuit',
+      '/products/jot': 'jot',
+      '/products/terraforms': 'terraforms',
+      '/products/proto': 'proto',
       
       // Photo pages
-      '/photos/harvest': 'photos-harvest',
-      '/photos/pch': 'photos-pch'
+      '/photos/harvest': 'harvest',
+      '/photos/pch': 'pch'
     };
   }
   
@@ -110,16 +111,17 @@ class StaticHeaderSPA {
     console.log('🔍 SPA Setup - Routes:', this.routes);
     console.log('🔍 SPA Setup - Initial Content:', this.contentContainer?.innerHTML?.substring(0, 200) + '...');
     
-    // If we're not on the home page, load the correct content immediately
+    // Load the correct content for any page, including home
     if (detectedPage !== 'home' && currentPath !== '/') {
       console.log('🔄 Loading correct page content for:', detectedPage);
       this.currentPage = detectedPage;
       // Load the correct page content without animation
       this.transitionToPage(detectedPage, currentPath, false);
     } else {
+      console.log('🔄 Loading home page content from API');
       this.currentPage = detectedPage;
-      // Cache initial content only for home page
-      this.cacheCurrentContent();
+      // Load home page content from API instead of caching placeholder
+      this.transitionToPage('index', '/', false);
     }
     
     // Setup loading state
@@ -295,6 +297,9 @@ class StaticHeaderSPA {
     // Update content
     this.contentContainer.innerHTML = content;
     
+    // Update body class for page-specific styling
+    this.updateBodyClass(pageId);
+    
     // Initialize medium-zoom for new content
     this.initializeMediumZoom();
     
@@ -373,8 +378,15 @@ class StaticHeaderSPA {
     }
     
     // Check cache for non-home pages or if home page fetch failed
-    if (this.pageCache.has(pageId) && pageId !== 'home') {
+    // Skip cache if we're in development mode (localhost:4000)
+    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (this.pageCache.has(pageId) && pageId !== 'home' && !isDevelopment) {
+      console.log(`📦 Loading ${pageId} from cache`);
       return this.pageCache.get(pageId);
+    }
+    
+    if (isDevelopment && this.pageCache.has(pageId)) {
+      console.log(`🔄 Development mode: bypassing cache for ${pageId}`);
     }
     
     try {
@@ -457,19 +469,16 @@ class StaticHeaderSPA {
   }
   
   renderPageFromData(data) {
-    // Render page from JSON data structure
-    let html = `<div class="col-8">`;
-    
-    if (data.title) {
-      html += `<h1 class="title">${data.title}</h1>`;
-    }
-    
-    if (data.subtitle) {
-      html += `<p class="subtitle">${data.subtitle}</p>`;
-    }
+    // Render page from JSON data structure - titles are handled separately
+    let html = '';
     
     if (data.content) {
-      html += data.content;
+      // Handle content as string or array
+      if (Array.isArray(data.content)) {
+        html += data.content.join('\n');
+      } else {
+        html += data.content;
+      }
     }
     
     if (data.sections) {
@@ -485,8 +494,25 @@ class StaticHeaderSPA {
       });
     }
     
-    html += `</div>`;
     return html;
+  }
+  
+  updateBodyClass(pageId) {
+    // Remove existing page classes
+    document.body.classList.remove('home-page', 'work-page', 'products-page', 'photos-page', 'about-page');
+    
+    // Add appropriate page class
+    if (pageId === 'index') {
+      document.body.classList.add('home-page');
+    } else if (pageId.startsWith('work') || ['angellist', 'square', 'ando', 'sidecar', 'block'].includes(pageId)) {
+      document.body.classList.add('work-page');
+    } else if (pageId.startsWith('product') || ['approach', 'sudo', 'circuit', 'jot', 'terraforms', 'proto'].includes(pageId)) {
+      document.body.classList.add('products-page');
+    } else if (pageId.startsWith('photo') || ['harvest', 'pch'].includes(pageId)) {
+      document.body.classList.add('photos-page');
+    } else if (pageId === 'about') {
+      document.body.classList.add('about-page');
+    }
   }
   
   getPlaceholderContent(pageId) {
