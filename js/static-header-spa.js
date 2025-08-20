@@ -58,9 +58,10 @@ class StaticHeaderSPA {
       this.setupSPA();
     }
     
-    // Also initialize carousel on first load
+    // Also initialize carousel and medium-zoom on first load
     setTimeout(() => {
       this.initializeCarousel();
+      this.initializeMediumZoom();
     }, 500);
   }
   
@@ -293,6 +294,9 @@ class StaticHeaderSPA {
     
     // Update content
     this.contentContainer.innerHTML = content;
+    
+    // Initialize medium-zoom for new content
+    this.initializeMediumZoom();
     
     if (animate) {
       // Start enter animation
@@ -891,6 +895,33 @@ class StaticHeaderSPA {
     // Set initial cursor
     carouselContainer.style.cursor = 'grab';
     updatePosition();
+  }
+  
+  initializeMediumZoom() {
+    // Initialize medium-zoom for all images with data-zoomable attribute
+    if (typeof mediumZoom !== 'undefined') {
+      try {
+        // Detach any existing zoom instances to avoid conflicts
+        if (this.zoomInstance) {
+          this.zoomInstance.detach();
+        }
+        
+        // Create new zoom instance for all zoomable images
+        this.zoomInstance = mediumZoom('[data-zoomable]', {
+          margin: 24,
+          background: 'rgba(0, 0, 0, 0.9)',
+          scrollOffset: 40,
+          container: null,
+          template: null
+        });
+        
+        console.log('Medium zoom initialized for images');
+      } catch (error) {
+        console.warn('Failed to initialize medium-zoom:', error);
+      }
+    } else {
+      console.warn('medium-zoom library not found');
+    }
   }
 }
 

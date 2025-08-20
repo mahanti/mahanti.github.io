@@ -205,12 +205,33 @@ body.night .nav-divider {
 
 .logo-link {
   display: block;
-  text-decoration: none;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
   transition: opacity 0.2s ease;
   margin-bottom: 8px;
 }
 
 .logo-link:hover {
+  opacity: 0.7;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+}
+
+/* Specific overrides for dark mode logo link */
+body.night .logo-link,
+body.day .logo-link {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+}
+
+body.night .logo-link:hover,
+body.day .logo-link:hover {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
   opacity: 0.7;
 }
 

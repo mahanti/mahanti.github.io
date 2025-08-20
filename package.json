@@ -1,15 +1,18 @@
 {
   "devDependencies": {
     "cssnano": "^7.0.4",
-    "postcss": "^8.4.40",
-    "sharp": "^0.33.0",
     "imagemin": "^8.0.1",
-    "imagemin-webp": "^8.0.0",
     "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-pngquant": "^10.0.0"
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-webp": "^8.0.0",
+    "postcss": "^8.4.40",
+    "sharp": "^0.33.0"
   },
   "scripts": {
     "optimize-images": "node scripts/optimize-images.js",
     "build": "npm run optimize-images && jekyll build"
+  },
+  "dependencies": {
+    "medium-zoom": "^1.1.0"
   }
 }
