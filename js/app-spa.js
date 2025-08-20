@@ -366,7 +366,7 @@ class StaticHeaderSPA {
         <div class="col-8">
           <section class="mb-24">
             <span class="title">Welcome</span>
-            <p class="subtitle">Designer and developer</p>
+            <p class="subtitle">A multidisciplinary designer building delightful solutions to complex problems.</p>
           </section>
         </div>
       `,
@@ -398,7 +398,7 @@ class StaticHeaderSPA {
         <div class="col-8">
           <section class="mb-24">
             <span class="title">About</span>
-            <p class="subtitle">Designer and developer with a passion for creating beautiful, functional experiences.</p>
+            <p class="subtitle">A multidisciplinary designer building delightful solutions to complex problems. with a passion for creating beautiful, functional experiences.</p>
           </section>
         </div>
       `
