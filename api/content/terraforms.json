@@ -15,12 +15,15 @@
     "          </div>",
     "        </section>",
     "        <section>",
-    "          <img src=\"/img/products/terraforms/01.jpg\" loading=\"lazy\" data-zoomable>",
+    "          <div class=\"col-8\">",
+    "            <img src=\"/img/products/terraforms/01.jpg\" loading=\"lazy\" data-zoomable>",
+    "          </div>",
     "        </section>",
     "        <section>",
-    "          <img src=\"/img/products/terraforms/02.jpg\" loading=\"lazy\" data-zoomable>",
-    "          <p class=\"caption\">I built an interactive mesh pattern that lets you customize the Biome and Zone of the mesh to essentially create your own terraform.</p>",
-    "          </section>"
+    "          <div class=\"col-8\">",
+    "            <img src=\"/img/products/terraforms/02.jpg\" loading=\"lazy\" data-zoomable>",
+    "          </div>",
+    "        </section>"
   ],
   "permalink": "/products/terraforms"
 }
