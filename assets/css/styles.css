@@ -1375,7 +1375,7 @@ section, .section {
 
 .col-8.gap-12 > a {
   display: block;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 .col-8.gap-12 > a:last-child {
   margin-bottom: 0;
