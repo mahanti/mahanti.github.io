@@ -167,6 +167,12 @@ class StaticHeaderSPA {
           console.log('Logo/home navigation detected');
         }
         
+        // Trigger header exit animation when leaving home page
+        if (this.currentPage === 'index' && href !== '/') {
+          console.log('🚪 Leaving home page - triggering header exit animation');
+          this.triggerHeaderExitAnimation();
+        }
+        
         this.navigateTo(href);
       }
     });
@@ -182,6 +188,8 @@ class StaticHeaderSPA {
   async navigateTo(path, updateHistory = true) {
     if (this.isTransitioning) return;
     
+    console.log(`🚀 NavigateTo called: from "${this.currentPage}" to "${path}"`);
+    
     // Check if we have a route for this path, or if it's a valid page
     let pageId = this.routes[path];
     
@@ -189,6 +197,8 @@ class StaticHeaderSPA {
     if (!pageId) {
       pageId = this.inferPageId(path);
     }
+    
+    console.log(`🗺️ Route mapping: "${path}" → "${pageId}"`);
     
     // If still no page ID, allow default Jekyll navigation
     if (!pageId) {
@@ -205,12 +215,15 @@ class StaticHeaderSPA {
     
     // Don't skip navigation if we're already on the page (except for home page which should always refresh)
     if (pageId === this.currentPage && path === window.location.pathname && path !== '/') {
+      console.log(`🚫 Skipping navigation - already on page "${pageId}"`);
       return;
     }
     
     this.isTransitioning = true;
     
     try {
+      console.log(`📦 Starting transition from "${this.currentPage}" to "${pageId}" (${path})`);
+      
       // Update browser history
       if (updateHistory) {
         history.pushState({ pageId, path }, '', path);
@@ -223,6 +236,8 @@ class StaticHeaderSPA {
       await this.transitionToPage(pageId, path);
       
       this.currentPage = pageId;
+      console.log(`✅ Navigation complete: now on "${pageId}"`);
+    
       
     } catch (error) {
       console.error('Navigation error:', error);
@@ -286,9 +301,16 @@ class StaticHeaderSPA {
   }
   
   async transitionToPage(pageId, path, animate = true) {
+    console.log(`🎭 transitionToPage called: pageId="${pageId}", path="${path}", animate=${animate}`);
+    
     if (animate) {
-      // Start exit animation
-      await this.animateContentOut();
+      console.log(`🎬 Starting animated transition with exit animation`);
+      // Start exit animation and update body class simultaneously for header fade
+      await this.animateContentOut(pageId);
+    } else {
+      console.log(`⚡ Non-animated transition - updating body class immediately`);
+      // Update body class immediately for non-animated transitions
+      this.updateBodyClass(pageId);
     }
     
     // Load new content
@@ -296,9 +318,6 @@ class StaticHeaderSPA {
     
     // Update content
     this.contentContainer.innerHTML = content;
-    
-    // Update body class for page-specific styling
-    this.updateBodyClass(pageId);
     
     // Initialize medium-zoom for new content
     this.initializeMediumZoom();
@@ -322,14 +341,25 @@ class StaticHeaderSPA {
     }
   }
   
-  async animateContentOut() {
+  async animateContentOut(newPageId = null) {
     return new Promise(resolve => {
+      console.log(`🎬 Starting exit animation - Content + Header for page: ${newPageId}`);
+      
       this.contentContainer.style.transition = 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
       this.contentContainer.style.opacity = '0';
       this.contentContainer.style.transform = 'translateY(20px)';
       this.contentContainer.style.filter = 'blur(4px)';
       
-      setTimeout(resolve, 300);
+      // Update body class immediately to trigger header exit animation in parallel
+      if (newPageId) {
+        console.log(`🏷️ Updating body class during exit animation to trigger header fade`);
+        this.updateBodyClass(newPageId);
+      }
+      
+      setTimeout(() => {
+        console.log(`⏰ Exit animation complete (300ms)`);
+        resolve();
+      }, 300);
     });
   }
   
@@ -498,7 +528,16 @@ class StaticHeaderSPA {
   }
   
   updateBodyClass(pageId) {
+    console.log(`🏷️ updateBodyClass called with pageId: "${pageId}"`);
+    
+    // Don't interfere if exit animation is running
+    if (document.body.classList.contains('home-page-exiting')) {
+      console.log('🚫 Skipping updateBodyClass - exit animation in progress');
+      return;
+    }
+    
     // Remove existing page classes
+    const oldClasses = Array.from(document.body.classList);
     document.body.classList.remove('home-page', 'work-page', 'products-page', 'photos-page', 'about-page');
     
     // Add appropriate page class
@@ -513,6 +552,30 @@ class StaticHeaderSPA {
     } else if (pageId === 'about') {
       document.body.classList.add('about-page');
     }
+    
+    const newClasses = Array.from(document.body.classList);
+    console.log(`🏷️ Body class change: "${oldClasses.join(' ')}" → "${newClasses.join(' ')}"`);
+    console.log(`🎯 Key change: home-page removed = ${oldClasses.includes('home-page') && !newClasses.includes('home-page')}`);
+  }
+  
+  triggerHeaderExitAnimation() {
+    console.log('🎬 Triggering CSS-based header exit animation (like enter animation)');
+    
+    // Step 1: Add exiting class WHILE home-page class is still present
+    document.body.classList.add('home-page-exiting');
+    console.log('🏷️ Added home-page-exiting class, body classes:', Array.from(document.body.classList));
+    
+    // Step 2: Remove home-page class to trigger exit animation (like enter animation in reverse)
+    setTimeout(() => {
+      document.body.classList.remove('home-page');
+      console.log('🏷️ Removed home-page class, body classes:', Array.from(document.body.classList));
+    }, 10); // Small delay to ensure CSS processes the exiting class first
+    
+    // Step 3: Clean up exiting class after animation completes
+    setTimeout(() => {
+      console.log('🏁 Header exit animation complete - removing exiting class');
+      document.body.classList.remove('home-page-exiting');
+    }, 350);
   }
   
   getPlaceholderContent(pageId) {

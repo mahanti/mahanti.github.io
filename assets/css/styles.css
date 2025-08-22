@@ -82,6 +82,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 body {
   margin: 0;
+  margin-bottom: 96px;
   line-height: 1.65;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-x: hidden;
@@ -1454,41 +1455,60 @@ body.home-page #nav.static-header .header-home-content {
   display: block;
 }
 
-/* Individual header elements - use same animation as content */
+/* Individual header elements - always have animation defined */
 #nav.static-header .header-home-content #name,
 #nav.static-header .header-home-content .subtitle,
 #nav.static-header .header-home-content .header-nav {
   opacity: 0;
   transform: translateY(15px);
   filter: blur(2px);
-  animation: contentFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   will-change: opacity, transform, filter;
   backface-visibility: hidden;
 }
 
-/* Staggered delays - header animates FIRST, before content */
+/* ENTER animation - when home-page class is present */
+body.home-page #nav.static-header .header-home-content #name,
+body.home-page #nav.static-header .header-home-content .subtitle,
+body.home-page #nav.static-header .header-home-content .header-nav {
+  animation: contentFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered ENTER delays */
 body.home-page #nav.static-header .header-home-content #name {
-  animation-delay: 0s; /* First to animate */
+  animation-delay: 0s; /* First to animate in */
 }
 
 body.home-page #nav.static-header .header-home-content .subtitle {
-  animation-delay: 0.02s; /* Second */
+  animation-delay: 0.02s; /* Second to animate in */
 }
 
 body.home-page #nav.static-header .header-home-content .header-nav {
-  animation-delay: 0.04s; /* Third */
+  animation-delay: 0.04s; /* Third to animate in */
 }
 
-/* Exit animation - when leaving home page */
-body:not(.home-page) #nav.static-header .header-home-content #name,
-body:not(.home-page) #nav.static-header .header-home-content .subtitle,
-body:not(.home-page) #nav.static-header .header-home-content .header-nav {
-  opacity: 0;
-  transform: translateY(-15px);
-  filter: blur(2px);
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+/* EXIT animation - when home-page class is removed but exiting class is present */
+body:not(.home-page).home-page-exiting #nav.static-header .header-home-content #name,
+body:not(.home-page).home-page-exiting #nav.static-header .header-home-content .subtitle,
+body:not(.home-page).home-page-exiting #nav.static-header .header-home-content .header-nav {
+  animation: contentFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered EXIT delays - reverse order */
+body:not(.home-page).home-page-exiting #nav.static-header .header-home-content #name {
+  animation-delay: 0.04s; /* Last to exit (was first to enter) */
+}
+
+body:not(.home-page).home-page-exiting #nav.static-header .header-home-content .subtitle {
+  animation-delay: 0.02s; /* Second to exit */
+}
+
+body:not(.home-page).home-page-exiting #nav.static-header .header-home-content .header-nav {
+  animation-delay: 0s; /* First to exit (was last to enter) */
+}
+
+/* Fallback: immediate hide when not on home page and not exiting */
+body:not(.home-page):not(.home-page-exiting) #nav.static-header .header-home-content {
+  display: none;
 }
 
 
@@ -1679,6 +1699,20 @@ body.spa-ready {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0px);
+  }
+}
+
+/* Exit animation keyframes - mirror of enter animation */
+@keyframes contentFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px);
+    filter: blur(2px);
   }
 }
 

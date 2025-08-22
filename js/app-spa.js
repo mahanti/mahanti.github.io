@@ -90,6 +90,11 @@ class StaticHeaderSPA {
     const currentPath = window.location.pathname;
     this.currentPage = this.routes[currentPath] || 'home';
     
+    console.log(`🏁 SPA Initialization - Path: "${currentPath}", Page: "${this.currentPage}"`);
+    
+    // Set initial body class
+    this.updateBodyClass(this.currentPage, currentPath);
+    
     // Cache initial content
     this.cacheCurrentContent();
     
@@ -97,7 +102,7 @@ class StaticHeaderSPA {
     document.body.classList.remove('loading');
     document.body.classList.add('spa-ready');
     
-    console.log('Static Header SPA initialized');
+    console.log('✅ Static Header SPA initialized successfully');
   }
   
   setupStaticHeader() {
@@ -216,8 +221,10 @@ class StaticHeaderSPA {
   }
   
   async transitionToPage(pageId, path) {
-    // Start exit animation
-    await this.animateContentOut();
+    console.log(`🚀 Starting transition from "${this.currentPage}" to "${pageId}" (${path})`);
+    
+    // Start exit animation first, then update body class during the animation
+    await this.animateContentOut(pageId, path);
     
     // Load new content
     const content = await this.loadPageContent(pageId, path);
@@ -230,15 +237,49 @@ class StaticHeaderSPA {
     
     // Scroll to top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    console.log(`✅ Completed transition to "${pageId}"`);
   }
   
-  async animateContentOut() {
+  async animateContentOut(newPageId, newPath) {
     return new Promise(resolve => {
+      console.log(`🎬 Starting exit animation - Content + Header`);
+      console.log(`📝 Current body classes:`, Array.from(document.body.classList));
+      
+      // Start content fade out
       this.contentContainer.style.transition = 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
       this.contentContainer.style.opacity = '0';
       this.contentContainer.style.transform = 'translateY(-20px)';
       
-      setTimeout(resolve, 300);
+      // Update body class immediately to trigger header exit animation in parallel
+      this.updateBodyClass(newPageId, newPath);
+      console.log(`🔄 Updated body classes:`, Array.from(document.body.classList));
+      
+      // Check if header elements exist and their current state
+      const headerElements = {
+        name: document.querySelector('#nav.static-header .header-home-content #name'),
+        subtitle: document.querySelector('#nav.static-header .header-home-content .subtitle'),
+        nav: document.querySelector('#nav.static-header .header-home-content .header-nav')
+      };
+      
+      console.log(`🎯 Header elements found:`, {
+        name: !!headerElements.name,
+        subtitle: !!headerElements.subtitle,
+        nav: !!headerElements.nav
+      });
+      
+      if (headerElements.name) {
+        console.log(`👀 Header name computed style:`, {
+          opacity: window.getComputedStyle(headerElements.name).opacity,
+          transform: window.getComputedStyle(headerElements.name).transform,
+          transition: window.getComputedStyle(headerElements.name).transition
+        });
+      }
+      
+      setTimeout(() => {
+        console.log(`⏰ Exit animation complete (300ms)`);
+        resolve();
+      }, 300);
     });
   }
   
@@ -413,6 +454,38 @@ class StaticHeaderSPA {
     if (currentContent && this.currentPage) {
       this.pageCache.set(this.currentPage, currentContent);
     }
+  }
+  
+  updateBodyClass(pageId, path) {
+    console.log(`🏷️  updateBodyClass called with pageId: "${pageId}", path: "${path}"`);
+    
+    // Remove existing page classes
+    const oldClasses = Array.from(document.body.classList);
+    document.body.classList.remove('home-page', 'work-page', 'products-page', 'photos-page', 'about-page');
+    
+    // Add appropriate page class based on pageId and path
+    let newPageClass = null;
+    if (pageId === 'home' || path === '/') {
+      newPageClass = 'home-page';
+      document.body.classList.add('home-page');
+    } else if (pageId.startsWith('work') || pageId.includes('angellist') || pageId.includes('square') || 
+               pageId.includes('ando') || pageId.includes('sidecar') || pageId.includes('block')) {
+      newPageClass = 'work-page';
+      document.body.classList.add('work-page');
+    } else if (pageId.startsWith('products') || pageId.includes('approach') || pageId.includes('sudo') || 
+               pageId.includes('circuit') || pageId.includes('jot') || pageId.includes('terraforms') || pageId.includes('proto')) {
+      newPageClass = 'products-page';
+      document.body.classList.add('products-page');
+    } else if (pageId.startsWith('photos') || pageId.includes('harvest') || pageId.includes('pch')) {
+      newPageClass = 'photos-page';
+      document.body.classList.add('photos-page');
+    } else if (pageId === 'about') {
+      newPageClass = 'about-page';
+      document.body.classList.add('about-page');
+    }
+    
+    console.log(`🏷️  Body class change: "${oldClasses.join(' ')}" → "${Array.from(document.body.classList).join(' ')}"`);
+    console.log(`🎯 Key change: home-page removed = ${oldClasses.includes('home-page') && !document.body.classList.contains('home-page')}`);
   }
 }
 
