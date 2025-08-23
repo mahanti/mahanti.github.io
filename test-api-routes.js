@@ -26,7 +26,7 @@ const routes = {
   '/about': 'about',
   
   // Work pages
-  '/work/block': 'block',
+  '/work/block': 'proto',
   '/work/angellist': 'angellist',
   '/work/square': 'square',
   '/work/ando': 'ando',

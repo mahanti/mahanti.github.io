@@ -23,7 +23,7 @@ class StaticHeaderSPA {
       '/about': 'about',
       
       // Work pages
-      '/work/block': 'work-block',
+      '/work/block': 'work-proto',
       '/work/angellist': 'work-angellist',
       '/work/square': 'work-square',
       '/work/ando': 'work-ando',
@@ -469,11 +469,11 @@ class StaticHeaderSPA {
       newPageClass = 'home-page';
       document.body.classList.add('home-page');
     } else if (pageId.startsWith('work') || pageId.includes('angellist') || pageId.includes('square') || 
-               pageId.includes('ando') || pageId.includes('sidecar') || pageId.includes('block')) {
+               pageId.includes('ando') || pageId.includes('sidecar') || pageId.includes('proto')) {
       newPageClass = 'work-page';
       document.body.classList.add('work-page');
     } else if (pageId.startsWith('products') || pageId.includes('approach') || pageId.includes('sudo') || 
-               pageId.includes('circuit') || pageId.includes('jot') || pageId.includes('terraforms') || pageId.includes('proto')) {
+               pageId.includes('circuit') || pageId.includes('jot') || pageId.includes('terraforms')) {
       newPageClass = 'products-page';
       document.body.classList.add('products-page');
     } else if (pageId.startsWith('photos') || pageId.includes('harvest') || pageId.includes('pch')) {

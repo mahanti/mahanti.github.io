@@ -283,7 +283,7 @@ body.night #nav.index-header {
 
 .caption {
   margin-top: 12px;
-  margin-bottom: 0px;
+  margin-bottom: 24px;
   font-size: 14px;
   color: var(--text-50);
   width: 80%;
