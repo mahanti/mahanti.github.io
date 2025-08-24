@@ -382,7 +382,9 @@ class StaticHeaderSPA {
       html += `<p class="subtitle">${data.subtitle}</p>`;
     }
     
-    if (data.content) {
+    if (data.content && Array.isArray(data.content)) {
+      html += data.content.join('\n');
+    } else if (data.content) {
       html += data.content;
     }
     

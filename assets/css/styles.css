@@ -114,7 +114,7 @@ body.night a {
 }
 
 body.night a:hover {
-  text-decoration-color: var(--text-50);
+  text-decoration-color: var(--text-70);
 }
 
 body.night p > a:hover,
@@ -1387,6 +1387,77 @@ section, .section {
 .col-8.gap-12 img {
   display: block;
   margin-bottom: 8px;
+}
+
+/* ------------------------------- */
+/* Desktop Two-Column Layout */
+/* ------------------------------- */
+@media (min-width: 768px) {
+  .section-two-column {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  
+  .section-two-column .section-header {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 24px;
+  }
+  
+  .section-two-column .section-content {
+    flex: 1;
+  }
+  
+  .section-two-column .section-header .title {
+    font-size: 14px;
+  }
+  
+  .section-two-column .section-header .subtitle {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  /* Desktop spacing for section content links */
+  .section-two-column .section-content > a {
+    display: block;
+    margin-bottom: 24px;
+  }
+  
+  .section-two-column .section-content > a:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Mobile fallback for two-column sections */
+@media (max-width: 767px) {
+  .section-two-column {
+    display: block;
+  }
+  
+  .section-two-column .section-header {
+    margin-bottom: 24px;
+  }
+  
+  .section-two-column .section-header .title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .section-two-column .section-header .subtitle {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  /* Mobile spacing for section content links */
+  .section-two-column .section-content > a {
+    display: block;
+    margin-bottom: 24px;
+  }
+  
+  .section-two-column .section-content > a:last-child {
+    margin-bottom: 0;
+  }
 }
 
 section {
