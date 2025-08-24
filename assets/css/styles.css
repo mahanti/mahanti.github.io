@@ -1354,7 +1354,7 @@ body.night .button-link::after {
 
 // Section spacing - simplified
 section, .section {
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 }
 
 // Remove old layout classes
@@ -1378,7 +1378,7 @@ section, .section {
 
 .col-8.gap-12 > a {
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 }
 .col-8.gap-12 > a:last-child {
   margin-bottom: 0;
@@ -1460,7 +1460,7 @@ section, .section {
 }
 
 section {
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 }
 section:last-child {
   margin-bottom: 0;
