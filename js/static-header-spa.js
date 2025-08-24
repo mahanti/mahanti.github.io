@@ -18,34 +18,29 @@ class StaticHeaderSPA {
   
   setupRoutes() {
     this.routes = {
-      // Main pages
+      // Main pages - 1:1 mapping with JSON files
       '/': 'index',
       '/work': 'work',
-      '/work-gallery': 'work-gallery',
-      '/work/': 'work',
       '/products': 'products',
-      '/products/': 'products',
       '/photos': 'photos',
-      '/photos/': 'photos',
       '/about': 'about',
-      '/about/': 'about',
       
-      // Work pages
+      // Work pages - routes to JSON files
       '/work/block': 'proto',
+      '/work/proto': 'proto',
       '/work/angellist': 'angellist',
       '/work/square': 'square',
       '/work/ando': 'ando',
       '/work/sidecar': 'sidecar',
       
-      // Product pages
+      // Product pages - 1:1 mapping with JSON files
       '/products/approach': 'approach',
       '/products/sudo': 'sudo',
       '/products/circuit': 'circuit',
       '/products/jot': 'jot',
       '/products/terraforms': 'terraforms',
-      '/products/proto': 'proto',
       
-      // Photo pages
+      // Photo pages - 1:1 mapping with JSON files
       '/photos/harvest': 'harvest',
       '/photos/pch': 'pch'
     };
@@ -104,24 +99,42 @@ class StaticHeaderSPA {
     
     // Get current page from URL
     const currentPath = window.location.pathname;
-    const detectedPage = this.routes[currentPath] || 'home';
+    let detectedPage = this.routes[currentPath];
+    
+    // Try with trailing slash if exact match failed
+    if (!detectedPage && !currentPath.endsWith('/')) {
+      detectedPage = this.routes[currentPath + '/'];
+    }
+    
+    // Try without trailing slash if exact match failed
+    if (!detectedPage && currentPath.endsWith('/') && currentPath !== '/') {
+      detectedPage = this.routes[currentPath.slice(0, -1)];
+    }
+    
+    // If no exact route match, try to infer page ID from path
+    if (!detectedPage) {
+      detectedPage = this.inferPageId(currentPath);
+    }
+    
+    // Final fallback to home
+    if (!detectedPage) {
+      detectedPage = 'home';
+    }
     
     console.log('🔍 SPA Setup - Current Path:', currentPath);
     console.log('🔍 SPA Setup - Detected Page:', detectedPage);
-    console.log('🔍 SPA Setup - Routes:', this.routes);
-    console.log('🔍 SPA Setup - Initial Content:', this.contentContainer?.innerHTML?.substring(0, 200) + '...');
     
     // Load the correct content for any page, including home
     if (detectedPage !== 'home' && currentPath !== '/') {
       console.log('🔄 Loading correct page content for:', detectedPage);
       this.currentPage = detectedPage;
-      // Load the correct page content without animation
-      this.transitionToPage(detectedPage, currentPath, false);
+      // Load the correct page content without animation and without scrolling to top
+      this.transitionToPage(detectedPage, currentPath, false, false);
     } else {
       console.log('🔄 Loading home page content from API');
       this.currentPage = detectedPage;
-      // Load home page content from API instead of caching placeholder
-      this.transitionToPage('index', '/', false);
+      // Load home page content from API instead of caching placeholder, without scrolling to top
+      this.transitionToPage('index', '/', false, false);
     }
     
     // Setup loading state
@@ -300,7 +313,7 @@ class StaticHeaderSPA {
     return titleMap[path];
   }
   
-  async transitionToPage(pageId, path, animate = true) {
+  async transitionToPage(pageId, path, animate = true, shouldScrollToTop = true) {
     console.log(`🎭 transitionToPage called: pageId="${pageId}", path="${path}", animate=${animate}`);
     
     if (animate) {
@@ -331,8 +344,10 @@ class StaticHeaderSPA {
         this.initializeCarousel();
       }, 100);
       
-      // Scroll to top smoothly
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Only scroll to top if this is a user navigation (not initial page load)
+      if (shouldScrollToTop) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } else {
       // No animation, just initialize carousel if needed
       setTimeout(() => {
@@ -392,6 +407,8 @@ class StaticHeaderSPA {
   }
   
   async loadPageContent(pageId, path) {
+    console.log(`📄 Loading content for pageId: "${pageId}"`);
+    
     // For home page, always try to load fresh content first
     if (pageId === 'home' && path === '/') {
       try {
@@ -415,21 +432,26 @@ class StaticHeaderSPA {
       return this.pageCache.get(pageId);
     }
     
+    // In development, always bypass cache to see changes immediately
     if (isDevelopment && this.pageCache.has(pageId)) {
       console.log(`🔄 Development mode: bypassing cache for ${pageId}`);
+      this.pageCache.delete(pageId);
     }
     
     try {
       // Try to load from JSON API first
-      const response = await fetch(`/api/content/${pageId}.json`);
+      // Add cache busting in development
+      const cacheBuster = window.location.hostname === 'localhost' ? `?t=${Date.now()}` : '';
+      const response = await fetch(`/api/content/${pageId}.json${cacheBuster}`);
       if (response.ok) {
         const data = await response.json();
+        console.log(`✅ Loaded content for ${pageId}`);
         const content = this.renderPageFromData(data);
         this.pageCache.set(pageId, content);
         return content;
       }
     } catch (error) {
-      console.log('JSON API not available, using fallback');
+      console.log('❌ JSON API not available, using fallback:', error);
     }
     
     // Fallback: try to load the actual page and extract content
@@ -495,7 +517,7 @@ class StaticHeaderSPA {
       return content.innerHTML;
     }
     
-    return '<div class="col-8"><p>Content not found</p></div>';
+    return '<div class="col-8 row"><p>Content not found</p></div>';
   }
   
   renderPageFromData(data) {
@@ -581,7 +603,7 @@ class StaticHeaderSPA {
   getPlaceholderContent(pageId) {
     const placeholders = {
       'home': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Welcome</span>
             <p class="subtitle">A multidisciplinary designer building delightful solutions to complex problems.</p>
@@ -589,7 +611,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'work': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Work</span>
             <p class="subtitle">Selected projects and collaborations</p>
@@ -597,7 +619,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'products': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Products</span>
             <p class="subtitle">Apps and tools I've built</p>
@@ -605,7 +627,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'photos': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Photography</span>
             <p class="subtitle">Visual stories and moments</p>
@@ -613,7 +635,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'about': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">About</span>
             <p class="subtitle">A multidisciplinary designer building delightful solutions to complex problems. with a passion for creating beautiful, functional experiences.</p>
@@ -694,6 +716,8 @@ class StaticHeaderSPA {
     let lastTime = 0;
     let animationId = null;
     let isHorizontalDrag = false;
+    let wheelVelocity = 0;
+    let wheelAnimId = null;
     
     // Physics constants
     const MOMENTUM_MULTIPLIER = 0.95;
@@ -721,6 +745,17 @@ class StaticHeaderSPA {
       });
       
       return { min: minTranslate, max: maxTranslate, slideWidth, containerWidth };
+    }
+
+    // Edge indicators to match styles.css gradients at edges
+    function updateEdgeIndicators() {
+      const { min, max } = getBounds();
+      carouselContainer.classList.remove('at-left-edge', 'at-right-edge');
+      if (currentTranslate <= min) {
+        carouselContainer.classList.add('at-left-edge');
+      } else if (currentTranslate >= max) {
+        carouselContainer.classList.add('at-right-edge');
+      }
     }
     
     // Apply rubberbanding when past boundaries
@@ -750,6 +785,7 @@ class StaticHeaderSPA {
       carouselSlide.style.setProperty('animation', 'none', 'important');
       
       console.log('Final computed transform:', window.getComputedStyle(carouselSlide).transform);
+      updateEdgeIndicators();
     }
     
     // Momentum animation with physics
@@ -781,6 +817,7 @@ class StaticHeaderSPA {
         } else if (currentTranslate < bounds.min) {
           snapToPosition(bounds.min);
         }
+        updateEdgeIndicators();
       }
     }
     
@@ -892,30 +929,61 @@ class StaticHeaderSPA {
     
     // Wheel/trackpad support with momentum - only for horizontal scrolling
     function handleWheel(e) {
-      // Only handle horizontal scrolling (Shift+wheel or trackpad horizontal)
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
-        e.preventDefault();
-        
-        const wheelDelta = -e.deltaX || (e.shiftKey ? -e.deltaY : 0);
-        currentTranslate += wheelDelta;
-        
-        // Cancel momentum animation
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-          animationId = null;
-        }
-        
-        updatePosition();
-        
-        // Add some momentum for wheel scrolling
-        velocity = wheelDelta * 0.1;
-        setTimeout(() => {
-          if (!isDragging) {
-            animateMomentum();
-          }
-        }, 50);
+      // Prioritize horizontal intent (or Shift for horizontal)
+      const horizontalIntent = Math.abs(e.deltaX) >= Math.abs(e.deltaY) * 0.75 || e.shiftKey;
+      if (!horizontalIntent) return; // Let vertical scroll pass through
+
+      e.preventDefault();
+
+      // Convert wheel to horizontal delta (Shift converts vertical to horizontal)
+      const rawDelta = e.shiftKey ? -e.deltaY : -e.deltaX;
+
+      // Cancel drag momentum if active
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
       }
-      // Allow vertical scrolling to pass through
+
+      // Accumulate wheel velocity for smoothing
+      const MAX_WHEEL_VELOCITY = 120; // clamp extreme deltas
+      wheelVelocity += Math.max(-MAX_WHEEL_VELOCITY, Math.min(MAX_WHEEL_VELOCITY, rawDelta)) * 0.35;
+
+      // Start wheel animation loop if not running
+      if (!wheelAnimId) {
+        const WHEEL_FRICTION = 0.88;
+        const MIN_WHEEL_SPEED = 0.25;
+
+        const step = () => {
+          // Apply velocity
+          currentTranslate += wheelVelocity;
+
+          // Apply rubberbanding at edges by reducing velocity
+          const bounds = getBounds();
+          if (currentTranslate > bounds.max || currentTranslate < bounds.min) {
+            wheelVelocity *= 0.6;
+          }
+
+          updatePosition();
+
+          // Decay velocity
+          wheelVelocity *= WHEEL_FRICTION;
+
+          if (Math.abs(wheelVelocity) > MIN_WHEEL_SPEED && !isDragging) {
+            wheelAnimId = requestAnimationFrame(step);
+          } else {
+            wheelAnimId = null;
+            wheelVelocity = 0;
+            // Snap to bounds softly if out of range
+            const after = getBounds();
+            if (currentTranslate > after.max) {
+              snapToPosition(after.max);
+            } else if (currentTranslate < after.min) {
+              snapToPosition(after.min);
+            }
+          }
+        };
+        wheelAnimId = requestAnimationFrame(step);
+      }
     }
     
     // Add event listeners
@@ -933,6 +1001,8 @@ class StaticHeaderSPA {
     carouselContainer.style.cursor = 'grab';
     console.log('Carousel setup complete, calling initial updatePosition');
     updatePosition();
+    // Mark as initialized so other scripts can skip re-init
+    try { carouselContainer.dataset.carouselInitialized = 'true'; } catch (e) {}
   }
   
   setupSimpleCarousel(carouselContainer, carouselSlide) {

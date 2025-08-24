@@ -17,6 +17,7 @@
     "        <section>",
     "          <div class=\"col-8\">",
     "            <img src=\"/img/products/terraforms/01.jpg\" loading=\"lazy\" data-zoomable>",
+    "            <p class=\"caption\">Terraforms app interface showing on-chain land parcels.</p>",
     "          </div>",
     "        </section>",
     "        <section>",

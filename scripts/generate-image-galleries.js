@@ -41,7 +41,20 @@ const GALLERY_CONFIG = {
     preferRetina: true,
     galleryClass: 'col-8',
     imageAttributes: 'data-zoomable',
-    wrapInSection: true // Each image gets its own section
+    wrapInSection: true, // Each image gets its own section
+    captions: {
+      '01': 'Approach is designed to highlight',
+      '02': 'Golf course overview and hole-by-hole navigation.',
+      '03': 'Shot tracking and distance measurement tools.',
+      '04': 'Scorecard and statistics tracking interface.',
+      '05': 'Advanced analytics and performance insights.',
+      '06': 'Settings and personalization options.',
+      '07': 'Club selection and shot recommendation features.',
+      '08': 'Course management and planning tools.',
+      '09': 'Social features and round sharing.',
+      '10': 'Weather integration and course conditions.',
+      '11': 'Accessibility and customization options.'
+    }
   },
   'circuit': {
     imagePath: 'img/products/circuit',
@@ -132,7 +145,7 @@ function chooseBestImage(files, baseNumber, preferRetina = true) {
  * Generate gallery HTML for a given configuration
  */
 function generateGalleryHTML(config, galleryId) {
-  const { imagePath, preferRetina, galleryClass, imageAttributes, wrapInSection, sectionClass } = config;
+  const { imagePath, preferRetina, galleryClass, imageAttributes, wrapInSection, sectionClass, captions } = config;
   const fullPath = path.join(process.cwd(), imagePath);
   const files = getImageFiles(fullPath);
   
@@ -158,6 +171,10 @@ function generateGalleryHTML(config, galleryId) {
         galleryHTML.push(`        <section${sectionClassAttr}>`);
         galleryHTML.push(`          <div class="${galleryClass}">`);
         galleryHTML.push(`            <img src="/${imagePath}/${imageFile}" ${imageAttributes}>`);
+        // Add caption if available
+        if (captions && captions[num.toString().padStart(2, '0')]) {
+          galleryHTML.push(`            <p class="caption">${captions[num.toString().padStart(2, '0')]}</p>`);
+        }
         galleryHTML.push(`          </div>`);
         galleryHTML.push(`        </section>`);
       }

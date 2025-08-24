@@ -272,12 +272,11 @@ body.night #nav.index-header {
 }
 
 .subtitle {
+  margin-top: 12px;
+  margin-bottom: 24px;
   font-size: 14px;
-  color: var(--text-50);
-  width: 100%;
-  line-height: 1.4;
-  display: block;
-  margin-top: 2px;
+  color: var(--text-70);
+  width: 80%;
   font-weight: 400;
 }
 
@@ -285,7 +284,7 @@ body.night #nav.index-header {
   margin-top: 12px;
   margin-bottom: 24px;
   font-size: 14px;
-  color: var(--text-50);
+  color: var(--text-70);
   width: 80%;
   font-weight: 400;
 }
@@ -631,6 +630,10 @@ img {
   height: auto;
   border-radius: 32px;
   display: block;
+}
+
+.image-border {
+  border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .optimized-image {

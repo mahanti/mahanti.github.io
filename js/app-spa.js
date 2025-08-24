@@ -15,31 +15,31 @@ class StaticHeaderSPA {
   
   setupRoutes() {
     this.routes = {
-      // Main pages
-      '/': 'home',
+      // Main pages - 1:1 mapping with JSON files
+      '/': 'index',
       '/work': 'work',
       '/products': 'products',
       '/photos': 'photos',
       '/about': 'about',
       
-      // Work pages
-      '/work/block': 'work-proto',
-      '/work/angellist': 'work-angellist',
-      '/work/square': 'work-square',
-      '/work/ando': 'work-ando',
-      '/work/sidecar': 'work-sidecar',
+      // Work pages - routes to JSON files
+      '/work/block': 'proto',
+      '/work/proto': 'proto',
+      '/work/angellist': 'angellist',
+      '/work/square': 'square',
+      '/work/ando': 'ando',
+      '/work/sidecar': 'sidecar',
       
-      // Product pages
-      '/products/approach': 'products-approach',
-      '/products/sudo': 'products-sudo',
-      '/products/circuit': 'products-circuit',
-      '/products/jot': 'products-jot',
-      '/products/terraforms': 'products-terraforms',
-      '/products/proto': 'products-proto',
+      // Product pages - 1:1 mapping with JSON files
+      '/products/approach': 'approach',
+      '/products/sudo': 'sudo',
+      '/products/circuit': 'circuit',
+      '/products/jot': 'jot',
+      '/products/terraforms': 'terraforms',
       
-      // Photo pages
-      '/photos/harvest': 'photos-harvest',
-      '/photos/pch': 'photos-pch'
+      // Photo pages - 1:1 mapping with JSON files
+      '/photos/harvest': 'harvest',
+      '/photos/pch': 'pch'
     };
   }
   
@@ -220,7 +220,7 @@ class StaticHeaderSPA {
     });
   }
   
-  async transitionToPage(pageId, path) {
+  async transitionToPage(pageId, path, shouldScrollToTop = true) {
     console.log(`🚀 Starting transition from "${this.currentPage}" to "${pageId}" (${path})`);
     
     // Start exit animation first, then update body class during the animation
@@ -235,8 +235,10 @@ class StaticHeaderSPA {
     // Start enter animation
     await this.animateContentIn();
     
-    // Scroll to top smoothly
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Only scroll to top if this is a user navigation (not initial page load)
+    if (shouldScrollToTop) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     
     console.log(`✅ Completed transition to "${pageId}"`);
   }
@@ -365,12 +367,12 @@ class StaticHeaderSPA {
       return content.innerHTML;
     }
     
-    return '<div class="col-8"><p>Content not found</p></div>';
+    return '<div class="col-8 row"><p>Content not found</p></div>';
   }
   
   renderPageFromData(data) {
     // Render page from JSON data structure
-    let html = `<div class="col-8">`;
+    let html = `<div class="col-8 row">`;
     
     if (data.title) {
       html += `<h1 class="title">${data.title}</h1>`;
@@ -404,7 +406,7 @@ class StaticHeaderSPA {
   getPlaceholderContent(pageId) {
     const placeholders = {
       'home': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Welcome</span>
             <p class="subtitle">A multidisciplinary designer building delightful solutions to complex problems.</p>
@@ -412,7 +414,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'work': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Work</span>
             <p class="subtitle">Selected projects and collaborations</p>
@@ -420,7 +422,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'products': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Products</span>
             <p class="subtitle">Apps and tools I've built</p>
@@ -428,7 +430,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'photos': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">Photography</span>
             <p class="subtitle">Visual stories and moments</p>
@@ -436,7 +438,7 @@ class StaticHeaderSPA {
         </div>
       `,
       'about': `
-        <div class="col-8">
+        <div class="col-8 row">
           <section class="mb-24">
             <span class="title">About</span>
             <p class="subtitle">A multidisciplinary designer building delightful solutions to complex problems. with a passion for creating beautiful, functional experiences.</p>

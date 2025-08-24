@@ -8,6 +8,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
     '/work/ando',
     '/work/angellist', 
     '/work/block',
+    '/work/proto',
     '/work/sidecar',
     '/work/square',
     '/products',
@@ -17,6 +18,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
     '/products/sudo',
     '/products/terraforms',
     '/photos',
+    '/photos/harvest',
+    '/photos/pch',
     '/about'
   ]
 

@@ -3,7 +3,7 @@
   "layout": "default",
   "content": [
     "<section class=\"mb-24\">",
-    "  <div class=\"col-8\">",
+    "  <div class=\"col-8 row\">",
     "    <span class=\"title\">AngelList</span>",
     "      <span class=\"subtitle\">I joined AngelList in 2022 as a Principal Product Designer to design tools for venture capitalists and startup founders. During my time there, I designed a number of zero-to-one products that helped LPs and VCs manage their investments.</span>",
     "      </div>",
@@ -11,10 +11,10 @@
     "      <section>",
     "        <div class=\"col-8 gap-12\">",
     "          <img src=\"/img/work/angellist/01@2x.png\" loading=\"lazy\" data-zoomable>",
-    "          <img src=\"/img/work/angellist/02@2x.png\" loading=\"lazy\" data-zoomable>",
-    "          <img src=\"/img/work/angellist/03@2x.png\" loading=\"lazy\" data-zoomable>",
-    "          <img src=\"/img/work/angellist/04@2x.png\" loading=\"lazy\" data-zoomable>",
-    "          <img src=\"/img/work/angellist/05@2x.png\" loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/02@2x.png\" class=\"image-border\" loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/03@2x.png\" class=\"image-border\"   loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/04@2x.png\" class=\"image-border\" loading=\"lazy\" data-zoomable>",
+    "          <img src=\"/img/work/angellist/05@2x.png\" class=\"image-border\" loading=\"lazy\" data-zoomable>",
     "          <img src=\"/img/work/angellist/06@2x.png\" loading=\"lazy\" data-zoomable>",
     "        </div>",
     "      </section>"

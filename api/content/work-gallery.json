@@ -1,8 +1,0 @@
-{
-  "title": "Work Gallery",
-  "layout": "gallery",
-  "content": [
-    "This is a Mike Matas-style gallery showcasing my work. Use the arrow keys or swipe to navigate, and click the back button to view the timeline."
-  ],
-  "permalink": "/work-gallery"
-}

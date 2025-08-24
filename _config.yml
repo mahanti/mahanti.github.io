@@ -30,6 +30,7 @@ exclude:
 # Include
 include:
   - _pages
+  - api/
 
 # Collections
 collections:
