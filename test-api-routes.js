@@ -38,10 +38,12 @@ const routes = {
   '/products/circuit': 'circuit',
   '/products/jot': 'jot',
   '/products/terraforms': 'terraforms',
+  '/products/zoon': 'zoon',
   '/products/proto': 'proto',
   
   // Photo pages
   '/photos/harvest': 'harvest',
+  '/photos/diamondmine': 'diamondmine',
   '/photos/pch': 'pch'
 };
 

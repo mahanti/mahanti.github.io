@@ -36,9 +36,11 @@ class StaticHeaderSPA {
       '/products/circuit': 'circuit',
       '/products/jot': 'jot',
       '/products/terraforms': 'terraforms',
+      '/products/zoon': 'zoon',
       
       // Photo pages - 1:1 mapping with JSON files
       '/photos/harvest': 'harvest',
+      '/photos/diamondmine': 'diamondmine',
       '/photos/pch': 'pch'
     };
   }

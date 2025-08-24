@@ -17,8 +17,10 @@ Jekyll::Hooks.register :site, :post_write do |site|
     '/products/jot',
     '/products/sudo',
     '/products/terraforms',
+    '/products/zoon',
     '/photos',
     '/photos/harvest',
+    '/photos/diamondmine',
     '/photos/pch',
     '/about'
   ]

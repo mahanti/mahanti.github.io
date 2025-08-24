@@ -136,8 +136,6 @@ body.night .caption { color: var(--text-50); }
   display: none;
 }
 
-
-
 body * {
   transition: inherit;
 }
@@ -630,6 +628,7 @@ img {
   height: auto;
   border-radius: 32px;
   display: block;
+  margin-bottom: 16px;
 }
 
 .image-border {

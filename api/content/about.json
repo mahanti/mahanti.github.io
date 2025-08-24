@@ -3,10 +3,10 @@
   "layout": "default",
   "content": [
     "<section class=\"mt-48\">",
-    "  <img src=\"/img/about/about@2x.png\" loading=\"lazy\" data-zoomable>",
+    "  <img src=\"/img/about/about@2x.png\" loading=\"lazy\">",
     "  <div class=\"col-8 row\">",
     "    <span class=\"title\">About</span>",
-    "    <span class=\"subtitle\">I'll write this someday. Until then, I'm online: <br><br> <a href=\"https://twitter.com/0xmahanti\" target=\"_blank\">Twitter(?)</a><br><br><a href=\"https://instagram.com/mahanti\">Instagram</a><br><br><a href=\"mailto:arjun.mahanti@gmail.com\">Email</a></span>",
+    "    <span class=\"subtitle\">I'm a Principal Product Designer at Block currently designing Proto, our line of Bitcoin mining machines and fleet management software, and exploring new directions for AI-powered interfaces.<br><br>Outside of Block I build iOS apps that are rooted in simple, elegant interactions. I focus on creating tools that feel natural to use and carry the same sense of clarity and polish as the best native experiences.<br><br>My work is grounded in clarity and high craft, balancing rigor in detail with a willingness to explore unbounded possibilities. I believe in design as a process of uncovering the essential: iterating through countless explorations, testing through prototypes, and shaping experiences that feel inevitable once they exist.<br><br>Curiosity is the thread that ties my projects together. Whether in hardware, software, or brand, I strive for outcomes that are both functional and expressive, designs that quietly carry complexity so they can feel simple, fluid, and deeply human.<br><br><a href=\"https://twitter.com/arjunmahanti\" target=\"_blank\">Twitter</a><br><br><a href=\"https://instagram.com/mahanti\">Instagram</a><br><br><a href=\"mailto:arjun.mahanti@gmail.com\">Email</a></span>",
     "  </div>",
     "</section>"
   ],
