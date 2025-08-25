@@ -52,15 +52,23 @@ class StaticHeaderSPA {
   }
   
   async init() {
+    console.log('🚀 init() called, document.readyState:', document.readyState);
+    
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.setupSPA());
+      console.log('📝 DOM still loading, adding DOMContentLoaded listener');
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('📝 DOMContentLoaded fired, calling setupSPA');
+        this.setupSPA();
+      });
     } else {
+      console.log('📝 DOM already ready, calling setupSPA immediately');
       this.setupSPA();
     }
     
     // Also initialize carousel and medium-zoom on first load
     setTimeout(() => {
+      console.log('⏰ Timeout callback - initializing carousel and medium-zoom');
       this.initializeCarousel();
       this.initializeMediumZoom();
     }, 500);
@@ -68,10 +76,15 @@ class StaticHeaderSPA {
   
   setupSPA() {
     console.log('🚀 setupSPA called');
+    console.log('🔍 Current URL:', window.location.href);
+    console.log('🔍 Current pathname:', window.location.pathname);
     
     // Find or create content container
     this.contentContainer = document.querySelector('#spa-content');
+    console.log('🔍 Content container found:', !!this.contentContainer);
+    
     if (!this.contentContainer) {
+      console.log('⚠️ No content container found, creating one...');
       // Create content container after header
       const header = document.querySelector('#nav');
       const container = document.createElement('div');
@@ -91,6 +104,7 @@ class StaticHeaderSPA {
       }
       
       this.contentContainer = container;
+      console.log('✅ Created new content container');
     }
     
     // Setup header as static
@@ -156,7 +170,7 @@ class StaticHeaderSPA {
     // Hide loading screen if present
     this.hideLoadingScreen();
     
-    console.log('Static Header SPA initialized');
+    console.log('✅ Static Header SPA initialized');
   }
   
   setupStaticHeader() {
@@ -1149,6 +1163,8 @@ function initializeSPA() {
     if (!window.staticHeaderSPA) {
       console.log('Creating new StaticHeaderSPA instance');
       window.staticHeaderSPA = new StaticHeaderSPA();
+      console.log('SPA instance created, now calling init()');
+      window.staticHeaderSPA.init();
       console.log('SPA initialized successfully');
     } else {
       console.log('SPA already exists, trying to initialize carousel');
