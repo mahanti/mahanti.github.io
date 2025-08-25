@@ -13,7 +13,8 @@ class StaticHeaderSPA {
     
     // Define all routes
     this.setupRoutes();
-    this.init();
+    // Don't call init() here - let external initialization handle it
+    console.log('StaticHeaderSPA constructor completed');
   }
   
   setupRoutes() {
@@ -46,6 +47,8 @@ class StaticHeaderSPA {
       '/photos/diamondmine': 'diamondmine',
       '/photos/pch': 'pch'
     };
+    
+    console.log('🗺️ Routes configured:', this.routes);
   }
   
   async init() {
@@ -103,24 +106,31 @@ class StaticHeaderSPA {
     const currentPath = window.location.pathname;
     let detectedPage = this.routes[currentPath];
     
+    console.log('🔍 Route detection - Current Path:', currentPath);
+    console.log('🔍 Route detection - Direct match:', detectedPage);
+    
     // Try with trailing slash if exact match failed
     if (!detectedPage && !currentPath.endsWith('/')) {
       detectedPage = this.routes[currentPath + '/'];
+      console.log('🔍 Route detection - With trailing slash:', detectedPage);
     }
     
     // Try without trailing slash if exact match failed
     if (!detectedPage && currentPath.endsWith('/') && currentPath !== '/') {
       detectedPage = this.routes[currentPath.slice(0, -1)];
+      console.log('🔍 Route detection - Without trailing slash:', detectedPage);
     }
     
     // If no exact route match, try to infer page ID from path
     if (!detectedPage) {
       detectedPage = this.inferPageId(currentPath);
+      console.log('🔍 Route detection - Inferred page ID:', detectedPage);
     }
     
     // Final fallback to home
     if (!detectedPage) {
       detectedPage = 'home';
+      console.log('🔍 Route detection - Final fallback to home');
     }
     
     console.log('🔍 SPA Setup - Current Path:', currentPath);
@@ -267,7 +277,26 @@ class StaticHeaderSPA {
     // Try to infer page ID from path structure
     if (path === '/') return 'home';
     
-    // Remove leading slash and replace slashes with dashes
+    // Handle specific route patterns
+    if (path.startsWith('/products/')) {
+      // Extract the product name from /products/productname
+      const productName = path.replace('/products/', '').replace(/\/$/, '');
+      return productName;
+    }
+    
+    if (path.startsWith('/work/')) {
+      // Extract the work name from /work/workname
+      const workName = path.replace('/work/', '').replace(/\/$/, '');
+      return workName;
+    }
+    
+    if (path.startsWith('/photos/')) {
+      // Extract the photo name from /photos/photoname
+      const photoName = path.replace('/photos/', '').replace(/\/$/, '');
+      return photoName;
+    }
+    
+    // Remove leading slash and replace slashes with dashes for other cases
     const pathParts = path.replace(/^\//, '').replace(/\/$/, '');
     return pathParts.replace(/\//g, '-') || null;
   }
@@ -318,43 +347,56 @@ class StaticHeaderSPA {
   async transitionToPage(pageId, path, animate = true, shouldScrollToTop = true) {
     console.log(`🎭 transitionToPage called: pageId="${pageId}", path="${path}", animate=${animate}`);
     
-    if (animate) {
-      console.log(`🎬 Starting animated transition with exit animation`);
-      // Start exit animation and update body class simultaneously for header fade
-      await this.animateContentOut(pageId);
-    } else {
-      console.log(`⚡ Non-animated transition - updating body class immediately`);
-      // Update body class immediately for non-animated transitions
-      this.updateBodyClass(pageId);
-    }
-    
-    // Load new content
-    const content = await this.loadPageContent(pageId, path);
-    
-    // Update content
-    this.contentContainer.innerHTML = content;
-    
-    // Initialize medium-zoom for new content
-    this.initializeMediumZoom();
-    
-    if (animate) {
-      // Start enter animation
-      await this.animateContentIn();
-      
-      // Reinitialize carousel after animation completes
-      setTimeout(() => {
-        this.initializeCarousel();
-      }, 100);
-      
-      // Only scroll to top if this is a user navigation (not initial page load)
-      if (shouldScrollToTop) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      if (animate) {
+        console.log(`🎬 Starting animated transition with exit animation`);
+        // Start exit animation and update body class simultaneously for header fade
+        await this.animateContentOut(pageId);
+      } else {
+        console.log(`⚡ Non-animated transition - updating body class immediately`);
+        // Update body class immediately for non-animated transitions
+        this.updateBodyClass(pageId);
       }
-    } else {
-      // No animation, just initialize carousel if needed
-      setTimeout(() => {
-        this.initializeCarousel();
-      }, 50);
+      
+      // Load new content
+      const content = await this.loadPageContent(pageId, path);
+      
+      if (!content) {
+        console.error('❌ No content returned from loadPageContent');
+        return;
+      }
+      
+      // Update content
+      this.contentContainer.innerHTML = content;
+      
+      // Initialize medium-zoom for new content
+      this.initializeMediumZoom();
+      
+      if (animate) {
+        // Start enter animation
+        await this.animateContentIn();
+        
+        // Reinitialize carousel after animation completes
+        setTimeout(() => {
+          this.initializeCarousel();
+        }, 100);
+        
+        // Only scroll to top if this is a user navigation (not initial page load)
+        if (shouldScrollToTop) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else {
+        // No animation, just initialize carousel if needed
+        setTimeout(() => {
+          this.initializeCarousel();
+        }, 50);
+      }
+      
+      console.log(`✅ transitionToPage completed successfully for ${pageId}`);
+    } catch (error) {
+      console.error(`❌ Error in transitionToPage for ${pageId}:`, error);
+      // Try to show some fallback content
+      this.contentContainer.innerHTML = `<div class="col-8 row"><p>Error loading content for ${pageId}. Please try refreshing the page.</p></div>`;
     }
   }
   
@@ -409,7 +451,7 @@ class StaticHeaderSPA {
   }
   
   async loadPageContent(pageId, path) {
-    console.log(`📄 Loading content for pageId: "${pageId}"`);
+    console.log(`📄 Loading content for pageId: "${pageId}", path: "${path}"`);
     
     // For home page, always try to load fresh content first
     if (pageId === 'home' && path === '/') {
@@ -444,13 +486,20 @@ class StaticHeaderSPA {
       // Try to load from JSON API first
       // Add cache busting in development
       const cacheBuster = window.location.hostname === 'localhost' ? `?t=${Date.now()}` : '';
-      const response = await fetch(`/api/content/${pageId}.json${cacheBuster}`);
+      const apiUrl = `/api/content/${pageId}.json${cacheBuster}`;
+      console.log(`🔗 Attempting to fetch from: ${apiUrl}`);
+      
+      const response = await fetch(apiUrl);
+      console.log(`📡 API Response status: ${response.status}, ok: ${response.ok}`);
+      
       if (response.ok) {
         const data = await response.json();
-        console.log(`✅ Loaded content for ${pageId}`);
+        console.log(`✅ Loaded content for ${pageId}:`, data);
         const content = this.renderPageFromData(data);
         this.pageCache.set(pageId, content);
         return content;
+      } else {
+        console.log(`❌ API returned status ${response.status} for ${pageId}`);
       }
     } catch (error) {
       console.log('❌ JSON API not available, using fallback:', error);
@@ -465,7 +514,10 @@ class StaticHeaderSPA {
         fetchPath = path + '/';
       }
       
+      console.log(`🔄 Fallback: trying to fetch from: ${fetchPath}`);
       const response = await fetch(fetchPath);
+      console.log(`📡 Fallback Response status: ${response.status}, ok: ${response.ok}`);
+      
       if (response.ok) {
         const html = await response.text();
         const content = this.extractContentFromHTML(html);
@@ -475,7 +527,10 @@ class StaticHeaderSPA {
       
       // If that fails, try without trailing slash
       if (fetchPath !== path) {
+        console.log(`🔄 Fallback: trying without trailing slash: ${path}`);
         const response2 = await fetch(path);
+        console.log(`📡 Fallback 2 Response status: ${response2.status}, ok: ${response2.ok}`);
+        
         if (response2.ok) {
           const html = await response2.text();
           const content = this.extractContentFromHTML(html);
@@ -488,6 +543,7 @@ class StaticHeaderSPA {
     }
     
     // Final fallback: return placeholder
+    console.log(`⚠️ Using placeholder content for ${pageId}`);
     return this.getPlaceholderContent(pageId);
   }
   
@@ -1103,20 +1159,24 @@ function initializeSPA() {
   }
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  // Small delay to ensure everything is loaded
-  setTimeout(initializeSPA, 100);
-});
+// Initialize immediately when script loads
+console.log('🚀 Static Header SPA script loaded, initializing immediately...');
+initializeSPA();
 
-// Also initialize immediately if DOM is already ready
-if (document.readyState !== 'loading') {
-  setTimeout(initializeSPA, 100);
-}
+// Also initialize when DOM is ready as backup
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded event fired');
+  if (!window.staticHeaderSPA) {
+    console.log('SPA not initialized yet, initializing now...');
+    initializeSPA();
+  }
+});
 
 // Backup initialization after window load
 window.addEventListener('load', () => {
+  console.log('Window load event fired');
   if (!window.staticHeaderSPA) {
-    setTimeout(initializeSPA, 50);
+    console.log('SPA still not initialized, final attempt...');
+    initializeSPA();
   }
 });
