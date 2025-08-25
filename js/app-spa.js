@@ -479,6 +479,12 @@ class StaticHeaderSPA {
       if (response.ok) {
         const data = await response.json();
         this.log('✅ JSON API successful', { pageId, dataKeys: Object.keys(data) });
+        
+        // Update document title if available
+        if (data.title) {
+          document.title = data.title;
+        }
+        
         const content = this.renderPageFromData(data);
         this.pageCache.set(pageId, content);
         return content;
@@ -543,15 +549,8 @@ class StaticHeaderSPA {
   
   renderPageFromData(data) {
     // Render page from JSON data structure
-    let html = `<div class="col-8 row">`;
-    
-    if (data.title) {
-      html += `<h1 class="title">${data.title}</h1>`;
-    }
-    
-    if (data.subtitle) {
-      html += `<p class="subtitle">${data.subtitle}</p>`;
-    }
+    // Note: Don't render data.title as it's meant for document title, content includes display titles
+    let html = '';
     
     if (data.content && Array.isArray(data.content)) {
       html += data.content.join('\n');
@@ -572,7 +571,6 @@ class StaticHeaderSPA {
       });
     }
     
-    html += `</div>`;
     return html;
   }
   
