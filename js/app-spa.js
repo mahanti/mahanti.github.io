@@ -48,13 +48,13 @@ class StaticHeaderSPA {
   async init() {
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.setupSPA());
+      document.addEventListener('DOMContentLoaded', async () => await this.setupSPA());
     } else {
-      this.setupSPA();
+      await this.setupSPA();
     }
   }
   
-  setupSPA() {
+  async setupSPA() {
     // Find or create content container
     this.contentContainer = document.querySelector('#spa-content');
     if (!this.contentContainer) {
@@ -96,6 +96,15 @@ class StaticHeaderSPA {
     
     // Set initial body class
     this.updateBodyClass(this.currentPage, currentPath);
+    
+    // Load initial page content if not on home page
+    if (currentPath !== '/' && this.currentPage !== 'home') {
+      try {
+        await this.transitionToPage(this.currentPage, currentPath, false);
+      } catch (error) {
+        console.error('Failed to load initial page content:', error);
+      }
+    }
     
     // Cache initial content
     this.cacheCurrentContent();
@@ -496,11 +505,13 @@ class StaticHeaderSPA {
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   window.staticHeaderSPA = new StaticHeaderSPA();
+  await window.staticHeaderSPA.init();
 });
 
 // Also initialize immediately if DOM is already ready
 if (document.readyState !== 'loading') {
   window.staticHeaderSPA = new StaticHeaderSPA();
+  window.staticHeaderSPA.init();
 }

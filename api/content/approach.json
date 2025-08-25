@@ -16,7 +16,7 @@
     "        </section>",
     "        <section>",
     "          <div class=\"row\">",
-    "            <span class=\"title\">About</span>",
+    "            <span class=\"title\">Approach Golf Co.</span>",
     "              <span class=\"subtitle\">I started golfing in highschool and was immediately hooked to the game. After a few years off the course, I brushed off my old clubs and got back into it. While clubs, tools, and styles had all evolved since high school, the apps “designed” for golf were ugly and clunky, to say the least.",
     "                <br><br>",
     "                Built fully in SwiftUI, this app was mostly designed and built in code — opening the door to intuitive and fluid interactions that take advantage of iOS.</span>",
