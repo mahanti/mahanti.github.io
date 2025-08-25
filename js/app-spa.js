@@ -228,17 +228,10 @@ class StaticHeaderSPA {
   setupStaticHeader() {
     const header = document.querySelector('#nav');
     if (header) {
-      // Make header position fixed/sticky
-      header.style.position = 'sticky';
-      header.style.top = '0';
-      header.style.zIndex = '100';
-      header.style.backgroundColor = 'inherit';
-      
-      // Ensure it spans full width
-      header.style.width = '100%';
-      header.style.boxSizing = 'border-box';
-      
+      // Just store reference to header, no positioning changes needed
       this.header = header;
+      
+      this.log('📌 Header setup - keeping natural flow (no sticky positioning)');
     }
   }
   
