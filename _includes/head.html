@@ -3,6 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ site.title | escape }} {{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
   <script src="/js/min.script.js"></script>
   <script src="/js/medium-zoom.min.js"></script>

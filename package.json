@@ -10,8 +10,7 @@
   },
   "scripts": {
     "optimize-images": "node scripts/optimize-images.js",
-    "generate-galleries": "node scripts/generate-image-galleries.js",
-    "build": "npm run generate-galleries && npm run optimize-images && jekyll build"
+    "build": "npm run optimize-images && jekyll build"
   },
   "dependencies": {
     "medium-zoom": "^1.1.0"
