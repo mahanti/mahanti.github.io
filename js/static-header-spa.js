@@ -78,6 +78,7 @@ class StaticHeaderSPA {
     console.log('🚀 setupSPA called');
     console.log('🔍 Current URL:', window.location.href);
     console.log('🔍 Current pathname:', window.location.pathname);
+    console.log('🔍 Available routes:', Object.keys(this.routes));
     
     // Find or create content container
     this.contentContainer = document.querySelector('#spa-content');
@@ -122,6 +123,7 @@ class StaticHeaderSPA {
     
     console.log('🔍 Route detection - Current Path:', currentPath);
     console.log('🔍 Route detection - Direct match:', detectedPage);
+    console.log('🔍 Route detection - Available routes for this path:', Object.entries(this.routes).filter(([route]) => route.includes(currentPath.split('/')[1])));
     
     // Try with trailing slash if exact match failed
     if (!detectedPage && !currentPath.endsWith('/')) {
@@ -149,6 +151,7 @@ class StaticHeaderSPA {
     
     console.log('🔍 SPA Setup - Current Path:', currentPath);
     console.log('🔍 SPA Setup - Detected Page:', detectedPage);
+    console.log('🔍 SPA Setup - Will attempt to load content for pageId:', detectedPage);
     
     // Load the correct content for any page, including home
     if (detectedPage !== 'home' && currentPath !== '/') {
@@ -465,12 +468,17 @@ class StaticHeaderSPA {
   }
   
   async loadPageContent(pageId, path) {
-    console.log(`📄 Loading content for pageId: "${pageId}", path: "${path}"`);
+    console.log(`📄 loadPageContent called with:`);
+    console.log(`   - pageId: "${pageId}"`);
+    console.log(`   - path: "${path}"`);
+    console.log(`   - current URL: "${window.location.href}"`);
     
     // For home page, always try to load fresh content first
     if (pageId === 'home' && path === '/') {
+      console.log('🏠 Home page detected, trying to load fresh content from:', path);
       try {
         const response = await fetch(path);
+        console.log('📡 Home page fetch response:', response.status, response.ok);
         if (response.ok) {
           const html = await response.text();
           const content = this.extractContentFromHTML(html);
@@ -478,7 +486,7 @@ class StaticHeaderSPA {
           return content;
         }
       } catch (error) {
-        console.log('Failed to load fresh home content, using cache/fallback');
+        console.log('❌ Failed to load fresh home content:', error);
       }
     }
     
@@ -501,22 +509,27 @@ class StaticHeaderSPA {
       // Add cache busting in development
       const cacheBuster = window.location.hostname === 'localhost' ? `?t=${Date.now()}` : '';
       const apiUrl = `/api/content/${pageId}.json${cacheBuster}`;
-      console.log(`🔗 Attempting to fetch from: ${apiUrl}`);
+      console.log(`🔗 STEP 1: Attempting to fetch from JSON API: ${apiUrl}`);
+      console.log(`   - This should work if pageId is correct`);
+      console.log(`   - Available JSON files: approach.json, circuit.json, jot.json, etc.`);
       
       const response = await fetch(apiUrl);
-      console.log(`📡 API Response status: ${response.status}, ok: ${response.ok}`);
+      console.log(`📡 JSON API Response: status=${response.status}, ok=${response.ok}`);
       
       if (response.ok) {
         const data = await response.json();
-        console.log(`✅ Loaded content for ${pageId}:`, data);
+        console.log(`✅ SUCCESS: Loaded content for ${pageId} from JSON API`);
+        console.log(`   - Data structure:`, Object.keys(data));
         const content = this.renderPageFromData(data);
         this.pageCache.set(pageId, content);
         return content;
       } else {
-        console.log(`❌ API returned status ${response.status} for ${pageId}`);
+        console.log(`❌ FAILED: JSON API returned status ${response.status} for ${pageId}`);
+        console.log(`   - This means the pageId "${pageId}" doesn't match any JSON file`);
+        console.log(`   - Check if pageId should be: approach, circuit, jot, etc.`);
       }
     } catch (error) {
-      console.log('❌ JSON API not available, using fallback:', error);
+      console.log('❌ JSON API fetch failed:', error);
     }
     
     // Fallback: try to load the actual page and extract content
@@ -528,9 +541,12 @@ class StaticHeaderSPA {
         fetchPath = path + '/';
       }
       
-      console.log(`🔄 Fallback: trying to fetch from: ${fetchPath}`);
+      console.log(`🔄 STEP 2: Fallback - trying to fetch actual page from: ${fetchPath}`);
+      console.log(`   - This should work if the page exists on the server`);
+      console.log(`   - But for SPA routes like /products/approach, this will likely fail`);
+      
       const response = await fetch(fetchPath);
-      console.log(`📡 Fallback Response status: ${response.status}, ok: ${response.ok}`);
+      console.log(`📡 Fallback Response: status=${response.status}, ok=${response.ok}`);
       
       if (response.ok) {
         const html = await response.text();
@@ -541,9 +557,9 @@ class StaticHeaderSPA {
       
       // If that fails, try without trailing slash
       if (fetchPath !== path) {
-        console.log(`🔄 Fallback: trying without trailing slash: ${path}`);
+        console.log(`🔄 STEP 3: Trying without trailing slash: ${path}`);
         const response2 = await fetch(path);
-        console.log(`📡 Fallback 2 Response status: ${response2.status}, ok: ${response2.ok}`);
+        console.log(`📡 Fallback 2 Response: status=${response2.status}, ok=${response2.ok}`);
         
         if (response2.ok) {
           const html = await response2.text();
@@ -553,11 +569,14 @@ class StaticHeaderSPA {
         }
       }
     } catch (error) {
-      console.error('Failed to load page content:', error);
+      console.error('❌ Fallback fetch failed:', error);
     }
     
     // Final fallback: return placeholder
-    console.log(`⚠️ Using placeholder content for ${pageId}`);
+    console.log(`⚠️ All methods failed for ${pageId}, using placeholder content`);
+    console.log(`   - pageId: "${pageId}"`);
+    console.log(`   - path: "${path}"`);
+    console.log(`   - This suggests a routing configuration issue`);
     return this.getPlaceholderContent(pageId);
   }
   
