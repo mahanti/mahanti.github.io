@@ -1,9 +1,13 @@
 // Single Page Application with Static Header and Smooth Content Transitions
 console.log('🚀 Static Header SPA script loaded!');
+console.log('📝 Script execution started at:', new Date().toISOString());
+console.log('🔍 Current URL:', window.location.href);
+console.log('🔍 Current pathname:', window.location.pathname);
 
 class StaticHeaderSPA {
   constructor() {
     console.log('StaticHeaderSPA constructor called');
+    alert('SPA Constructor called - script is working!'); // TEMPORARY TEST
     this.currentPage = null;
     this.isTransitioning = false;
     this.contentContainer = null;
