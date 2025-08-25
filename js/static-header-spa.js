@@ -7,7 +7,6 @@ console.log('🔍 Current pathname:', window.location.pathname);
 class StaticHeaderSPA {
   constructor() {
     console.log('StaticHeaderSPA constructor called');
-    alert('SPA Constructor called - script is working!'); // TEMPORARY TEST
     this.currentPage = null;
     this.isTransitioning = false;
     this.contentContainer = null;
