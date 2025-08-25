@@ -1,38 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arjun Mahanti, designer</title>
-  <meta name="description" content="Selected work by Arjun Mahanti"></meta>
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Arjun Mahanti</title>
+  <meta name="description" content="A multidisciplinary designer building delightful solutions to complex problems.">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/js/min.script.js"></script>
+  <script src="/js/medium-zoom.min.js"></script>
+  <script>
+    // SPA redirect for GitHub Pages
+    (function() {
+      console.log('[404] SPA redirect script loaded', {
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        pathname: window.location.pathname,
+        search: window.location.search,
+        hash: window.location.hash
+      });
+
+      // Store the current path for the SPA to handle
+      const path = window.location.pathname;
+      const search = window.location.search;
+      
+      console.log('[404] Redirecting to index with stored path:', path);
+      
+      // Store path in sessionStorage so SPA can pick it up
+      try {
+        sessionStorage.setItem('spa_redirect_path', path + search);
+      } catch (e) {
+        console.warn('[404] Failed to store redirect path:', e);
+      }
+      
+      // Replace the current URL with the index page
+      // This preserves the URL in the address bar while loading the SPA
+      window.history.replaceState(null, null, path + search);
+      
+      // Load the main SPA page content
+      fetch('/')
+        .then(response => response.text())
+        .then(html => {
+          // Replace current page content with index.html
+          document.documentElement.innerHTML = html;
+          
+          // Execute any scripts in the loaded content
+          const scripts = document.querySelectorAll('script');
+          scripts.forEach(script => {
+            if (script.src) {
+              const newScript = document.createElement('script');
+              newScript.src = script.src;
+              newScript.onload = () => {
+                console.log('[404] Script loaded:', script.src);
+              };
+              document.head.appendChild(newScript);
+            } else if (script.textContent) {
+              const newScript = document.createElement('script');
+              newScript.textContent = script.textContent;
+              document.head.appendChild(newScript);
+            }
+          });
+        })
+        .catch(error => {
+          console.error('[404] Failed to load SPA:', error);
+          // Fallback content
+          document.body.innerHTML = `
+            <div style="padding: 2rem; text-align: center;">
+              <h1>Page Not Found</h1>
+              <p>The page you're looking for doesn't exist.</p>
+              <a href="/">Go Home</a>
+            </div>
+          `;
+        });
+    })();
+    
+    // Auto theme switching (same as index.html)
+    (function() {
+      var hasStarted = false;
+      function applyThemeForNow(now) {
+        var hours = now.getHours();
+        var isNight = (hours >= 19 || hours < 7);
+        var body = document.body;
+        if (!body) return;
+        body.classList.remove('day', 'night');
+        body.classList.add(isNight ? 'night' : 'day');
+      }
+
+      function msUntilNextSwitch(now) {
+        var next = new Date(now);
+        var hours = now.getHours();
+        if (hours < 7) {
+          next.setHours(7,0,0,0);
+        } else if (hours < 19) {
+          next.setHours(19,0,0,0);
+        } else {
+          next.setDate(next.getDate() + 1);
+          next.setHours(7,0,0,0);
+        }
+        return Math.max(0, next.getTime() - now.getTime());
+      }
+
+      function schedule() {
+        var now = new Date();
+        applyThemeForNow(now);
+        var delay = msUntilNextSwitch(now);
+        if (delay === 0) {
+          delay = 1000;
+        }
+        setTimeout(schedule, delay);
+      }
+
+      function start() {
+        if (hasStarted) return;
+        hasStarted = true;
+        if (document.body) {
+          applyThemeForNow(new Date());
+        }
+        schedule();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+      } else {
+        start();
+      }
+      window.addEventListener('load', start);
+    })();
+  </script>
 </head>
-<body>
-  <div id="container">
-    <section id="nav">
-      <div class="row nav-row">
-        <div class="text-section">
-          <a href="/"><span id="name" class="title">Arjun Mahanti</span></a>
-          <span class="subtitle hideable">A midwesterner in Brooklyn building, designing, and crafting products. Taking photos, cooking food, and avoiding three-putts.</span>
-        </div>
-        <div class="button-section">
-          <nav>
-            <ul class="navlist">
-              <li><a class="button-link" href="/work">Work</a></li>
-              <li><a class="button-link" href="/products">Products</a></li>
-              <li><a class="button-link" href="/photos">Photos</a></li>
-              <li><a class="button-link" href="/about">About</a></li>
-            </ul>
-          </nav>
-          <a href="#" class="navlist-button"></a>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="row">
-        <span class="title">405</span>
-      </div>
-    </section>
+<body class="day loading">
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="text-align: center;">
+      <h2>Loading...</h2>
+      <p>Redirecting to the requested page...</p>
+    </div>
   </div>
-  <script src="/js/script.js" defer=""></script>
 </body>
+</html>
