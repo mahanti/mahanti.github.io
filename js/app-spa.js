@@ -182,8 +182,23 @@ class StaticHeaderSPA {
     // Set initial body class
     this.updateBodyClass(this.currentPage, currentPath);
     
-    // Load initial page content if not on home page
-    if (currentPath !== '/' && this.currentPage !== 'home') {
+    // Load initial page content for all pages (including home)
+    const isHomePage = currentPath === '/' || this.currentPage === 'index' || this.currentPage === 'home';
+    
+    if (isHomePage) {
+      this.log('🏠 Loading home page content', {
+        currentPath,
+        currentPage: this.currentPage
+      });
+      
+      try {
+        // Load home page content from API
+        await this.transitionToPage('index', currentPath, false);
+      } catch (error) {
+        this.log('❌ Failed to load home page content', { error: error.message, stack: error.stack });
+        console.error('Failed to load home page content:', error);
+      }
+    } else {
       this.log('🚀 Loading initial page content for non-home page', {
         currentPath,
         currentPage: this.currentPage
@@ -195,8 +210,6 @@ class StaticHeaderSPA {
         this.log('❌ Failed to load initial page content', { error: error.message, stack: error.stack });
         console.error('Failed to load initial page content:', error);
       }
-    } else {
-      this.log('🏠 On home page, using existing content');
     }
     
     // Cache initial content
