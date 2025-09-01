@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"pages/_app.js -> medium-zoom\":{\"id\":\"pages/_app.js -> medium-zoom\",\"files\":[\"static/chunks/node_modules_medium-zoom_dist_medium-zoom_esm_js.js\"]}}"
