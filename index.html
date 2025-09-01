@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script src="/js/min.script.js"></script>
   <script src="/js/medium-zoom.min.js"></script>
+  <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
   <script>
     (function() {
       var hasStarted = false;
@@ -72,7 +73,7 @@
     
     
     
-    <div class="grid page-content">
+    <div class="grid page-content animate-page">
         <!-- Static Header with Navigation -->
         <header id="nav" class="static-header">
             <div class="col-8 row">
@@ -101,17 +102,33 @@
         
         <!-- Content Container -->
         <div id="spa-content" class="spa-content-container">
-          <div class="carousel-wrapper mb-24">
-            <div id="image-carousel" class="carousel-container">
-              <div class="carousel-slide">
-                <img src="/img/carousel/01.jpg" loading="lazy">
-                <img src="/img/carousel/02.png" class="image-border" loading="lazy">
-                <img src="/img/carousel/03.jpg" loading="lazy">
-                <img src="/img/carousel/08.jpg" loading="lazy">
-                <img src="/img/carousel/04.jpg" loading="lazy">
-                <img src="/img/carousel/07.jpg" loading="lazy">
-                <img src="/img/carousel/05.jpg" loading="lazy">
-                <img src="/img/carousel/06.jpg" loading="lazy">
+          <div class="embla mb-24">
+            <div class="embla__viewport" id="embla-viewport">
+              <div class="embla__container">
+                <div class="embla__slide">
+                  <img src="/img/carousel/01.jpg" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/02.png" class="image-border" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/03.jpg" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/08.jpg" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/04.jpg" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/07.jpg" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/05.jpg" loading="lazy" alt="">
+                </div>
+                <div class="embla__slide">
+                  <img src="/img/carousel/06.jpg" loading="lazy" alt="">
+                </div>
               </div>
             </div>
           </div>

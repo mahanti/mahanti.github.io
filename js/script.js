@@ -1,250 +1,238 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // SIMPLIFIED CAROUSEL - Remove complex bounds calculation and rubberbanding
-  const carouselContainer = document.querySelector('.carousel-container') || document.querySelector('#image-carousel');
-  const carouselSlide = document.querySelector('.carousel-slide');
+  // ================================
+  // PAGE ENTRANCE ANIMATIONS
+  // ================================
   
-  if (!carouselContainer || !carouselSlide) return;
-
-  let isDragging = false;
-  let startX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let animationID = null;
-  let velocity = 0;
-  let lastX = 0;
-  let lastTime = 0;
-  
-  // Rubberbanding configuration
-  const RUBBERBAND_FACTOR = 0.3;
-  const RUBBERBAND_THRESHOLD = 100;
-  
-  // Simple bounds - calculate once
-  let maxTranslate = 0;
-  let minTranslate = 0;
-  
-  function calculateSimpleBounds() {
-    const containerWidth = carouselContainer.offsetWidth;
-    const slideWidth = carouselSlide.scrollWidth;
-    const containerPadding = parseInt(getComputedStyle(carouselContainer).paddingLeft) + parseInt(getComputedStyle(carouselContainer).paddingRight);
-    const effectiveContainerWidth = containerWidth - containerPadding;
-    
-    maxTranslate = 0;
-    minTranslate = -(slideWidth - effectiveContainerWidth);
-  }
-  
-  // Calculate bounds after a short delay
-  setTimeout(() => {
-    calculateSimpleBounds();
-    updateEdgeIndicators(); // Initialize edge indicators
-  }, 100);
-  
-  // Rubberbanding function
-  function applyRubberbanding(translate) {
-    if (translate > maxTranslate) {
-      const overdraw = translate - maxTranslate;
-      if (overdraw > RUBBERBAND_THRESHOLD) {
-        return maxTranslate + RUBBERBAND_THRESHOLD + (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
-      }
-      return maxTranslate + overdraw * RUBBERBAND_FACTOR;
-    } else if (translate < minTranslate) {
-      const overdraw = minTranslate - translate;
-      if (overdraw > RUBBERBAND_THRESHOLD) {
-        return minTranslate - RUBBERBAND_THRESHOLD - (overdraw - RUBBERBAND_THRESHOLD) * RUBBERBAND_FACTOR;
-      }
-      return minTranslate - overdraw * RUBBERBAND_FACTOR;
-    }
-    return translate;
-  }
-  
-  // Update edge indicators
-  function updateEdgeIndicators() {
-    carouselContainer.classList.remove('at-left-edge', 'at-right-edge');
-    
-    if (currentTranslate >= maxTranslate) {
-      carouselContainer.classList.add('at-right-edge');
-    } else if (currentTranslate <= minTranslate) {
-      carouselContainer.classList.add('at-left-edge');
-    }
-  }
-  
-  // Smooth snap back to bounds
-  function snapToBounds() {
-    let targetTranslate = currentTranslate;
-    
-    if (currentTranslate > maxTranslate) {
-      targetTranslate = maxTranslate;
-    } else if (currentTranslate < minTranslate) {
-      targetTranslate = minTranslate;
+  function initPageAnimations() {
+    // Check if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return; // Skip animations if user prefers reduced motion
     }
     
-    if (targetTranslate !== currentTranslate) {
-      const startTranslate = currentTranslate;
-      const distance = targetTranslate - startTranslate;
-      const duration = 300;
-      const startTime = Date.now();
+    // Get all elements that should be animated
+    const headerElements = document.querySelectorAll('#name, .subtitle, nav');
+    const carouselElement = document.querySelector('.embla');
+    const sectionElements = document.querySelectorAll('section, .section');
+    const linkElements = document.querySelectorAll('.image-link');
+    const logoElement = document.querySelector('.logo-link');
+    
+    // Immediately set initial hidden state with inline styles (like nelson.co)
+    const allElements = [
+      ...(logoElement ? [logoElement] : []),
+      ...headerElements,
+      ...(carouselElement ? [carouselElement] : []),
+      ...sectionElements,
+      ...linkElements
+    ];
+    
+    allElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.filter = 'blur(6px)';
+      el.style.transform = 'translateY(12px) translateZ(0)';
+      el.style.transition = 'all 0.4s cubic-bezier(0.24, 0.48, 0.48, 0.96)';
+    });
+    
+    // Trigger animations after page load
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        // Animate elements with staggered timing
+        if (logoElement) {
+          setTimeout(() => {
+            logoElement.style.opacity = '1';
+            logoElement.style.filter = 'blur(0px)';
+            logoElement.style.transform = 'translateY(0px) translateZ(0)';
+          }, 100);
+        }
+        
+        headerElements.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.filter = 'blur(0px)';
+            el.style.transform = 'translateY(0px) translateZ(0)';
+          }, 150 + index * 50);
+        });
+        
+        if (carouselElement) {
+          setTimeout(() => {
+            carouselElement.style.opacity = '1';
+            carouselElement.style.filter = 'blur(0px)';
+            carouselElement.style.transform = 'translateY(0px) translateZ(0)';
+          }, 400);
+        }
+        
+        sectionElements.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.filter = 'blur(0px)';
+            el.style.transform = 'translateY(0px) translateZ(0)';
+          }, 500 + index * 100);
+        });
+        
+        linkElements.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.filter = 'blur(0px)';
+            el.style.transform = 'translateY(0px) translateZ(0)';
+          }, 700 + index * 30);
+        });
+      }, 100); // Small delay after page load
+    });
+  }
+  
+  // Page transition handling for navigation
+  function handlePageTransition(href) {
+    // Only handle internal links
+    if (href.startsWith('/') || href.includes(window.location.hostname)) {
+      // Get all animated elements - target the main containers, not child elements
+      const logoElement = document.querySelector('.logo-link');
+      const nameElement = document.querySelector('#name');
+      const subtitleElement = document.querySelector('.subtitle.hideable'); // Only the main subtitle
+      const navElement = document.querySelector('nav');
+      const carouselElement = document.querySelector('.embla');
+      const sectionElements = document.querySelectorAll('section');
+      const linkElements = document.querySelectorAll('a.image-link.row'); // Specific to the work/product links
       
-      function animateSnap() {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOut = 1 - Math.pow(1 - progress, 3); // Cubic ease out
-        
-        currentTranslate = startTranslate + (distance * easeOut);
-        carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
-        
-        // Update edge indicators during snap animation
-        updateEdgeIndicators();
-        
-        if (progress < 1) {
-          animationID = requestAnimationFrame(animateSnap);
+      const allElements = [
+        ...(logoElement ? [logoElement] : []),
+        ...(nameElement ? [nameElement] : []),
+        ...(subtitleElement ? [subtitleElement] : []),
+        ...(navElement ? [navElement] : []),
+        ...(carouselElement ? [carouselElement] : []),
+        ...sectionElements,
+        ...linkElements
+      ];
+      
+      // Animate elements out quickly
+      allElements.forEach((el, index) => {
+        // Force override any existing transition
+        el.style.transition = 'none';
+        requestAnimationFrame(() => {
+          el.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          setTimeout(() => {
+            el.style.opacity = '0';
+            el.style.filter = 'blur(6px)';
+            el.style.transform = 'translateY(12px) translateZ(0)';
+          }, index * 20); // Very quick stagger
+        });
+      });
+      
+      // Also fade the page container
+      const pageContent = document.querySelector('.page-content');
+      if (pageContent) {
+        pageContent.style.transition = 'opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        setTimeout(() => {
+          pageContent.style.opacity = '0.3';
+        }, 100);
+      }
+      
+      setTimeout(() => {
+        window.location.href = href;
+      }, 400); // Give enough time for exit animation
+      
+      return false; // Prevent immediate navigation
+    }
+    return true; // Allow navigation for external links
+  }
+  
+  // Add transition handling to navigation links
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && e.target.hasAttribute('href')) {
+      const href = e.target.getAttribute('href');
+      if (href && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+        if (!handlePageTransition(href)) {
+          e.preventDefault();
         }
       }
-      
-      animateSnap();
+    }
+  });
+  
+  // Initialize animations
+  let animationsInitialized = false;
+  
+  function safeInitAnimations() {
+    if (!animationsInitialized) {
+      animationsInitialized = true;
+      initPageAnimations();
     }
   }
   
-  // Simple event handlers
-  carouselContainer.addEventListener('mouseleave', () => {
-    if (isDragging) {
-      endDrag();
-    }
-  }, { passive: true });
+  // Initialize immediately
+  safeInitAnimations();
+  
+  // Also trigger on window load as a fallback
+  window.addEventListener('load', safeInitAnimations);
 
-  carouselContainer.addEventListener('mousedown', startDrag);
-  carouselContainer.addEventListener('mousemove', drag);
-  carouselContainer.addEventListener('mouseup', endDrag);
-  carouselContainer.addEventListener('touchstart', startDrag, { passive: false });
-  carouselContainer.addEventListener('touchmove', drag, { passive: false });
-  carouselContainer.addEventListener('touchend', endDrag, { passive: false });
-  carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
+  // ================================
+  // EMBLA CAROUSEL IMPLEMENTATION
+  // ================================
+  
+  function initEmblaCarousel() {
+    const emblaNode = document.getElementById('embla-viewport');
+    if (!emblaNode) return;
 
-  function startDrag(e) {
-    isDragging = true;
+    // Initialize Embla with options
+    const options = {
+      loop: false,
+      align: 'start',
+      containScroll: 'trimSnaps',
+      dragFree: true,
+      slidesToScroll: 1
+    };
     
-    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-    startX = clientX;
-    prevTranslate = currentTranslate;
-    lastX = clientX;
-    lastTime = Date.now();
-    velocity = 0;
+    const embla = EmblaCarousel(emblaNode, options);
     
-    if (animationID) {
-      cancelAnimationFrame(animationID);
-      animationID = null;
-    }
-  }
-
-  function drag(e) {
-    if (!isDragging) return;
-    
-    e.preventDefault();
-    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-    const diff = clientX - startX;
-    const rawTranslate = prevTranslate + diff;
-    
-    // Apply rubberbanding
-    currentTranslate = applyRubberbanding(rawTranslate);
-    
-    // Update velocity
-    const currentTime = Date.now();
-    const deltaTime = currentTime - lastTime;
-    if (deltaTime > 0) {
-      velocity = (clientX - lastX) / deltaTime * 16;
-    }
-    lastX = clientX;
-    lastTime = currentTime;
-    
-    carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
-    
-    // Update edge indicators
-    updateEdgeIndicators();
-  }
-
-  function endDrag() {
-    if (!isDragging) return;
-    
-    isDragging = false;
-    
-    // Check if we need to snap back to bounds
-    if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
-      snapToBounds();
-    } else if (Math.abs(velocity) > 1) {
-      // Apply momentum only if within bounds
-      applySimpleMomentum();
-    }
-  }
-
-  function handleWheel(e) {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault();
-      const scrollAmount = e.deltaX * 0.5;
-      const rawTranslate = currentTranslate - scrollAmount;
-      
-      // Apply rubberbanding for wheel scrolling
-      currentTranslate = applyRubberbanding(rawTranslate);
-      
-      carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
-      
-      // Update edge indicators
-      updateEdgeIndicators();
-      
-      // Snap back if over bounds
-      if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
-        setTimeout(snapToBounds, 100);
+    // Add wheel/trackpad support with throttling
+    let wheelTimer = null;
+    emblaNode.addEventListener('wheel', (e) => {
+      // Clear existing timer
+      if (wheelTimer) {
+        clearTimeout(wheelTimer);
       }
-    }
-  }
-
-  function applySimpleMomentum() {
-    const friction = 0.92;
-    const minVelocity = 0.3;
-    
-    function animate() {
-      if (Math.abs(velocity) < minVelocity) {
-        velocity = 0;
-        // Snap to bounds if needed
-        if (currentTranslate > maxTranslate || currentTranslate < minTranslate) {
-          snapToBounds();
+      
+      // Detect horizontal scrolling (trackpad swipe) or shift+vertical scroll
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
+        e.preventDefault();
+        
+        // Get the scroll amount
+        const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+        
+        // Use threshold to prevent too sensitive scrolling
+        if (Math.abs(delta) > 5) {
+          // Throttle the scrolling
+          wheelTimer = setTimeout(() => {
+            if (delta > 0) {
+              embla.scrollNext();
+            } else {
+              embla.scrollPrev();
+            }
+          }, 50);
         }
-        return;
       }
+    }, { passive: false });
+    
+    // Update the carousel animations reference
+    const carouselElement = document.querySelector('.embla');
+    if (carouselElement) {
+      // Update animations to target embla instead of carousel-wrapper
+      const animationElements = [
+        ...(document.querySelector('.logo-link') ? [document.querySelector('.logo-link')] : []),
+        ...document.querySelectorAll('#name, .subtitle, nav'),
+        ...(carouselElement ? [carouselElement] : []),
+        ...document.querySelectorAll('section, .section'),
+        ...document.querySelectorAll('.image-link')
+      ];
       
-      const rawTranslate = currentTranslate + velocity;
-      
-      // Apply rubberbanding during momentum
-      currentTranslate = applyRubberbanding(rawTranslate);
-      
-      // Stop momentum if we hit the bounds
-      if (currentTranslate === maxTranslate || currentTranslate === minTranslate) {
-        velocity = 0;
-      }
-      
-      velocity *= friction;
-      carouselSlide.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
-      
-      // Update edge indicators during momentum
-      updateEdgeIndicators();
-      
-      animationID = requestAnimationFrame(animate);
+      // Re-apply animation targeting for the carousel
+      carouselElement.style.opacity = '0';
+      carouselElement.style.filter = 'blur(6px)';
+      carouselElement.style.transform = 'translateY(12px) translateZ(0)';
+      carouselElement.style.transition = 'all 0.4s cubic-bezier(0.24, 0.48, 0.48, 0.96)';
     }
     
-    animate();
+    return embla;
   }
-
-  // Simple resize handler
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(calculateSimpleBounds, 150);
-  }, { passive: true });
-
-  // Cleanup
-  function cleanup() {
-    if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    if (animationID) cancelAnimationFrame(animationID);
-    if (resizeTimeout) clearTimeout(resizeTimeout);
-  }
-
-  window.addEventListener('beforeunload', cleanup);
+  
+  // Initialize Embla carousel
+  const emblaCarousel = initEmblaCarousel();
 });

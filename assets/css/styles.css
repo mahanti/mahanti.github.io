@@ -285,47 +285,44 @@ a:hover {
   min-height: 50vh;
 }
 
-/* Carousel */
-.carousel-wrapper {
+/* Embla Carousel */
+.embla {
   overflow: hidden;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   width: 100vw;
 }
 
-.carousel-container {
-  width: 100%;
+.embla__viewport {
   overflow: hidden;
-  white-space: nowrap;
-  user-select: none;
+  width: 100%;
   padding-top: 40px;
   padding-left: calc(50vw - 320px);
   padding-right: calc(50vw - 320px);
-  position: relative;
-  touch-action: pan-x pinch-zoom;
-  cursor: grab;
 }
 
-.carousel-container:active {
-  cursor: grabbing;
+.embla__container {
+  display: flex;
+  touch-action: pan-x;
 }
 
-.carousel-slide {
-  display: inline-block;
-  white-space: nowrap;
-  will-change: transform;
+.embla__slide {
   transform: translate3d(0, 0, 0);
+  flex: 0 0 auto;
+  min-width: 0;
+  margin-right: 16px;
 }
 
-.carousel-slide img {
-  display: inline-block;
+.embla__slide img {
   width: 600px;
   height: auto;
-  margin-right: 8px;
+  border-radius: 32px;
   pointer-events: none;
+  user-select: none;
+  display: block;
 }
 
-.carousel-slide img:last-child {
+.embla__slide:last-child {
   margin-right: 864px;
 }
 
@@ -405,19 +402,19 @@ body.night .divider {
 }
 
 /* Color Classes */
-.color-block { --custom-color: #222222; }
-.color-mango { --custom-color: var(--mango-orange); }
-.color-al { --custom-color: #3A25F5; }
-.color-sq { --custom-color: #2A68F6; }
-.color-ando { --custom-color: #F7323F; }
-.color-sidecar { --custom-color: #F56400; }
-.color-approach { --custom-color: #0B981F; }
-.color-zoon { --custom-color: #222222; }
-.color-sudo { --custom-color: #F07300; }
-.color-circuit { --custom-color: rgba(246, 127, 21); }
-.color-jot { --custom-color: #222222; }
-.color-terraforms { --custom-color: #1E1C33; }
-.color-tint { --custom-color: #3F3F3F; }
+.color-block { --custom-color: #111111; }
+.color-mango { --custom-color: #111111; }
+.color-al { --custom-color: #111111; }
+.color-sq { --custom-color: #111111; }
+.color-ando { --custom-color: #111111; }
+.color-sidecar { --custom-color: #111111; }
+.color-approach { --custom-color: #111111; }
+.color-zoon { --custom-color: #111111; }
+.color-sudo { --custom-color: #111111; }
+.color-circuit { --custom-color: #111111; }
+.color-jot { --custom-color: #111111; }
+.color-terraforms { --custom-color: #111111; }
+.color-tint { --custom-color: #111111; }
 
 /* Interactive hover effects */
 .image-link:hover .title {
@@ -462,6 +459,56 @@ footer {
   opacity: 0.5;
 }
 
+/* --------------------------------- */
+/* Page Entrance Animations */
+/* --------------------------------- */
+
+/* Page animations are now handled via inline styles in JavaScript */
+
+/* Simplified hover animations */
+.image-link {
+  transition: opacity 0.2s ease;
+}
+
+.image-link:hover {
+  opacity: 0.8;
+}
+
+.button-link {
+  transition: opacity 0.2s ease;
+}
+
+.button-link:hover {
+  opacity: 0.8;
+}
+
+/* Logo simple hover */
+.logo-link {
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.7;
+}
+
+/* Page load animation container */
+.animate-page {
+  opacity: 0;
+  animation: pageLoad 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.05s;
+}
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduce motion for accessibility - handled in JavaScript */
+
 /* Mobile Responsive */
 @media (max-width: 780px) {
   .spa-content-container {
@@ -472,18 +519,22 @@ footer {
     padding: 0 24px;
   }
   
-  .carousel-wrapper {
+  .embla {
     margin-left: -24px;
     margin-right: -24px;
   }
   
-  .carousel-container {
+  .embla__viewport {
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 40px;
   }
   
-  .carousel-slide img {
+  .embla__slide {
+    flex: 0 0 300px;
+  }
+  
+  .embla__slide img {
     width: 300px;
     max-height: 200px;
     object-fit: cover;
