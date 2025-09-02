@@ -90,7 +90,6 @@ body.night a:hover {
   text-decoration-color: var(--text-70);
 }
 
-body.night #name { color: var(--text-contrast); }
 body.night .subtitle, body.night .caption { color: var(--text-50); }
 body.night .title { color: #fff; }
 
@@ -107,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 .title {
   font-size: 14px;
   font-weight: 600;
-  color: #27272a;
+  color: var(--text-base);
   line-height: 1.25;
   letter-spacing: 0;
   display: block;
@@ -223,7 +222,6 @@ body.home-page #nav.static-header .header-home-content {
   font-weight: 500;
   margin-bottom: 4px;
   white-space: nowrap;
-  color: var(--text-base-static);
   text-decoration: none;
   display: block;
 }
@@ -235,7 +233,7 @@ nav {
 }
 
 .button-link {
-  text-decoration: none;
+  text-decoration: none !important;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -244,15 +242,26 @@ nav {
   background-color: transparent;
   opacity: 0.7;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: blur(0px);
 }
 
 .button-link:hover, .button-link.active {
   opacity: 1;
   color: var(--text-base-static);
+  filter: blur(0px);
 }
 
+/* Header navigation specific hover effects */
+.header-nav:hover .button-link:not(:hover):not(.active) {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+/* Fallback for other nav contexts */
 nav:hover .button-link:not(:hover):not(.active) {
-  opacity: 0.5;
+  opacity: 0.3;
+  filter: blur(0.5px);
 }
 
 body.night .button-link,
@@ -272,7 +281,7 @@ a {
 }
 
 a:hover {
-  text-decoration-color: var(--surface-10);
+  text-decoration-color: var(--surface-30);
 }
 
 /* Content Container */
@@ -541,15 +550,6 @@ body.night .divider {
 .color-terraforms { --custom-color: #111111; }
 .color-tint { --custom-color: #111111; }
 
-/* Interactive hover effects */
-.image-link:hover .title {
-  color: var(--custom-color);
-}
-
-.image-link:hover .subtitle {
-  color: var(--custom-color);
-  opacity: 0.5;
-}
 
 /* Approach page specific styles */
 .page-header {
