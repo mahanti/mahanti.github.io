@@ -303,11 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add click handlers directly to images as backup
       images.forEach(img => {
         img.addEventListener('click', (e) => {
-          // Check if this image has zoom functionality - if so, let medium-zoom handle it
-          if (img.hasAttribute('data-zoomable')) {
-            return; // Let medium-zoom handle the click
-          }
-          
           const rect = img.getBoundingClientRect();
           const clickX = e.clientX - rect.left;
           const imageWidth = rect.width;
@@ -321,11 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Add mousemove handler to change cursor based on position
         img.addEventListener('mousemove', (e) => {
-          // Don't override cursor for zoomable images - let medium-zoom handle it
-          if (img.hasAttribute('data-zoomable')) {
-            return;
-          }
-          
           const rect = img.getBoundingClientRect();
           const mouseX = e.clientX - rect.left;
           const imageWidth = rect.width;
@@ -339,10 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Reset cursor when mouse leaves
         img.addEventListener('mouseleave', () => {
-          // Don't override cursor for zoomable images
-          if (!img.hasAttribute('data-zoomable')) {
-            img.style.cursor = 'pointer';
-          }
+          img.style.cursor = 'pointer';
         });
       });
       
@@ -397,32 +384,4 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     initImageCarousels();
   }, 2000);
-
-  // ================================
-  // MEDIUM ZOOM INITIALIZATION
-  // ================================
-  
-  function initMediumZoom() {
-    if (typeof mediumZoom !== 'undefined') {
-      // Initialize medium zoom with data-zoomable attribute
-      mediumZoom('[data-zoomable]', {
-        margin: 48,
-        background: 'rgba(0, 0, 0, 0.05)',
-        scrollOffset: 56
-      });
-      console.log('Medium zoom initialized');
-    } else {
-      console.warn('mediumZoom is not available');
-    }
-  }
-  
-  // Initialize medium zoom
-  initMediumZoom();
-  
-  // Also initialize on window load as backup
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      initMediumZoom();
-    }, 500);
-  });
 });
