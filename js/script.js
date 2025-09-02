@@ -235,4 +235,134 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize Embla carousel
   const emblaCarousel = initEmblaCarousel();
+
+  // ================================
+  // SIMPLE IMAGE CAROUSEL
+  // ================================
+  
+  function initImageCarousels() {
+    const carousels = document.querySelectorAll('.image-carousel');
+    
+    carousels.forEach((carousel, index) => {
+      // Skip if already initialized
+      if (carousel.dataset.initialized === 'true') {
+        return;
+      }
+      
+      const images = carousel.querySelectorAll('.carousel-image');
+      const leftNav = carousel.querySelector('.carousel-nav.left');
+      const rightNav = carousel.querySelector('.carousel-nav.right');
+      
+      if (images.length === 0) return;
+      
+      let currentIndex = 0;
+      
+      function updateCarousel() {
+        images.forEach((img, index) => {
+          img.classList.toggle('active', index === currentIndex);
+        });
+      }
+      
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      }
+      
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+      }
+      
+      // Add click handlers to navigation areas
+      if (leftNav) {
+        leftNav.addEventListener('click', prevImage);
+      }
+      
+      if (rightNav) {
+        rightNav.addEventListener('click', nextImage);
+      }
+      
+      // Add click handlers directly to images as backup
+      images.forEach(img => {
+        img.addEventListener('click', (e) => {
+          const rect = img.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const imageWidth = rect.width;
+          
+          if (clickX < imageWidth / 2) {
+            prevImage();
+          } else {
+            nextImage();
+          }
+        });
+        
+        // Add mousemove handler to change cursor based on position
+        img.addEventListener('mousemove', (e) => {
+          const rect = img.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const imageWidth = rect.width;
+          
+          if (mouseX < imageWidth / 2) {
+            img.style.cursor = 'w-resize';
+          } else {
+            img.style.cursor = 'e-resize';
+          }
+        });
+        
+        // Reset cursor when mouse leaves
+        img.addEventListener('mouseleave', () => {
+          img.style.cursor = 'pointer';
+        });
+      });
+      
+      // Initialize first image as active
+      updateCarousel();
+      
+      // Mark as initialized
+      carousel.dataset.initialized = 'true';
+    });
+  }
+  
+  // Initialize image carousels with multiple timing strategies
+  initImageCarousels();
+  
+  // Also initialize on window load as backup
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      initImageCarousels();
+    }, 500);
+  });
+  
+  // Use MutationObserver to detect when carousel elements are added
+  const observer = new MutationObserver((mutations) => {
+    let shouldInitialize = false;
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === 1) { // Element node
+          if (node.classList && node.classList.contains('image-carousel')) {
+            shouldInitialize = true;
+          } else if (node.querySelector && node.querySelector('.image-carousel')) {
+            shouldInitialize = true;
+          }
+        }
+      });
+    });
+    
+    if (shouldInitialize) {
+      setTimeout(() => {
+        initImageCarousels();
+      }, 100);
+    }
+  });
+  
+  // Start observing
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+  
+  // Final backup - initialize after a longer delay
+  setTimeout(() => {
+    initImageCarousels();
+  }, 2000);
 });

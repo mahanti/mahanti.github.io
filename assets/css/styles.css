@@ -349,6 +349,55 @@ img {
   margin-bottom: 16px;
 }
 
+/* Simple Image Carousel */
+.image-carousel {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.image-carousel img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 32px;
+  margin-bottom: 0;
+}
+
+.image-carousel .carousel-image {
+  display: none;
+}
+
+.image-carousel .carousel-image.active {
+  display: block;
+}
+
+.image-carousel .carousel-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 10;
+  background: transparent;
+}
+
+.image-carousel .carousel-nav.left {
+  left: 0;
+  cursor: w-resize;
+}
+
+.image-carousel .carousel-nav.right {
+  right: 0;
+  cursor: e-resize;
+}
+
+/* Make the entire image area clickable with dynamic cursors */
+.image-carousel img {
+  cursor: pointer;
+}
+
+
+
 .image-border {
   border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
 }
