@@ -83,7 +83,7 @@ body.night h1, body.night h2, body.night h3, body.night h4, body.night h5, body.
 
 body.night a {
   color: var(--text-contrast);
-  text-decoration-color: var(--surface-30);
+  text-decoration-color: var(--surface-base);
 }
 
 body.night a:hover {
