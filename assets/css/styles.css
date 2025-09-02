@@ -287,7 +287,7 @@ a:hover {
 /* Content Container */
 .spa-content-container {
   width: 100%;
-  max-width: 1028px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
@@ -301,10 +301,10 @@ a:hover {
   margin: 0 auto;
 }
 
-/* Image Content Container - allows images to expand to 1028px on desktop */
+/* Image Content Container - allows images to expand to 960px on desktop */
 .image-content {
   width: 100%;
-  max-width: 1028px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -446,11 +446,11 @@ section:not(.image-section),
   margin-right: auto;
 }
 
-/* Image sections can use full 1028px width */
+/* Image sections can use full 960px width */
 section.image-section,
 .section.image-section,
 .section-two-column.image-section {
-  max-width: 1028px;
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -489,19 +489,19 @@ section.image-section,
     max-width: 640px;
   }
   
-  /* Image sections can expand to 1028px */
+  /* Image sections can expand to 960px */
   section.image-section,
   .section.image-section,
   .section-two-column.image-section {
-    max-width: 1028px;
+    max-width: 960px;
   }
   
-  /* Images break out to full 1028px width */
+  /* Images break out to full 960px width */
   .spa-content-container img:not(.embla img):not(.site-logo) {
-    width: 1028px;
-    max-width: 1028px;
-    margin-left: calc((640px - 1028px) / 2);
-    margin-right: calc((640px - 1028px) / 2);
+    width: 960px;
+    max-width: 960px;
+    margin-left: calc((640px - 960px) / 2);
+    margin-right: calc((640px - 960px) / 2);
   }
   
   /* Carousel images should use their own sizing */
