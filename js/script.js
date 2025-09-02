@@ -241,19 +241,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================================
   
   function initImageCarousels() {
+    console.log('DOM ready state:', document.readyState);
+    console.log('Body exists:', !!document.body);
+    console.log('Looking for .image-carousel elements...');
+    
     const carousels = document.querySelectorAll('.image-carousel');
+    console.log('Found carousels:', carousels.length);
+    
+    // Debug: let's see what elements are actually in the DOM
+    const allDivs = document.querySelectorAll('div');
+    console.log('Total divs found:', allDivs.length);
+    
+    // Check if any divs have carousel-related classes
+    const carouselRelated = document.querySelectorAll('[class*="carousel"]');
+    console.log('Elements with carousel in class name:', carouselRelated.length);
     
     carousels.forEach((carousel, index) => {
       // Skip if already initialized
       if (carousel.dataset.initialized === 'true') {
+        console.log(`Carousel ${index + 1} already initialized, skipping`);
         return;
       }
       
+      console.log(`Initializing carousel ${index + 1}`);
       const images = carousel.querySelectorAll('.carousel-image');
       const leftNav = carousel.querySelector('.carousel-nav.left');
       const rightNav = carousel.querySelector('.carousel-nav.right');
       
-      if (images.length === 0) return;
+      if (images.length === 0) {
+        console.log(`No images found in carousel ${index + 1}`);
+        return;
+      }
       
       let currentIndex = 0;
       
@@ -285,6 +303,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add click handlers directly to images as backup
       images.forEach(img => {
         img.addEventListener('click', (e) => {
+          // Check if this image has zoom functionality - if so, let medium-zoom handle it
+          if (img.hasAttribute('data-zoomable')) {
+            return; // Let medium-zoom handle the click
+          }
+          
           const rect = img.getBoundingClientRect();
           const clickX = e.clientX - rect.left;
           const imageWidth = rect.width;
@@ -298,6 +321,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Add mousemove handler to change cursor based on position
         img.addEventListener('mousemove', (e) => {
+          // Don't override cursor for zoomable images - let medium-zoom handle it
+          if (img.hasAttribute('data-zoomable')) {
+            return;
+          }
+          
           const rect = img.getBoundingClientRect();
           const mouseX = e.clientX - rect.left;
           const imageWidth = rect.width;
@@ -311,7 +339,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Reset cursor when mouse leaves
         img.addEventListener('mouseleave', () => {
-          img.style.cursor = 'pointer';
+          // Don't override cursor for zoomable images
+          if (!img.hasAttribute('data-zoomable')) {
+            img.style.cursor = 'pointer';
+          }
         });
       });
       
@@ -320,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Mark as initialized
       carousel.dataset.initialized = 'true';
+      console.log(`Carousel ${index + 1} initialized successfully with ${images.length} images`);
     });
   }
   
@@ -365,4 +397,32 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     initImageCarousels();
   }, 2000);
+
+  // ================================
+  // MEDIUM ZOOM INITIALIZATION
+  // ================================
+  
+  function initMediumZoom() {
+    if (typeof mediumZoom !== 'undefined') {
+      // Initialize medium zoom with data-zoomable attribute
+      mediumZoom('[data-zoomable]', {
+        margin: 48,
+        background: 'rgba(0, 0, 0, 0.05)',
+        scrollOffset: 56
+      });
+      console.log('Medium zoom initialized');
+    } else {
+      console.warn('mediumZoom is not available');
+    }
+  }
+  
+  // Initialize medium zoom
+  initMediumZoom();
+  
+  // Also initialize on window load as backup
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      initMediumZoom();
+    }, 500);
+  });
 });
