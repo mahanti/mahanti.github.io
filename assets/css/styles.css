@@ -278,11 +278,25 @@ a:hover {
 /* Content Container */
 .spa-content-container {
   width: 100%;
-  max-width: 640px;
+  max-width: 1028px;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
   min-height: 50vh;
+}
+
+/* Text Content Container - keeps text at 640px on desktop */
+.text-content {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Image Content Container - allows images to expand to 1028px on desktop */
+.image-content {
+  width: 100%;
+  max-width: 1028px;
+  margin: 0 auto;
 }
 
 /* Embla Carousel */
@@ -365,6 +379,24 @@ section:last-child {
   margin-bottom: 0;
 }
 
+/* Text sections should be constrained to 640px on desktop */
+section:not(.image-section),
+.section:not(.image-section),
+.section-two-column:not(.image-section) {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image sections can use full 1028px width */
+section.image-section,
+.section.image-section,
+.section-two-column.image-section {
+  max-width: 1028px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Desktop Two-Column Layout */
 @media (min-width: 768px) {
   .section-two-column {
@@ -382,6 +414,50 @@ section:last-child {
   
   .section-two-column .section-content {
     flex: 1;
+  }
+}
+
+/* Desktop Layout Adjustments for Different Content Widths */
+@media (min-width: 780px) {
+  /* Header and navigation stay at 640px */
+  #nav.static-header .col-8 {
+    max-width: 640px;
+  }
+  
+  /* Text sections stay at 640px */
+  section:not(.image-section),
+  .section:not(.image-section),
+  .section-two-column:not(.image-section) {
+    max-width: 640px;
+  }
+  
+  /* Image sections can expand to 1028px */
+  section.image-section,
+  .section.image-section,
+  .section-two-column.image-section {
+    max-width: 1028px;
+  }
+  
+  /* Images break out to full 1028px width */
+  .spa-content-container img:not(.embla img):not(.site-logo) {
+    width: 1028px;
+    max-width: 1028px;
+    margin-left: calc((640px - 1028px) / 2);
+    margin-right: calc((640px - 1028px) / 2);
+  }
+  
+  /* Carousel images should use their own sizing */
+  .embla img {
+    width: 600px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Footer stays at 640px */
+  footer {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -547,5 +623,13 @@ footer {
   
   img {
     border-radius: 20px;
+  }
+  
+  /* Reset desktop image styles on mobile */
+  .spa-content-container img:not(.embla img):not(.site-logo) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
