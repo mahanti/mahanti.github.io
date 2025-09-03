@@ -414,6 +414,49 @@ img {
   cursor: pointer;
 }
 
+/* Carousel Pagination Dots */
+.carousel-pagination {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  z-index: 20;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-30);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.carousel-dot.active {
+  background-color: var(--text-base);
+}
+
+.carousel-dot:hover {
+  background-color: var(--text-base);
+}
+
+/* Embla carousel pagination positioning */
+.embla {
+  position: relative;
+}
+
+.embla .carousel-pagination {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
 
 
 .image-border {

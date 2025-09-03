@@ -182,6 +182,31 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const embla = EmblaCarousel(emblaNode, options);
     
+    // Initialize pagination dots for Embla carousel
+    const emblaPagination = document.getElementById('embla-pagination');
+    const emblaDots = emblaPagination ? emblaPagination.querySelectorAll('.carousel-dot') : [];
+    
+    function updateEmblaPagination() {
+      const selectedIndex = embla.selectedScrollSnap();
+      emblaDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === selectedIndex);
+      });
+    }
+    
+    // Add click handlers to Embla pagination dots
+    emblaDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        embla.scrollTo(index);
+      });
+    });
+    
+    // Update pagination on slide change
+    embla.on('select', updateEmblaPagination);
+    embla.on('reInit', updateEmblaPagination);
+    
+    // Initialize pagination
+    updateEmblaPagination();
+    
     // Add wheel/trackpad support with throttling
     let wheelTimer = null;
     emblaNode.addEventListener('wheel', (e) => {
@@ -275,9 +300,18 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let currentIndex = 0;
       
+      // Find pagination dots for this carousel
+      const paginationContainer = carousel.querySelector('.carousel-pagination');
+      const paginationDots = paginationContainer ? paginationContainer.querySelectorAll('.carousel-dot') : [];
+      
       function updateCarousel() {
         images.forEach((img, index) => {
           img.classList.toggle('active', index === currentIndex);
+        });
+        
+        // Update pagination dots
+        paginationDots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
         });
       }
       
@@ -330,6 +364,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset cursor when mouse leaves
         img.addEventListener('mouseleave', () => {
           img.style.cursor = 'pointer';
+        });
+      });
+      
+      // Add click handlers to pagination dots
+      paginationDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentIndex = index;
+          updateCarousel();
         });
       });
       
