@@ -54,11 +54,7 @@ html, body {
   scroll-behavior: smooth;
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -webkit-tap-highlight-color: var(--text-base);
 }
 
 body {
@@ -69,6 +65,13 @@ body {
   background-color: var(--surface-base);
   color: var(--text-base);
   touch-action: manipulation;
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--surface-10);
+  color:  var(--text-base);
+  text-shadow: none;
 }
 
 /* Dark Mode Base Overrides */
@@ -174,6 +177,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   background: transparent;
   margin-top: 96px;
+  text-wrap: balance;
 }
 
 #nav.static-header .col-8 {
@@ -218,7 +222,7 @@ body.home-page #nav.static-header .header-home-content {
 }
 
 #name {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   margin-bottom: 4px;
   white-space: nowrap;
@@ -336,8 +340,12 @@ a:hover {
   margin-right: 16px;
 }
 
+img {
+  background-color: var(--surface-10);
+}
+
 .embla__slide img {
-  width: 600px;
+  width: 640px;
   height: auto;
   border-radius: 32px;
   pointer-events: none;
@@ -506,7 +514,7 @@ section.image-section,
   
   /* Carousel images should use their own sizing */
   .embla img {
-    width: 600px;
+    width: 640px;
     margin-left: 0;
     margin-right: 0;
   }
