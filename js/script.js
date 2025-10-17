@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const linkElements = document.querySelectorAll('.image-link');
     const logoElement = document.querySelector('.logo-link');
     
-    // Immediately set initial hidden state with inline styles (like nelson.co)
     const allElements = [
       ...(logoElement ? [logoElement] : []),
       ...headerElements,
@@ -28,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     allElements.forEach(el => {
       el.style.opacity = '0';
-      el.style.filter = 'blur(6px)';
+      el.style.filter = 'blur(8px)';
       el.style.transform = 'translateY(12px) translateZ(0)';
-      el.style.transition = 'all 0.4s cubic-bezier(0.24, 0.48, 0.48, 0.96)';
+      el.style.transition = 'all 0.4s cubic-bezier(0.20, 0.40, 0.40, 0.8)';
     });
     
     // Trigger animations after page load
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
           el.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
           setTimeout(() => {
             el.style.opacity = '0';
-            el.style.filter = 'blur(6px)';
+            el.style.filter = 'blur(8px)';
             el.style.transform = 'translateY(12px) translateZ(0)';
           }, index * 20); // Very quick stagger
         });
@@ -250,9 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Re-apply animation targeting for the carousel
       carouselElement.style.opacity = '0';
-      carouselElement.style.filter = 'blur(6px)';
+      carouselElement.style.filter = 'blur(8px)';
       carouselElement.style.transform = 'translateY(12px) translateZ(0)';
-      carouselElement.style.transition = 'all 0.4s cubic-bezier(0.24, 0.48, 0.48, 0.96)';
+      carouselElement.style.transition = 'all 0.4s cubic-bezier(0.20, 0.40, 0.40, 0.8)';
     }
     
     return embla;
