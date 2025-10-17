@@ -260,13 +260,11 @@ nav {
 /* Header navigation specific hover effects */
 .header-nav:hover .button-link:not(:hover):not(.active) {
   opacity: 0.3;
-  filter: blur(2px);
 }
 
 /* Fallback for other nav contexts */
 nav:hover .button-link:not(:hover):not(.active) {
   opacity: 0.3;
-  filter: blur(0.5px);
 }
 
 body.night .button-link,

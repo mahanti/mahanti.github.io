@@ -4,132 +4,137 @@ document.addEventListener('DOMContentLoaded', () => {
   // PAGE ENTRANCE ANIMATIONS
   // ================================
   
-  function initPageAnimations() {
-    // Check if user prefers reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return; // Skip animations if user prefers reduced motion
-    }
-    
-    // Get all elements that should be animated
-    const headerElements = document.querySelectorAll('#name, .subtitle, nav');
-    const carouselElement = document.querySelector('.embla');
-    const sectionElements = document.querySelectorAll('section, .section');
-    const linkElements = document.querySelectorAll('.image-link');
-    const logoElement = document.querySelector('.logo-link');
-    
-    const allElements = [
-      ...(logoElement ? [logoElement] : []),
-      ...headerElements,
-      ...(carouselElement ? [carouselElement] : []),
-      ...sectionElements,
-      ...linkElements
-    ];
-    
-    allElements.forEach(el => {
-      el.style.opacity = '0';
-      el.style.filter = 'blur(8px)';
-      el.style.transform = 'translateY(12px) translateZ(0)';
-      el.style.transition = 'all 0.4s cubic-bezier(0.20, 0.40, 0.40, 0.8)';
-    });
-    
-    // Trigger animations after page load
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        // Animate elements with staggered timing
-        if (logoElement) {
-          setTimeout(() => {
-            logoElement.style.opacity = '1';
-            logoElement.style.filter = 'blur(0px)';
-            logoElement.style.transform = 'translateY(0px) translateZ(0)';
-          }, 100);
-        }
-        
-        headerElements.forEach((el, index) => {
-          setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.filter = 'blur(0px)';
-            el.style.transform = 'translateY(0px) translateZ(0)';
-          }, 150 + index * 50);
-        });
-        
-        if (carouselElement) {
-          setTimeout(() => {
-            carouselElement.style.opacity = '1';
-            carouselElement.style.filter = 'blur(0px)';
-            carouselElement.style.transform = 'translateY(0px) translateZ(0)';
-          }, 400);
-        }
-        
-        sectionElements.forEach((el, index) => {
-          setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.filter = 'blur(0px)';
-            el.style.transform = 'translateY(0px) translateZ(0)';
-          }, 500 + index * 100);
-        });
-        
-        linkElements.forEach((el, index) => {
-          setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.filter = 'blur(0px)';
-            el.style.transform = 'translateY(0px) translateZ(0)';
-          }, 700 + index * 30);
-        });
-      }, 100); // Small delay after page load
-    });
-  }
+  // COMMENTED OUT: Page entrance animations for static feel
+  // function initPageAnimations() {
+  //   // Check if user prefers reduced motion
+  //   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  //     return; // Skip animations if user prefers reduced motion
+  //   }
+  //   
+  //   // Get all elements that should be animated
+  //   const headerElements = document.querySelectorAll('#name, .subtitle, nav');
+  //   const carouselElement = document.querySelector('.embla');
+  //   const sectionElements = document.querySelectorAll('section, .section');
+  //   const linkElements = document.querySelectorAll('.image-link');
+  //   const logoElement = document.querySelector('.logo-link');
+  //   
+  //   const allElements = [
+  //     ...(logoElement ? [logoElement] : []),
+  //     ...headerElements,
+  //     ...(carouselElement ? [carouselElement] : []),
+  //     ...sectionElements,
+  //     ...linkElements
+  //   ];
+  //   
+  //   allElements.forEach(el => {
+  //     el.style.opacity = '0';
+  //     el.style.filter = 'blur(8px)';
+  //     el.style.transform = 'translateY(12px) translateZ(0)';
+  //     el.style.transition = 'all 0.4s cubic-bezier(0.20, 0.40, 0.40, 0.8)';
+  //   });
+  //   
+  //   // Trigger animations after page load
+  //   requestAnimationFrame(() => {
+  //     setTimeout(() => {
+  //       // Animate elements with staggered timing
+  //       if (logoElement) {
+  //         setTimeout(() => {
+  //           logoElement.style.opacity = '1';
+  //           logoElement.style.filter = 'blur(0px)';
+  //           logoElement.style.transform = 'translateY(0px) translateZ(0)';
+  //         }, 100);
+  //       }
+  //       
+  //       headerElements.forEach((el, index) => {
+  //         setTimeout(() => {
+  //           el.style.opacity = '1';
+  //           el.style.filter = 'blur(0px)';
+  //           el.style.transform = 'translateY(0px) translateZ(0)';
+  //         }, 150 + index * 50);
+  //       });
+  //       
+  //       if (carouselElement) {
+  //         setTimeout(() => {
+  //           carouselElement.style.opacity = '1';
+  //           carouselElement.style.filter = 'blur(0px)';
+  //           carouselElement.style.transform = 'translateY(0px) translateZ(0)';
+  //         }, 400);
+  //       }
+  //       
+  //       sectionElements.forEach((el, index) => {
+  //         setTimeout(() => {
+  //           el.style.opacity = '1';
+  //           el.style.filter = 'blur(0px)';
+  //           el.style.transform = 'translateY(0px) translateZ(0)';
+  //         }, 500 + index * 100);
+  //       });
+  //       
+  //       linkElements.forEach((el, index) => {
+  //         setTimeout(() => {
+  //           el.style.opacity = '1';
+  //           el.style.filter = 'blur(0px)';
+  //           el.style.transform = 'translateY(0px) translateZ(0)';
+  //         }, 700 + index * 30);
+  //       });
+  //     }, 100); // Small delay after page load
+  //   });
+  // }
   
   // Page transition handling for navigation
   function handlePageTransition(href) {
     // Only handle internal links
     if (href.startsWith('/') || href.includes(window.location.hostname)) {
+      // COMMENTED OUT: Page transition animations for snappy navigation
       // Get all animated elements - target the main containers, not child elements
-      const logoElement = document.querySelector('.logo-link');
-      const nameElement = document.querySelector('#name');
-      const subtitleElement = document.querySelector('.subtitle.hideable'); // Only the main subtitle
-      const navElement = document.querySelector('nav');
-      const carouselElement = document.querySelector('.embla');
-      const sectionElements = document.querySelectorAll('section');
-      const linkElements = document.querySelectorAll('a.image-link.row'); // Specific to the work/product links
+      // const logoElement = document.querySelector('.logo-link');
+      // const nameElement = document.querySelector('#name');
+      // const subtitleElement = document.querySelector('.subtitle.hideable'); // Only the main subtitle
+      // const navElement = document.querySelector('nav');
+      // const carouselElement = document.querySelector('.embla');
+      // const sectionElements = document.querySelectorAll('section');
+      // const linkElements = document.querySelectorAll('a.image-link.row'); // Specific to the work/product links
       
-      const allElements = [
-        ...(logoElement ? [logoElement] : []),
-        ...(nameElement ? [nameElement] : []),
-        ...(subtitleElement ? [subtitleElement] : []),
-        ...(navElement ? [navElement] : []),
-        ...(carouselElement ? [carouselElement] : []),
-        ...sectionElements,
-        ...linkElements
-      ];
+      // const allElements = [
+      //   ...(logoElement ? [logoElement] : []),
+      //   ...(nameElement ? [nameElement] : []),
+      //   ...(subtitleElement ? [subtitleElement] : []),
+      //   ...(navElement ? [navElement] : []),
+      //   ...(carouselElement ? [carouselElement] : []),
+      //   ...sectionElements,
+      //   ...linkElements
+      // ];
       
       // Animate elements out quickly
-      allElements.forEach((el, index) => {
-        // Force override any existing transition
-        el.style.transition = 'none';
-        requestAnimationFrame(() => {
-          el.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          setTimeout(() => {
-            el.style.opacity = '0';
-            el.style.filter = 'blur(8px)';
-            el.style.transform = 'translateY(12px) translateZ(0)';
-          }, index * 20); // Very quick stagger
-        });
-      });
+      // allElements.forEach((el, index) => {
+      //   // Force override any existing transition
+      //   el.style.transition = 'none';
+      //   requestAnimationFrame(() => {
+      //     el.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      //     setTimeout(() => {
+      //       el.style.opacity = '0';
+      //       el.style.filter = 'blur(8px)';
+      //       el.style.transform = 'translateY(12px) translateZ(0)';
+      //     }, index * 20); // Very quick stagger
+      //   });
+      // });
       
       // Also fade the page container
-      const pageContent = document.querySelector('.page-content');
-      if (pageContent) {
-        pageContent.style.transition = 'opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        setTimeout(() => {
-          pageContent.style.opacity = '0.3';
-        }, 100);
-      }
+      // const pageContent = document.querySelector('.page-content');
+      // if (pageContent) {
+      //   pageContent.style.transition = 'opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      //   setTimeout(() => {
+      //     pageContent.style.opacity = '0.3';
+      //   }, 100);
+      // }
       
-      setTimeout(() => {
-        window.location.href = href;
-      }, 400); // Give enough time for exit animation
+      // setTimeout(() => {
+      //   window.location.href = href;
+      // }, 400); // Give enough time for exit animation
       
-      return false; // Prevent immediate navigation
+      // return false; // Prevent immediate navigation
+      
+      // Allow immediate navigation for snappy feel
+      return true;
     }
     return true; // Allow navigation for external links
   }
@@ -146,21 +151,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Initialize animations
-  let animationsInitialized = false;
-  
-  function safeInitAnimations() {
-    if (!animationsInitialized) {
-      animationsInitialized = true;
-      initPageAnimations();
-    }
-  }
-  
-  // Initialize immediately
-  safeInitAnimations();
-  
-  // Also trigger on window load as a fallback
-  window.addEventListener('load', safeInitAnimations);
+  // COMMENTED OUT: Animation initialization for static feel
+  // let animationsInitialized = false;
+  // 
+  // function safeInitAnimations() {
+  //   if (!animationsInitialized) {
+  //     animationsInitialized = true;
+  //     initPageAnimations();
+  //   }
+  // }
+  // 
+  // // Initialize immediately
+  // safeInitAnimations();
+  // 
+  // // Also trigger on window load as a fallback
+  // window.addEventListener('load', safeInitAnimations);
 
   // ================================
   // EMBLA CAROUSEL IMPLEMENTATION
@@ -235,24 +240,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: false });
     
-    // Update the carousel animations reference
-    const carouselElement = document.querySelector('.embla');
-    if (carouselElement) {
-      // Update animations to target embla instead of carousel-wrapper
-      const animationElements = [
-        ...(document.querySelector('.logo-link') ? [document.querySelector('.logo-link')] : []),
-        ...document.querySelectorAll('#name, .subtitle, nav'),
-        ...(carouselElement ? [carouselElement] : []),
-        ...document.querySelectorAll('section, .section'),
-        ...document.querySelectorAll('.image-link')
-      ];
-      
-      // Re-apply animation targeting for the carousel
-      carouselElement.style.opacity = '0';
-      carouselElement.style.filter = 'blur(8px)';
-      carouselElement.style.transform = 'translateY(12px) translateZ(0)';
-      carouselElement.style.transition = 'all 0.4s cubic-bezier(0.20, 0.40, 0.40, 0.8)';
-    }
+    // COMMENTED OUT: Carousel animation code for static feel
+    // const carouselElement = document.querySelector('.embla');
+    // if (carouselElement) {
+    //   // Update animations to target embla instead of carousel-wrapper
+    //   const animationElements = [
+    //     ...(document.querySelector('.logo-link') ? [document.querySelector('.logo-link')] : []),
+    //     ...document.querySelectorAll('#name, .subtitle, nav'),
+    //     ...(carouselElement ? [carouselElement] : []),
+    //     ...document.querySelectorAll('section, .section'),
+    //     ...document.querySelectorAll('.image-link')
+    //   ];
+    //   
+    //   // Re-apply animation targeting for the carousel
+    //   carouselElement.style.opacity = '0';
+    //   carouselElement.style.filter = 'blur(8px)';
+    //   carouselElement.style.transform = 'translateY(12px) translateZ(0)';
+    //   carouselElement.style.transition = 'all 0.4s cubic-bezier(0.20, 0.40, 0.40, 0.8)';
+    // }
     
     return embla;
   }
@@ -265,35 +270,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================================
   
   function initImageCarousels() {
-    console.log('DOM ready state:', document.readyState);
-    console.log('Body exists:', !!document.body);
-    console.log('Looking for .image-carousel elements...');
     
     const carousels = document.querySelectorAll('.image-carousel');
-    console.log('Found carousels:', carousels.length);
     
     // Debug: let's see what elements are actually in the DOM
     const allDivs = document.querySelectorAll('div');
-    console.log('Total divs found:', allDivs.length);
     
     // Check if any divs have carousel-related classes
     const carouselRelated = document.querySelectorAll('[class*="carousel"]');
-    console.log('Elements with carousel in class name:', carouselRelated.length);
     
     carousels.forEach((carousel, index) => {
       // Skip if already initialized
       if (carousel.dataset.initialized === 'true') {
-        console.log(`Carousel ${index + 1} already initialized, skipping`);
         return;
       }
       
-      console.log(`Initializing carousel ${index + 1}`);
       const images = carousel.querySelectorAll('.carousel-image');
       const leftNav = carousel.querySelector('.carousel-nav.left');
       const rightNav = carousel.querySelector('.carousel-nav.right');
       
       if (images.length === 0) {
-        console.log(`No images found in carousel ${index + 1}`);
         return;
       }
       
@@ -379,7 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Mark as initialized
       carousel.dataset.initialized = 'true';
-      console.log(`Carousel ${index + 1} initialized successfully with ${images.length} images`);
     });
   }
   
